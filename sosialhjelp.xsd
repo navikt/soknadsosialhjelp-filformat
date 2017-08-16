@@ -186,8 +186,7 @@
             <xs:documentation>Informasjon om vedleggene som tilhører en søknad</xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="Vedlegg" type="soknadsosialhjelp:Vedlegg" minOccurs="0"
-                        maxOccurs="unbounded"></xs:element>
+            <xs:element name="Vedlegg" type="soknadsosialhjelp:Vedlegg" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="Vedlegg">
@@ -227,7 +226,15 @@
             <xs:element name="navn" type="soknadsosialhjelp:string"/>
             <xs:element name="fodseldato" type="soknadsosialhjelp:integer"/>
             <xs:element name="personnummer" type="soknadsosialhjelp:integer"/>
-            <xs:element name="barnetBorMedDeg" type="soknadsosialhjelp:boolean"/>
+            <xs:element name="gradBarnetBorMedDeg">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="soknadsosialhjelp:HeltidDeltid">
+                            <xs:attribute name="kilde" type="soknadsosialhjelp:Kilde" use="required"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
             <xs:element name="prosent" minOccurs="0" type="soknadsosialhjelp:integer"/>
         </xs:sequence>
     </xs:complexType>
@@ -283,6 +290,12 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="HeltidDeltid">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="heltid"/>
+            <xs:enumeration value="deltid"/>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:complexType name="string">
         <xs:simpleContent>
             <xs:extension base="xs:string">
