@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           targetNamespace="http://nav.no/melding/domene/brukerdialog/soeknadsskjemasosialhjelp/v1/kodeverk">
+
+    <xs:simpleType name="JobbGrad">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="heltid"/>
+            <xs:enumeration value="deltid"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="StudentGrad">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="heltid"/>
+            <xs:enumeration value="deltid"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="Sivilstatus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="gift"/>
+            <xs:enumeration value="ugift"/>
+            <xs:enumeration value="samboer"/>
+            <xs:enumeration value="enke"/>
+            <xs:enumeration value="skilt"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="Botype">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="eier"/>
+            <xs:enumeration value="leier"/>
+            <xs:enumeration value="kommunal"/>
+            <xs:enumeration value="ingen"/>
+            <xs:enumeration value="annet"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="BosituasjonAnnen">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="institusjon"/>
+            <xs:enumeration value="fengsel"/>
+            <xs:enumeration value="foreldre"/>
+            <xs:enumeration value="krisesenter"/>
+            <xs:enumeration value="venner"/>
+            <xs:enumeration value="familie"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Bostotte">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="husbanken"/>
+            <xs:enumeration value="kommunal"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="Verdi">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="bolig"/>
+            <xs:enumeration value="campingvogn"/>
+            <xs:enumeration value="kjoretoy"/>
+            <xs:enumeration value="fritidseiendom"/>
+            <xs:enumeration value="annet"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Bankinnskudd">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="brukskonto"/>
+            <xs:enumeration value="sparekonto"/>
+            <xs:enumeration value="livsforsikring"/>
+            <xs:enumeration value="aksjer"/>
+            <xs:enumeration value="annet"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Utbetaling">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="utbytte"/>
+            <xs:enumeration value="salg"/>
+            <xs:enumeration value="forsikringsutbetaling"/>
+            <xs:enumeration value="annet"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Boutgift">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="husleie"/>
+            <xs:enumeration value="strom"/>
+            <xs:enumeration value="kommunaleavgifter"/>
+            <xs:enumeration value="oppvarming"/>
+            <xs:enumeration value="boliglan"/>
+            <xs:enumeration value="annet"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="Barnutgift">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="fritidsaktiviteter"/>
+            <xs:enumeration value="barnehage"/>
+            <xs:enumeration value="tannbehandling"/>
+            <xs:enumeration value="helse"/>
+            <xs:enumeration value="annet"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Opplysninger">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="arbeidsledig"/>
+            <xs:enumeration value="arbeidsledig_feriepenger"/>
+            <xs:enumeration value="arbeidsledig_sluttoppgjor"/>
+
+            <xs:enumeration value="jobb"/>
+            <xs:enumeration value="jobb_bruttolonn"/>
+            <xs:enumeration value="jobb_nettolonn"/>
+
+            <xs:enumeration value="student"/>
+            <xs:enumeration value="student_utbetaling"/>
+            <xs:enumeration value="student_studielan"/>
+
+            <xs:enumeration value="barnsammen"/>
+            <xs:enumeration value="barnsammen_bidragbetaler"/>
+            <xs:enumeration value="barnsammen_bidragmottar"/>
+
+            <xs:enumeration value="annenbosituasjon"/>
+            <xs:enumeration value="annenbosituasjon_manedlig"/>
+
+            <xs:enumeration value="bostottehusbanken"/>
+            <xs:enumeration value="bostottehusbanken_utbetaling"/>
+
+            <xs:enumeration value="bostottekommunal"/>
+            <xs:enumeration value="bostottekommunal_utbetaling"/>
+
+            <xs:enumeration value="barnebidrag"/>
+            <xs:enumeration value="barnebidrag_permnd"/>
+
+            <xs:enumeration value="introduksjonsstonad"/>
+            <xs:enumeration value="introduksjonsstonad_brutto"/>
+            <xs:enumeration value="introduksjonsstonad_netto"/>
+
+            <xs:enumeration value="kvailiseringsstonad"/>
+            <xs:enumeration value="kvailiseringsstonad_brutto"/>
+            <xs:enumeration value="kvailiseringsstonad_netto"/>
+
+            <xs:enumeration value="utbytte"/>
+            <xs:enumeration value="utbytte_utbetaling"/>
+            <xs:enumeration value="utbytte_restverdi"/>
+
+            <xs:enumeration value="solgt"/>
+            <xs:enumeration value="solgt_overskudd"/>
+            <xs:enumeration value="solgt_beskrivelse"/>
+
+            <xs:enumeration value="leieinntekter"/>
+            <xs:enumeration value="leieinntekter_permnd"/>
+
+            <xs:enumeration value="forsikringsutbetaling"/>
+            <xs:enumeration value="forsikringsutbetaling_permnd"/>
+            <xs:enumeration value="forsikringsutbetaling_engangs"/>
+
+
+            <xs:enumeration value="annetinntekt"/>
+            <xs:enumeration value="annetinntekt_permnd"/>
+            <xs:enumeration value="annetinntekt_beskrivelse"/>
+
+            <xs:enumeration value="husleie"/>
+            <xs:enumeration value="husleie_permnd"/>
+
+            <xs:enumeration value="strom"/>
+            <xs:enumeration value="strom_sisteregning"/>
+
+            <xs:enumeration value="kommunaleavgifter"/>
+            <xs:enumeration value="kommunaleavgifter_sisteregning"/>
+
+            <xs:enumeration value="oppvarming"/>
+            <xs:enumeration value="oppvarming_sisteregning"/>
+
+            <xs:enumeration value="boliglan"/>
+            <xs:enumeration value="boliglan_sisteregning"/>
+
+            <xs:enumeration value="annetutgift"/>
+            <xs:enumeration value="annetutgift_permnd"/>
+
+            <xs:enumeration value="andreopplysninger"/>
+            <xs:enumeration value="andreopplysninger_beskrivelse"/>
+            <xs:enumeration value="andreopplysninger_utgifter"/>
+
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
