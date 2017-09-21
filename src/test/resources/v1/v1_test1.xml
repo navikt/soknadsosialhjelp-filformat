@@ -1,0 +1,181 @@
+<soknadsosialhjelp version="1.0"
+        xmlns="http://nav.no/melding/domene/brukerdialog/soeknadsskjemasosialhjelp/v1"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <Mottaker>
+        <Navn>NAV En Bydel i Oslo</Navn>
+        <Postnr>0598</Postnr>
+        <Poststed>Oslo</Poststed>
+        <Orgnr>999999999</Orgnr>
+    </Mottaker>
+
+
+    <Personalia>
+        <PersonIdentifikator kilde="system">12345678901</PersonIdentifikator>
+        <Fornavn kilde="system">Ola</Fornavn>
+        <Mellomnavn kilde="system">Mellom</Mellomnavn>
+        <Etternavn kilde="system">Nordmann</Etternavn>
+        <Statsborgerskap kilde="system">NOR</Statsborgerskap>
+
+        <Telefonnr kilde="system">+47 111 22 333</Telefonnr>
+        <Kontonr kilde="bruker"></Kontonr>
+        <FolkeregistrertAdresse kilde="system" xsi:type="GateAdresse">
+            <Landkode>NOR</Landkode>
+            <Poststed>1359</Poststed>
+            <Kommunenummer>0219</Kommunenummer>
+            <Gatenavn>EN VEI</Gatenavn>
+            <Husnummer>99</Husnummer>
+        </FolkeregistrertAdresse>
+    </Personalia>
+
+    <ArbeidUtdanning>
+        <ErIJobb kilde="bruker">true</ErIJobb>
+        <JobbGrad kilde="bruker">heltid</JobbGrad>
+
+        <ErStudent kilde="bruker">false</ErStudent>
+        <StudentGrad kilde="bruker"></StudentGrad>
+    </ArbeidUtdanning>
+
+    <Familiesituasjon>
+        <Sivilstatus>
+            <Status kilde="bruker">gift</Status>
+            <Ektefelle kilde="bruker">
+                <Fornavn>Kari</Fornavn>
+                <Mellomnavn>K</Mellomnavn>
+                <Etternavn>Nordmann</Etternavn>
+                <Fodselsdato>010191</Fodselsdato>
+                <Personnummer>11111</Personnummer>
+            </Ektefelle>
+            <BorSammenMedEktefelle kilde="bruker">true</BorSammenMedEktefelle>
+            <BorIkkeSammenMedEktefelleBegrunnelse kilde="bruker">Bor ikke sammen pga ...</BorIkkeSammenMedEktefelleBegrunnelse>
+        </Sivilstatus>
+
+        <ForsorgerAnsvar>
+            <Ansvarliste>
+                <Ansvar>
+                    <Barn kilde="bruker">
+                        <Fornavn>Jørn</Fornavn>
+                        <Mellomnavn>Lue</Mellomnavn>
+                        <Etternavn>Nordmann</Etternavn>
+                        <Fodselsdato>010101</Fodselsdato>
+                        <Personnummer>22222</Personnummer>
+                    </Barn>
+                    <BorSammen kilde="bruker">true</BorSammen>
+                    <Samvarsgrad kilde="bruker">deltid</Samvarsgrad>
+                </Ansvar>
+
+                <Ansvar>
+                    <Barn kilde="bruker">
+                        <Fornavn>Lise</Fornavn>
+                        <Mellomnavn>Lue</Mellomnavn>
+                        <Etternavn>Nordmann</Etternavn>
+                        <Fodselsdato>010191</Fodselsdato>
+                        <Personnummer>99999</Personnummer>
+                    </Barn>
+                    <BorSammen kilde="bruker">false</BorSammen>
+                    <Samvarsgrad kilde="bruker"></Samvarsgrad>
+                </Ansvar>
+            </Ansvarliste>
+        </ForsorgerAnsvar>
+    </Familiesituasjon>
+
+
+    <Begrunnelse>
+        <HvorforSoke kilde="bruker">Jeg søker fordi...</HvorforSoke>
+        <HvaSokesOm kilde="bruker">Søker om penger til ...</HvaSokesOm>
+    </Begrunnelse>
+
+    <Bosituasjon>
+        <BoType kilde="bruker">annet</BoType>
+        <AnnenSituasjon>
+            <Situasjon kilde="bruker">venner</Situasjon>
+            <Situasjon kilde="bruker">krisesenter</Situasjon>
+        </AnnenSituasjon>
+        <BarnUnder18 kilde="bruker">0</BarnUnder18>
+        <PersonerOver18 kilde="bruker">4</PersonerOver18>
+    </Bosituasjon>
+
+    <InntektFormue>
+        <NavYtelser>
+            <MottarYtelser kilde="bruker">true</MottarYtelser>
+            <IkkeFerdigbehandledeYtelser kilde="bruker">false</IkkeFerdigbehandledeYtelser>
+        </NavYtelser>
+        <Bostotte>
+            <Bostotteliste>
+                <Bostotte kilde="bruker">husbanken</Bostotte>
+                <Bostotte kilde="bruker">kommunal</Bostotte>
+            </Bostotteliste>
+        </Bostotte>
+
+        <Verdier>
+            <Verdierliste>
+                <Verdi kilde="bruker">bolig</Verdi>
+                <Verdi kilde="bruker">fritidseiendom</Verdi>
+                <Verdi kilde="bruker">annet</Verdi>
+            </Verdierliste>
+            <AnnetBeskrivelse kilde="bruker">Har et helikopter</AnnetBeskrivelse>
+        </Verdier>
+        <Bankinnskudd>
+            <Bankinnskuddliste>
+                <Bankinnskudd kilde="bruker">brukskonto</Bankinnskudd>
+                <Bankinnskudd kilde="bruker">aksjer</Bankinnskudd>
+            </Bankinnskuddliste>
+            <AnnetBeskrivelse kilde="bruker"></AnnetBeskrivelse>
+        </Bankinnskudd>
+
+        <Utbetalinger>
+            <Utbetalingerliste></Utbetalingerliste>
+            <AnnetBeskrivelse kilde="bruker"></AnnetBeskrivelse>
+        </Utbetalinger>
+    </InntektFormue>
+
+    <UtgifterGjeld>
+
+        <Boutgifter>
+            <Boutgifterliste>
+                <Boutgift kilde="bruker">husleie</Boutgift>
+                <Boutgift kilde="bruker">strom</Boutgift>
+                <Boutgift kilde="bruker">annet</Boutgift>
+            </Boutgifterliste>
+            <AnnetBeskrivelse kilde="bruker">Har en gartner</AnnetBeskrivelse>
+        </Boutgifter>
+
+        <Barnutgifter>
+            <Barnutgifterliste>
+                <Barnutgift kilde="bruker">fritidsaktiviteter</Barnutgift>
+                <Barnutgift kilde="bruker">annet</Barnutgift>
+            </Barnutgifterliste>
+            <AnnetBeskrivelse kilde="bruker">Glutenfri mat</AnnetBeskrivelse>
+        </Barnutgifter>
+    </UtgifterGjeld>
+
+    <Inntekter>
+        <Inntektliste>
+            <Inntekt type="jobb" kilde="system">
+                <Verdi type="jobb_bruttolonn">35000</Verdi>
+                <Verdi type="jobb_nettolonn">25000</Verdi>
+            </Inntekt>
+            <Inntekt type="student" kilde="bruker">
+                <Verdi type="student_utbetaling">9000</Verdi>
+                <Verdi type="student_studielan">150000</Verdi>
+            </Inntekt>
+            <Inntekt type="solgt" kilde="bruker">
+                <Verdi type="solgt_overskudd">12000</Verdi>
+                <Verdi type="solgt_beskrivelse">Solgte min gaming-pc</Verdi>
+            </Inntekt>
+            <Inntekt type="annetinntekt" kilde="bruker">
+                <Verdi type="annetinntekt_permnd">5000</Verdi>
+                <Verdi type="annetinntekt_beskrivelse">Fra en deltidsjobb</Verdi>
+            </Inntekt>
+        </Inntektliste>
+    </Inntekter>
+
+    <Utgifter>
+        <Utgiftliste>
+            <Utgift type="strom" kilde="bruker">
+                <Verdi type="strom_sisteregning">456</Verdi>
+            </Utgift>
+        </Utgiftliste>
+    </Utgifter>
+</soknadsosialhjelp>
+
