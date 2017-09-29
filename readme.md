@@ -39,6 +39,7 @@ CHANGELOG
 ### Før v1
 * Booleans er endret til strings, som kan få verdi "true", "false" eller ingenting foreløbig.
 * true/false på en del spørsmål, da vi ikke lenger krever bruker
+* bosituasjon er ikke lenger en liste
 
 Ikke alt er på plass for v1 enda, ting vi vet kommer:
 * Adresser/adressetyper

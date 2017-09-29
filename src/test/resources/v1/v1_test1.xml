@@ -87,10 +87,7 @@
 
     <Bosituasjon>
         <BoType kilde="bruker">annet</BoType>
-        <AnnenSituasjon>
-            <Situasjon kilde="bruker">venner</Situasjon>
-            <Situasjon kilde="bruker">krisesenter</Situasjon>
-        </AnnenSituasjon>
+        <AnnenSituasjon kilde="bruker">venner</AnnenSituasjon>
         <BarnUnder18 kilde="bruker">0</BarnUnder18>
         <PersonerOver18 kilde="bruker">4</PersonerOver18>
     </Bosituasjon>
