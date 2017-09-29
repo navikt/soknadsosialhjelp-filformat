@@ -11,13 +11,6 @@
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
-    <xs:complexType name="KildeBoolean">
-        <xs:simpleContent>
-            <xs:extension base="xs:boolean">
-                <xs:attribute name="kilde" type="xs:string" use="required"/>
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
     <xs:complexType name="KildeInteger">
         <xs:simpleContent>
             <xs:extension base="xs:integer">

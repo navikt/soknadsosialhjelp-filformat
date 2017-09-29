@@ -3,6 +3,13 @@
            elementFormDefault="qualified"
            targetNamespace="http://nav.no/melding/domene/brukerdialog/soeknadsskjemasosialhjelp/v1/kodeverk">
 
+    <xs:simpleType name="Boolean">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+        </xs:restriction>
+    </xs:simpleType>
+
     <xs:simpleType name="JobbGrad">
         <xs:restriction base="xs:string">
             <xs:enumeration value="heltid"/>

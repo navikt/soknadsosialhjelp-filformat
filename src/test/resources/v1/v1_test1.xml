@@ -98,9 +98,10 @@
     <InntektFormue>
         <NavYtelser>
             <MottarYtelser kilde="bruker">true</MottarYtelser>
-            <IkkeFerdigbehandledeYtelser kilde="bruker">false</IkkeFerdigbehandledeYtelser>
+            <IkkeFerdigbehandledeYtelser kilde="bruker"></IkkeFerdigbehandledeYtelser>
         </NavYtelser>
         <Bostotte>
+            <MottarBostotte kilde="bruker">true</MottarBostotte>
             <Bostotteliste>
                 <Bostotte kilde="bruker">husbanken</Bostotte>
                 <Bostotte kilde="bruker">kommunal</Bostotte>
@@ -108,6 +109,7 @@
         </Bostotte>
 
         <Verdier>
+            <HarVerdier kilde="bruker">true</HarVerdier>
             <Verdierliste>
                 <Verdi kilde="bruker">bolig</Verdi>
                 <Verdi kilde="bruker">fritidseiendom</Verdi>
@@ -116,6 +118,7 @@
             <AnnetBeskrivelse kilde="bruker">Har et helikopter</AnnetBeskrivelse>
         </Verdier>
         <Bankinnskudd>
+            <HarBankinnskudd kilde="bruker">true</HarBankinnskudd>
             <Bankinnskuddliste>
                 <Bankinnskudd kilde="bruker">brukskonto</Bankinnskudd>
                 <Bankinnskudd kilde="bruker">aksjer</Bankinnskudd>
@@ -124,6 +127,7 @@
         </Bankinnskudd>
 
         <Utbetalinger>
+            <HarUtbetalinger kilde="bruker"></HarUtbetalinger>
             <Utbetalingerliste></Utbetalingerliste>
             <AnnetBeskrivelse kilde="bruker"></AnnetBeskrivelse>
         </Utbetalinger>
@@ -132,6 +136,7 @@
     <UtgifterGjeld>
 
         <Boutgifter>
+            <HarBoutgifter kilde="bruker">true</HarBoutgifter>
             <Boutgifterliste>
                 <Boutgift kilde="bruker">husleie</Boutgift>
                 <Boutgift kilde="bruker">strom</Boutgift>
@@ -141,6 +146,7 @@
         </Boutgifter>
 
         <Barnutgifter>
+            <HarBarneutgifter kilde="bruker">true</HarBarneutgifter>
             <Barnutgifterliste>
                 <Barnutgift kilde="bruker">fritidsaktiviteter</Barnutgift>
                 <Barnutgift kilde="bruker">annet</Barnutgift>

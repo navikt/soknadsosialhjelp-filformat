@@ -55,9 +55,9 @@
 
     <xs:complexType name="ArbeidUtdanning">
         <xs:sequence>
-            <xs:element name="ErIJobb" type="soknadsosialhjelp:KildeBoolean"/>
+            <xs:element name="ErIJobb" type="soknadsosialhjelp:KildeString"/>
             <xs:element name="JobbGrad" type="soknadsosialhjelp:KildeString"/>
-            <xs:element name="ErStudent" type="soknadsosialhjelp:KildeBoolean"/>
+            <xs:element name="ErStudent" type="soknadsosialhjelp:KildeString"/>
             <xs:element name="StudentGrad" type="soknadsosialhjelp:KildeString"/>
             <xs:any namespace="##targetNamespace" minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
         </xs:sequence>
@@ -70,7 +70,7 @@
                     <xs:sequence>
                         <xs:element name="Status" type="soknadsosialhjelp:KildeString"/>
                         <xs:element name="Ektefelle" type="soknadsosialhjelp:Person" minOccurs="0"/>
-                        <xs:element name="BorSammenMedEktefelle" type="soknadsosialhjelp:KildeBoolean"/>
+                        <xs:element name="BorSammenMedEktefelle" type="soknadsosialhjelp:KildeString"/>
                         <xs:element name="BorIkkeSammenMedEktefelleBegrunnelse" type="soknadsosialhjelp:KildeString"/>
                         <xs:any namespace="##targetNamespace" minOccurs="0" maxOccurs="unbounded"
                                 processContents="lax"/>
@@ -88,7 +88,7 @@
                                         <xs:complexType>
                                             <xs:sequence>
                                                 <xs:element name="Barn" type="soknadsosialhjelp:Person"/>
-                                                <xs:element name="BorSammen" type="soknadsosialhjelp:KildeBoolean"/>
+                                                <xs:element name="BorSammen" type="soknadsosialhjelp:KildeString"/>
                                                 <xs:element name="Samvarsgrad" type="soknadsosialhjelp:KildeString"/>
                                                 <xs:any namespace="##targetNamespace" minOccurs="0"
                                                         maxOccurs="unbounded" processContents="lax"/>
@@ -137,8 +137,8 @@
             <xs:element name="NavYtelser">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="MottarYtelser" type="soknadsosialhjelp:KildeBoolean"/>
-                        <xs:element name="IkkeFerdigbehandledeYtelser" type="soknadsosialhjelp:KildeBoolean"/>
+                        <xs:element name="MottarYtelser" type="soknadsosialhjelp:KildeString"/>
+                        <xs:element name="IkkeFerdigbehandledeYtelser" type="soknadsosialhjelp:KildeString"/>
                         <xs:any namespace="##targetNamespace" minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
                     </xs:sequence>
                 </xs:complexType>
@@ -147,6 +147,7 @@
             <xs:element name="Bostotte">
                 <xs:complexType>
                     <xs:sequence>
+                        <xs:element name="MottarBostotte" type="soknadsosialhjelp:KildeString" />
                         <xs:element name="Bostotteliste">
                             <xs:complexType>
                                 <xs:sequence>
@@ -162,6 +163,7 @@
             <xs:element name="Verdier">
                 <xs:complexType>
                     <xs:sequence>
+                        <xs:element name="HarVerdier" type="soknadsosialhjelp:KildeString" />
                         <xs:element name="Verdierliste">
                             <xs:complexType>
                                 <xs:sequence>
@@ -178,6 +180,7 @@
             <xs:element name="Bankinnskudd">
                 <xs:complexType>
                     <xs:sequence>
+                        <xs:element name="HarBankinnskudd" type="soknadsosialhjelp:KildeString" />
                         <xs:element name="Bankinnskuddliste">
                             <xs:complexType>
                                 <xs:sequence>
@@ -194,6 +197,7 @@
             <xs:element name="Utbetalinger">
                 <xs:complexType>
                     <xs:sequence>
+                        <xs:element name="HarUtbetalinger" type="soknadsosialhjelp:KildeString" />
                         <xs:element name="Utbetalingerliste">
                             <xs:complexType>
                                 <xs:sequence>
@@ -217,6 +221,7 @@
             <xs:element name="Boutgifter">
                 <xs:complexType>
                     <xs:sequence>
+                        <xs:element name="HarBoutgifter" type="soknadsosialhjelp:KildeString" />
                         <xs:element name="Boutgifterliste">
                             <xs:complexType>
                                 <xs:sequence>
@@ -233,6 +238,7 @@
             <xs:element name="Barnutgifter">
                 <xs:complexType>
                     <xs:sequence>
+                        <xs:element name="HarBarneutgifter" type="soknadsosialhjelp:KildeString" />
                         <xs:element name="Barnutgifterliste">
                             <xs:complexType>
                                 <xs:sequence>

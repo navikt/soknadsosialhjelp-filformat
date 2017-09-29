@@ -11,6 +11,7 @@ Designkriterier
 1. Forward compatibility. At v1 konsumenter kan ta i mot v2 dokumenter, da ikke alle kommuner/fagsystemer kan oppdateres samtidig
 2. Endringsevne. Kunne jobbe smidig med søknaden med en MVP tilnærming der vi produksjonssetter tidlig og oppdaterer hyppig basert på tilbakemeldinger.
 3. Kilde. Vite om data er oppgitt av bruker eller innhentet fra systemer.
+4. Spørsmål er ikke påkrevd å svare på
 
 Designvalg
 ----------
@@ -25,14 +26,19 @@ For at det fortsatt skal være mulig å vite hvilke verdier som kan komme, inklu
 For konsumenter betyr det at `Kilde.BRUKER.value().equals(verdiFraXml)` er ok, mens `Kilde.fromValue(verdifraXml)` vil kunne feile om verdien fra xml er nyere enn Kilde i xsden som ble brukt
 for å lage konsumenten.
 
-En annen ting som er gjort mtp endringsevne er at xmlen ikke matcher det bruker svarer i søknaden fult ut, men heller *intensjonen* bak svarene.
+* En annen ting som er gjort mtp endringsevne er at xmlen ikke matcher det bruker svarer i søknaden fult ut, men heller *intensjonen* bak svarene.
 F. eks. kan vi muligens stille ja/nei spørsmål for å få lettere interaksjon, uten at akkurat det svaret blir med, men heller oppfølgingsspørsmålene som kommer av det svaret. 
 *Her blir det troligvis en del endringer frem til endelig versjon*.
 
-
+Da ting ikke er påkrevd å svare på har vi gått bort fra å bruke booleans, da vi nå kan ha true/false/ikkesvart/osv.
 
 CHANGELOG
 ---------
+
+
+### Før v1
+* Booleans er endret til strings, som kan få verdi "true", "false" eller ingenting foreløbig.
+* true/false på en del spørsmål, da vi ikke lenger krever bruker
 
 Ikke alt er på plass for v1 enda, ting vi vet kommer:
 * Adresser/adressetyper
