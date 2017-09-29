@@ -40,6 +40,7 @@ CHANGELOG
 * Booleans er endret til strings, som kan få verdi "true", "false" eller ingenting foreløbig.
 * true/false på en del spørsmål, da vi ikke lenger krever bruker
 * bosituasjon er ikke lenger en liste
+* bosituasjon spør vi bare om antall personer
 
 Ikke alt er på plass for v1 enda, ting vi vet kommer:
 * Adresser/adressetyper

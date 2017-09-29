@@ -119,8 +119,7 @@
         <xs:sequence>
             <xs:element name="BoType" type="soknadsosialhjelp:KildeString"/>
             <xs:element name="AnnenSituasjon" type="soknadsosialhjelp:KildeString"/>
-            <xs:element name="BarnUnder18" type="soknadsosialhjelp:KildeInteger"/>
-            <xs:element name="PersonerOver18" type="soknadsosialhjelp:KildeInteger"/>
+            <xs:element name="AntallPersoner" type="soknadsosialhjelp:KildeInteger"/>
             <xs:any namespace="##targetNamespace" minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
         </xs:sequence>
     </xs:complexType>

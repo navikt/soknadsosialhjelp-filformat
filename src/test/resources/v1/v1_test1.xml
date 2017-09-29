@@ -88,8 +88,7 @@
     <Bosituasjon>
         <BoType kilde="bruker">annet</BoType>
         <AnnenSituasjon kilde="bruker">venner</AnnenSituasjon>
-        <BarnUnder18 kilde="bruker">0</BarnUnder18>
-        <PersonerOver18 kilde="bruker">4</PersonerOver18>
+        <AntallPersoner kilde="bruker">0</AntallPersoner>
     </Bosituasjon>
 
     <InntektFormue>
