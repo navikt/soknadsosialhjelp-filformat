@@ -111,7 +111,6 @@
             <xs:enumeration value="fritidsaktiviteter"/>
             <xs:enumeration value="barnehage"/>
             <xs:enumeration value="tannbehandling"/>
-            <xs:enumeration value="helse"/>
             <xs:enumeration value="annet"/>
         </xs:restriction>
     </xs:simpleType>

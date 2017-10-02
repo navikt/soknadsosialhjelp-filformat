@@ -61,7 +61,7 @@
                         <Personnummer>22222</Personnummer>
                     </Barn>
                     <BorSammen kilde="bruker">true</BorSammen>
-                    <Samvarsgrad kilde="bruker">deltid</Samvarsgrad>
+                    <Samvarsgrad kilde="bruker">78</Samvarsgrad>
                 </Ansvar>
 
                 <Ansvar>
@@ -92,16 +92,8 @@
     </Bosituasjon>
 
     <InntektFormue>
-        <NavYtelser>
-            <MottarYtelser kilde="bruker">true</MottarYtelser>
-            <IkkeFerdigbehandledeYtelser kilde="bruker"></IkkeFerdigbehandledeYtelser>
-        </NavYtelser>
         <Bostotte>
             <MottarBostotte kilde="bruker">true</MottarBostotte>
-            <Bostotteliste>
-                <Bostotte kilde="bruker">husbanken</Bostotte>
-                <Bostotte kilde="bruker">kommunal</Bostotte>
-            </Bostotteliste>
         </Bostotte>
 
         <Verdier>

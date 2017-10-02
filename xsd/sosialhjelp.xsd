@@ -89,7 +89,7 @@
                                             <xs:sequence>
                                                 <xs:element name="Barn" type="soknadsosialhjelp:Person"/>
                                                 <xs:element name="BorSammen" type="soknadsosialhjelp:KildeString"/>
-                                                <xs:element name="Samvarsgrad" type="soknadsosialhjelp:KildeString"/>
+                                                <xs:element name="Samvarsgrad" type="soknadsosialhjelp:KildeInteger" nillable="true"/>
                                                 <xs:any namespace="##targetNamespace" minOccurs="0"
                                                         maxOccurs="unbounded" processContents="lax"/>
                                             </xs:sequence>
@@ -126,28 +126,10 @@
 
     <xs:complexType name="InntektFormue">
         <xs:sequence>
-
-            <xs:element name="NavYtelser">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="MottarYtelser" type="soknadsosialhjelp:KildeString"/>
-                        <xs:element name="IkkeFerdigbehandledeYtelser" type="soknadsosialhjelp:KildeString"/>
-                        <xs:any namespace="##targetNamespace" minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-
             <xs:element name="Bostotte">
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element name="MottarBostotte" type="soknadsosialhjelp:KildeString" />
-                        <xs:element name="Bostotteliste">
-                            <xs:complexType>
-                                <xs:sequence>
-                                    <xs:element name="Bostotte" type="soknadsosialhjelp:KildeString" minOccurs="0" maxOccurs="unbounded"/>
-                                </xs:sequence>
-                            </xs:complexType>
-                        </xs:element>
                         <xs:any namespace="##targetNamespace" minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
                     </xs:sequence>
                 </xs:complexType>

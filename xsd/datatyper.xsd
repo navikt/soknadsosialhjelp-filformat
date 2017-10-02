@@ -13,11 +13,17 @@
     </xs:complexType>
     <xs:complexType name="KildeInteger">
         <xs:simpleContent>
-            <xs:extension base="xs:integer">
+            <xs:extension base="soknadsosialhjelp:NullableInt">
                 <xs:attribute name="kilde" type="xs:string" use="required"/>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
+
+    <xs:simpleType name="NullableInt">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[\-+]?[0-9]*"/>
+        </xs:restriction>
+    </xs:simpleType>
 
     <xs:simpleType name="Kilde">
         <xs:restriction base="xs:string">

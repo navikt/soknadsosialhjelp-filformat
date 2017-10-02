@@ -31,6 +31,7 @@ F. eks. kan vi muligens stille ja/nei spørsmål for å få lettere interaksjon,
 *Her blir det troligvis en del endringer frem til endelig versjon*.
 
 Da ting ikke er påkrevd å svare på har vi gått bort fra å bruke booleans, da vi nå kan ha true/false/ikkesvart/osv.
+For integers kan vi heller ikke bruke `xs:integer`, så bruker nå en egen type som også kan være tom-
 
 CHANGELOG
 ---------
@@ -38,9 +39,13 @@ CHANGELOG
 
 ### Før v1
 * Booleans er endret til strings, som kan få verdi "true", "false" eller ingenting foreløbig.
+* Integers er egen stringtype som bare kan være ints, men også tom
 * true/false på en del spørsmål, da vi ikke lenger krever bruker
 * bosituasjon er ikke lenger en liste
 * bosituasjon spør vi bare om antall personer
+* fjernet listen over bostøtte
+* samværsgrad har blitt endret fra heltid/deltid til integer (prosent)
+* fjernet navytelser
 
 Ikke alt er på plass for v1 enda, ting vi vet kommer:
 * Adresser/adressetyper
