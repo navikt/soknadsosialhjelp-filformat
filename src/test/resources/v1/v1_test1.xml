@@ -51,6 +51,7 @@
         </Sivilstatus>
 
         <ForsorgerAnsvar>
+            <HarForsorgerAnsvar kilde="bruker">true</HarForsorgerAnsvar>
             <Ansvarliste>
                 <Ansvar>
                     <Barn kilde="bruker">

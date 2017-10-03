@@ -37,7 +37,7 @@ CHANGELOG
 ---------
 
 
-### Før v1
+### Endringer underveis før v1
 * Booleans er endret til strings, som kan få verdi "true", "false" eller ingenting foreløbig.
 * Integers er egen stringtype som bare kan være ints, men også tom
 * true/false på en del spørsmål, da vi ikke lenger krever bruker
