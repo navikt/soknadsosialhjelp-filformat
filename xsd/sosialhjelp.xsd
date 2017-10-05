@@ -46,6 +46,7 @@
             <xs:element name="Statsborgerskap" type="soknadsosialhjelp:KildeString"/>
 
             <xs:element name="Telefonnr" type="soknadsosialhjelp:KildeString"/>
+            <xs:element name="HarIkkeKontonr" type="soknadsosialhjelp:KildeString"/>
             <xs:element name="Kontonr" type="soknadsosialhjelp:KildeString"/>
             <xs:element name="FolkeregistrertAdresse" type="soknadsosialhjelp:Adresse"/>
             <!-- TODO muligens oppholdsadresse, men det dekkes av mottaker i første omgang? -->

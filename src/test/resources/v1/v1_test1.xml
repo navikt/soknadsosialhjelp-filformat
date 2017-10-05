@@ -18,6 +18,7 @@
         <Statsborgerskap kilde="system">NOR</Statsborgerskap>
 
         <Telefonnr kilde="system">+47 111 22 333</Telefonnr>
+        <HarIkkeKontonr kilde="bruker">true</HarIkkeKontonr>
         <Kontonr kilde="bruker"></Kontonr>
         <FolkeregistrertAdresse kilde="system" xsi:type="GateAdresse">
             <Landkode>NOR</Landkode>

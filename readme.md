@@ -46,6 +46,7 @@ CHANGELOG
 * fjernet listen over bostøtte
 * samværsgrad har blitt endret fra heltid/deltid til integer (prosent)
 * fjernet navytelser
+* bruker kan ønske annen utbetaling enn kontonr
 
 Ikke alt er på plass for v1 enda, ting vi vet kommer:
 * Adresser/adressetyper
