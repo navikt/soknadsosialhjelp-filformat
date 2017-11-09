@@ -100,6 +100,10 @@
                                 </xs:sequence>
                             </xs:complexType>
                         </xs:element>
+                        <xs:element name="Barnebidrag" type="soknadsosialhjelp:KildeString" />
+
+                        <xs:any namespace="##targetNamespace" minOccurs="0" maxOccurs="unbounded"
+                                processContents="lax"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>

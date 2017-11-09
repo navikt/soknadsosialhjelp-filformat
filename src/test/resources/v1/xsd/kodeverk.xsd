@@ -32,6 +32,16 @@
             <xs:enumeration value="samboer"/>
             <xs:enumeration value="enke"/>
             <xs:enumeration value="skilt"/>
+            <xs:enumeration value="separert"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="Barnebidrag">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="betaler" />
+            <xs:enumeration value="mottar" />
+            <xs:enumeration value="betalerogmottar" />
+            <xs:enumeration value="ingen" />
         </xs:restriction>
     </xs:simpleType>
 
@@ -79,6 +89,7 @@
         <xs:restriction base="xs:string">
             <xs:enumeration value="brukskonto"/>
             <xs:enumeration value="sparekonto"/>
+            <xs:enumeration value="bsu"/>
             <xs:enumeration value="livsforsikring"/>
             <xs:enumeration value="aksjer"/>
             <xs:enumeration value="annet"/>
@@ -110,6 +121,7 @@
         <xs:restriction base="xs:string">
             <xs:enumeration value="fritidsaktiviteter"/>
             <xs:enumeration value="barnehage"/>
+            <xs:enumeration value="sfo"/>
             <xs:enumeration value="tannbehandling"/>
             <xs:enumeration value="annet"/>
         </xs:restriction>
@@ -117,9 +129,6 @@
 
     <xs:simpleType name="Opplysninger">
         <xs:restriction base="xs:string">
-            <xs:enumeration value="arbeidsledig"/>
-            <xs:enumeration value="arbeidsledig_feriepenger"/>
-            <xs:enumeration value="arbeidsledig_sluttoppgjor"/>
 
             <xs:enumeration value="jobb"/>
             <xs:enumeration value="jobb_bruttolonn"/>
@@ -127,51 +136,38 @@
 
             <xs:enumeration value="student"/>
             <xs:enumeration value="student_utbetaling"/>
-            <xs:enumeration value="student_studielan"/>
 
-            <xs:enumeration value="barnsammen"/>
-            <xs:enumeration value="barnsammen_bidragbetaler"/>
-            <xs:enumeration value="barnsammen_bidragmottar"/>
+            <xs:enumeration value="barnebidragmottar"/>
+            <xs:enumeration value="barnebidragmottar_mottar"/>
 
-            <xs:enumeration value="annenbosituasjon"/>
-            <xs:enumeration value="annenbosituasjon_manedlig"/>
+            <xs:enumeration value="barnebidragbetaler"/>
+            <xs:enumeration value="barnebidragbetaler_betaler"/>
+
+            <xs:enumeration value="barnebidragbegge"/>
+            <xs:enumeration value="barnebidragbegge_betaler"/>
+            <xs:enumeration value="barnebidragbegge_mottar"/>
 
             <xs:enumeration value="bostottehusbanken"/>
             <xs:enumeration value="bostottehusbanken_utbetaling"/>
 
-            <xs:enumeration value="bostottekommunal"/>
-            <xs:enumeration value="bostottekommunal_utbetaling"/>
+            <xs:enumeration value="brukskonto"/>
+            <xs:enumeration value="brukskonto_saldo"/>
 
-            <xs:enumeration value="barnebidrag"/>
-            <xs:enumeration value="barnebidrag_permnd"/>
-
-            <xs:enumeration value="introduksjonsstonad"/>
-            <xs:enumeration value="introduksjonsstonad_brutto"/>
-            <xs:enumeration value="introduksjonsstonad_netto"/>
-
-            <xs:enumeration value="kvailiseringsstonad"/>
-            <xs:enumeration value="kvailiseringsstonad_brutto"/>
-            <xs:enumeration value="kvailiseringsstonad_netto"/>
+            <xs:enumeration value="sparekonto"/>
+            <xs:enumeration value="sparekonto_saldo"/>
 
             <xs:enumeration value="utbytte"/>
-            <xs:enumeration value="utbytte_utbetaling"/>
-            <xs:enumeration value="utbytte_restverdi"/>
+            <xs:enumeration value="utbytte_sum"/>
 
-            <xs:enumeration value="solgt"/>
-            <xs:enumeration value="solgt_overskudd"/>
-            <xs:enumeration value="solgt_beskrivelse"/>
+            <xs:enumeration value="salg"/>
+            <xs:enumeration value="salg_sum"/>
 
-            <xs:enumeration value="leieinntekter"/>
-            <xs:enumeration value="leieinntekter_permnd"/>
-
-            <xs:enumeration value="forsikringsutbetaling"/>
-            <xs:enumeration value="forsikringsutbetaling_permnd"/>
-            <xs:enumeration value="forsikringsutbetaling_engangs"/>
-
+            <xs:enumeration value="forsikringsutbetalinger"/>
+            <xs:enumeration value="forsikringsutbetalinger_sum"/>
 
             <xs:enumeration value="annetinntekt"/>
-            <xs:enumeration value="annetinntekt_permnd"/>
-            <xs:enumeration value="annetinntekt_beskrivelse"/>
+            <xs:enumeration value="annetinntekt_sum"/>
+
 
             <xs:enumeration value="husleie"/>
             <xs:enumeration value="husleie_permnd"/>
@@ -186,14 +182,27 @@
             <xs:enumeration value="oppvarming_sisteregning"/>
 
             <xs:enumeration value="boliglan"/>
-            <xs:enumeration value="boliglan_sisteregning"/>
+            <xs:enumeration value="boliglan_avdrag"/>
+            <xs:enumeration value="boliglan_renter"/>
 
-            <xs:enumeration value="annetutgift"/>
-            <xs:enumeration value="annetutgift_permnd"/>
+            <xs:enumeration value="annetboutgift"/>
+            <xs:enumeration value="annetboutgift_type"/>
+            <xs:enumeration value="annetboutgift_sisteregning"/>
 
-            <xs:enumeration value="andreopplysninger"/>
-            <xs:enumeration value="andreopplysninger_beskrivelse"/>
-            <xs:enumeration value="andreopplysninger_utgifter"/>
+
+            <xs:enumeration value="fritidsaktivitet"/>
+            <xs:enumeration value="fritidsaktivitet_sisteregning"/>
+
+            <xs:enumeration value="barnehage"/>
+            <xs:enumeration value="barnehage_sistemnd"/>
+
+            <xs:enumeration value="tannbehandling"/>
+            <xs:enumeration value="tannbehandling_sisteregning"/>
+
+            <xs:enumeration value="annetbarnutgift"/>
+            <xs:enumeration value="annetbarnutgift_type"/>
+            <xs:enumeration value="annetbarnutgift_sisteregning"/>
+
 
         </xs:restriction>
     </xs:simpleType>

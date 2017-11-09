@@ -78,6 +78,7 @@
                     <Samvarsgrad kilde="bruker"></Samvarsgrad>
                 </Ansvar>
             </Ansvarliste>
+            <Barnebidrag kilde="bruker">betaler</Barnebidrag>
         </ForsorgerAnsvar>
     </Familiesituasjon>
 

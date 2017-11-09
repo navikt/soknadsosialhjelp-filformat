@@ -32,6 +32,16 @@
             <xs:enumeration value="samboer"/>
             <xs:enumeration value="enke"/>
             <xs:enumeration value="skilt"/>
+            <xs:enumeration value="separert"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="Barnebidrag">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="betaler" />
+            <xs:enumeration value="mottar" />
+            <xs:enumeration value="betalerogmottar" />
+            <xs:enumeration value="ingen" />
         </xs:restriction>
     </xs:simpleType>
 
@@ -79,6 +89,7 @@
         <xs:restriction base="xs:string">
             <xs:enumeration value="brukskonto"/>
             <xs:enumeration value="sparekonto"/>
+            <xs:enumeration value="bsu"/>
             <xs:enumeration value="livsforsikring"/>
             <xs:enumeration value="aksjer"/>
             <xs:enumeration value="annet"/>
@@ -110,6 +121,7 @@
         <xs:restriction base="xs:string">
             <xs:enumeration value="fritidsaktiviteter"/>
             <xs:enumeration value="barnehage"/>
+            <xs:enumeration value="sfo"/>
             <xs:enumeration value="tannbehandling"/>
             <xs:enumeration value="annet"/>
         </xs:restriction>
@@ -125,9 +137,15 @@
             <xs:enumeration value="student"/>
             <xs:enumeration value="student_utbetaling"/>
 
-            <xs:enumeration value="barnsammen"/>
-            <xs:enumeration value="barnsammen_bidragbetaler"/>
-            <xs:enumeration value="barnsammen_bidragmottar"/>
+            <xs:enumeration value="barnebidragmottar"/>
+            <xs:enumeration value="barnebidragmottar_mottar"/>
+
+            <xs:enumeration value="barnebidragbetaler"/>
+            <xs:enumeration value="barnebidragbetaler_betaler"/>
+
+            <xs:enumeration value="barnebidragbegge"/>
+            <xs:enumeration value="barnebidragbegge_betaler"/>
+            <xs:enumeration value="barnebidragbegge_mottar"/>
 
             <xs:enumeration value="bostottehusbanken"/>
             <xs:enumeration value="bostottehusbanken_utbetaling"/>
