@@ -2,14 +2,6 @@
         xmlns="http://nav.no/melding/domene/brukerdialog/soeknadsskjemasosialhjelp/v1"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-    <Mottaker>
-        <Navn>NAV En Bydel i Oslo</Navn>
-        <Postnr>0598</Postnr>
-        <Poststed>Oslo</Poststed>
-        <Orgnr>999999999</Orgnr>
-    </Mottaker>
-
-
     <Personalia>
         <PersonIdentifikator kilde="system">12345678901</PersonIdentifikator>
         <Fornavn kilde="system">Ola</Fornavn>
@@ -146,33 +138,26 @@
         </Barnutgifter>
     </UtgifterGjeld>
 
-    <Inntekter>
-        <Inntektliste>
-            <Inntekt type="jobb" kilde="system">
+    <Opplysninger>
+        <Opplysningerliste>
+            <Opplysning type="jobb" kilde="system">
                 <Verdi type="jobb_bruttolonn">35000</Verdi>
                 <Verdi type="jobb_nettolonn">25000</Verdi>
-            </Inntekt>
-            <Inntekt type="student" kilde="bruker">
+            </Opplysning>
+            <Opplysning type="student" kilde="bruker">
                 <Verdi type="student_utbetaling">9000</Verdi>
                 <Verdi type="student_studielan">150000</Verdi>
-            </Inntekt>
-            <Inntekt type="solgt" kilde="bruker">
+            </Opplysning>
+            <Opplysning type="solgt" kilde="bruker">
                 <Verdi type="solgt_overskudd">12000</Verdi>
                 <Verdi type="solgt_beskrivelse">Solgte min gaming-pc</Verdi>
-            </Inntekt>
-            <Inntekt type="annetinntekt" kilde="bruker">
+            </Opplysning>
+            <Opplysning type="annetinntekt" kilde="bruker">
                 <Verdi type="annetinntekt_permnd">5000</Verdi>
                 <Verdi type="annetinntekt_beskrivelse">Fra en deltidsjobb</Verdi>
-            </Inntekt>
-        </Inntektliste>
-    </Inntekter>
+            </Opplysning>
+        </Opplysningerliste>
+    </Opplysninger>
 
-    <Utgifter>
-        <Utgiftliste>
-            <Utgift type="strom" kilde="bruker">
-                <Verdi type="strom_sisteregning">456</Verdi>
-            </Utgift>
-        </Utgiftliste>
-    </Utgifter>
 </soknadsosialhjelp>
 

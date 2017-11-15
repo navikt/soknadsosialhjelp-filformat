@@ -11,7 +11,6 @@
 
     <xs:complexType name="skjema">
         <xs:sequence>
-            <xs:element name="Mottaker" type="soknadsosialhjelp:Mottaker"/>
             <xs:element name="Personalia" type="soknadsosialhjelp:Personalia"/>
             <xs:element name="ArbeidUtdanning" type="soknadsosialhjelp:ArbeidUtdanning"/>
             <xs:element name="Familiesituasjon" type="soknadsosialhjelp:Familiesituasjon"/>
@@ -19,21 +18,10 @@
             <xs:element name="Bosituasjon" type="soknadsosialhjelp:Bosituasjon"/>
             <xs:element name="InntektFormue" type="soknadsosialhjelp:InntektFormue"/>
             <xs:element name="UtgifterGjeld" type="soknadsosialhjelp:UtgifterGjeld"/>
-            <xs:element name="Inntekter" type="soknadsosialhjelp:Inntekter"/>
-            <xs:element name="Utgifter" type="soknadsosialhjelp:Utgifter"/>
+            <xs:element name="Opplysninger" type="soknadsosialhjelp:Opplysninger"/>
             <xs:any namespace="##targetNamespace" minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
         </xs:sequence>
         <xs:attribute name="version" type="xs:string" use="required" />
-    </xs:complexType>
-
-    <xs:complexType name="Mottaker">
-        <xs:sequence>
-            <xs:element name="Navn" type="xs:string"/>
-            <xs:element name="Postnr" type="xs:string"/>
-            <xs:element name="Poststed" type="xs:string"/>
-            <xs:element name="Orgnr" type="xs:string"/>
-            <xs:any namespace="##targetNamespace" minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
-        </xs:sequence>
     </xs:complexType>
 
     <xs:complexType name="Personalia">
@@ -237,27 +225,12 @@
     </xs:complexType>
 
 
-    <xs:complexType name="Inntekter">
+    <xs:complexType name="Opplysninger">
         <xs:sequence>
-            <xs:element name="Inntektliste">
+            <xs:element name="Opplysningerliste">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="Inntekt" type="soknadsosialhjelp:Opplysning" minOccurs="0"
-                                    maxOccurs="unbounded"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:any namespace="##targetNamespace" minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
-        </xs:sequence>
-    </xs:complexType>
-
-
-    <xs:complexType name="Utgifter">
-        <xs:sequence>
-            <xs:element name="Utgiftliste">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="Utgift" type="soknadsosialhjelp:Opplysning" minOccurs="0"
+                        <xs:element name="Opplysning" type="soknadsosialhjelp:Opplysning" minOccurs="0"
                                     maxOccurs="unbounded"/>
                     </xs:sequence>
                 </xs:complexType>
