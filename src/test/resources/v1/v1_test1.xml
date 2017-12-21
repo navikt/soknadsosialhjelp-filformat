@@ -12,13 +12,28 @@
         <Telefonnr kilde="system">+47 111 22 333</Telefonnr>
         <HarIkkeKontonr kilde="bruker">true</HarIkkeKontonr>
         <Kontonr kilde="bruker"></Kontonr>
-        <FolkeregistrertAdresse kilde="system" xsi:type="GateAdresse">
+        <RegistrertAdresse kilde="system" xsi:type="GateAdresse">
             <Landkode>NOR</Landkode>
-            <Poststed>1359</Poststed>
             <Kommunenummer>0219</Kommunenummer>
+            <Bolignummer>11</Bolignummer>
+            <Poststed>OSLO</Poststed>
+            <Postnummer>0598</Postnummer>
             <Gatenavn>EN VEI</Gatenavn>
+            <Gatenummer>123</Gatenummer>
             <Husnummer>99</Husnummer>
-        </FolkeregistrertAdresse>
+            <Husbokstav>99</Husbokstav>
+        </RegistrertAdresse>
+        <OppholdsAdresse kilde="system" xsi:type="GateAdresse">
+            <Landkode>NOR</Landkode>
+            <Kommunenummer>0219</Kommunenummer>
+            <Bolignummer>11</Bolignummer>
+            <Poststed>OSLO</Poststed>
+            <Postnummer>0598</Postnummer>
+            <Gatenavn>EN VEI</Gatenavn>
+            <Gatenummer>123</Gatenummer>
+            <Husnummer>99</Husnummer>
+            <Husbokstav>99</Husbokstav>
+        </OppholdsAdresse>
     </Personalia>
 
     <ArbeidUtdanning>

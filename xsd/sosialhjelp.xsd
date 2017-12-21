@@ -26,7 +26,6 @@
 
     <xs:complexType name="Personalia">
         <xs:sequence>
-            <!-- TODO gjenbruker Person? Men kan vi splite fnr? -->
             <xs:element name="PersonIdentifikator" type="soknadsosialhjelp:KildeString"/>
             <xs:element name="Fornavn" type="soknadsosialhjelp:KildeString"/>
             <xs:element name="Mellomnavn" type="soknadsosialhjelp:KildeString"/>
@@ -36,8 +35,8 @@
             <xs:element name="Telefonnr" type="soknadsosialhjelp:KildeString"/>
             <xs:element name="HarIkkeKontonr" type="soknadsosialhjelp:KildeString"/>
             <xs:element name="Kontonr" type="soknadsosialhjelp:KildeString"/>
-            <xs:element name="FolkeregistrertAdresse" type="soknadsosialhjelp:Adresse"/>
-            <!-- TODO muligens oppholdsadresse, men det dekkes av mottaker i første omgang? -->
+            <xs:element name="RegistrertAdresse" type="soknadsosialhjelp:Adresse"/>
+            <xs:element name="OppholdsAdresse" type="soknadsosialhjelp:Adresse"/>
             <xs:any namespace="##targetNamespace" minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
         </xs:sequence>
     </xs:complexType>

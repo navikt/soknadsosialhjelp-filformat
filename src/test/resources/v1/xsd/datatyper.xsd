@@ -55,10 +55,16 @@
             <xs:extension base="soknadsosialhjelp:Adresse">
                 <xs:sequence>
                     <xs:element name="Landkode" type="xs:string"/>
-                    <xs:element name="Poststed" type="xs:string"/>
                     <xs:element name="Kommunenummer" type="xs:string"/>
+                    <xs:element name="Bolignummer" type="xs:string"/>
+
+                    <xs:element name="Poststed" type="xs:string"/>
+                    <xs:element name="Postnummer" type="xs:string"/>
+
                     <xs:element name="Gatenavn" type="xs:string"/>
+                    <xs:element name="Gatenummer" type="xs:string"/>
                     <xs:element name="Husnummer" type="xs:string"/>
+                    <xs:element name="Husbokstav" type="xs:string"/>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
@@ -68,7 +74,18 @@
         <xs:complexContent>
             <xs:extension base="soknadsosialhjelp:Adresse">
                 <xs:sequence>
-                    <xs:element name="Landkode" type="xs:string"/><!-- TODO mer på adresser -->
+                    <xs:element name="Landkode" type="xs:string"/>
+
+                    <xs:element name="Poststed" type="xs:string"/>
+                    <xs:element name="Bolignummer" type="xs:string"/>
+                    <xs:element name="Kommunenummer" type="xs:string"/>
+
+                    <xs:element name="Eiendomsnavn" type="xs:string"/>
+                    <xs:element name="Gaardsnummer" type="xs:string"/>
+                    <xs:element name="Bruksnummer" type="xs:string"/>
+                    <xs:element name="Festenummer" type="xs:string"/>
+                    <xs:element name="Seksjonsnummer" type="xs:string"/>
+                    <xs:element name="Undernummer" type="xs:string"/>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
