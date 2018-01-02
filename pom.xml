@@ -28,6 +28,10 @@
             <resource>
                 <directory>xsd</directory>
             </resource>
+            <resource>
+                <directory>json</directory>
+                <targetPath>json</targetPath>
+            </resource>
         </resources>
     </build>
 </project>
