@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+
+  "definitions": {
+    "vedleggSpesifikasjon": {
+      "type": "object",
+      "properties": {
+        "vedlegg": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/vedlegg"
+          }
+        }
+      }
+    },
+
+    "vedlegg": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "tilleggsinfo": {
+          "type": "string"
+        },
+        "filer": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/fil"
+          }
+        }
+      }
+    },
+
+    "fil": {
+      "type": "object",
+      "properties": {
+        "filnavn": {
+          "type": "string"
+        }
+      }
+    }
+  },
+
+  "$ref": "#/definitions/vedleggSpesifikasjon"
+}
