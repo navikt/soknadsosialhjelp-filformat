@@ -1,0 +1,27 @@
+{
+  "vedlegg": [
+    {
+      "type": "lonnslipp",
+      "tilleggsinfo": "jobb",
+      "garbagehfdh65ry": {"sdafasdf": ["sfadf", "sdfasdf"]},
+      "filer": [
+        {"filnavn": "lonn1-u95sfdgt.png"},
+        {"filnavn": "DCIM567-a43sgfg.jpg"}
+      ]
+    }, {
+      "type": "faktura",
+      "tilleggsinfo": "barnehage",
+      "filer": [
+        {"filnavn": "barnehagefaktura-ytr64564.pdf"}
+      ]
+    }, {
+      "type": "faktura",
+      "tilleggsinfo": "fritidsaktiviteter",
+      "filer": [
+        {"filnavn": "fotball-ytr64564.pdf", "garbage435323": "dgsdg"},
+        {"filnavn": "skikurs2017-08-01-med-langt-filnavn-564rftrfdserf-ytr64564.pdf"}
+      ]
+    }
+  ],
+  "garbage453535": ["fasfsf"]
+}
