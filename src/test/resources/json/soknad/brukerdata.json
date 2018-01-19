@@ -1,0 +1,109 @@
+{
+	"version": "1.5.0",
+	"data": {
+		"personalia": {
+			"personIdentifikator": {
+				"kilde": "system",
+				"verdi": "12345678901"
+			},
+			"navn": {
+				"kilde": "system",
+				"fornavn": "Ola",
+				"mellomnavn": "Mellom",
+				"etternavn": "Nordmann"
+			},
+			"nordiskBorger": {
+				"kilde": "bruker",
+				"verdi": true
+			},
+			"telefonnummer": {
+				"kilde": "bruker",
+				"verdi": "+47 111 22 333"
+			},
+			"kontonummer": {
+				"kilde": "bruker",
+				"harIkkeKonto": false,
+				"verdi": "12345678903"
+			},
+			"folkeregistrertAdresse": {
+				"kilde": "system",
+				"type": "gateadresse",
+				"landkode": "NOR",
+				"kommunenummer": "0219",
+				"bolignummer": "H0101",
+				"postnummer": "0598",
+				"poststed": "OSLO",
+				"gatenavn": "En vei",
+				"husnummer": "99",
+				"husbokstav": "B"
+			},
+			"oppholdsadresse": {
+				"kilde": "bruker",
+				"type": "ustrukturert",
+				"adresse": [
+					"Under en bro i Oslo"
+				]
+			},
+			"postadresse": {
+				"kilde": "bruker",
+				"type": "postboks",
+				"postboks": "42",
+				"postnummer": "0089",
+				"poststed": "OSLO"
+			}
+		},
+		"arbeid": {
+			"situasjon": {
+				"kilde": "bruker",
+				"erIJobb": true,
+				"jobbGrad": "heltid"
+			}
+		},
+		"utdanning": {
+			"kilde": "bruker",
+			"erStudent": true,
+			"studentgrad": "heltid"
+		},
+		"familie": {
+			"sivilstatus": {
+				"kilde": "bruker",
+				"status": "gift",
+				"ektefelle": {
+					"navn": {
+						"fornavn": "Kari",
+						"mellomnavn": "K",
+						"etternavn": "Nordmann"
+					},
+					"fodselsdato": "01011991",
+					"personIdentifikator": "12345678901"
+				},
+				"borSammenMed": false,
+				"borIkkeSammenMedBegrunnelse": "Det fungerte ikke."
+			}
+		},
+		"begrunnelse": {
+			"kilde": "bruker",
+			"hvorforSoke": "Jeg søker fordi...",
+			"hvaSokesOm": "Søker om penger til..."
+		},
+		"bosituasjon": {
+			"kilde": "bruker",
+			"botype": "annet",
+			"annenSituasjon": "venner",
+			"antallPersoner": 3
+		}
+	},
+	"driftsinformasjon": "Informasjon om arbeidsforhold er fylt ut manuelt av bruker grunnet tekniske problemer med å få data fra AA-registeret.",
+	"kompatibilitet": [
+		{
+			"minVersion": "1.0.0",
+			"maxVersion": "1.4.0",
+			"text": "Statsborgerskap: Norge"
+		},
+		{
+			"minVersion": "1.3.0",
+			"maxVersion": "1.4.0",
+			"text": "Norsk eller nordisk statsborger (brukerutfylt)"
+		}
+	]
+}

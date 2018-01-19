@@ -1,0 +1,114 @@
+{
+	"version": "1.0.0",
+	"data": {
+		"personalia": {
+			"personIdentifikator": {
+				"kilde": "system",
+				"verdi": "12345678901"
+			},
+			"navn": {
+				"kilde": "system",
+				"fornavn": "Ola",
+				"mellomnavn": "Mellom",
+				"etternavn": "Nordmann"
+			},
+			"nordiskBorger": {
+				"kilde": "system",
+				"verdi": true
+			},
+			"statsborgerskap": {
+				"kilde": "system",
+				"verdi": "NOR"
+			},
+			"telefonnummer": {
+				"kilde": "system",
+				"verdi": "+47 111 22 333"
+			},
+			"kontonummer": {
+				"kilde": "system",
+				"verdi": "12345678903"
+			},
+			"folkeregistrertAdresse": {
+				"kilde": "system",
+				"type": "gateadresse",
+				"landkode": "NOR",
+				"kommunenummer": "0219",
+				"bolignummer": "H0101",
+				"postnummer": "0598",
+				"poststed": "OSLO",
+				"gatenavn": "En vei",
+				"husnummer": "99",
+				"husbokstav": "B"
+			},
+			"oppholdsadresse": {
+				"kilde": "system",
+				"type": "matrikkeladresse",
+				"landkode": "NOR",
+				"kommunenummer": "0219",
+				"bolignummer": "H0101",
+				"postnummer": "0598",
+				"poststed": "OSLO",
+				"gatenavn": "En vei",
+				"husnummer": "99",
+				"husbokstav": "B"
+			}
+		},
+		"arbeid": {
+			"forhold": [
+				{
+					"kilde": "system",
+					"arbeidsgivernavn": "Firmaet AS",
+					"fom": "2010-11-01",
+					"tom": "2017-12-01",
+					"stillingsprosent": "80"
+				},
+				{
+					"kilde": "system",
+					"arbeidsgivernavn": "Firmaet AS",
+					"fom": "2018-01-01",
+					"stillingsprosent": "variabel"
+				}
+			],
+			"kommentarTilArbeidsforhold": {
+				"kilde": "bruker",
+				"verdi": "Det stemmer ikke at jeg fortsatt har en stilling hos Firmaet AS. Ansettelsesforholdet opphørte 15. januar."
+			}
+		},
+		"utdanning": {
+			"kilde": "bruker",
+			"erStudent": true,
+			"studentgrad": "heltid"
+		},
+		"familie": {
+			"sivilstatus": {
+				"kilde": "system",
+				"status": "gift",
+				"ektefelle": {
+					"navn": {
+						"fornavn": "Kari",
+						"mellomnavn": "K",
+						"etternavn": "Nordmann"
+					},
+					"fodselsdato": "01011991",
+					"personIdentifikator": "12345678901"
+				},
+				"folkeregistrertMedEktefelle": false
+			},
+			"folkeregistrertMedEktefelleAvviksforklaring": {
+				"kilde": "bruker",
+				"verdi": "Vi er i ferd med å skilles."
+			}
+		},
+		"begrunnelse": {
+			"kilde": "bruker",
+			"hvorforSoke": "Jeg søker fordi...",
+			"hvaSokesOm": "Søker om penger til..."
+		},
+		"bosituasjon": {
+			"kilde": "bruker",
+			"botype": "annet",
+			"annenSituasjon": "venner",
+			"antallPersoner": 3
+		}
+	}
+}
