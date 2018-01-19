@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+
+  "definitions": {
+    "soknadSpesifikasjon": {
+      "type": "object",
+      "properties": {
+      	"version": {
+          "type": "string"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "personalia": {
+              "type": "object",
+              "properties": {
+              	"personIdentifikator": {
+	              "type": "object",
+	              "properties": {
+	              	"kilde": {
+		              "enum": [ "system" ]
+			        },
+			        "verdi": {
+			          "$ref": "#/definitions/personIdentifikatorVerdi"
+			        }
+	              },
+	              "required": [
+			        "kilde", "verdi"
+			      ]
+	            },
+	            "navn" : {
+	              "allOf": [
+	                {"$ref": "#/definitions/navn"},
+	                {"properties": {
+	                  "kilde": {
+	              	    "enum": [ "system" ]
+	              	  }
+                    }}
+	              ]
+	            },
+	            "nordiskBorger": {
+		          "type": "object",
+		          "properties": {
+  	                "kilde": {
+			          "$ref": "#/definitions/kilde"
+			        },
+			        "verdi": {
+    			        "type": "boolean"
+	    		    }
+	    		  }
+	            },
+	            "telefonnummer": {
+		          "type": "object",
+		          "properties": {
+  	                "kilde": {
+			          "$ref": "#/definitions/kilde"
+			        },
+			        "verdi": {
+    			        "type": "string"
+	    		    }
+	    		  }
+	            },
+	            "kontonummer": {
+		          "type": "object",
+		          "properties": {
+  	                "kilde": {
+			          "$ref": "#/definitions/kilde"
+			        },
+			        "harIkkeKonto": {
+			          "type": "boolean"
+			        },
+			        "verdi": {
+    			      "type": "string"
+	    		    }
+	    		  }
+	            },
+	            "folkeregistrertAdresse": {
+
+	            }
+              }
+            }
+          }
+        },
+        "driftsinformasjon": {
+          "type": "string"
+        },
+        "kompatibilitet": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/kompatibilitet"
+          }
+        }
+      },
+      "required": [
+        "version", "data", "driftsinformasjon", "kompatibilitet"
+      ]
+    },
+    
+    "kompatibilitet": {
+      "type": "object",
+      "properties": {
+        "minVersion": {
+          "type": "string"
+        },
+        "maxVersion": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    
+    "kilde": {
+      "enum": [
+        "bruker",
+        "system",
+        "utdatert"
+      ]
+    },
+    "personIdentifikatorVerdi": {
+      "type": "string"
+    },
+    "navn": {
+      "type": "object",
+      "properties": {
+        "fornavn": {
+          "type": "string"
+        },
+        "mellomnavn": {
+          "type": "string"
+        },
+        "etternavn": {
+          "type": "string"
+        }
+      }
+    }
+  },
+
+  "$ref": "#/definitions/soknadSpesifikasjon"
+}
