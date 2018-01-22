@@ -266,6 +266,41 @@
 		          "required": ["sivilstatus"]
 		        }
 		      }
+			},
+			
+			"begrunnelse": {
+			  "type": "object",
+			  "properties": {
+		  	    "kilde": {
+	              "title": "Alltid bruker eller utdatert.",
+		          "enum": [ "bruker", "utdatert" ]
+			    },
+			    "hvorforSoke": {
+			      "type": "string"
+			    },
+			    "hvaSokesOm": {
+			      "type": "string"
+			    }
+			  }
+			},
+			
+			"bosituasjon": {
+			  "type": "object",
+			  "properties": {
+			    "kilde": {
+	              "title": "Alltid bruker eller utdatert.",
+		          "enum": [ "bruker", "utdatert" ]
+			    },
+			    "botype": {
+			      "type": "string"
+			    },
+			    "annenSituasjon": {
+			      "type": "string"
+			    },
+			    "antallPersoner": {
+			      "type": "number"
+			    }
+			  }
 			}
           },
           "required": [
