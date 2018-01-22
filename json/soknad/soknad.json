@@ -1,0 +1,476 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+
+  "definitions": {    
+    "soknad": {
+      "type": "object",
+      "properties": {
+      
+      	"version": {
+      	  "title": "Søknadsdataversjonen.",
+      	  "description": "Versjonsnummeret følger regler som tar utgangspunkt i \"https://semver.org/\". Ny majorversjon betyr en ny søknadsfil. Ny minorversjon betyr at feltet \"kompatibilitet\" kan ha blitt brukt. Ny pathversjon brukes kun til mindre feilrettinger.",
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(\\+[a-zA-Z0-9]+)?$",
+          "default": "1.0.0"
+        },
+        
+        "data": {
+          "title": "Inneholder søknadsdataene uten meta- og kompatibilitetsdata.",
+          "type": "object",
+          "properties": {
+          
+            "personalia": {
+              "title": "Søknadsdata som er knyttet til søker.",
+              "type": "object",
+              "properties": {
+              	"personIdentifikator": {
+              	  "title": "Fødselsnummer eller D-nummer",
+	              "type": "object",
+	              "properties": {
+	              	"kilde": {
+	              	  "title": "Alltid system.",
+		              "enum": [ "system" ]
+			        },
+			        "verdi": {
+			          "$ref": "#/definitions/personIdentifikatorVerdi"
+			        }
+	              },
+	              "required": [
+			        "kilde", "verdi"
+			      ]
+	            },
+	            "navn" : {
+	              "$ref": "#/definitions/navnMedKilde"
+	            },
+	            "nordiskBorger": {
+	              "title": "Angir om brukeren er statsborger i et nordisk land.",
+		          "type": "object",
+		          "properties": {
+  	                "kilde": {
+			          "$ref": "#/definitions/kilde"
+			        },
+			        "verdi": {
+    			        "type": "boolean"
+	    		    }
+	    		  },
+	    		  "required": [
+			        "kilde", "verdi"
+			      ]
+	            },
+	            "telefonnummer": {
+		          "type": "object",
+		          "properties": {
+  	                "kilde": {
+			          "$ref": "#/definitions/kilde"
+			        },
+			        "verdi": {
+    			      "type": "string"
+	    		    }
+	    		  },
+	    		  "required": [
+			        "kilde", "verdi"
+			      ]
+	            },
+	            "kontonummer": {
+		          "type": "object",
+		          "properties": {
+  	                "kilde": {
+			          "$ref": "#/definitions/kilde"
+			        },
+			        "harIkkeKonto": {
+			          "type": "boolean"
+			        },
+			        "verdi": {
+    			      "type": "string"
+	    		    }
+	    		  },
+	    		  "required": [
+			        "kilde", "verdi"
+			      ]
+	            },
+	            "folkeregistrertAdresse": {
+	              "$ref": "#/definitions/adresse"
+	            },
+	            "oppholdsadresse": {
+	              "$ref": "#/definitions/adresse"
+	            },
+	            "postAdresse": {
+	              "$ref": "#/definitions/adresse"
+	            }
+              },
+              "required": [
+                "personIdentifikator", "navn"
+      	      ]
+            },
+            "arbeid": {
+              "type": "object",
+              "properties": {
+                "forhold": {
+                  "type": "array",
+                  "items": {
+				    "kilde": {
+					  "$ref": "#/definitions/kilde"
+			        },
+			        "arbeidsgivernavn": {
+			          "type": "string"
+			        },
+			        "fom": {
+			          "type": "string"
+			        },
+			        "tom": {
+			          "type": "string"
+			        },
+			        "stillingsprosent": {
+			          "type": "string"
+			        },
+			        "stillingstype": {
+			          "type": "string"
+			        }
+			      }
+                },
+                "situasjon": {
+                  "type": "object",
+                  "properties": {
+				    "kilde": {
+	              	  "title": "Alltid bruker eller utdatert.",
+		              "enum": [ "bruker", "utdatert" ]
+			        },
+				    "erIJobb": {
+				      "type": "boolean"
+				    },
+				    "jobbGrad": {
+				      "type": "string"
+				    }
+				  }
+			    },
+			    "kommentarTilArbeidsforhold": {
+			      "type": "object",
+			      "properties": {
+			        "kilde": {
+	              	  "title": "Alltid bruker eller utdatert.",
+		              "enum": [ "bruker", "utdatert" ]
+			        },
+			        "verdi": {
+			          "type": "string"
+			        }
+			      }
+				}
+              },
+              "dependencies": {
+                "kommentarTilArbeidsforhold": ["forhold"]
+              }
+            },
+            "utdanning": {
+              "type": "object",
+              "properties": {
+                "kilde": {
+	              "title": "Alltid bruker eller utdatert.",
+		          "enum": [ "bruker", "utdatert" ]
+			    },
+			    "erStudent": {
+			      "type": "boolean"
+			    },
+			    "studentgrad": {
+			      "type": "string"
+			    }
+			  }
+			},
+			"familie": {
+			  "type": "object",
+			  "properties": {
+			    "sivilstatus": {
+			      "type": "object",
+			      "properties": {
+    			    "kilde": {
+					  "$ref": "#/definitions/kilde"
+			        },
+		    	    "status": {
+ 		              "type": "string"
+		            },
+		            "ektefelle": {
+		          	  "type": "object",
+		              "properties": {
+		                "navn": {
+		                  "$ref": "#/definitions/navn"
+            		    },
+		                "fodselsdato": {
+  		                  "type": "string"
+		                },
+		                "personIdentifikator": {
+		                  "$ref": "#/definitions/personIdentifikatorVerdi"
+		                }
+		              }
+		            },
+		            "folkeregistrertMedEktefelle": {
+		              "type": "boolean"
+		            },
+		            "borSammenMed": {
+		              "type": "boolean"
+		            },
+		            "borIkkeSammenMedBegrunnelse": {
+		              "type": "string"
+		            }
+		          },
+		          "dependencies": {
+		            "folkeregistrertMedEktefelle": {
+		              "properties": {
+		                "kilde": {
+		                  "enum": ["system"]
+		                }
+		              },
+		              "required": ["kilde"]
+		            },
+		            "borSammenMed": {
+		              "properties": {
+		                "kilde": {
+		                  "enum": ["bruker"]
+		                }
+		              },
+		              "required": ["kilde"]
+		            },
+		            "borIkkeSammenMedBegrunnelse": {
+		              "properties": {
+		                "kilde": {
+		                  "enum": ["bruker"]
+		                }
+		              },
+		              "required": ["kilde"]
+		            }
+		          }
+		        },
+		        "folkeregistrertMedEktefelleAvviksforklaring": {
+		          "type": "object",
+		          "properties": {
+			          "kilde": {
+		                "title": "Alltid bruker eller utdatert.",
+			            "enum": [ "bruker", "utdatert" ]
+				      },
+				      "verdi": {
+				        "type": "string"
+				      }
+				  }
+		        }
+		      },
+		      "dependencies": {
+		        "folkeregistrertMedEktefelleAvviksforklaring": {
+		          "properties": {
+		            "sivilstatus": {
+		              "properties": {
+		                "kilde": {
+		                  "enum": [ "system"]
+		                }
+		              },
+		              "required": ["kilde"]
+		            }
+		          },
+		          "required": ["sivilstatus"]
+		        }
+		      }
+			}
+          },
+          "required": [
+            "personalia"
+      	  ]
+        },
+        "driftsinformasjon": {
+          "type": "string"
+        },
+        "kompatibilitet": {
+          "title": "Liste med kompatibilitetstekster",
+          "description": "Det er et MÅ-krav å vise saksbehandler alle kompatibilitetstekster for versjonen man parser soknads-JSON-en med. Det anbefales å ha et avsnitt (eller tilsvarende) mellom hver enkelt kompatibilitetstekst.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/kompatibilitet"
+          }
+        }
+      },
+      "required": [
+        "version", "data", "driftsinformasjon", "kompatibilitet"
+      ]
+    },
+    
+    "kompatibilitet": {
+      "title": "Inneholder en Markdown-formatert kompatibilitetstekst.",
+      "description": "Kompatibilitetsteksten skal vises saksbehandler gitt at versjonen man forventer ved parsing av JSON er innenfor intervallet bestemt av \"minVersion\" og \"maxVersion\".",
+      "type": "object",
+      "properties": {
+        "minVersion": {
+          "title": "Minimumsversjon for å vise kompatibilitetsteksten (inclusive).",
+          "type": "string"
+        },
+        "maxVersion": {
+          "title": "Maksimumsversjon for å vise kompatibilitetsteksten (inclusive).",
+          "type": "string"
+        },
+        "text": {
+          "title": "Markdown-formatert tekststreng som kan vises saksbehandler.",
+          "type": "string"
+        }
+      }
+    },
+    
+    "kilde": {
+      "title": "Kilden for dataene.",
+      "description": "\"bruker\" når data kommer fra en bruker, \"system\" når data kommer fra et register og \"utdatert\" hvis data ikke lenger er relevant (og da ikke lenger kan vises saksbehandler).",
+      "javaType" : "no.nav.sbl.soknadsosialhjelp.soknad.JsonKilde",
+      "type": "string",
+      "enum": [
+        "bruker",
+        "system",
+        "utdatert"
+      ]
+    },
+    
+    "personIdentifikatorVerdi": {
+      "type": "string"
+    },
+    
+    "navn": {
+      "title": "Navn på en person.",
+      "javaType" : "no.nav.sbl.soknadsosialhjelp.soknad.Navn",
+      "type": "object",
+      "properties": {
+        "fornavn": {
+          "type": "string"
+        },
+        "mellomnavn": {
+          "type": "string"
+        },
+        "etternavn": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "fornavn", "mellomnavn", "etternavn"
+      ]
+    },
+    
+    "navnMedKilde": {
+      "title": "Navn på en person med felt som angir kilde.",
+      "javaType" : "no.nav.sbl.soknadsosialhjelp.soknad.NavnMedKilde",
+      "type": "object",
+	  "extends": {
+	    "$ref": "#/definitions/navn"
+	  },
+	  "properties": {
+	    "kilde": {
+	      "enum": [ "system" ]
+	    }
+      },
+      "required": [
+        "kilde"
+      ]
+    },
+    
+    "adresse": {
+      "title": "Angir en adresse.",
+      "javaType" : "no.nav.sbl.soknadsosialhjelp.soknad.Adresse",
+      "type": "object",
+      "properties": {
+        "kilde": {
+          "$ref": "#/definitions/kilde"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    
+    "gateadresse": {
+      "title": "Angir en gateadresse.",
+      "javaType" : "no.nav.sbl.soknadsosialhjelp.soknad.GateAdresse",
+      "type": "object",
+      "extends": {
+        "$ref": "#/definitions/adresse"
+      },
+      "properties": {
+	    "landkode": {
+	      "type": "string"
+	    },
+		"kommunenummer": {
+		  "type": "string"
+		},
+		"bolignummer": {
+		  "type": "string"
+		},
+		"postnummer": {
+		  "type": "string"
+		},
+		"poststed": {
+		  "type": "string"
+		},
+		"gatenavn": {
+		  "type": "string"
+		},
+		"husnummer": {
+		  "type": "string"
+		},
+		"husbokstav": {
+		  "type": "string"
+		}
+      }
+    },
+    "ustrukturert": {
+      "title": "Angir ustrukturert adresse (liste med tekststrenger).",
+      "javaType" : "no.nav.sbl.soknadsosialhjelp.soknad.UstrukturertAdresse",
+      "type": "object",
+      "extends": {
+        "$ref": "#/definitions/adresse"
+      },
+      "properties": {
+        "adresse": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "postboks": {
+      "title": "Angir en postboksadresse.",
+      "javaType" : "no.nav.sbl.soknadsosialhjelp.soknad.PostboksAdresse",
+      "type": "object",
+      "extends": {
+        "$ref": "#/definitions/adresse"
+      },
+      "properties": {
+        "postboks": {
+          "type": "string"
+        },
+        "postnummer": {
+          "type": "string"
+        },
+        "poststed": {
+          "type": "string"
+        }
+      }
+    },
+    "matrikkeladresse": {
+      "title": "Angir en matrikkeladresse.",
+      "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.MatrikkelAdresse",
+      "type": "object",
+      "extends": {
+        "$ref": "#/definitions/adresse"
+      },
+      "properties": {
+        "gaardsnummer": {
+          "type": "string"
+        },
+        "bruksnummer": {
+          "type": "string"
+        },
+        "festenummer": {
+          "type": "string"
+        },
+        "seksjonsnummer": {
+          "type": "string"
+        },
+        "undernummer": {
+          "type": "string"
+        }
+      }
+    }
+  },
+
+  "$ref": "#/definitions/soknad"
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+
+  "definitions": {
+    "allAdressTypes": {
+      "properties": {
+	      "gateadresse": {
+	        "$ref": "soknad.json#/definitions/gateadresse"
+	      },
+	      "ustrukturert": {
+	        "$ref": "soknad.json#/definitions/ustrukturert"
+	      },
+	      "postboks": {
+	        "$ref": "soknad.json#/definitions/postboks"
+	      },
+	      "matrikkeladresse": {
+	        "$ref": "soknad.json#/definitions/matrikkeladresse"
+	      }
+	  }
+    }
+  },
+  
+  "$ref": "#/definitions/allAdressTypes"
+}  

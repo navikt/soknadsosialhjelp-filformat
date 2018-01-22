@@ -43,14 +43,11 @@
 			"oppholdsadresse": {
 				"kilde": "system",
 				"type": "matrikkeladresse",
-				"landkode": "NOR",
-				"kommunenummer": "0219",
-				"bolignummer": "H0101",
-				"postnummer": "0598",
-				"poststed": "OSLO",
-				"gatenavn": "En vei",
-				"husnummer": "99",
-				"husbokstav": "B"
+                "gaardsnummer": "1",
+                "bruksnummer": "1",
+                "festenummer": "1",
+                "seksjonsnummer": "1",
+                "undernummer": "1"
 			}
 		},
 		"arbeid": {
@@ -66,9 +63,17 @@
 					"kilde": "system",
 					"arbeidsgivernavn": "Firmaet AS",
 					"fom": "2018-01-01",
-					"stillingsprosent": "variabel"
+					"stillingstype": "variabel"
+				},
+				{
+					"kilde": "system",
+					"arbeidsgivernavn": "Firmaet AS",
+					"fom": "2010-10-01",
+					"tom": "2017-11-01",
+					"stillingsprosent": "50",
+					"stillingstype": "fastOgvariabel"
 				}
-			],
+		    ],
 			"kommentarTilArbeidsforhold": {
 				"kilde": "bruker",
 				"verdi": "Det stemmer ikke at jeg fortsatt har en stilling hos Firmaet AS. Ansettelsesforholdet opphørte 15. januar."
@@ -110,5 +115,7 @@
 			"annenSituasjon": "venner",
 			"antallPersoner": 3
 		}
-	}
+	},
+	"driftsinformasjon": "",
+	"kompatibilitet": []
 }
