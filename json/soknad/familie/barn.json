@@ -1,0 +1,19 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+	
+	"type": "object",
+	"properties": {
+		"kilde": {
+			"$ref": "../parts/kilde.json"
+		},
+		"navn": {
+			"$ref": "../parts/navn.json"
+		},
+		"fodselsdato": {
+			"type": "string"
+		},
+		"personIdentifikator": {
+			"$ref": "../parts/personIdentifikatorVerdi.json"
+		}
+	}
+}
