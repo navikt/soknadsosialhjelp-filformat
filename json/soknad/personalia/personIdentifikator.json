@@ -1,0 +1,22 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+	
+	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.personalia.PersonIdentifikator",
+	"title": "Fødselsnummer eller D-nummer",
+	"type": "object",
+	"properties": {
+		"kilde": {
+			"title": "Alltid system (og aldri utdatert).",
+			"enum": [
+				"system"
+			]
+		},
+		"verdi": {
+			"$ref": "../parts/personIdentifikatorVerdi.json"
+		}
+	},
+	"required": [
+		"kilde",
+		"verdi"
+	]
+}

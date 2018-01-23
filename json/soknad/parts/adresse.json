@@ -1,0 +1,15 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+	
+	"title": "Angir en adresse.",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.adresse.Adresse",
+	"type": "object",
+	"properties": {
+		"kilde": {
+			"$ref": "../parts/kilde.json"
+		},
+		"type": {
+			"type": "string"
+		}
+	}
+}

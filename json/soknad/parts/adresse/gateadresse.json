@@ -1,0 +1,36 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+
+	"title": "Angir en gateadresse.",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.adresse.GateAdresse",
+	"type": "object",
+	"extends": {
+		"$ref": "../adresse.json"
+	},
+	"properties": {
+		"landkode": {
+			"type": "string"
+		},
+		"kommunenummer": {
+			"type": "string"
+		},
+		"bolignummer": {
+			"type": "string"
+		},
+		"postnummer": {
+			"type": "string"
+		},
+		"poststed": {
+			"type": "string"
+		},
+		"gatenavn": {
+			"type": "string"
+		},
+		"husnummer": {
+			"type": "string"
+		},
+		"husbokstav": {
+			"type": "string"
+		}
+	}
+}

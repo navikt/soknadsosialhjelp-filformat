@@ -79,6 +79,53 @@
 				},
 				"borSammenMed": false,
 				"borIkkeSammenMedBegrunnelse": "Det fungerte ikke."
+			},
+			"forsorgerplikt": {
+				"harForsorgeransvar": {
+					"kilde": "bruker",
+					"verdi": true
+				},
+				"barnebidrag": {
+					"kilde": "bruker",
+					"verdi": "betaler"
+				},
+				"ansvar": [
+					{
+					    "barn": {
+							"kilde": "bruker",
+							"navn": {
+								"fornavn": "Småen",
+								"mellomnavn": "",
+								"etternavn": "Nordmann"
+							},
+							"fodselsdato": "01012010",
+							"personIdentifikator": "00000000000"
+						},
+						"borSammenMed": {
+						    "kilde": "bruker",
+						    "verdi": false
+						},
+						"samvarsgrad": {
+						    "kilde": "bruker",
+						    "verdi": 20
+						}
+					}, {
+					    "barn": {
+							"kilde": "bruker",
+							"navn": {
+								"fornavn": "Småen",
+								"mellomnavn": "Den Andre",
+								"etternavn": "Nordmann"
+							},
+							"fodselsdato": "10012011",
+							"personIdentifikator": "11111111111"
+						},
+						"borSammenMed": {
+						    "kilde": "bruker",
+						    "verdi": true
+						}
+					}
+				]
 			}
 		},
 		"begrunnelse": {
@@ -91,6 +138,234 @@
 			"botype": "annet",
 			"annenSituasjon": "venner",
 			"antallPersoner": 3
+		},
+		"okonomi": {
+		    "opplysninger": {
+		        "bekreftelse": [
+		            {
+		                "kilde": "bruker",
+		                "type": "bostotte",
+		                "tittel": "Søkt eller mottatt bostøtte fra Husbanken.",
+		                "verdi": true
+		            }, {
+		                "kilde": "bruker",
+		                "type": "verdi",
+		                "tittel": "Eier noe av økonomisk verdi.",
+		                "verdi": true
+		            }, {
+		                "kilde": "bruker",
+		                "type": "sparing",
+		                "tittel": "Bankinnskudd eller annen sparing.",
+		                "verdi": true
+		            }, {
+		                "kilde": "bruker",
+		                "type": "utbetaling",
+		                "tittel": "Annen utbetaling",
+		                "verdi": true
+		            }, {
+		                "kilde": "bruker",
+		                "type": "boutgifter",
+		                "tittel": "Boutgifter",
+		                "verdi": true
+		            }, {
+		                "kilde": "bruker",
+		                "type": "barneutgifter",
+		                "tittel": "Utgifter til barn",
+		                "verdi": true
+		            }
+		        ],
+
+		        "beskrivelseAvAnnet": {
+		        	"kilde": "bruker",
+		        	"verdi": "Forklaring av annet jeg har av økonomisk verdi.\nFlere linjer.",
+		        	"sparing": "Forklaring av annet jeg har av innskudd eller sparing.\nFlere linjer.",
+		        	"utbetaling": "Forklaring av annet jeg har av utbetalinger.\nFlere linjer.",
+		        	"boutgifter": "Forklaring av andre boutgifter.\nFlere linjer.",
+		        	"barneutgifter": "Forklaring av andre utgifter til barn.\nFlere linjer."
+		        },
+		        
+			    "utbetaling": [
+			    	{
+			    	    "kilde": "bruker",
+		        	    "type": "utbytte",
+		        	    "tittel": "Utbytte fra aksjer, obligasjoner eller fond",
+		        	    "belop": 5600
+			    	}, {
+			    	    "kilde": "bruker",
+		        	    "type": "salg",
+		        	    "tittel": "Solgt eiendom og/eller eiendel",
+		        	    "belop": 12345
+			    	}, {
+			    	    "kilde": "bruker",
+		        	    "type": "salg",
+		        	    "tittel": "Solgt eiendom og/eller eiendel",
+		        	    "belop": 12345
+			    	}, {
+			    	    "kilde": "bruker",
+		        	    "type": "forsikring",
+		        	    "tittel": "Forsikringsutbetaling",
+		        	    "belop": 12333
+			    	}, {
+			    	    "kilde": "bruker",
+		        	    "type": "annen",
+		        	    "tittel": "Annen utbetaling",
+		        	    "belop": 5655
+			    	}
+			    ],			    
+			    "utgift": [
+			        {
+		        	    "kilde": "bruker",
+		        	    "type": "strom",
+		        	    "tittel": "Strøm (siste regning)",
+		        	    "belop": 5600
+		        	}, {
+		        	    "kilde": "bruker",
+		        	    "type": "kommunalAvgift",
+		        	    "tittel": "Kommunal avgift (siste regning)",
+		        	    "belop": 5600
+		        	}, {
+		        	    "kilde": "bruker",
+		        	    "type": "oppvarming",
+		        	    "tittel": "Oppvarming (siste regning)",
+		        	    "belop": 5600
+		        	}, {
+		        	    "kilde": "bruker",
+		        	    "type": "annenBoutgift",
+		        	    "tittel": "Annen, bo: Brukerdefinert tittel.",
+		        	    "belop": 123
+		        	}, {
+		        	    "kilde": "bruker",
+		        	    "type": "annenBoutgift",
+		        	    "tittel": "Annen, bo: Brukerdefinert tittel.",
+		        	    "belop": 456
+		        	}, {
+		        	    "kilde": "bruker",
+		        	    "type": "barnFritidsaktiviteter",
+		        	    "tittel": "Fritidsaktiviteter for barn (siste regning)",
+		        	    "belop": 1000
+		        	}, {
+		        	    "kilde": "bruker",
+		        	    "type": "barnTannregulering",
+		        	    "tittel": "Tannregulering for barn (siste regning)",
+		        	    "belop": 1000
+		        	}, {
+		        	    "kilde": "bruker",
+		        	    "type": "annenBarneutgift",
+		        	    "tittel": "Annen, barn: Brukerdefinert tittel.",
+		        	    "belop": 456
+		        	}, {
+		        	    "kilde": "bruker",
+		        	    "type": "annenBarneutgift",
+		        	    "tittel": "Annen, barn: Brukerdefinert tittel.",
+		        	    "belop": 47
+		        	}, {
+		        	    "kilde": "bruker",
+		        	    "type": "annen",
+		        	    "tittel": "Annen: Brukerdefinert tittel.",
+		        	    "belop": 47
+		        	}, {
+		        	    "kilde": "bruker",
+		        	    "type": "annen",
+		        	    "tittel": "Annen: Brukerdefinert tittel.",
+		        	    "belop": 42
+		        	}
+			    ]
+			},
+			"oversikt": {
+				"inntekt": [
+				    {
+				        "kilde": "bruker",
+				        "type": "jobb",
+				        "tittel": "Lønnsinntekt",
+				        "brutto": 35000,
+				        "netto": 25000
+				    }, {
+				        "kilde": "bruker",
+				        "type": "studielanOgStipend",
+				        "tittel": "Studielån og -stipend",
+				        "brutto": 2000,
+				        "netto": 2000
+				    }, {
+				        "kilde": "bruker",
+				        "type": "barnebidrag",
+				        "tittel": "Barnebidrag",
+				        "brutto": 1000,
+				        "netto": 1000
+				    }, {
+				        "kilde": "bruker",
+				        "type": "bostotte",
+				        "tittel": "Bostøtte",
+				        "brutto": 1000,
+				        "netto": 1000
+				    }
+				],
+				"utgift": [
+					{
+				        "kilde": "bruker",
+				        "type": "barnebidrag",
+				        "tittel": "Barnebidrag",
+				        "belop": 1000
+				    }, {
+				        "kilde": "bruker",
+				        "type": "husleie",
+				        "tittel": "Husleie",
+				        "belop": 1000
+				    }, {
+				        "kilde": "bruker",
+				        "type": "boliglanAvdrag",
+				        "tittel": "Avdrag på boliglån",
+				        "belop": 1000
+				    }, {
+				        "kilde": "bruker",
+				        "type": "boliglanRenter",
+				        "tittel": "Renter på boliglån",
+				        "belop": 1000
+				    }, {
+				   		"kilde": "bruker",
+				        "type": "barnehage",
+				        "tittel": "Barnehage",
+				        "belop": 1000
+				    }, {
+				   		"kilde": "bruker",
+				        "type": "sfo",
+				        "tittel": "SFO",
+				        "belop": 1000
+				    }
+				],
+				"formue": [
+				    {
+				        "kilde": "bruker",
+				        "type": "brukskonto",
+				        "tittel": "Brukskonto",
+				        "belop": 12000
+				    }, {
+				        "kilde": "bruker",
+				        "type": "bsu",
+				        "tittel": "BSU",
+				        "belop": 12000
+				    }, {
+				        "kilde": "bruker",
+				        "type": "sparekonto",
+				        "tittel": "Sparekonto",
+				        "belop": 12000
+				    }, {
+				        "kilde": "bruker",
+				        "type": "livsforsikringssparedel",
+				        "tittel": "Livsforsikringssparedel",
+				        "belop": 1000
+				    }, {
+				        "kilde": "bruker",
+				        "type": "verdipapirer",
+				        "tittel": "Aksjer, obligasjoner eller fond",
+				        "belop": 1000
+				    }, {
+				        "kilde": "bruker",
+				        "type": "belop",
+				        "tittel": "Annen form for sparing",
+				        "belop": 1000
+				    }
+				]
+			}
 		}
 	},
 	"driftsinformasjon": "Informasjon om arbeidsforhold er fylt ut manuelt av bruker grunnet tekniske problemer med å få data fra AA-registeret.",

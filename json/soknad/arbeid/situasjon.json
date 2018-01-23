@@ -1,0 +1,17 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+	
+	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.arbeid.Arbeidssituasjon",
+	"type": "object",
+	"properties": {
+		"kilde": {
+			"$ref": "../parts/kildeBruker.json"
+		},
+		"erIJobb": {
+			"type": "boolean"
+		},
+		"jobbGrad": {
+			"type": "string"
+		}
+	}
+}

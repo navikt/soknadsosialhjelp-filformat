@@ -1,0 +1,26 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+	
+	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.arbeid.Arbeidsforhold",
+	"type": "object",
+	"properties": {
+		"kilde": {
+			"$ref": "../parts/kilde.json"
+		},
+		"arbeidsgivernavn": {
+			"type": "string"
+		},
+		"fom": {
+			"type": "string"
+		},
+		"tom": {
+			"type": "string"
+		},
+		"stillingsprosent": {
+			"type": "string"
+		},
+		"stillingstype": {
+			"type": "string"
+		}
+	}
+}

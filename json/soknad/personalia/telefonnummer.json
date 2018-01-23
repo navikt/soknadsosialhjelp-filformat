@@ -1,0 +1,18 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+	
+	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.personalia.Telefonnummer",
+	"type": "object",
+	"properties": {
+		"kilde": {
+			"$ref": "../parts/kilde.json"
+		},
+		"verdi": {
+			"type": "string"
+		}
+	},
+	"required": [
+		"kilde",
+		"verdi"
+	]
+}

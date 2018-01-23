@@ -4,6 +4,7 @@
   "definitions": {    
     "soknad": {
       "type": "object",
+      "title": "JSON-formatert søknad om sosialhjelp.",
       "properties": {
       
       	"version": {
@@ -24,131 +25,52 @@
               "type": "object",
               "properties": {
               	"personIdentifikator": {
-              	  "title": "Fødselsnummer eller D-nummer",
-	              "type": "object",
-	              "properties": {
-	              	"kilde": {
-	              	  "title": "Alltid system.",
-		              "enum": [ "system" ]
-			        },
-			        "verdi": {
-			          "$ref": "#/definitions/personIdentifikatorVerdi"
-			        }
-	              },
-	              "required": [
-			        "kilde", "verdi"
-			      ]
+					"$ref": "personalia/personIdentifikator.json"
 	            },
 	            "navn" : {
-	              "$ref": "#/definitions/navnMedKilde"
+	              "$ref": "personalia/sokernavn.json"
 	            },
 	            "nordiskBorger": {
-	              "title": "Angir om brukeren er statsborger i et nordisk land.",
-		          "type": "object",
-		          "properties": {
-  	                "kilde": {
-			          "$ref": "#/definitions/kilde"
-			        },
-			        "verdi": {
-    			        "type": "boolean"
-	    		    }
-	    		  },
-	    		  "required": [
-			        "kilde", "verdi"
-			      ]
+	              "$ref": "personalia/nordiskBorger.json"
 	            },
 	            "telefonnummer": {
-		          "type": "object",
-		          "properties": {
-  	                "kilde": {
-			          "$ref": "#/definitions/kilde"
-			        },
-			        "verdi": {
-    			      "type": "string"
-	    		    }
-	    		  },
-	    		  "required": [
-			        "kilde", "verdi"
-			      ]
+	              "$ref": "personalia/telefonnummer.json"
 	            },
 	            "kontonummer": {
-		          "type": "object",
-		          "properties": {
-  	                "kilde": {
-			          "$ref": "#/definitions/kilde"
-			        },
-			        "harIkkeKonto": {
-			          "type": "boolean"
-			        },
-			        "verdi": {
-    			      "type": "string"
-	    		    }
-	    		  },
-	    		  "required": [
-			        "kilde", "verdi"
-			      ]
+	              "$ref": "personalia/kontonummer.json"
 	            },
 	            "folkeregistrertAdresse": {
-	              "$ref": "#/definitions/adresse"
+	              "$ref": "parts/adresse.json"
 	            },
 	            "oppholdsadresse": {
-	              "$ref": "#/definitions/adresse"
+	              "$ref": "parts/adresse.json"
 	            },
 	            "postAdresse": {
-	              "$ref": "#/definitions/adresse"
+	              "$ref": "parts/adresse.json"
 	            }
               },
               "required": [
                 "personIdentifikator", "navn"
       	      ]
             },
+            
             "arbeid": {
               "type": "object",
               "properties": {
                 "forhold": {
                   "type": "array",
                   "items": {
-				    "kilde": {
-					  "$ref": "#/definitions/kilde"
-			        },
-			        "arbeidsgivernavn": {
-			          "type": "string"
-			        },
-			        "fom": {
-			          "type": "string"
-			        },
-			        "tom": {
-			          "type": "string"
-			        },
-			        "stillingsprosent": {
-			          "type": "string"
-			        },
-			        "stillingstype": {
-			          "type": "string"
-			        }
+					"$ref": "arbeid/forhold.json"
 			      }
                 },
                 "situasjon": {
-                  "type": "object",
-                  "properties": {
-				    "kilde": {
-	              	  "title": "Alltid bruker eller utdatert.",
-		              "enum": [ "bruker", "utdatert" ]
-			        },
-				    "erIJobb": {
-				      "type": "boolean"
-				    },
-				    "jobbGrad": {
-				      "type": "string"
-				    }
-				  }
+				  "$ref": "arbeid/situasjon.json"
 			    },
 			    "kommentarTilArbeidsforhold": {
 			      "type": "object",
 			      "properties": {
 			        "kilde": {
-	              	  "title": "Alltid bruker eller utdatert.",
-		              "enum": [ "bruker", "utdatert" ]
+	              	  "$ref": "parts/kildeBruker.json"
 			        },
 			        "verdi": {
 			          "type": "string"
@@ -160,12 +82,12 @@
                 "kommentarTilArbeidsforhold": ["forhold"]
               }
             },
+            
             "utdanning": {
               "type": "object",
               "properties": {
                 "kilde": {
-	              "title": "Alltid bruker eller utdatert.",
-		          "enum": [ "bruker", "utdatert" ]
+	              "$ref": "parts/kildeBruker.json"
 			    },
 			    "erStudent": {
 			      "type": "boolean"
@@ -182,7 +104,7 @@
 			      "type": "object",
 			      "properties": {
     			    "kilde": {
-					  "$ref": "#/definitions/kilde"
+					  "$ref": "parts/kilde.json"
 			        },
 		    	    "status": {
  		              "type": "string"
@@ -191,13 +113,13 @@
 		          	  "type": "object",
 		              "properties": {
 		                "navn": {
-		                  "$ref": "#/definitions/navn"
+		                  "$ref": "parts/navn.json"
             		    },
 		                "fodselsdato": {
   		                  "type": "string"
 		                },
 		                "personIdentifikator": {
-		                  "$ref": "#/definitions/personIdentifikatorVerdi"
+		                  "$ref": "parts/personIdentifikatorVerdi.json"
 		                }
 		              }
 		            },
@@ -242,13 +164,86 @@
 		          "type": "object",
 		          "properties": {
 			          "kilde": {
-		                "title": "Alltid bruker eller utdatert.",
-			            "enum": [ "bruker", "utdatert" ]
+		                "$ref": "parts/kildeBruker.json"
 				      },
 				      "verdi": {
 				        "type": "string"
 				      }
 				  }
+		        },
+		        "forsorgerplikt": {
+		          "type": "object",
+		          "properties": {
+		          	"harForsorgeransvar": {
+		          	  "type": "object",
+		          	  "properties": {
+			          	"kilde": {
+				          "$ref": "parts/kilde.json"
+				        },
+				        "verdi": {
+	    			        "type": "boolean"
+		    		    }
+		          	  }
+		          	},
+		          	"ansvar": {
+		          	  "type": "array",
+		          	  "items": {
+		          	    "type": "object",
+		          	    "properties": {
+			          	  "barn": {
+		          	        "type": "object",
+		          	        "properties": {
+				          	  "kilde": {
+						        "$ref": "parts/kilde.json"
+						      },
+						      "navn": {
+				                "$ref": "parts/navn.json"
+		            		  },
+				              "fodselsdato": {
+		  		                "type": "string"
+				              },
+				              "personIdentifikator": {
+				                "$ref": "parts/personIdentifikatorVerdi.json"
+				              }
+				            }
+		          	      },
+		          	      "borSammenMed": {
+		          	        "type": "object",
+		          	        "properties": {
+	        			        "kilde": {
+					              "$ref": "parts/kildeBruker.json"
+							    },
+							    "verdi": {
+							      "type": "boolean"
+							    }
+							}
+		          	      },
+		          	      "erFolkeregistrertSammen": {
+		          	        "type": "object",
+		          	        "properties": {
+	        			        "kilde": {
+					              "$ref": "parts/kildeSystem.json"
+							    },
+							    "verdi": {
+							      "type": "boolean"
+							    }
+							}
+		          	      },
+		          	      "samvarsgrad": {
+		          	        "type": "object",
+		          	        "properties": {
+	        			        "kilde": {
+					              "$ref": "parts/kildeBruker.json"
+							    },
+							    "verdi": {
+							      "type": "number"
+							    }
+							}
+		          	      }
+			        	}
+		          	  }
+		          	}
+		          }
 		        }
 		      },
 		      "dependencies": {
@@ -272,8 +267,7 @@
 			  "type": "object",
 			  "properties": {
 		  	    "kilde": {
-	              "title": "Alltid bruker eller utdatert.",
-		          "enum": [ "bruker", "utdatert" ]
+	              "$ref": "parts/kildeBruker.json"
 			    },
 			    "hvorforSoke": {
 			      "type": "string"
@@ -288,8 +282,7 @@
 			  "type": "object",
 			  "properties": {
 			    "kilde": {
-	              "title": "Alltid bruker eller utdatert.",
-		          "enum": [ "bruker", "utdatert" ]
+	              "$ref": "parts/kildeBruker.json"
 			    },
 			    "botype": {
 			      "type": "string"
@@ -339,168 +332,6 @@
         },
         "text": {
           "title": "Markdown-formatert tekststreng som kan vises saksbehandler.",
-          "type": "string"
-        }
-      }
-    },
-    
-    "kilde": {
-      "title": "Kilden for dataene.",
-      "description": "\"bruker\" når data kommer fra en bruker, \"system\" når data kommer fra et register og \"utdatert\" hvis data ikke lenger er relevant (og da ikke lenger kan vises saksbehandler).",
-      "javaType" : "no.nav.sbl.soknadsosialhjelp.soknad.JsonKilde",
-      "type": "string",
-      "enum": [
-        "bruker",
-        "system",
-        "utdatert"
-      ]
-    },
-    
-    "personIdentifikatorVerdi": {
-      "type": "string"
-    },
-    
-    "navn": {
-      "title": "Navn på en person.",
-      "javaType" : "no.nav.sbl.soknadsosialhjelp.soknad.Navn",
-      "type": "object",
-      "properties": {
-        "fornavn": {
-          "type": "string"
-        },
-        "mellomnavn": {
-          "type": "string"
-        },
-        "etternavn": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "fornavn", "mellomnavn", "etternavn"
-      ]
-    },
-    
-    "navnMedKilde": {
-      "title": "Navn på en person med felt som angir kilde.",
-      "javaType" : "no.nav.sbl.soknadsosialhjelp.soknad.NavnMedKilde",
-      "type": "object",
-	  "extends": {
-	    "$ref": "#/definitions/navn"
-	  },
-	  "properties": {
-	    "kilde": {
-	      "enum": [ "system" ]
-	    }
-      },
-      "required": [
-        "kilde"
-      ]
-    },
-    
-    "adresse": {
-      "title": "Angir en adresse.",
-      "javaType" : "no.nav.sbl.soknadsosialhjelp.soknad.Adresse",
-      "type": "object",
-      "properties": {
-        "kilde": {
-          "$ref": "#/definitions/kilde"
-        },
-        "type": {
-          "type": "string"
-        }
-      }
-    },
-    
-    "gateadresse": {
-      "title": "Angir en gateadresse.",
-      "javaType" : "no.nav.sbl.soknadsosialhjelp.soknad.GateAdresse",
-      "type": "object",
-      "extends": {
-        "$ref": "#/definitions/adresse"
-      },
-      "properties": {
-	    "landkode": {
-	      "type": "string"
-	    },
-		"kommunenummer": {
-		  "type": "string"
-		},
-		"bolignummer": {
-		  "type": "string"
-		},
-		"postnummer": {
-		  "type": "string"
-		},
-		"poststed": {
-		  "type": "string"
-		},
-		"gatenavn": {
-		  "type": "string"
-		},
-		"husnummer": {
-		  "type": "string"
-		},
-		"husbokstav": {
-		  "type": "string"
-		}
-      }
-    },
-    "ustrukturert": {
-      "title": "Angir ustrukturert adresse (liste med tekststrenger).",
-      "javaType" : "no.nav.sbl.soknadsosialhjelp.soknad.UstrukturertAdresse",
-      "type": "object",
-      "extends": {
-        "$ref": "#/definitions/adresse"
-      },
-      "properties": {
-        "adresse": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "postboks": {
-      "title": "Angir en postboksadresse.",
-      "javaType" : "no.nav.sbl.soknadsosialhjelp.soknad.PostboksAdresse",
-      "type": "object",
-      "extends": {
-        "$ref": "#/definitions/adresse"
-      },
-      "properties": {
-        "postboks": {
-          "type": "string"
-        },
-        "postnummer": {
-          "type": "string"
-        },
-        "poststed": {
-          "type": "string"
-        }
-      }
-    },
-    "matrikkeladresse": {
-      "title": "Angir en matrikkeladresse.",
-      "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.MatrikkelAdresse",
-      "type": "object",
-      "extends": {
-        "$ref": "#/definitions/adresse"
-      },
-      "properties": {
-        "gaardsnummer": {
-          "type": "string"
-        },
-        "bruksnummer": {
-          "type": "string"
-        },
-        "festenummer": {
-          "type": "string"
-        },
-        "seksjonsnummer": {
-          "type": "string"
-        },
-        "undernummer": {
           "type": "string"
         }
       }
