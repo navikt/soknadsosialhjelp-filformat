@@ -22,7 +22,7 @@
 			},
 			"telefonnummer": {
 				"kilde": "system",
-				"verdi": "+47 111 22 333"
+				"verdi": "+4711122333"
 			},
 			"kontonummer": {
 				"kilde": "system",
@@ -57,21 +57,25 @@
 					"arbeidsgivernavn": "Firmaet AS",
 					"fom": "2010-11-01",
 					"tom": "2017-12-01",
-					"stillingsprosent": "80"
+					"stillingsprosent": 80,
+					"overstyrtAvBruker": false
 				},
 				{
 					"kilde": "system",
 					"arbeidsgivernavn": "Firmaet AS",
 					"fom": "2018-01-01",
-					"stillingstype": "variabel"
+					"stillingsprosent": 0,
+					"stillingstype": "variabel",
+					"overstyrtAvBruker": false
 				},
 				{
 					"kilde": "system",
 					"arbeidsgivernavn": "Firmaet AS",
 					"fom": "2010-10-01",
-					"tom": "2017-11-01",
-					"stillingsprosent": "50",
-					"stillingstype": "fastOgvariabel"
+					"tom": "2017-13-01",
+					"stillingsprosent": 50,
+					"stillingstype": "fastOgVariabel",
+					"overstyrtAvBruker": false
 				}
 		    ],
 			"kommentarTilArbeidsforhold": {
@@ -117,7 +121,7 @@
 								"mellomnavn": "",
 								"etternavn": "Nordmann"
 							},
-							"fodselsdato": "01012010",
+							"fodselsdato": "2010-01-01",
 							"personIdentifikator": "00000000000"
 						},
 						"erFolkeregistrertSammen": {
@@ -139,9 +143,9 @@
 							"fodselsdato": "10012011",
 							"personIdentifikator": "11111111111"
 						},
-						"borSammenMed": {
-						    "kilde": "bruker",
-						    "verdi": true
+						"erFolkeregistrertSammen": {
+						    "kilde": "system",
+						    "verdi": false
 						},
 						"samvarsgrad": {
 						    "kilde": "bruker",
@@ -161,6 +165,17 @@
 			"botype": "annet",
 			"annenSituasjon": "venner",
 			"antallPersoner": 3
+		},
+		"okonomi": {
+			"opplysninger": {
+				"utbetaling": [],
+				"utgift": []
+			},
+			"oversikt": {
+				"inntekt": [],
+				"utgift": [],
+				"formue": []
+			}
 		}
 	},
 	"driftsinformasjon": "",

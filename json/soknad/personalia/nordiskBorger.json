@@ -3,6 +3,7 @@
 	
 	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.personalia.NordiskBorger",
 	"title": "Angir om brukeren er statsborger i et nordisk land.",
+	"description": "Hvis \"nordiskBorger\" mangler i en søknad betyr dette at søker ikke har svart på spørsmålet.",
 	"type": "object",
 	"properties": {
 		"kilde": {

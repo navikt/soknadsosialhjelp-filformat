@@ -9,7 +9,16 @@
 			"$ref": "../parts/kilde.json"
 		},
 		"type": {
-			"type": "string"
+			"title": "Angir adressetypen og dermed hvilke felter som er satt.",
+			"description": "Eventuelle nye adressetyper vil enten bli lagt til som en ny major-version eller som nye felt under søknaden (for eksempel \"folkeregistrertAdresseV2\").",
+			"type": "string",
+			"enum": [
+			    "gateadresse",
+			    "matrikkeladresse",
+			    "postboks",
+			    "ustrukturert"
+			]
 		}
-	}
+	},
+	"required": ["kilde", "type"]
 }

@@ -18,7 +18,7 @@
 			},
 			"telefonnummer": {
 				"kilde": "bruker",
-				"verdi": "+47 111 22 333"
+				"verdi": "+4711122333"
 			},
 			"kontonummer": {
 				"kilde": "bruker",
@@ -81,7 +81,7 @@
 				"borIkkeSammenMedBegrunnelse": "Det fungerte ikke."
 			},
 			"forsorgerplikt": {
-				"harForsorgeransvar": {
+				"harForsorgerplikt": {
 					"kilde": "bruker",
 					"verdi": true
 				},
@@ -98,7 +98,7 @@
 								"mellomnavn": "",
 								"etternavn": "Nordmann"
 							},
-							"fodselsdato": "01012010",
+							"fodselsdato": "2010-01-01",
 							"personIdentifikator": "00000000000"
 						},
 						"borSammenMed": {
@@ -189,27 +189,32 @@
 			    	    "kilde": "bruker",
 		        	    "type": "utbytte",
 		        	    "tittel": "Utbytte fra aksjer, obligasjoner eller fond",
-		        	    "belop": 5600
+		        	    "belop": 5600,
+		        	    "overstyrtAvBruker": false
 			    	}, {
 			    	    "kilde": "bruker",
 		        	    "type": "salg",
 		        	    "tittel": "Solgt eiendom og/eller eiendel",
-		        	    "belop": 12345
+		        	    "belop": 12345,
+		        	    "overstyrtAvBruker": false
 			    	}, {
 			    	    "kilde": "bruker",
 		        	    "type": "salg",
 		        	    "tittel": "Solgt eiendom og/eller eiendel",
-		        	    "belop": 12345
+		        	    "belop": 12345,
+		        	    "overstyrtAvBruker": false
 			    	}, {
 			    	    "kilde": "bruker",
 		        	    "type": "forsikring",
 		        	    "tittel": "Forsikringsutbetaling",
-		        	    "belop": 12333
+		        	    "belop": 12333,
+		        	    "overstyrtAvBruker": false
 			    	}, {
 			    	    "kilde": "bruker",
 		        	    "type": "annen",
 		        	    "tittel": "Annen utbetaling",
-		        	    "belop": 5655
+		        	    "belop": 5655,
+		        	    "overstyrtAvBruker": false
 			    	}
 			    ],			    
 			    "utgift": [
@@ -217,57 +222,68 @@
 		        	    "kilde": "bruker",
 		        	    "type": "strom",
 		        	    "tittel": "Strøm (siste regning)",
-		        	    "belop": 5600
+		        	    "belop": 5600,
+		        	    "overstyrtAvBruker": false
 		        	}, {
 		        	    "kilde": "bruker",
 		        	    "type": "kommunalAvgift",
 		        	    "tittel": "Kommunal avgift (siste regning)",
-		        	    "belop": 5600
+		        	    "belop": 5600,
+		        	    "overstyrtAvBruker": false
 		        	}, {
 		        	    "kilde": "bruker",
 		        	    "type": "oppvarming",
 		        	    "tittel": "Oppvarming (siste regning)",
-		        	    "belop": 5600
+		        	    "belop": 5600,
+		        	    "overstyrtAvBruker": false
 		        	}, {
 		        	    "kilde": "bruker",
 		        	    "type": "annenBoutgift",
-		        	    "tittel": "Annen, bo: Brukerdefinert tittel.",
-		        	    "belop": 123
+		        	    "tittel": "Annen, bo (brukerangitt): Brukerdefinert tittel.",
+		        	    "belop": 123,
+		        	    "overstyrtAvBruker": false
 		        	}, {
 		        	    "kilde": "bruker",
 		        	    "type": "annenBoutgift",
-		        	    "tittel": "Annen, bo: Brukerdefinert tittel.",
-		        	    "belop": 456
+		        	    "tittel": "Annen, bo (brukerangitt): Brukerdefinert tittel.",
+		        	    "belop": 456,
+		        	    "overstyrtAvBruker": false
 		        	}, {
 		        	    "kilde": "bruker",
 		        	    "type": "barnFritidsaktiviteter",
 		        	    "tittel": "Fritidsaktiviteter for barn (siste regning)",
-		        	    "belop": 1000
+		        	    "belop": 1000,
+		        	    "overstyrtAvBruker": false
 		        	}, {
 		        	    "kilde": "bruker",
 		        	    "type": "barnTannregulering",
 		        	    "tittel": "Tannregulering for barn (siste regning)",
-		        	    "belop": 1000
+		        	    "belop": 1000,
+		        	    "overstyrtAvBruker": false
 		        	}, {
 		        	    "kilde": "bruker",
 		        	    "type": "annenBarneutgift",
-		        	    "tittel": "Annen, barn: Brukerdefinert tittel.",
-		        	    "belop": 456
+		        	    "tittel": "Annen, barn(brukerangitt): Brukerdefinert tittel.",
+		        	    "belop": 456,
+		        	    "overstyrtAvBruker": false
 		        	}, {
 		        	    "kilde": "bruker",
 		        	    "type": "annenBarneutgift",
-		        	    "tittel": "Annen, barn: Brukerdefinert tittel.",
-		        	    "belop": 47
+		        	    "tittel": "Annen, barn (brukerangitt): Brukerdefinert tittel.",
+		        	    "belop": 47,
+		        	    "overstyrtAvBruker": false
 		        	}, {
 		        	    "kilde": "bruker",
 		        	    "type": "annen",
-		        	    "tittel": "Annen: Brukerdefinert tittel.",
-		        	    "belop": 47
+		        	    "tittel": "Annen (brukerangitt): Brukerdefinert tittel.",
+		        	    "belop": 47,
+		        	    "overstyrtAvBruker": false
 		        	}, {
 		        	    "kilde": "bruker",
 		        	    "type": "annen",
-		        	    "tittel": "Annen: Brukerdefinert tittel.",
-		        	    "belop": 42
+		        	    "tittel": "Annen (brukerangitt): Brukerdefinert tittel.",
+		        	    "belop": 42,
+		        	    "overstyrtAvBruker": false
 		        	}
 			    ]
 			},
@@ -278,25 +294,29 @@
 				        "type": "jobb",
 				        "tittel": "Lønnsinntekt",
 				        "brutto": 35000,
-				        "netto": 25000
+				        "netto": 25000,
+		        	    "overstyrtAvBruker": false
 				    }, {
 				        "kilde": "bruker",
 				        "type": "studielanOgStipend",
 				        "tittel": "Studielån og -stipend",
 				        "brutto": 2000,
-				        "netto": 2000
+				        "netto": 2000,
+		        	    "overstyrtAvBruker": false
 				    }, {
 				        "kilde": "bruker",
 				        "type": "barnebidrag",
 				        "tittel": "Barnebidrag",
 				        "brutto": 1000,
-				        "netto": 1000
+				        "netto": 1000,
+		        	    "overstyrtAvBruker": false
 				    }, {
 				        "kilde": "bruker",
 				        "type": "bostotte",
 				        "tittel": "Bostøtte",
 				        "brutto": 1000,
-				        "netto": 1000
+				        "netto": 1000,
+		        	    "overstyrtAvBruker": false
 				    }
 				],
 				"utgift": [
@@ -304,32 +324,38 @@
 				        "kilde": "bruker",
 				        "type": "barnebidrag",
 				        "tittel": "Barnebidrag",
-				        "belop": 1000
+				        "belop": 1000,
+		        	    "overstyrtAvBruker": false
 				    }, {
 				        "kilde": "bruker",
 				        "type": "husleie",
 				        "tittel": "Husleie",
-				        "belop": 1000
+				        "belop": 1000,
+		        	    "overstyrtAvBruker": false
 				    }, {
 				        "kilde": "bruker",
 				        "type": "boliglanAvdrag",
 				        "tittel": "Avdrag på boliglån",
-				        "belop": 1000
+				        "belop": 1000,
+		        	    "overstyrtAvBruker": false
 				    }, {
 				        "kilde": "bruker",
 				        "type": "boliglanRenter",
 				        "tittel": "Renter på boliglån",
-				        "belop": 1000
+				        "belop": 1000,
+		        	    "overstyrtAvBruker": false
 				    }, {
 				   		"kilde": "bruker",
 				        "type": "barnehage",
 				        "tittel": "Barnehage",
-				        "belop": 1000
+				        "belop": 1000,
+		        	    "overstyrtAvBruker": false
 				    }, {
 				   		"kilde": "bruker",
 				        "type": "sfo",
 				        "tittel": "SFO",
-				        "belop": 1000
+				        "belop": 1000,
+		        	    "overstyrtAvBruker": false
 				    }
 				],
 				"formue": [
@@ -337,32 +363,38 @@
 				        "kilde": "bruker",
 				        "type": "brukskonto",
 				        "tittel": "Brukskonto",
-				        "belop": 12000
+				        "belop": 12000,
+		        	    "overstyrtAvBruker": false
 				    }, {
 				        "kilde": "bruker",
 				        "type": "bsu",
 				        "tittel": "BSU",
-				        "belop": 12000
+				        "belop": 12000,
+		        	    "overstyrtAvBruker": false
 				    }, {
 				        "kilde": "bruker",
 				        "type": "sparekonto",
 				        "tittel": "Sparekonto",
-				        "belop": 12000
+				        "belop": 12000,
+		        	    "overstyrtAvBruker": false
 				    }, {
 				        "kilde": "bruker",
 				        "type": "livsforsikringssparedel",
 				        "tittel": "Livsforsikringssparedel",
-				        "belop": 1000
+				        "belop": 1000,
+		        	    "overstyrtAvBruker": false
 				    }, {
 				        "kilde": "bruker",
 				        "type": "verdipapirer",
 				        "tittel": "Aksjer, obligasjoner eller fond",
-				        "belop": 1000
+				        "belop": 1000,
+		        	    "overstyrtAvBruker": false
 				    }, {
 				        "kilde": "bruker",
 				        "type": "belop",
 				        "tittel": "Annen form for sparing",
-				        "belop": 1000
+				        "belop": 1000,
+		        	    "overstyrtAvBruker": false
 				    }
 				]
 			}

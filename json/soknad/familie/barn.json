@@ -1,7 +1,8 @@
 {
 	"$schema": "http://json-schema.org/draft-06/schema#",
-	
+
 	"type": "object",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.Barn",
 	"properties": {
 		"kilde": {
 			"$ref": "../parts/kilde.json"
@@ -10,10 +11,13 @@
 			"$ref": "../parts/navn.json"
 		},
 		"fodselsdato": {
-			"type": "string"
+			"$ref": "../types/dato.json"
 		},
 		"personIdentifikator": {
 			"$ref": "../parts/personIdentifikatorVerdi.json"
 		}
-	}
+	},
+	"required": [
+		"kilde", "navn"
+	]
 }

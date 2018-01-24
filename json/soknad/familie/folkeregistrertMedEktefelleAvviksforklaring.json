@@ -2,6 +2,7 @@
 	"$schema": "http://json-schema.org/draft-06/schema#",
 	
 	"type": "object",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.FolkeregistrertMedEktefelleAvviksforklaring",
 	"properties": {
 		"kilde": {
 			"$ref": "../parts/kildeBruker.json"
@@ -9,5 +10,8 @@
 		"verdi": {
 			"type": "string"
 		}
-	}
+	},
+	"required": [
+		"kilde"
+	]
 }
