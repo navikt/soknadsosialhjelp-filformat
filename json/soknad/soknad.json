@@ -184,6 +184,178 @@
 			      "type": "number"
 			    }
 			  }
+			},
+			
+			"okonomi": {
+			  "title": "Økonomiske data.",
+			  "type": "object",
+			  "properties": {
+			    "opplysninger": {
+			      "title": "Økonomiske opplysninger som ikke inngår i den strukturerte oversikten.",
+			      "type": "object",
+			      "properties": {
+			        "bekreftelse": {
+			          "title": "Bekreftelser fra bruker.",
+			          "type": "array",
+			          "items": {
+			            "type": "object",
+			            "properties": {
+			              "kilde": {
+	              		    "$ref": "parts/kilde.json"
+			    		  },
+			    		  "type": {
+			    		    "type": "string"
+			    		  },
+			    		  "tittel": {
+			    		    "type": "string"
+			    		  },
+			    		  "verdi": {
+			    		    "type": "boolean"
+			    		  }
+			            }
+			          }
+			        },
+			        "beskrivelseAvAnnet": {
+			          "type": "object",
+			          "properties": {
+			            "kilde": {
+	              		  "$ref": "parts/kildeBruker.json"
+			    		},
+			    		"verdi": {
+			    		  "type": "string"
+			    		},
+			    		"sparing": {
+			    		  "type": "string"
+			    		},
+			    		"utbetaling": {
+			    		  "type": "string"
+			    		},
+			    		"boutgifter": {
+			    		  "type": "string"
+			    		},
+			    		"barneutgifter": {
+			    		  "type": "string"
+			    		}
+			    	  }
+			    	},
+			    	
+			    	"utbetaling": {
+			          "title": "Utbetalinger søker har mottatt",
+			          "type": "array",
+			          "items": {
+			            "type": "object",
+			            "properties": {
+			              "kilde": {
+	              		    "$ref": "parts/kilde.json"
+			    		  },
+			    		  "type": {
+			    		    "type": "string"
+			    		  },
+			    		  "tittel": {
+			    		    "type": "string"
+			    		  },
+			    		  "belop": {
+			    		    "type": "number"
+			    		  }
+			    		}
+			          }
+			        },
+			        "utgift": {
+			          "title": "Månedlige utgifter",
+			          "type": "array",
+			          "items": {
+			            "type": "object",
+			            "properties": {
+			              "kilde": {
+	              		    "$ref": "parts/kilde.json"
+			    		  },
+			    		  "type": {
+			    		    "type": "string"
+			    		  },
+			    		  "tittel": {
+			    		    "type": "string"
+			    		  },
+			    		  "belop": {
+			    		    "type": "number"
+			    		  }
+			    		}
+			          }
+			        }
+			      }
+			    },
+			    "oversikt": {
+			      "title": "Strukturert økonomisk oversikt.",
+			      "type": "object",
+			      "properties": {
+			        "inntekt": {
+			          "title": "Månedlige inntekter",
+			          "type": "array",
+			          "items": {
+			            "type": "object",
+			            "properties": {
+			              "kilde": {
+	              		    "$ref": "parts/kilde.json"
+			    		  },
+			    		  "type": {
+			    		    "type": "string"
+			    		  },
+			    		  "tittel": {
+			    		    "type": "string"
+			    		  },
+			    		  "brutto": {
+			    		    "type": "number"
+			    		  },
+			    		  "netto": {
+			    		    "type": "number"
+			    		  }
+			    		}
+			          }
+			        },
+			        "utgift": {
+			          "title": "Månedlige utgifter",
+			          "type": "array",
+			          "items": {
+			            "type": "object",
+			            "properties": {
+			              "kilde": {
+	              		    "$ref": "parts/kilde.json"
+			    		  },
+			    		  "type": {
+			    		    "type": "string"
+			    		  },
+			    		  "tittel": {
+			    		    "type": "string"
+			    		  },
+			    		  "belop": {
+			    		    "type": "number"
+			    		  }
+			    		}
+			          }
+			        },
+			        "formue": {
+			          "title": "Formue",
+			          "type": "array",
+			          "items": {
+			            "type": "object",
+			            "properties": {
+			              "kilde": {
+	              		    "$ref": "parts/kilde.json"
+			    		  },
+			    		  "type": {
+			    		    "type": "string"
+			    		  },
+			    		  "tittel": {
+			    		    "type": "string"
+			    		  },
+			    		  "belop": {
+			    		    "type": "number"
+			    		  }
+			    		}
+			          }
+			        }
+			      }
+			    }
+			  }
 			}
           },
           "required": [
