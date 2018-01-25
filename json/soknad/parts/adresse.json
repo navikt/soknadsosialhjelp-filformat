@@ -4,6 +4,13 @@
 	"title": "Angir en adresse.",
 	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.adresse.Adresse",
 	"type": "object",
+	
+	"oneOf": [
+		{"$ref": "adresse/gateadresse.json"},
+		{"$ref": "adresse/matrikkeladresse.json"},
+		{"$ref": "adresse/postboks.json"},
+		{"$ref": "adresse/ustrukturert.json"}
+	],
 	"properties": {
 		"kilde": {
 			"$ref": "../parts/kilde.json"
