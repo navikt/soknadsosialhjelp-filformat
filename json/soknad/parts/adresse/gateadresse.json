@@ -7,6 +7,18 @@
 	"extends": {
 		"$ref": "../adresse.json"
 	},
+	"allOf": [
+		{
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": [
+						"gateadresse"
+					]
+				}
+			}
+		}
+	],
 	"properties": {
 		"landkode": {
 			"type": "string"

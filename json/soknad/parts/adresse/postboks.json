@@ -7,6 +7,18 @@
 	"extends": {
 		"$ref": "../adresse.json"
 	},
+	"allOf": [
+		{
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": [
+						"postboks"
+					]
+				}
+			}
+		}
+	],
 	"properties": {
 		"postboks": {
 			"type": "string"

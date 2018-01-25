@@ -7,6 +7,9 @@
 	"extends": {
 		"$ref": "../parts/navn.json"
 	},
+	"allOf": [
+		{"$ref": "../parts/navn.json"}
+	],
 	"properties": {
 		"kilde": {
 			"title": "Alltid system (og aldri utdatert).",
