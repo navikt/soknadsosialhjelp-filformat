@@ -22,7 +22,7 @@
 			},
 			"telefonnummer": {
 				"kilde": "system",
-				"verdi": "+47 111 22 333"
+				"verdi": "+4711122333"
 			},
 			"kontonummer": {
 				"kilde": "system",
@@ -43,14 +43,11 @@
 			"oppholdsadresse": {
 				"kilde": "system",
 				"type": "matrikkeladresse",
-				"landkode": "NOR",
-				"kommunenummer": "0219",
-				"bolignummer": "H0101",
-				"postnummer": "0598",
-				"poststed": "OSLO",
-				"gatenavn": "En vei",
-				"husnummer": "99",
-				"husbokstav": "B"
+                "gaardsnummer": "1",
+                "bruksnummer": "1",
+                "festenummer": "1",
+                "seksjonsnummer": "1",
+                "undernummer": "1"
 			}
 		},
 		"arbeid": {
@@ -60,15 +57,27 @@
 					"arbeidsgivernavn": "Firmaet AS",
 					"fom": "2010-11-01",
 					"tom": "2017-12-01",
-					"stillingsprosent": "80"
+					"stillingsprosent": 80,
+					"overstyrtAvBruker": false
 				},
 				{
 					"kilde": "system",
 					"arbeidsgivernavn": "Firmaet AS",
 					"fom": "2018-01-01",
-					"stillingsprosent": "variabel"
+					"stillingsprosent": 0,
+					"stillingstype": "variabel",
+					"overstyrtAvBruker": false
+				},
+				{
+					"kilde": "system",
+					"arbeidsgivernavn": "Firmaet AS",
+					"fom": "2010-10-01",
+					"tom": "2017-13-01",
+					"stillingsprosent": 50,
+					"stillingstype": "fastOgVariabel",
+					"overstyrtAvBruker": false
 				}
-			],
+		    ],
 			"kommentarTilArbeidsforhold": {
 				"kilde": "bruker",
 				"verdi": "Det stemmer ikke at jeg fortsatt har en stilling hos Firmaet AS. Ansettelsesforholdet opphørte 15. januar."
@@ -97,6 +106,53 @@
 			"folkeregistrertMedEktefelleAvviksforklaring": {
 				"kilde": "bruker",
 				"verdi": "Vi er i ferd med å skilles."
+			},
+			"forsorgerplikt": {
+				"barnebidrag": {
+					"kilde": "bruker",
+					"verdi": "betaler"
+				},
+				"ansvar": [
+					{
+					    "barn": {
+							"kilde": "system",
+							"navn": {
+								"fornavn": "Småen",
+								"mellomnavn": "",
+								"etternavn": "Nordmann"
+							},
+							"fodselsdato": "2010-01-01",
+							"personIdentifikator": "00000000000"
+						},
+						"erFolkeregistrertSammen": {
+						    "kilde": "system",
+						    "verdi": false
+						},
+						"samvarsgrad": {
+						    "kilde": "bruker",
+						    "verdi": 20
+						}
+					}, {
+					    "barn": {
+							"kilde": "bruker",
+							"navn": {
+								"fornavn": "Småen",
+								"mellomnavn": "Den Andre",
+								"etternavn": "Nordmann"
+							},
+							"fodselsdato": "10012011",
+							"personIdentifikator": "11111111111"
+						},
+						"erFolkeregistrertSammen": {
+						    "kilde": "system",
+						    "verdi": false
+						},
+						"samvarsgrad": {
+						    "kilde": "bruker",
+						    "verdi": 50
+						}
+					}
+				]
 			}
 		},
 		"begrunnelse": {
@@ -109,6 +165,19 @@
 			"botype": "annet",
 			"annenSituasjon": "venner",
 			"antallPersoner": 3
+		},
+		"okonomi": {
+			"opplysninger": {
+				"utbetaling": [],
+				"utgift": []
+			},
+			"oversikt": {
+				"inntekt": [],
+				"utgift": [],
+				"formue": []
+			}
 		}
-	}
+	},
+	"driftsinformasjon": "",
+	"kompatibilitet": []
 }

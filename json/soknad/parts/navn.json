@@ -1,0 +1,23 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+	
+	"title": "Navn på en person.",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.common.Navn",
+	"type": "object",
+	"properties": {
+		"fornavn": {
+			"type": "string"
+		},
+		"mellomnavn": {
+			"type": "string"
+		},
+		"etternavn": {
+			"type": "string"
+		}
+	},
+	"required": [
+		"fornavn",
+		"mellomnavn",
+		"etternavn"
+	]
+}

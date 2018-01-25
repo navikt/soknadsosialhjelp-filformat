@@ -1,0 +1,27 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+	
+	"title": "Angir en matrikkeladresse.",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.adresse.MatrikkelAdresse",
+	"type": "object",
+	"extends": {
+		"$ref": "../adresse.json"
+	},
+	"properties": {
+		"gaardsnummer": {
+			"type": "string"
+		},
+		"bruksnummer": {
+			"type": "string"
+		},
+		"festenummer": {
+			"type": "string"
+		},
+		"seksjonsnummer": {
+			"type": "string"
+		},
+		"undernummer": {
+			"type": "string"
+		}
+	}
+}

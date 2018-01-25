@@ -1,0 +1,18 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+
+	"title": "Angir ustrukturert adresse (liste med tekststrenger).",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.adresse.UstrukturertAdresse",
+	"type": "object",
+	"extends": {
+		"$ref": "../adresse.json"
+	},
+	"properties": {
+		"adresse": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		}
+	}
+}

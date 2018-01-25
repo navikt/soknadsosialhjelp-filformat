@@ -1,0 +1,17 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+	
+	"type": "object",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.Samvarsgrad",
+	"properties": {
+		"kilde": {
+			"$ref": "../parts/kildeBruker.json"
+		},
+		"verdi": {
+			"type": "integer"
+		}
+	},
+	"required": [
+		"kilde", "verdi"
+	]
+}
