@@ -7,9 +7,11 @@
 	"properties": {
 		"kilde": {
 			"title": "Alltid system (og aldri utdatert).",
+			"type": "string",
 			"enum": [
 				"system"
-			]
+			],
+			"default": "system"
 		},
 		"verdi": {
 			"$ref": "../parts/personIdentifikatorVerdi.json"

@@ -32,6 +32,9 @@
 	            "navn" : {
 	              "$ref": "personalia/sokernavn.json"
 	            },
+	            "statsborgerskap": {
+	              "$ref": "personalia/statsborgerskap.json"
+	            },
 	            "nordiskBorger": {
 	              "$ref": "personalia/nordiskBorger.json"
 	            },
@@ -247,7 +250,7 @@
 			          "type": "array",
 			          "items": {
 			            "type": "object",
-			            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.Okonomibekreftelse",
+			            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.Okonomibekreftelse",
 			            "properties": {
 			              "kilde": {
 	              		    "$ref": "parts/kilde.json"
@@ -271,7 +274,7 @@
 			          "title": "Beskrivelsesfelter for inntekter, utgifter og verdier.",
 			          "description": "Disse feltene er overflødige og vil bli tatt bort.",
 			          "type": "object",
-			          "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.OkonomibeskrivelserAvAnnet",
+			          "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.OkonomibeskrivelserAvAnnet",
 			          "properties": {
 			            "kilde": {
 	              		  "$ref": "parts/kildeBruker.json"
@@ -301,6 +304,7 @@
 			          "title": "Utbetalinger søker har mottatt",
 			          "type": "array",
 			          "items": {
+			            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.OkonomiOpplysningUtbetaling",
 			            "type": "object",
 			            "properties": {
 			              "kilde": {
@@ -329,6 +333,7 @@
 			          "title": "Månedlige utgifter",
 			          "type": "array",
 			          "items": {
+			            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.OkonomiOpplysningUtgift",
 			            "type": "object",
 			            "properties": {
 			              "kilde": {
@@ -361,12 +366,14 @@
 			    "oversikt": {
 			      "title": "Strukturert økonomisk oversikt.",
 			      "type": "object",
+			      "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.Okonomioversikt",
 			      "properties": {
 			        "inntekt": {
 			          "title": "Månedlige inntekter",
 			          "type": "array",
 			          "items": {
 			            "type": "object",
+			            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.OkonomioversiktInntekt",
 			            "properties": {
 			              "kilde": {
 	              		    "$ref": "parts/kilde.json"
@@ -397,6 +404,7 @@
 			          "title": "Månedlige utgifter",
 			          "type": "array",
 			          "items": {
+			            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.OkonomioversiktUtgift",
 			            "type": "object",
 			            "properties": {
 			              "kilde": {
@@ -425,6 +433,7 @@
 			          "title": "Formue",
 			          "type": "array",
 			          "items": {
+			            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.OkonomioversiktFormue",
 			            "type": "object",
 			            "properties": {
 			              "kilde": {

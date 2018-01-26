@@ -3,8 +3,10 @@
 	
 	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.common.JsonKildeSystem",
 	"title": "Alltid system eller utdatert.",
+	"type": "string",
 	"enum": [
 		"system",
 		"utdatert"
-	]
+	],
+	"default": "system"
 }

@@ -5,7 +5,7 @@
 	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.adresse.GateAdresse",
 	"type": "object",
 	"extends": {
-		"extends$ref": "../adresse.json"
+		"ONLY_CODEGEN$ref": "../adresse.json"
 	},
 	"allOf": [
 		{

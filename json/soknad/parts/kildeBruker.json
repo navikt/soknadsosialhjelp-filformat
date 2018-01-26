@@ -3,8 +3,10 @@
 	
 	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.common.JsonKildeBruker",
 	"title": "Alltid bruker eller utdatert.",
+	"type": "string",
 	"enum": [
 		"bruker",
 		"utdatert"
-	]
+	],
+	"default": "bruker"
 }
