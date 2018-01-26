@@ -31,4 +31,4 @@ Kort oppsummert har hvert vedlegg en "type", samt "tilleggsinfo" som gir litt me
 
 Det vil bli publisert en liste over mulige typer, men mottakere må uansett støtte å motta ukjente type/tilleggsinfo-kombinasjoner.
 
-[Se fullstendig dokumentasjon av vedlegg](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/json/vedlegg/vedleggSpesifikasjon.json)
+[Se fullstendig dokumentasjon av vedlegg](https://navikt.github.io/soknadsosialhjelp-filformat/#/vedlegg/getvedlegg_json)
