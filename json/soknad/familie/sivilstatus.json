@@ -1,6 +1,5 @@
 {
 	"$schema": "http://json-schema.org/draft-06/schema#",
-	
 	"title": "Sivilstatus og informasjon om eventuell ektefelle.",
 	"description": "Hvis \"sivilstatus\" mangler betyr dette at søker ikke har svart på spørsmålet.",
 	"type": "object",
@@ -51,19 +50,22 @@
 		}
 	},
 	"required": [
-		"kilde", "status"
+		"kilde",
+		"status"
 	],
 	"dependencies": {
 		"gift": {
-		    "required": ["ektefelle"]
+			"required": [
+				"ektefelle"
+			]
 		},
 		"ektefelle": {
 			"properties": {
-			    "status": {
-			    	"enum": [
-			    		"gift"
-			    	]
-			    }
+				"status": {
+					"enum": [
+						"gift"
+					]
+				}
 			}
 		},
 		"folkeregistrertMedEktefelle": {
