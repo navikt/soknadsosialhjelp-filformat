@@ -34,45 +34,6 @@ Da ting ikke er påkrevd å svare på har vi gått bort fra å bruke booleans, d
 For integers kan vi heller ikke bruke `xs:integer`, så bruker nå en egen type som også kan være tom-
 
 
-Vedlegg
--------
-
-Kommer som egne filer i meldingen. Spesifikasjonen over hvilke vedlegg som er hva ligger i en JSON-fil i meldingen, ved navn
-`vedlegg.json`.
-Den er på dette formatet
-
-```json
-{
-  "vedlegg": [
-    {
-      "type": "faktura",
-      "tilleggsinfo": "sfo",
-      "filer": [
-        {"filnavn": "endaenfil-u95sdfght.png"},
-        {"filnavn": "DCIM6666-ae94343bc.jpg"}
-      ]
-    },
-    {
-      "type": "faktura",
-      "tilleggsinfo": "tannregulering",
-      "filer": [
-        {"filnavn": "yeyeye-u95sdfght.png"},
-        {"filnavn": "alalla-ae94343bc.jpg"}
-      ]
-    }
-  ]
-}
-```
-
-Så hvert vedlegg har en "type", samt "tilleggsinfo" som gir litt mer kontekst. Deretter en liste over filnavn som bruker har lagt
-ved som dokumentasjon for det vedlegget.
-
-JSONen er med vilje laget med ekstra objekter (f. eks kunne filer bare vært en liste over filnavn, ikke objekter som inneholder filnavn) for å
-støtte utvidelser i fremtiden skulle det være nødvendig, uten at alle må gjøre en update samtidig.
-
-Hvilke typer og slikt som kan komme skal defineres i kodeverk.xsd på sikt. Mottakere må støtte å motta ukjente type/tilleggsinfo-kombinasjoner.
-
-
 CHANGELOG
 ---------
 
