@@ -5,7 +5,7 @@
 	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.adresse.MatrikkelAdresse",
 	"type": "object",
 	"extends": {
-		"$ref": "../adresse.json"
+		"extends$ref": "../adresse.json"
 	},
 	"allOf": [
 		{
