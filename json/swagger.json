@@ -20,7 +20,7 @@
 					"soknad"
 				],
 				"summary": "Versjon 1.0.0-alpha",
-				"description": "Versjon 1.0.0 er fortsatt under utvikling og det kan forekomme endringer som bryter bakoverkompatibilitet. Alle er oppfordret til å komme med endringsforslag før versjon 1.0.0 låses for endringer. Be gjerne om at versjonen låses hvis alt ser OK ut.\n\nDenne dokumentasjonen er generert ut fra et [json-schema](soknad/soknad.json). Skjemaet kan utvides slik at det er egnet til autogenerering av kode, men dette må i så fall diskuteres på Slack først.",
+				"description": "Versjon 1.0.0 er fortsatt under utvikling og det kan forekomme endringer som bryter bakoverkompatibilitet. Alle er oppfordret til å komme med endringsforslag før versjon 1.0.0 låses for endringer. Be gjerne om at versjonen låses hvis alt ser OK ut.\n\nDenne dokumentasjonen er generert ut fra et [json-schema](soknad/soknad.json). Skjemaet kan utvides slik at det er egnet til autogenerering av kode, men dette må i så fall diskuteres på Slack først.\n\nSe relativt komplette eksempler på søknads-JSON med mest mulig [brukerutfylte](../src/test/resources/json/soknad/brukerdata.json) og [systemutfylte](../src/test/resources/json/soknad/systemdata.json) data.",
 				"responses": {
 					"filformat": {
 						"description": "Definisjon av søknadsfil. Se på \"Model\" for definisjon av hvert enkelt felt. Se separate typedefinisjoner nederst på siden der det er forskjellige type-alternativer (nå gjelder dette kun for \"adresse\", men det kan bli flere typer senere).",
