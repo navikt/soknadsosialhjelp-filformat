@@ -1,7 +1,7 @@
 {
 	"$schema": "http://json-schema.org/draft-06/schema#",
 	
-	"title": "Navn på en person med felt som angir kilde.",
+	"title": "Søkers navn.",
 	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.personalia.Sokernavn",
 	"type": "object",
 	"extends": {

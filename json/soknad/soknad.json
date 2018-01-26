@@ -22,7 +22,7 @@
           "properties": {
           
             "personalia": {
-              "title": "Søknadsdata som er knyttet til søker.",
+              "title": "Personalia",
               "type": "object",
               "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.personalia.Personalia",
               "properties": {
@@ -57,6 +57,7 @@
             },
             
             "arbeid": {
+              "title": "Arbeid",
               "type": "object",
               "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.arbeid.Arbeid",
               "properties": {
@@ -81,6 +82,7 @@
             },
             
             "utdanning": {
+              "title": "Utdanning",
               "type": "object",
               "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.utdanning.Utdanning",
               "properties": {
@@ -101,6 +103,7 @@
 			},
 			
 			"familie": {
+			  "title": "Familie",
 			  "type": "object",
 			  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.Familie",
 			  "properties": {
@@ -111,6 +114,7 @@
 		          "$ref": "familie/folkeregistrertMedEktefelleAvviksforklaring.json"
 		        },
 		        "forsorgerplikt": {
+		          "title": "Forsørgerplikt",
 		          "type": "object",
 		          "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.Forsorgerplikt",
 		          "properties": {
@@ -174,6 +178,7 @@
 			},
 			
 			"begrunnelse": {
+			  "title": "Begrunnelse",
 			  "type": "object",
 			  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.begrunnelse.Begrunnelse",
 			  "properties": {
@@ -193,6 +198,7 @@
 			},
 			
 			"bosituasjon": {
+			  "title": "Bosituasjon",
 			  "type": "object",
 			  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.bosituasjon.Bosituasjon",
 			  "properties": {

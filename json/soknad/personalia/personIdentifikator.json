@@ -1,6 +1,7 @@
 {
 	"$schema": "http://json-schema.org/draft-06/schema#",
 	
+	"title": "Unik identifikasjon av søker",
 	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.personalia.PersonIdentifikator",
 	"type": "object",
 	"properties": {

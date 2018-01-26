@@ -1,6 +1,7 @@
 {
 	"$schema": "http://json-schema.org/draft-06/schema#",
 	
+	"title": "Søkers kontonummer",
 	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.personalia.Kontonummer",
 	"type": "object",
 	"properties": {
