@@ -8,7 +8,7 @@ application = "soknadsosialhjelp-xsd"
 author = "Unknown"
 deploy = "Unknown"
 releaseVersion = "Unknown"
-isMasterBuild = (env.BRANCH_NAME == 'master')
+isMasterBuild = (env.BRANCH_NAME == 'master') || (env.BRANCH_NAME == 'origin/master')
 
 project = "navikt"
 repoName = "soknadsosialhjelp-xsd"
@@ -31,7 +31,7 @@ def returnOk(message, buildNr) {
 node {
     properties([
             parameters([
-                    string(name: 'DeployTilNexus', defaultValue: 'false'),
+                    string(name: 'DeployTilNexus', defaultValue: 'true'),
             ])
     ])
     common.setupTools("maven3", "java8")
