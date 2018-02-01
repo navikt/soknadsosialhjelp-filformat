@@ -4,14 +4,14 @@ import common
 
 def common = new common()
 
-application = "soknadsosialhjelp-xsd"
+application = "soknadsosialhjelp-filformat"
 author = "Unknown"
 deploy = "Unknown"
 releaseVersion = "Unknown"
 isMasterBuild = (env.BRANCH_NAME == 'master') || (env.BRANCH_NAME == 'origin/master')
 
 project = "navikt"
-repoName = "soknadsosialhjelp-xsd"
+repoName = "soknadsosialhjelp-filformat"
 
 def notifyFailed(reason, error, buildNr) {
     currentBuild.result = 'FAILED'
