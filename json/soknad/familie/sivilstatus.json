@@ -39,13 +39,15 @@
 			]
 		},
 		"folkeregistrertMedEktefelle": {
-			"description": "Feltet vil kun bli satt når man kan innhente informasjon om dette fra system",
+			"description": "Kun relevant hvis \"kilde\" er \"system\".",
 			"type": "boolean"
 		},
 		"borSammenMed": {
+			"description": "Kun relevant hvis \"kilde\" er \"bruker\".",
 			"type": "boolean"
 		},
 		"borIkkeSammenMedBegrunnelse": {
+			"description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift). Kun relevant \"kilde\" er \"bruker\".",
 			"type": "string"
 		}
 	},

@@ -10,7 +10,7 @@
       "properties": {
       	"version": {
       	  "title": "Søknadsdataversjonen.",
-      	  "description": "Versjonsnummeret følger reglene definert i \"https://semver.org/\" med følgende unntak/presiseringer: \n1. Ny majorversjon betyr en ny søknadsfil.\n2. Ny minorversjon betyr at feltet \"kompatibilitet\" kan ha blitt brukt.\n3. Ny pathversjon brukes ved endringer som skjer bakoverkompatibelt uten bruk av \"kompatibilitet\"-feltet.",
+      	  "description": "Versjonsnummeret følger reglene definert i \"https://semver.org/\" med følgende unntak/presiseringer: \n1. Ny majorversjon betyr en ny søknadsfil.\n2. Ny minorversjon betyr at feltet \"kompatibilitet\" kan ha blitt brukt.\n3. Ny patchversjon brukes ved endringer som skjer bakoverkompatibelt uten bruk av \"kompatibilitet\"-feltet.",
           "type": "string",
           "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(-[a-zA-Z0-9]+)?(\\+[a-zA-Z0-9]+)?$",
           "default": "1.0.0-alpha"
@@ -189,9 +189,11 @@
 	              "$ref": "parts/kildeBruker.json"
 			    },
 			    "hvorforSoke": {
+			      "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift).",
 			      "type": "string"
 			    },
 			    "hvaSokesOm": {
+			      "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift).",
 			      "type": "string"
 			    }
 			  },
@@ -256,12 +258,15 @@
 	              		    "$ref": "parts/kilde.json"
 			    		  },
 			    		  "type": {
+			    		  	"description": "Kodeverdi som angir hva slags type bekreftelse det er. Dette feltet kan for eksempel brukes til å filtrere bort bekreftelser man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"bostotte\", \"verdi\", \"sparing\", \"utbetaling\", \"boutgifter\" og \"barneutgifter\".",
 			    		    "type": "string"
 			    		  },
 			    		  "tittel": {
+			    		  	"description": "En tittel som MÅ brukes hvis bekreftelsen skal presenteres til saksbehandler.",
 			    		    "type": "string"
 			    		  },
 			    		  "verdi": {
+			    		  	"description": "Kan være manglende hvis bruker ikke har besvart spørsmålet.",
 			    		    "type": "boolean"
 			    		  }
 			            },
@@ -280,18 +285,23 @@
 	              		  "$ref": "parts/kildeBruker.json"
 			    		},
 			    		"verdi": {
+			    		  "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av annet brukeren har av økonomisk verdi.",
 			    		  "type": "string"
 			    		},
 			    		"sparing": {
+			    		  "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av annet brukeren har av innskudd eller sparing.",
 			    		  "type": "string"
 			    		},
 			    		"utbetaling": {
+			    		  "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av annet brukeren har av utbetalinger.",
 			    		  "type": "string"
 			    		},
 			    		"boutgifter": {
+			    		  "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av annet brukeren har av boutgifter.",
 			    		  "type": "string"
 			    		},
 			    		"barneutgifter": {
+			    		  "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av andre utgifter til barn som brukeren har.",
 			    		  "type": "string"
 			    		}
 			    	  },
@@ -311,16 +321,18 @@
 	              		    "$ref": "parts/kilde.json"
 			    		  },
 			    		  "type": {
+			    		    "description": "Kodeverdi som angir hva slags type utbetaling det er. Dette feltet kan for eksempel brukes til å filtrere bort utbetalinger man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"utbytte\", \"salg\", \"forsikring\" og \"annen\".",
 			    		    "type": "string"
 			    		  },
 			    		  "tittel": {
+			    		    "description": "En tittel som MÅ brukes hvis utbetalingen skal presenteres til saksbehandler. Brukerangitt tekst kan være inkludert i tittelen.",
 			    		    "type": "string"
 			    		  },
 			    		  "belop": {
 			    		    "type": "integer"
 			    		  },
 			    		  "overstyrtAvBruker": {
-						    "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på arbeidsforhold med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
+						    "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på utbetaling med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
 							"type": "boolean"
 						  }
 			    		},
@@ -340,16 +352,18 @@
 	              		    "$ref": "parts/kilde.json"
 			    		  },
 			    		  "type": {
+			    		    "description": "Kodeverdi som angir hva slags type utgift det er. Dette feltet kan for eksempel brukes til å filtrere bort utgifter man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"strom\", \"kommunalAvgift\", \"oppvarming\", \"annenBoutgift\", \"barnFritidsaktiviteter\", \"barnTannregulering\", \"annenBarneutgift\" og \"annen\".",
 			    		    "type": "string"
 			    		  },
 			    		  "tittel": {
+			    		    "description": "En tittel som MÅ brukes hvis utgiften skal presenteres til saksbehandler. Brukerangitt tekst kan være inkludert i tittelen.",
 			    		    "type": "string"
 			    		  },
 			    		  "belop": {
 			    		    "type": "integer"
 			    		  },
 			    		  "overstyrtAvBruker": {
-						    "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på arbeidsforhold med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
+						    "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på utgift med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
 							"type": "boolean"
 						  }
 			    		},
@@ -379,19 +393,23 @@
 	              		    "$ref": "parts/kilde.json"
 			    		  },
 			    		  "type": {
+			    		  	"description": "Kodeverdi som angir hva slags type inntekt det er. Dette feltet kan for eksempel brukes til å filtrere bort inntekter man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"jobb\", \"studielanOgStipend\", \"barnebidrag\" og \"bostotte\".",
 			    		    "type": "string"
 			    		  },
 			    		  "tittel": {
+			    		    "description": "En tittel som MÅ brukes hvis inntekten skal presenteres til saksbehandler. Brukerangitt tekst kan være inkludert i tittelen.",
 			    		    "type": "string"
 			    		  },
 			    		  "brutto": {
+			    		  	"description": "Kan mangle hvis bruker har sagt at han/hun har en gitt type inntekt, men beløp mangler.",
 			    		    "type": "integer"
 			    		  },
 			    		  "netto": {
+			    		  	"description": "Kan mangle hvis bruker har sagt at han/hun har en gitt type inntekt, men beløp mangler.",
 			    		    "type": "integer"
 			    		  },
 			    		  "overstyrtAvBruker": {
-						    "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på arbeidsforhold med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
+						    "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på inntekt med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
 							"type": "boolean"
 						  }
 			    		},
@@ -411,16 +429,19 @@
 	              		    "$ref": "parts/kilde.json"
 			    		  },
 			    		  "type": {
+			    		  	"description": "Kodeverdi som angir hva slags type utgift det er. Dette feltet kan for eksempel brukes til å filtrere bort utgifter man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"barnebidrag\", \"husleie\", \"boliglanAvdrag\", \"boliglanRenter\", \"barnehage\" og \"sfo\".",
 			    		    "type": "string"
 			    		  },
 			    		  "tittel": {
+			    		  	"description": "En tittel som MÅ brukes hvis utgiften skal presenteres til saksbehandler. Brukerangitt tekst kan være inkludert i tittelen.",
 			    		    "type": "string"
 			    		  },
 			    		  "belop": {
+			    		  	"description": "Kan mangle hvis bruker har sagt at han/hun har en gitt type utgift, men beløp mangler.",
 			    		    "type": "integer"
 			    		  },
 			    		  "overstyrtAvBruker": {
-						    "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på arbeidsforhold med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
+						    "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på utgift med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
 							"type": "boolean"
 						  }
 			    		},
@@ -440,16 +461,19 @@
 	              		    "$ref": "parts/kilde.json"
 			    		  },
 			    		  "type": {
+			    		  	"description": "Kodeverdi som angir hva slags type formue det er. Dette feltet kan for eksempel brukes til å filtrere bort formue man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"brukskonto\", \"bsu\", \"sparekonto\", \"livsforsikringssparedel\", \"verdipapirer\" og \"belop\".",
 			    		    "type": "string"
 			    		  },
 			    		  "tittel": {
+			    		  	"description": "En tittel som MÅ brukes hvis formuen skal presenteres til saksbehandler. Brukerangitt tekst kan være inkludert i tittelen.",
 			    		    "type": "string"
 			    		  },
 			    		  "belop": {
+			    		  	"description": "Kan mangle hvis bruker har sagt at han/hun har en gitt type formue, men beløp mangler.",
 			    		    "type": "integer"
 			    		  },
 			    		  "overstyrtAvBruker": {
-						    "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på arbeidsforhold med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
+						    "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på formue med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
 							"type": "boolean"
 						  }
 			    		},

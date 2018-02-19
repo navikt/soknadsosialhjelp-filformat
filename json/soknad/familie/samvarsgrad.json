@@ -8,6 +8,7 @@
 			"$ref": "../parts/kildeBruker.json"
 		},
 		"verdi": {
+			"description": "Samværsgraden angitt i prosent.",
 			"type": "integer"
 		}
 	},

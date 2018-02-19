@@ -6,12 +6,15 @@
 	"type": "object",
 	"properties": {
 		"fornavn": {
+			"description": "Feltet kan være blankt.",
 			"type": "string"
 		},
 		"mellomnavn": {
+			"description": "Feltet kan være blankt.",
 			"type": "string"
 		},
 		"etternavn": {
+			"description": "Feltet kan være blankt.",
 			"type": "string"
 		}
 	},

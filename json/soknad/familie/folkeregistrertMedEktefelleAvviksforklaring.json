@@ -9,6 +9,7 @@
 			"$ref": "../parts/kildeBruker.json"
 		},
 		"verdi": {
+			"description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift).",
 			"type": "string"
 		}
 	},

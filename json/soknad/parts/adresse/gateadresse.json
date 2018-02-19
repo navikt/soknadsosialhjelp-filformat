@@ -27,6 +27,7 @@
 			"type": "string"
 		},
 		"adresselinjer": {
+			"description": "Inneholder adresseringsinformasjon som skal presenteres mellom søkers navn og de andre adressefeltene. Eksempler på mulige verdier er \"c/o Ola Nordmann\", \"v/Kari Nordmann\" og \"Melkegården\".",
 			"type": "array",
 			"items": {
 				"type": "string"

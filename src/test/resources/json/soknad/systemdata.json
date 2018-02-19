@@ -162,8 +162,7 @@
 		},
 		"bosituasjon": {
 			"kilde": "bruker",
-			"botype": "annet",
-			"annenSituasjon": "venner",
+			"botype": "venner",
 			"antallPersoner": 3
 		},
 		"okonomi": {
