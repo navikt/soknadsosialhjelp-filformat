@@ -43,7 +43,7 @@
 									"$ref": "soknad/parts/adresse/postboks.json"
 								},
 								"ustrukturert": {
-									"$ref": "soknad/parts/adresse/postboks.json"
+									"$ref": "soknad/parts/adresse/ustrukturert.json"
 								}
 							}
 						}
