@@ -1,6 +1,8 @@
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +15,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.github.fge.jackson.JsonLoader;
-import com.github.fge.jsonschema.core.report.LogLevel;
-import com.github.fge.jsonschema.core.report.ProcessingMessage;
 import com.github.fge.jsonschema.core.report.ProcessingReport;
-import com.github.fge.jsonschema.main.JsonSchema;
+
+import no.nav.sbl.soknadsosialhjelp.json.JsonSosialhjelpValidator;
 
 /**
  * Kjører skjemavalidering av alle json-filer i "src/test/resouces/json/soknad".
@@ -33,16 +32,18 @@ public class SoknadTest {
     
     private static final String PREFIX_FIL_MED_FEIL = "feil-";
     private static final String SCHEMA_DIRECTORY = "json/soknad";
-    private static final String TOPLEVEL_SCHEMA_FILE = "json/soknad/soknad.json";
+    private static final String TOPLEVEL_SCHEMA_FILE = SCHEMA_DIRECTORY + "/soknad.json";
     private static final String TEST_DATA_DIRECTORY = "src/test/resources/json/soknad/";
 
     private final File testfile; 
-    private final String schemaLocation;
+    private final boolean forventGyldig;
+    private final String schemaUri;
 
     
-    public SoknadTest(String testName, File testfile, String schemaLocation) {
+    public SoknadTest(String testName, File testfile, String schemaUri, boolean forventGyldig) {
         this.testfile = testfile;
-        this.schemaLocation = schemaLocation;
+        this.schemaUri = schemaUri;
+        this.forventGyldig = forventGyldig;
     }
     
     
@@ -57,19 +58,19 @@ public class SoknadTest {
     }
     
     @Test
-    public void jsonValiderer() throws Exception {
-        final JsonSchema validator = JsonValidatorUtils.createValidator(schemaLocation);
-        valider(testfile, !testfile.getName().startsWith(PREFIX_FIL_MED_FEIL), validator);
+    public void jsonValiderer() {       
+        valider(testfile, schemaUri, forventGyldig);
     }
     
     
-    private static void valider(File testfile, boolean forventGyldig, JsonSchema validator) throws Exception {
-        final JsonNode json = JsonLoader.fromFile(testfile);
-        final ProcessingReport report = validator.validate(json);
+    private static void valider(File testfile, String schemaUri, boolean forventGyldig) {
+        final ProcessingReport report = JsonSosialhjelpValidator.validateFile(testfile, schemaUri);
 
-        assertEquals("Fil " + testfile.getName() + " forventes " + (forventGyldig ? "gyldig" : "ugyldig") + "\n" + report, forventGyldig, report.isSuccess());
+        final String message = "Fil " + testfile.getName() + " forventes " + (forventGyldig ? "gyldig" : "ugyldig") + "\n" + report;
+        assertEquals(message, forventGyldig, report.isSuccess());
+        
         if (forventGyldig) {
-            assertEquals("Det er warnings for fil " + testfile.getName() + "\n" + report, true, !hasWarnings(report));
+            assertEquals("Det er warnings for fil " + testfile.getName() + "\n" + report, true, !JsonSosialhjelpValidator.hasWarnings(report));
         }
     }
 
@@ -88,30 +89,26 @@ public class SoknadTest {
     private static Function<? super File, ? extends Object[]> toTestParameters() {
         return f -> {
             return new Object[] {
-                f.getName(), f, determineSchemaLocation(f)
+                f.getName(),
+                f,
+                determineSchemaUri(f.toPath()),
+                !f.getName().startsWith(PREFIX_FIL_MED_FEIL)
             };
         };
     }
 
-    private static String determineSchemaLocation(File f) {
-        final String schemaName = new File(TEST_DATA_DIRECTORY).toPath().relativize(f.toPath()).toFile().getParent();
-        if (schemaName == null) {
-            return TOPLEVEL_SCHEMA_FILE;
+    private static String determineSchemaUri(Path testdataFile) {
+        final Path path = Paths.get(TEST_DATA_DIRECTORY).relativize(testdataFile).getParent();
+        if (path == null) {
+            return Paths.get(TOPLEVEL_SCHEMA_FILE).toUri().toString();
         }
-        final File schemaFile = new File(SCHEMA_DIRECTORY, schemaName + ".json");
-        if (!schemaFile.exists()) {
-            throw new IllegalStateException("Kunne ikke finne skjemafil med navn: " + schemaFile.getAbsolutePath());
+        final Path schema = Paths.get(SCHEMA_DIRECTORY,
+                (path.getParent() != null) ? path.getParent().toString() : "",
+                path.getFileName().toString() + ".json");
+        if (!Files.exists(schema)) {
+            throw new IllegalStateException("Kunne ikke finne skjemafil med navn: " + schema.toString());
         }
-        return schemaFile.getAbsolutePath();
-    }
-
-    private static boolean hasWarnings(ProcessingReport report) {
-        for (ProcessingMessage pm : report) {
-            if (pm.getLogLevel() == LogLevel.WARNING) {
-                return true;
-            }
-        }
-        return false;
+        return schema.toUri().toString();
     }
     
     private static Predicate<? super File> ignoreTempFiles() {
