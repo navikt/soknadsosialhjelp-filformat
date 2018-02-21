@@ -98,7 +98,7 @@
 						"mellomnavn": "K",
 						"etternavn": "Nordmann"
 					},
-					"fodselsdato": "01011991",
+					"fodselsdato": "1991-01-01",
 					"personIdentifikator": "12345678901"
 				},
 				"folkeregistrertMedEktefelle": false
@@ -140,7 +140,7 @@
 								"mellomnavn": "Den Andre",
 								"etternavn": "Nordmann"
 							},
-							"fodselsdato": "10012011",
+							"fodselsdato": "2011-01-01",
 							"personIdentifikator": "11111111111"
 						},
 						"erFolkeregistrertSammen": {

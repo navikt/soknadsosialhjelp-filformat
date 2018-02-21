@@ -10,6 +10,39 @@
 				"fornavn": "",
 				"mellomnavn": "",
 				"etternavn": ""
+			},
+			"kontonummer": {
+				"kilde": "bruker"
+			}
+		},
+		"arbeid": {
+			
+		},
+		"utdanning": {
+			"kilde": "bruker"
+		},
+		"familie": {
+			"forsorgerplikt": {
+			
+			}
+		},
+		"begrunnelse": {
+			"kilde": "bruker",
+			"hvorforSoke": "",
+			"hvaSokesOm": ""
+		},
+		"bosituasjon": {
+			"kilde": "bruker"
+		},
+		"okonomi": {
+			"opplysninger": {
+				"utbetaling": [],
+				"utgift": []
+			},
+			"oversikt": {
+				"inntekt": [],
+				"utgift": [],
+				"formue": []
 			}
 		}
 	},

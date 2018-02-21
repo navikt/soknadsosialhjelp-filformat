@@ -1,0 +1,11 @@
+{
+	"kilde": "bruker",
+	"status": "gift",
+	"ektefelle": {
+		"navn": {
+			"fornavn": "",
+			"mellomnavn": "",
+			"etternavn": ""
+		}
+	}
+}

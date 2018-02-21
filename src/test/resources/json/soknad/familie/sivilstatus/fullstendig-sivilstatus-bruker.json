@@ -1,0 +1,15 @@
+{
+	"kilde": "bruker",
+	"status": "gift",
+	"ektefelle": {
+		"navn": {
+			"fornavn": "Hans",
+			"mellomnavn": "",
+			"etternavn": "Hansemann"
+		},
+		"fodselsdato": "1980-01-01",
+		"personIdentifikator": "12345678901"
+	},
+	"borSammenMed": false,
+	"borIkkeSammenMedBegrunnelse": "For lite plass på 2m^2"
+}

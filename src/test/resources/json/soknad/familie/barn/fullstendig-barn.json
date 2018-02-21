@@ -1,0 +1,10 @@
+{
+	"kilde": "bruker",
+	"navn": {
+		"fornavn": "Test",
+		"mellomnavn": "Den andre",
+		"etternavn": "Testesen"
+	},
+	"fodselsdato": "2017-01-01",
+	"personIdentifikator": "12345678901"
+}

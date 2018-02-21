@@ -74,7 +74,7 @@
 						"mellomnavn": "K",
 						"etternavn": "Nordmann"
 					},
-					"fodselsdato": "01011991",
+					"fodselsdato": "1991-11-30",
 					"personIdentifikator": "12345678901"
 				},
 				"borSammenMed": false,
@@ -117,7 +117,7 @@
 								"mellomnavn": "Den Andre",
 								"etternavn": "Nordmann"
 							},
-							"fodselsdato": "10012011",
+							"fodselsdato": "2011-10-30",
 							"personIdentifikator": "11111111111"
 						},
 						"borSammenMed": {

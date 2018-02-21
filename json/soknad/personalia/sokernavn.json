@@ -15,7 +15,8 @@
 			"title": "Alltid system (og aldri utdatert).",
 			"enum": [
 				"system"
-			]
+			],
+			"default": "system"
 		}
 	},
 	"required": [

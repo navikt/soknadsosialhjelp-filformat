@@ -1,0 +1,13 @@
+{
+	"kilde": "bruker",
+	"type": "gateadresse",
+	"landkode": "NOR",
+	"kommunenummer": "0101",
+	"adresselinjer": [],
+	"bolignummer": "H0101",
+	"postnummer": "0756",
+	"poststed": "OSLO",
+	"gatenavn": "Testeveien",
+	"husnummer": "2",
+	"husbokstav": "C"
+}

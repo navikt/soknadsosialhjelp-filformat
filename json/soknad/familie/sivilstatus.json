@@ -56,10 +56,34 @@
 		"status"
 	],
 	"dependencies": {
-		"gift": {
-			"required": [
-				"ektefelle"
+		"status": {
+			"anyOf": [
+				{
+					"properties": {
+						"status": {
+							"enum": [
+								"gift"
+							]
+						}
+					},
+					"required": [
+						"ektefelle"
+					]
+				}, {
+					"properties": {
+						"status": {
+							"enum": [
+								"ugift",
+								"samboer",
+								"enke",
+								"skilt",
+								"separert"
+							]
+						}
+					}
+				}
 			]
+
 		},
 		"ektefelle": {
 			"properties": {
