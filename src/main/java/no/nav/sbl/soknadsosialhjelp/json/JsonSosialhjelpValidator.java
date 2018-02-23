@@ -38,7 +38,7 @@ public final class JsonSosialhjelpValidator {
      * Sikrer at den angitte JSON-strengen er gyldig mot soknadskjemaet til Sosialhjelp.
      */
     public static void ensureValidSoknad(String json) throws JsonSosialhjelpValidationException {
-        final String schemaUri = toSkjemaUri("soknad/soknad.json");
+        final String schemaUri = toSkjemaUri("/json/soknad/soknad.json");
         ensureValid(json, schemaUri);
     }
     
@@ -46,7 +46,7 @@ public final class JsonSosialhjelpValidator {
      * Sikrer at den angitte JSON-strengen er gyldig mot vedleggskjemaet til Sosialhjelp.
      */
     public static void ensureValidVedlegg(String json) throws JsonSosialhjelpValidationException {
-        final String schemaUri = toSkjemaUri("vedlegg/vedleggSpesifikasjon.json");
+        final String schemaUri = toSkjemaUri("/json/vedlegg/vedleggSpesifikasjon.json");
         ensureValid(json, schemaUri);
     }
     
@@ -107,7 +107,7 @@ public final class JsonSosialhjelpValidator {
     private static String toSkjemaUri(String skjemaFil) {
         final String schemaUri;
         try {
-            schemaUri = ClassLoader.getSystemClassLoader().getResource(skjemaFil).toURI().toString();
+            schemaUri = JsonSosialhjelpValidator.class.getResource(skjemaFil).toURI().toString();
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
