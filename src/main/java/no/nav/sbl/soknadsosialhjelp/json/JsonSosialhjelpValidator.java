@@ -2,6 +2,8 @@ package no.nav.sbl.soknadsosialhjelp.json;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.EnumSet;
@@ -31,6 +33,39 @@ public final class JsonSosialhjelpValidator {
     
     private JsonSosialhjelpValidator() {
         
+    }
+    
+    
+    public static void main(String[] args) throws Exception{
+        if (args.length != 2) {
+            System.out.println("Bruk: java -jar soknadsosialhjelp-filformat-...-shaded.jar [ --soknad SOKNAD_JSON | --vedlegg VEDLEGG_JSON | SCHEMA JSON ]");
+            System.out.println();
+            System.out.println("--soknad     - Valider med soknad-skjemaet.");
+            System.out.println("--vedlegg    - Valider med vedlegg-skjemaet.");
+            System.out.println();
+            System.out.println("SOKNAD_JSON  - En JSON-fil med som skal følge soknad-formatet.");
+            System.out.println("VEDLEGG_JSON - En JSON-fil med som skal følge vedlegg-formatet.");
+            System.out.println("SCHEMA       - Et av skjemaene som følger med. F.eks.: \"/json/soknad/parts/version.json\".");
+            System.out.println("JSON         - En JSON-fil med som skal følge angitt format.");
+            System.exit(1);
+        }
+        
+        try {
+            final String schemaUri;
+            if (args[0].equals("--soknad")) {
+                schemaUri = toSkjemaUri("/json/soknad/soknad.json");
+            } else if (args[0].equals("--vedlegg")) {
+                schemaUri = toSkjemaUri("/json/vedlegg/vedleggSpesifikasjon.json");
+            } else {
+                schemaUri = toSkjemaUri(args[0]);
+            }
+            
+            final String json = Files.readAllLines(Paths.get(args[1])).stream().reduce((a, b) -> a + b).get();
+            ensureValid(json, schemaUri);
+        } catch (Exception e) {
+            System.err.println("Exception: " + e.toString());
+            System.exit(1);
+        }
     }
     
     
