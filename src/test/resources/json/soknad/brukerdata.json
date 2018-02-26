@@ -250,7 +250,7 @@
 		        	}, {
 		        	    "kilde": "bruker",
 		        	    "type": "barnFritidsaktiviteter",
-		        	    "tittel": "Fritidsaktiviteter for barn (siste regning)",
+		        	    "tittel": "Fritidsaktiviteter for barn (siste regning) (brukerangitt): Brukerdefinert tittel",
 		        	    "belop": 1000,
 		        	    "overstyrtAvBruker": false
 		        	}, {
