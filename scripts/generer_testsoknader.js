@@ -57,58 +57,58 @@ function randomDate() {
 	return dateFormat(d, "yyyy-mm-dd");
 }
 
+// Rett opp feil vi kjenner som gjør at json schema validering gir feilmelding:
+function rettKjenteSoknadsfeil(result) {
+	const flattened = flatten(result); // Gjør json strukturen flat: {x: {y: {z: 1}}} => "x.y.z": 1
+	Object.keys(flattened).forEach(function (key) {
+		// const val = flattened[key];
+		key = "result." + key;
+		var matches = key.match(/\.(\d+)\./);
+		if (matches) {
+			key = key.replace("." + matches[ 1 ] + ".", "[" + matches[ 1 ] + "]."); // Erstattt x.1.y => x[1].y
+		}
+		if (key.match(/kilde$/)) {
+			eval(key + " = \"" + pickRandom([ "bruker", "utdatert" ]) + "\"");
+		}
+		if (key.match(/fom/)) {
+			eval(key + " = \"" + randomDate() + "\"");
+		}
+		if (key.match(/navn$/)) {
+			eval(key + ' = ' + tilfeldigPersonNavn());
+		}
+		if (key.match(/arbeidsgivernavn$/)) {
+			eval(key + ' = "' + tilfeldigArbeidsgiver() + '"');
+		}
+
+		// Disse feiler foreløpig ikke i json valideringen, men rettes likevel:
+		if (key.match(/stillingsprosent/)) {
+			eval(key + ' = ' + randomInteger(0, 100));
+		}
+		if (key.match(/samvarsgrad\.verdi$/)) {
+			eval(key + ' = ' + randomInteger(0, 100));
+		}
+	});
+
+	// eval("result.data.personalia.navn = {err: true}"); //  + tilfeldigPersonNavn());
+	eval("result.data.personalia.navn = " + tilfeldigPersonNavn());
+	eval('result.data.personalia.personIdentifikator.kilde = "system"');
+	return result;
+};
+
+// Generer random "lorem ipsum" data med "json-schema-faker"
 function generateRandomSoknad() {
 	const jsonSchemaFileName = "soknad_bundle.json";
 	const schema = JSON.parse(fs.readFileSync(jsonSchemaFileName, "utf8"));
-
-	// Generer random "lorem ipsum" data med "json-schema-faker"
 	jsf.resolve(schema).then(function (result) {
-		const flattened = flatten(result);
-
-		// Rett opp feil som gjør at json schema validering gir feilmelding:
-		Object.keys(flattened).forEach(function (key) {
-			// const val = flattened[key];
-			key = "result." + key;
-			var matches = key.match(/\.(\d+)\./);
-			if (matches) {
-				key = key.replace("." + matches[1] + ".", "[" + matches[1] + "].");
-			}
-			if (key.match(/kilde$/)) {
-				eval(key + " = \"" + pickRandom(["bruker", "utdatert"]) + "\"");
-			}
-			if (key.match(/fom/)) {
-				eval(key + " = \"" + randomDate() + "\"");
-			}
-			if (key.match(/navn$/)) {
-				eval(key + ' = ' + tilfeldigPersonNavn());
-			}
-			if (key.match(/arbeidsgivernavn$/)) {
-				eval(key + ' = "' + tilfeldigArbeidsgiver() + '"');
-			}
-
-			if (key.match(/samvarsgrad\.verdi$/)) {
-				eval(key + ' = ' + randomInteger(0,100));
-			}
-
-			// Disse feiler foreløpig ikke i json valideringen, men rettes likevel:
-			if (key.match(/stillingsprosent/)) {
-				eval(key + ' = ' + randomInteger(0,100));
-			}
-
-		});
-
-		// eval("result.data.personalia.navn = {err: true}"); //  + tilfeldigPersonNavn());
-		eval("result.data.personalia.navn = " + tilfeldigPersonNavn());
-		eval('result.data.personalia.personIdentifikator.kilde = "system"');
-
-		validerSoknader(result);
+		result = rettKjenteSoknadsfeil(result);
+		validerOgSkrivSoknad(result);
 	});
 }
 
-function validerSoknader(randomSoknad) {
+// Valider søknad json schema validator skrevet i java.
+function validerOgSkrivSoknad(randomSoknad) {
 	var soknadFilename = "random_generated_soknad.json";
 	fs.writeFileSync(soknadFilename, JSON.stringify(randomSoknad, null, 4));
-
 	const validateProcess = spawn('java', [
 		'-jar',
 		'../target/soknadsosialhjelp-filformat-1.0-SNAPSHOT-shaded.jar', '--soknad', soknadFilename
