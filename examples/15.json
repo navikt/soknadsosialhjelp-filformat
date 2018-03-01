@@ -1,0 +1,158 @@
+{
+    "version": "9.8856896378.741+chT7LuJgDNy",
+    "data": {
+        "personalia": {
+            "personIdentifikator": {
+                "kilde": "system",
+                "verdi": "amet quis"
+            },
+            "navn": {
+                "fornavn": "Jan",
+                "mellomnavn": "Per",
+                "etternavn": "Karlsen",
+                "kilde": "system"
+            },
+            "kontonummer": {
+                "kilde": "utdatert"
+            }
+        },
+        "arbeid": {
+            "forhold": [
+                {
+                    "kilde": "bruker",
+                    "arbeidsgivernavn": "International Energy ASA",
+                    "fom": "2018-01-18",
+                    "stillingsprosent": 87,
+                    "overstyrtAvBruker": true
+                },
+                {
+                    "kilde": "bruker",
+                    "arbeidsgivernavn": "Insurance Insurance AS",
+                    "fom": "2017-12-29",
+                    "stillingsprosent": 85,
+                    "overstyrtAvBruker": true
+                },
+                {
+                    "kilde": "utdatert",
+                    "arbeidsgivernavn": "Insurance Data ASA",
+                    "fom": "2018-01-04",
+                    "stillingsprosent": 9,
+                    "overstyrtAvBruker": true
+                },
+                {
+                    "kilde": "utdatert",
+                    "arbeidsgivernavn": "Corp. Resources NUF",
+                    "fom": "2018-02-07",
+                    "stillingsprosent": 24,
+                    "overstyrtAvBruker": false
+                }
+            ]
+        },
+        "utdanning": {
+            "kilde": "utdatert"
+        },
+        "familie": {
+            "forsorgerplikt": {
+                "harForsorgerplikt": {}
+            }
+        },
+        "begrunnelse": {
+            "kilde": "bruker",
+            "hvorforSoke": "nostrud",
+            "hvaSokesOm": "consectetur enim reprehenderit sed pariatur"
+        },
+        "bosituasjon": {
+            "kilde": "bruker"
+        },
+        "okonomi": {
+            "opplysninger": {
+                "utbetaling": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "proident quis elit Lorem",
+                        "tittel": "tempor pariatur",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "deserunt tempor laborum proident minim",
+                        "tittel": "culpa pariatur aliqua",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "id irure ut reprehenderit",
+                        "tittel": "fugiat",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "qui reprehenderit Lorem",
+                        "tittel": "exerc",
+                        "overstyrtAvBruker": false
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "bruker",
+                        "type": "culpa nulla",
+                        "tittel": "pariatur occaecat laboris",
+                        "overstyrtAvBruker": true
+                    }
+                ]
+            },
+            "oversikt": {
+                "inntekt": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "et sin",
+                        "tittel": "adipisicing",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "ut eu reprehenderit",
+                        "tittel": "sint officia in",
+                        "overstyrtAvBruker": false
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "eu ut",
+                        "tittel": "incididun",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "ex pariatur reprehenderit consequat",
+                        "tittel": "laborum fugiat sint elit",
+                        "overstyrtAvBruker": true
+                    }
+                ],
+                "formue": [
+                    {
+                        "kilde": "bruker",
+                        "type": "reprehenderit occaecat Ut magna sint",
+                        "tittel": "nisi Lorem incididunt",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "ad dolore",
+                        "tittel": "cupidatat irure in eu esse",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "magna",
+                        "tittel": "id Ut nostrud enim",
+                        "overstyrtAvBruker": false
+                    }
+                ]
+            }
+        }
+    },
+    "driftsinformasjon": "culpa aliquip",
+    "kompatibilitet": []
+}

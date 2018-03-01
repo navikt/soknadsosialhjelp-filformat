@@ -1,0 +1,177 @@
+{
+    "version": "371735399.1193.9477082+O",
+    "data": {
+        "personalia": {
+            "personIdentifikator": {
+                "kilde": "system",
+                "verdi": "exercitation veniam laboris ullamco"
+            },
+            "navn": {
+                "fornavn": "Kjell",
+                "mellomnavn": "Knut",
+                "etternavn": "Pedersen",
+                "kilde": "system"
+            },
+            "kontonummer": {
+                "kilde": "utdatert"
+            }
+        },
+        "arbeid": {
+            "forhold": [
+                {
+                    "kilde": "utdatert",
+                    "arbeidsgivernavn": "Corp. Insurance",
+                    "fom": "2018-02-03",
+                    "stillingsprosent": 37,
+                    "overstyrtAvBruker": false
+                }
+            ]
+        },
+        "utdanning": {
+            "kilde": "utdatert"
+        },
+        "familie": {
+            "forsorgerplikt": {
+                "harForsorgerplikt": {
+                    "kilde": "utdatert"
+                },
+                "barnebidrag": {},
+                "ansvar": [
+                    {
+                        "barn": {
+                            "kilde": "bruker",
+                            "navn": {
+                                "fornavn": "Knut",
+                                "mellomnavn": "Lars",
+                                "etternavn": "Nilsen",
+                                "kilde": "system"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "begrunnelse": {
+            "kilde": "bruker",
+            "hvorforSoke": "ex sunt veniam",
+            "hvaSokesOm": "nis"
+        },
+        "bosituasjon": {
+            "kilde": "bruker"
+        },
+        "okonomi": {
+            "opplysninger": {
+                "utbetaling": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "officia mollit amet",
+                        "tittel": "adipisicing ex eu",
+                        "overstyrtAvBruker": false
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "enim tempor esse",
+                        "tittel": "Duis non irure incididunt",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "culpa sit non veniam voluptate",
+                        "tittel": "cupidatat nisi nostrud dolor mollit",
+                        "overstyrtAvBruker": true
+                    }
+                ]
+            },
+            "oversikt": {
+                "inntekt": [
+                    {
+                        "kilde": "bruker",
+                        "type": "ad",
+                        "tittel": "anim",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "do reprehenderit",
+                        "tittel": "incididunt Ut aliquip aute cillum",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "laboris Ut",
+                        "tittel": "elit",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "exercitation laborum",
+                        "tittel": "in dolor",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "eu",
+                        "tittel": "mollit sit aute voluptate",
+                        "overstyrtAvBruker": true
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "laboris",
+                        "tittel": "occaecat labore aute nulla",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "dolor",
+                        "tittel": "ut incididunt officia",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "voluptate consectetur",
+                        "tittel": "laboris sed",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "culpa",
+                        "tittel": "ex voluptate occaecat qui",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "in magna eiusmod volup",
+                        "tittel": "quis veniam dolor non",
+                        "overstyrtAvBruker": true
+                    }
+                ],
+                "formue": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "minim non",
+                        "tittel": "reprehenderit minim amet nulla",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "aliquip dolor veniam commodo enim",
+                        "tittel": "do in Duis",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "in ut",
+                        "tittel": "ex magna culpa",
+                        "overstyrtAvBruker": false
+                    }
+                ]
+            }
+        }
+    },
+    "driftsinformasjon": "dolor cupidatat fugiat",
+    "kompatibilitet": []
+}

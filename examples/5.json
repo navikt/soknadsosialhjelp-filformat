@@ -1,0 +1,176 @@
+{
+    "version": "48.351.06-1hxMW",
+    "data": {
+        "personalia": {
+            "personIdentifikator": {
+                "kilde": "system",
+                "verdi": "in Lorem"
+            },
+            "navn": {
+                "fornavn": "Knut",
+                "mellomnavn": "Thomas",
+                "etternavn": "Hansen",
+                "kilde": "system"
+            },
+            "kontonummer": {
+                "kilde": "utdatert"
+            }
+        },
+        "arbeid": {
+            "forhold": [
+                {
+                    "kilde": "bruker",
+                    "arbeidsgivernavn": "Norwegian Health ASA",
+                    "fom": "2018-02-03",
+                    "stillingsprosent": 64,
+                    "overstyrtAvBruker": false
+                },
+                {
+                    "kilde": "utdatert",
+                    "arbeidsgivernavn": "Data of ASA",
+                    "fom": "2018-02-16",
+                    "stillingsprosent": 90,
+                    "overstyrtAvBruker": false
+                },
+                {
+                    "kilde": "utdatert",
+                    "arbeidsgivernavn": "Corp. Health",
+                    "fom": "2018-02-12",
+                    "stillingsprosent": 55,
+                    "overstyrtAvBruker": false
+                },
+                {
+                    "kilde": "utdatert",
+                    "arbeidsgivernavn": "Insurance Energy",
+                    "fom": "2018-02-12",
+                    "stillingsprosent": 74,
+                    "overstyrtAvBruker": false
+                },
+                {
+                    "kilde": "bruker",
+                    "arbeidsgivernavn": "Norwegian of AS",
+                    "fom": "2018-01-04",
+                    "stillingsprosent": 98,
+                    "overstyrtAvBruker": false
+                }
+            ],
+            "situasjon": {
+                "kilde": "utdatert"
+            },
+            "kommentarTilArbeidsforhold": {
+                "kilde": "bruker",
+                "verdi": "non ex voluptate"
+            }
+        },
+        "utdanning": {
+            "kilde": "bruker"
+        },
+        "familie": {
+            "forsorgerplikt": {}
+        },
+        "begrunnelse": {
+            "kilde": "bruker",
+            "hvorforSoke": "id sunt culpa",
+            "hvaSokesOm": "exercit"
+        },
+        "bosituasjon": {
+            "kilde": "utdatert"
+        },
+        "okonomi": {
+            "opplysninger": {
+                "utbetaling": [
+                    {
+                        "kilde": "bruker",
+                        "type": "amet esse",
+                        "tittel": "nostrud e",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "qui labore ipsum",
+                        "tittel": "aliqua cillum non reprehenderit",
+                        "overstyrtAvBruker": false
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "bruker",
+                        "type": "do officia irure proident est",
+                        "tittel": "sint ex",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "eu sunt",
+                        "tittel": "eu sed consequat veniam",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "consectetur velit occaecat",
+                        "tittel": "Excepteur irure aliqua deserunt nu",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "in ut voluptate",
+                        "tittel": "deserunt minim",
+                        "overstyrtAvBruker": true
+                    }
+                ]
+            },
+            "oversikt": {
+                "inntekt": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "aute magna",
+                        "tittel": "mollit aute sint ad voluptate",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "deserunt nulla dolor fugiat sit",
+                        "tittel": "ut Excepteur officia proident",
+                        "overstyrtAvBruker": true
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "laboris adipisicing officia cupidatat",
+                        "tittel": "officia voluptate proident qui",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "dolor mollit",
+                        "tittel": "et reprehenderit eu u",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "dolore in",
+                        "tittel": "Excepteur",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "irure aliqua exercitation dolor",
+                        "tittel": "et",
+                        "overstyrtAvBruker": true
+                    }
+                ],
+                "formue": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "ad Ut",
+                        "tittel": "dolor amet",
+                        "overstyrtAvBruker": false
+                    }
+                ]
+            }
+        }
+    },
+    "driftsinformasjon": "amet esse ",
+    "kompatibilitet": []
+}

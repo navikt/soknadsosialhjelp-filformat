@@ -1,0 +1,162 @@
+{
+    "version": "24380567.694.047958",
+    "data": {
+        "personalia": {
+            "personIdentifikator": {
+                "kilde": "system",
+                "verdi": "eiusmod aliq"
+            },
+            "navn": {
+                "fornavn": "Lars",
+                "mellomnavn": "Bjørn",
+                "etternavn": "Pedersen",
+                "kilde": "system"
+            },
+            "kontonummer": {
+                "kilde": "utdatert"
+            }
+        },
+        "arbeid": {
+            "forhold": [
+                {
+                    "kilde": "bruker",
+                    "arbeidsgivernavn": "General Insurance NUF",
+                    "fom": "2017-12-30",
+                    "stillingsprosent": 14,
+                    "overstyrtAvBruker": false
+                },
+                {
+                    "kilde": "utdatert",
+                    "arbeidsgivernavn": "Resources Automotive",
+                    "fom": "2017-12-30",
+                    "stillingsprosent": 26,
+                    "overstyrtAvBruker": false
+                },
+                {
+                    "kilde": "utdatert",
+                    "arbeidsgivernavn": "Group Group NUF",
+                    "fom": "2018-02-14",
+                    "stillingsprosent": 27,
+                    "overstyrtAvBruker": true
+                },
+                {
+                    "kilde": "bruker",
+                    "arbeidsgivernavn": "Group Group ASA",
+                    "fom": "2018-02-15",
+                    "stillingsprosent": 62,
+                    "overstyrtAvBruker": false
+                }
+            ],
+            "situasjon": {
+                "kilde": "utdatert"
+            },
+            "kommentarTilArbeidsforhold": {
+                "kilde": "bruker"
+            }
+        },
+        "utdanning": {
+            "kilde": "utdatert"
+        },
+        "familie": {
+            "forsorgerplikt": {}
+        },
+        "begrunnelse": {
+            "kilde": "utdatert",
+            "hvorforSoke": "nulla ea aliquip ullamco",
+            "hvaSokesOm": "ipsum Duis in velit"
+        },
+        "bosituasjon": {
+            "kilde": "utdatert"
+        },
+        "okonomi": {
+            "opplysninger": {
+                "utbetaling": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "in veniam dolor",
+                        "tittel": "Duis Lorem sit occaecat",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "incididunt Ut ullamco ea",
+                        "tittel": "sed adipisicing anim do",
+                        "overstyrtAvBruker": false
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "bruker",
+                        "type": "id consequat in",
+                        "tittel": "min",
+                        "overstyrtAvBruker": false
+                    }
+                ]
+            },
+            "oversikt": {
+                "inntekt": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "ut Duis",
+                        "tittel": "veniam aliqua ullamco",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "enim veniam id",
+                        "tittel": "eu aute dolor",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "u",
+                        "tittel": "cill",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "do lab",
+                        "tittel": "dolor magna ex commodo",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "est sit officia ex",
+                        "tittel": "cupidatat mag",
+                        "overstyrtAvBruker": false
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "ut magna ullamco elit",
+                        "tittel": "Duis cupidatat nulla aliqua",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "ea occaecat cupidatat do laborum",
+                        "tittel": "elit aute",
+                        "overstyrtAvBruker": false
+                    }
+                ],
+                "formue": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "Duis voluptate est dolor",
+                        "tittel": "magna",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "mollit enim minim veniam",
+                        "tittel": "voluptate anim esse ut",
+                        "overstyrtAvBruker": true
+                    }
+                ]
+            }
+        }
+    },
+    "driftsinformasjon": "sint officia",
+    "kompatibilitet": []
+}

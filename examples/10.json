@@ -1,0 +1,151 @@
+{
+    "version": "14691451140.6941862.93632-w+gSJ",
+    "data": {
+        "personalia": {
+            "personIdentifikator": {
+                "kilde": "system",
+                "verdi": "culpa esse in"
+            },
+            "navn": {
+                "fornavn": "Per",
+                "mellomnavn": "Thomas",
+                "etternavn": "Jensen",
+                "kilde": "system"
+            },
+            "kontonummer": {
+                "kilde": "utdatert"
+            }
+        },
+        "arbeid": {},
+        "utdanning": {
+            "kilde": "bruker"
+        },
+        "familie": {
+            "forsorgerplikt": {
+                "harForsorgerplikt": {}
+            }
+        },
+        "begrunnelse": {
+            "kilde": "bruker",
+            "hvorforSoke": "non Ut occaecat amet in",
+            "hvaSokesOm": "do eu"
+        },
+        "bosituasjon": {
+            "kilde": "bruker"
+        },
+        "okonomi": {
+            "opplysninger": {
+                "utbetaling": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "irure in",
+                        "tittel": "ipsum elit amet cupidatat",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "eu sunt",
+                        "tittel": "ipsum consequat",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "minim pariatur laborum id",
+                        "tittel": "dolor Duis consequat elit nisi",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "ea minim",
+                        "tittel": "esse incididunt",
+                        "overstyrtAvBruker": true
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "amet",
+                        "tittel": "eu",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "voluptate cillum aute",
+                        "tittel": "sint laboris",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "incididunt ea do veniam",
+                        "tittel": "laborum ullamco deserunt",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "in reprehenderit fugiat",
+                        "tittel": "Duis consectetur amet",
+                        "overstyrtAvBruker": true
+                    }
+                ]
+            },
+            "oversikt": {
+                "inntekt": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "esse non cupidatat",
+                        "tittel": "cupidatat consectetur laborum ad",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "m",
+                        "tittel": "consequat exercitation",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "est proident",
+                        "tittel": "ipsum proident pariatur amet",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "aliquip nisi Duis adipisicing",
+                        "tittel": "nostrud Lorem in esse",
+                        "overstyrtAvBruker": false
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "bruker",
+                        "type": "officia anim enim dolore",
+                        "tittel": "esse qui proiden",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "Lorem cupidatat",
+                        "tittel": "aute quis tempor Duis id",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "non enim",
+                        "tittel": "consectetur proident esse",
+                        "overstyrtAvBruker": true
+                    }
+                ],
+                "formue": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "qui sit",
+                        "tittel": "ipsum velit elit",
+                        "overstyrtAvBruker": true
+                    }
+                ]
+            }
+        }
+    },
+    "driftsinformasjon": "fugiat",
+    "kompatibilitet": []
+}

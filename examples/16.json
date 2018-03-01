@@ -1,0 +1,164 @@
+{
+    "version": "26.00547677495.466+hGQ",
+    "data": {
+        "personalia": {
+            "personIdentifikator": {
+                "kilde": "system",
+                "verdi": "dolore proident aliquip veniam"
+            },
+            "navn": {
+                "fornavn": "Svein",
+                "mellomnavn": "Knut",
+                "etternavn": "Nilsen",
+                "kilde": "system"
+            },
+            "kontonummer": {
+                "kilde": "utdatert"
+            }
+        },
+        "arbeid": {
+            "forhold": [
+                {
+                    "kilde": "bruker",
+                    "arbeidsgivernavn": "Group Norwegian ASA",
+                    "fom": "2018-02-10",
+                    "stillingsprosent": 3,
+                    "overstyrtAvBruker": true
+                },
+                {
+                    "kilde": "bruker",
+                    "arbeidsgivernavn": "Holdings Stores ASA",
+                    "fom": "2018-01-28",
+                    "stillingsprosent": 71,
+                    "overstyrtAvBruker": false
+                },
+                {
+                    "kilde": "bruker",
+                    "arbeidsgivernavn": "Corp. Norway AS",
+                    "fom": "2018-01-13",
+                    "stillingsprosent": 72,
+                    "overstyrtAvBruker": true
+                }
+            ]
+        },
+        "utdanning": {
+            "kilde": "utdatert"
+        },
+        "familie": {
+            "forsorgerplikt": {
+                "harForsorgerplikt": {
+                    "kilde": "bruker",
+                    "verdi": false
+                },
+                "barnebidrag": {
+                    "kilde": "utdatert"
+                },
+                "ansvar": [
+                    {
+                        "barn": {
+                            "kilde": "utdatert",
+                            "navn": {
+                                "fornavn": "Bjørn",
+                                "mellomnavn": "Knut",
+                                "etternavn": "Kristiansen",
+                                "kilde": "system"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "begrunnelse": {
+            "kilde": "utdatert",
+            "hvorforSoke": "labore aute laboris sed magna",
+            "hvaSokesOm": "nostrud"
+        },
+        "bosituasjon": {
+            "kilde": "utdatert"
+        },
+        "okonomi": {
+            "opplysninger": {
+                "utbetaling": [
+                    {
+                        "kilde": "bruker",
+                        "type": "mollit incididunt occaecat",
+                        "tittel": "voluptate proident",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "consectetur dolor laborum",
+                        "tittel": "magna sit fugiat",
+                        "overstyrtAvBruker": true
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "aliqua ullamco laborum",
+                        "tittel": "incididunt laboris",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "dolore ipsum",
+                        "tittel": "aliqua qui",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "sit irure ut nulla",
+                        "tittel": "sit",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "elit esse",
+                        "tittel": "elit laborum voluptate quis Ut",
+                        "overstyrtAvBruker": true
+                    }
+                ]
+            },
+            "oversikt": {
+                "inntekt": [
+                    {
+                        "kilde": "bruker",
+                        "type": "ex Excepteur amet",
+                        "tittel": "pariatur",
+                        "overstyrtAvBruker": true
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "bruker",
+                        "type": "eu",
+                        "tittel": "nisi cillum",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "Lorem nostrud ea adipisicing",
+                        "tittel": "proident amet laborum nostrud",
+                        "overstyrtAvBruker": true
+                    }
+                ],
+                "formue": [
+                    {
+                        "kilde": "bruker",
+                        "type": "minim an",
+                        "tittel": "exercitation ipsum est",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "ullamco in",
+                        "tittel": "labore amet aliqua",
+                        "overstyrtAvBruker": false
+                    }
+                ]
+            }
+        }
+    },
+    "driftsinformasjon": "est aliquip ea non occaecat",
+    "kompatibilitet": []
+}

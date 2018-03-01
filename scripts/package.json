@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "dateformat": "^3.0.3",
+    "flat": "^4.0.0",
     "json-schema-faker": "^0.5.0-rc13",
     "json-schema-ref-parser": "^4.1.0"
   }

@@ -1,0 +1,150 @@
+{
+    "version": "5374.5514162586.3290-vc",
+    "data": {
+        "personalia": {
+            "personIdentifikator": {
+                "kilde": "system",
+                "verdi": "non sunt"
+            },
+            "navn": {
+                "fornavn": "Arne",
+                "mellomnavn": "Svein",
+                "etternavn": "Andersen",
+                "kilde": "system"
+            },
+            "kontonummer": {
+                "kilde": "utdatert"
+            }
+        },
+        "arbeid": {
+            "forhold": [
+                {
+                    "kilde": "bruker",
+                    "arbeidsgivernavn": "Insurance Holding NUF",
+                    "fom": "2017-12-24",
+                    "stillingsprosent": 100,
+                    "overstyrtAvBruker": false
+                },
+                {
+                    "kilde": "bruker",
+                    "arbeidsgivernavn": "Holding Stores ASA",
+                    "fom": "2018-01-07",
+                    "stillingsprosent": 23,
+                    "overstyrtAvBruker": false
+                }
+            ]
+        },
+        "utdanning": {
+            "kilde": "utdatert"
+        },
+        "familie": {
+            "forsorgerplikt": {
+                "harForsorgerplikt": {}
+            }
+        },
+        "begrunnelse": {
+            "kilde": "bruker",
+            "hvorforSoke": "labore incididunt dolore Excepteur exercitation",
+            "hvaSokesOm": "occaecat"
+        },
+        "bosituasjon": {
+            "kilde": "bruker"
+        },
+        "okonomi": {
+            "opplysninger": {
+                "utbetaling": [
+                    {
+                        "kilde": "bruker",
+                        "type": "ut exercitation",
+                        "tittel": "id in",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "ullamco ",
+                        "tittel": "ullamco dolor aliquip voluptate",
+                        "overstyrtAvBruker": false
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "bruker",
+                        "type": "aliqua est",
+                        "tittel": "in fugiat exercitation esse",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "et laborum Lorem est",
+                        "tittel": "tempor nostrud",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "eu fugiat pariatur consectetur",
+                        "tittel": "sit elit do est sunt",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "Ut sit reprehenderit",
+                        "tittel": "dolor esse dolor",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "Ut fugiat eu",
+                        "tittel": "pariatur amet sit",
+                        "overstyrtAvBruker": true
+                    }
+                ]
+            },
+            "oversikt": {
+                "inntekt": [
+                    {
+                        "kilde": "bruker",
+                        "type": "cupidatat ullamco dolore Duis",
+                        "tittel": "aliqua elit adipisicing fugiat",
+                        "overstyrtAvBruker": false
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "bruker",
+                        "type": "dolore sit",
+                        "tittel": "officia pariatur",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "ullamco tempor",
+                        "tittel": "esse ut",
+                        "overstyrtAvBruker": true
+                    }
+                ],
+                "formue": [
+                    {
+                        "kilde": "bruker",
+                        "type": "fugiat eu est",
+                        "tittel": "qui laboris Lorem incididunt",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "sint eu veniam",
+                        "tittel": "incididunt voluptate cillum culpa",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "minim",
+                        "tittel": "nulla magna",
+                        "overstyrtAvBruker": true
+                    }
+                ]
+            }
+        }
+    },
+    "driftsinformasjon": "ut",
+    "kompatibilitet": []
+}

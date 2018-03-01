@@ -1,0 +1,133 @@
+{
+    "version": "6979.4141.26472763892-PNCJR",
+    "data": {
+        "personalia": {
+            "personIdentifikator": {
+                "kilde": "system",
+                "verdi": "occaecat ipsum voluptate ea"
+            },
+            "navn": {
+                "fornavn": "Bjørn",
+                "mellomnavn": "Knut",
+                "etternavn": "Larsen",
+                "kilde": "system"
+            },
+            "kontonummer": {
+                "kilde": "bruker"
+            }
+        },
+        "arbeid": {},
+        "utdanning": {
+            "kilde": "bruker"
+        },
+        "familie": {
+            "forsorgerplikt": {
+                "harForsorgerplikt": {
+                    "kilde": "utdatert"
+                },
+                "barnebidrag": {
+                    "kilde": "utdatert",
+                    "verdi": "betaler"
+                }
+            }
+        },
+        "begrunnelse": {
+            "kilde": "bruker",
+            "hvorforSoke": "est commodo Lorem",
+            "hvaSokesOm": "sint velit"
+        },
+        "bosituasjon": {
+            "kilde": "utdatert"
+        },
+        "okonomi": {
+            "opplysninger": {
+                "utbetaling": [
+                    {
+                        "kilde": "bruker",
+                        "type": "nisi ipsum",
+                        "tittel": "ullamco",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "et anim officia nisi",
+                        "tittel": "consectetur nostrud",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "laborum",
+                        "tittel": "magna ex",
+                        "overstyrtAvBruker": false
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "bruker",
+                        "type": "minim dolor sit do",
+                        "tittel": "elit aute cupidatat cillum quis",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "laboris qui ullamco commodo",
+                        "tittel": "tempor occaeca",
+                        "overstyrtAvBruker": false
+                    }
+                ]
+            },
+            "oversikt": {
+                "inntekt": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "Duis cupidatat",
+                        "tittel": "aute ullamco est",
+                        "overstyrtAvBruker": false
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "qui i",
+                        "tittel": "Exce",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "quis laboris consectetur",
+                        "tittel": "sint i",
+                        "overstyrtAvBruker": true
+                    }
+                ],
+                "formue": [
+                    {
+                        "kilde": "bruker",
+                        "type": "laborum officia",
+                        "tittel": "cillu",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "elit ut minim incididunt ut",
+                        "tittel": "consectetur velit",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "pariatur anim",
+                        "tittel": "exercitation Excepteur elit cillum",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "cillum non ullamco sunt",
+                        "tittel": "in esse eu deserunt cupidatat",
+                        "overstyrtAvBruker": true
+                    }
+                ]
+            }
+        }
+    },
+    "driftsinformasjon": "magna sed consectetur",
+    "kompatibilitet": []
+}

@@ -1,0 +1,179 @@
+{
+    "version": "479291.716071.25260138+aFf7EC",
+    "data": {
+        "personalia": {
+            "personIdentifikator": {
+                "kilde": "system",
+                "verdi": "consectetur est"
+            },
+            "navn": {
+                "fornavn": "Kjell",
+                "mellomnavn": "Bjørn",
+                "etternavn": "Nilsen",
+                "kilde": "system"
+            },
+            "kontonummer": {
+                "kilde": "bruker"
+            }
+        },
+        "arbeid": {
+            "forhold": [
+                {
+                    "kilde": "utdatert",
+                    "arbeidsgivernavn": "Insurance Systems AS",
+                    "fom": "2018-01-03",
+                    "stillingsprosent": 59,
+                    "overstyrtAvBruker": false
+                },
+                {
+                    "kilde": "bruker",
+                    "arbeidsgivernavn": "Resources Holding NUF",
+                    "fom": "2018-01-07",
+                    "stillingsprosent": 92,
+                    "overstyrtAvBruker": true
+                },
+                {
+                    "kilde": "bruker",
+                    "arbeidsgivernavn": "Insurance Norwegian AS",
+                    "fom": "2018-02-01",
+                    "stillingsprosent": 16,
+                    "overstyrtAvBruker": true
+                }
+            ]
+        },
+        "utdanning": {
+            "kilde": "utdatert"
+        },
+        "familie": {
+            "forsorgerplikt": {
+                "harForsorgerplikt": {},
+                "barnebidrag": {
+                    "kilde": "utdatert",
+                    "verdi": "ingen"
+                }
+            }
+        },
+        "begrunnelse": {
+            "kilde": "bruker",
+            "hvorforSoke": "adipisicing",
+            "hvaSokesOm": "laborum Excepteur"
+        },
+        "bosituasjon": {
+            "kilde": "utdatert"
+        },
+        "okonomi": {
+            "opplysninger": {
+                "utbetaling": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "dolor ut velit dolor mollit",
+                        "tittel": "qui mollit pariatur sint",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "adipisicing pariatur Duis",
+                        "tittel": "ad velit",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "proident",
+                        "tittel": "E",
+                        "overstyrtAvBruker": false
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "quis enim Lorem consequat",
+                        "tittel": "laboris dolore",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "in in proident deserunt",
+                        "tittel": "qui do in consequat",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "velit nostrud",
+                        "tittel": "voluptate",
+                        "overstyrtAvBruker": true
+                    }
+                ]
+            },
+            "oversikt": {
+                "inntekt": [
+                    {
+                        "kilde": "bruker",
+                        "type": "aliquip non nulla",
+                        "tittel": "ullamco est consectetur quis",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "ea ullamco incididunt ad",
+                        "tittel": "consectetur dolore ipsum veniam",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "occaecat tempor et deserunt",
+                        "tittel": "ad est ut",
+                        "overstyrtAvBruker": false
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "ea aute commo",
+                        "tittel": "venia",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "aute e",
+                        "tittel": "laborum exercitation est",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "est officia Duis sed",
+                        "tittel": "nostrud aute consectetur ",
+                        "overstyrtAvBruker": true
+                    }
+                ],
+                "formue": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "consequat aute sit",
+                        "tittel": "sint in",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "veniam id",
+                        "tittel": "occaecat cupidatat do ut",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "sint",
+                        "tittel": "e",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "quis veniam",
+                        "tittel": "nostrud minim ullamco labore",
+                        "overstyrtAvBruker": true
+                    }
+                ]
+            }
+        }
+    },
+    "driftsinformasjon": "aliquip reprehenderit laboris",
+    "kompatibilitet": []
+}
