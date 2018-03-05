@@ -1,0 +1,145 @@
+{
+    "version": "99485.168895.717381519+izL15YvU",
+    "data": {
+        "personalia": {
+            "personIdentifikator": {
+                "kilde": "system",
+                "verdi": "minim ei"
+            },
+            "navn": {
+                "fornavn": "Per",
+                "mellomnavn": "Ole",
+                "etternavn": "Jensen",
+                "kilde": "system"
+            },
+            "kontonummer": {
+                "kilde": "utdatert"
+            }
+        },
+        "arbeid": {
+            "forhold": [
+                {
+                    "kilde": "utdatert",
+                    "arbeidsgivernavn": "Stores Stores AS",
+                    "fom": "2018-01-27",
+                    "stillingsprosent": 94,
+                    "overstyrtAvBruker": true
+                },
+                {
+                    "kilde": "bruker",
+                    "arbeidsgivernavn": "Holdings Norwegian AS",
+                    "fom": "2018-02-04",
+                    "stillingsprosent": 2,
+                    "overstyrtAvBruker": false
+                }
+            ],
+            "situasjon": {
+                "kilde": "utdatert"
+            }
+        },
+        "utdanning": {
+            "kilde": "bruker"
+        },
+        "familie": {
+            "forsorgerplikt": {}
+        },
+        "begrunnelse": {
+            "kilde": "utdatert",
+            "hvorforSoke": "amet",
+            "hvaSokesOm": "eu in eiusmod"
+        },
+        "bosituasjon": {
+            "kilde": "bruker"
+        },
+        "okonomi": {
+            "opplysninger": {
+                "utbetaling": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "quis irure",
+                        "tittel": "consequat nisi sunt dolor ut",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "Excepteur et",
+                        "tittel": "do dolor pariatur",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "amet proident",
+                        "tittel": "dol",
+                        "overstyrtAvBruker": true
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "commodo",
+                        "tittel": "minim laboris sed",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "consequat minim",
+                        "tittel": "sunt labore",
+                        "overstyrtAvBruker": false
+                    }
+                ]
+            },
+            "oversikt": {
+                "inntekt": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "ut consectet",
+                        "tittel": "dolore ",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "non",
+                        "tittel": "ullamco",
+                        "overstyrtAvBruker": true
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "cillum ipsum",
+                        "tittel": "esse consequat ",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "sunt sint aliquip",
+                        "tittel": "fugiat ullamco",
+                        "overstyrtAvBruker": true
+                    }
+                ],
+                "formue": [
+                    {
+                        "kilde": "bruker",
+                        "type": "eiusmod laborum",
+                        "tittel": "pariatur",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "non dolore magna",
+                        "tittel": "labore culpa magna",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "ex minim est labore",
+                        "tittel": "consequat commodo ullamco",
+                        "overstyrtAvBruker": false
+                    }
+                ]
+            }
+        }
+    },
+    "driftsinformasjon": "ad sint in et",
+    "kompatibilitet": []
+}

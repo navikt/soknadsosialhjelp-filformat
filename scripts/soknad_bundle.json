@@ -1,0 +1,1215 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+        "soknad": {
+            "type": "object",
+            "title": "JSON-formatert søknad om sosialhjelp.",
+            "description": "Encoding er UTF-8.",
+            "properties": {
+                "version": {
+                    "$schema": "http://json-schema.org/draft-06/schema#",
+                    "title": "Søknadsdataversjonen.",
+                    "description": "Versjonsnummeret følger reglene definert i \"https://semver.org/\" med følgende unntak/presiseringer: \n1. Ny majorversjon betyr en ny søknadsfil.\n2. Ny minorversjon betyr at feltet \"kompatibilitet\" kan ha blitt brukt.\n3. Ny patchversjon brukes ved endringer som skjer bakoverkompatibelt uten bruk av \"kompatibilitet\"-feltet.",
+                    "type": "string",
+                    "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(-[a-zA-Z0-9]+)?(\\+[a-zA-Z0-9]+)?$",
+                    "default": "1.0.0-alpha"
+                },
+                "data": {
+                    "title": "Inneholder søknadsdataene uten meta- og kompatibilitetsdata.",
+                    "type": "object",
+                    "properties": {
+                        "personalia": {
+                            "title": "Personalia",
+                            "type": "object",
+                            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.personalia.Personalia",
+                            "properties": {
+                                "personIdentifikator": {
+                                    "$schema": "http://json-schema.org/draft-06/schema#",
+                                    "title": "Unik identifikasjon av søker",
+                                    "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.personalia.PersonIdentifikator",
+                                    "type": "object",
+                                    "properties": {
+                                        "kilde": {
+                                            "title": "Alltid system (og aldri utdatert).",
+                                            "type": "string",
+                                            "enum": [
+                                                "system"
+                                            ],
+                                            "default": "system"
+                                        },
+                                        "verdi": {
+                                            "$schema": "http://json-schema.org/draft-06/schema#",
+                                            "title": "Et fødselsnummer eller et D-nummer.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "kilde",
+                                        "verdi"
+                                    ]
+                                },
+                                "navn": {
+                                    "$schema": "http://json-schema.org/draft-06/schema#",
+                                    "title": "Søkers navn.",
+                                    "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.personalia.Sokernavn",
+                                    "type": "object",
+                                    "extends": {
+                                        "$schema": "http://json-schema.org/draft-06/schema#",
+                                        "title": "Navn på en person.",
+                                        "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.common.Navn",
+                                        "type": "object",
+                                        "properties": {
+                                            "fornavn": {
+                                                "description": "Feltet kan være blankt.",
+                                                "type": "string"
+                                            },
+                                            "mellomnavn": {
+                                                "description": "Feltet kan være blankt.",
+                                                "type": "string"
+                                            },
+                                            "etternavn": {
+                                                "description": "Feltet kan være blankt.",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "fornavn",
+                                            "mellomnavn",
+                                            "etternavn"
+                                        ]
+                                    },
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/properties/data/properties/personalia/properties/navn/extends"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "kilde": {
+                                            "title": "Alltid system (og aldri utdatert).",
+                                            "enum": [
+                                                "system"
+                                            ],
+                                            "default": "system"
+                                        }
+                                    },
+                                    "required": [
+                                        "kilde"
+                                    ]
+                                },
+                                "statsborgerskap": {
+                                    "$schema": "http://json-schema.org/draft-06/schema#",
+                                    "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.personalia.Statsborgerskap",
+                                    "title": "Søkers statsborgerskap.",
+                                    "description": "",
+                                    "type": "object",
+                                    "properties": {
+                                        "kilde": {
+                                            "$ref": "#/properties/data/properties/utdanning/properties/kilde"
+                                        },
+                                        "verdi": {
+                                            "description": "Definert med ISO 3166-1 (alpha-3).",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "kilde",
+                                        "verdi"
+                                    ]
+                                },
+                                "nordiskBorger": {
+                                    "$schema": "http://json-schema.org/draft-06/schema#",
+                                    "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.personalia.NordiskBorger",
+                                    "title": "Angir om søker er statsborger i et nordisk land.",
+                                    "description": "Hvis \"nordiskBorger\" mangler i en søknad betyr dette at søker ikke har svart på spørsmålet.",
+                                    "type": "object",
+                                    "properties": {
+                                        "kilde": {
+                                            "$ref": "#/properties/data/properties/utdanning/properties/kilde"
+                                        },
+                                        "verdi": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": [
+                                        "kilde",
+                                        "verdi"
+                                    ]
+                                },
+                                "telefonnummer": {
+                                    "$schema": "http://json-schema.org/draft-06/schema#",
+                                    "title": "Søkers telefonnummer.",
+                                    "description": "Hvis \"telefonnummer\" mangler i en søknad betyr dette at søker ikke har angitt noe telefonnummer.",
+                                    "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.personalia.Telefonnummer",
+                                    "type": "object",
+                                    "properties": {
+                                        "kilde": {
+                                            "$ref": "#/properties/data/properties/utdanning/properties/kilde"
+                                        },
+                                        "verdi": {
+                                            "title": "Telefonnummer som følger E.164.",
+                                            "description": "Telefonnummeret vil i utgangspunktet kun være åttesifrede norske telefonnumre, men det er et krav å støtte standarden E.164. Dette for å muliggjøre fremtidig endring av hvilke telefonnummere som er tillatt uten å måtte gjøre tekniske endringer.",
+                                            "type": "string",
+                                            "pattern": "^\\+[0-9]+$"
+                                        }
+                                    },
+                                    "required": [
+                                        "kilde",
+                                        "verdi"
+                                    ]
+                                },
+                                "kontonummer": {
+                                    "$schema": "http://json-schema.org/draft-06/schema#",
+                                    "title": "Søkers kontonummer",
+                                    "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.personalia.Kontonummer",
+                                    "type": "object",
+                                    "properties": {
+                                        "kilde": {
+                                            "$ref": "#/properties/data/properties/utdanning/properties/kilde"
+                                        },
+                                        "harIkkeKonto": {
+                                            "title": "Bruker har eksplisitt sagt at han/hun ikke har noen konto som kan benyttes.",
+                                            "description": "Hvis \"harIkkeKonto\" mangler betyr dette at bruker hverken har angitt kontonummer eller huket av for at han/hun mangler konto.",
+                                            "type": "boolean"
+                                        },
+                                        "verdi": {
+                                            "description": "Hvis \"verdi\" mangler betyr dette at bruker ikke har lagt inn noe kontonummer. Hvis angitt er \"verdi\" et norsk kontnummer, dvs 11-sifret og modulus-11-gyldig. Hvis norsk definisjon av kontonummer endres vil dette formatet også bli endret. Eventuelle konsumenter bør ta høyde for dette.",
+                                            "type": "string",
+                                            "pattern": "^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$"
+                                        }
+                                    },
+                                    "required": [
+                                        "kilde"
+                                    ]
+                                },
+                                "folkeregistrertAdresse": {
+                                    "$ref": "#/properties/data/properties/personalia/properties/postadresse"
+                                },
+                                "oppholdsadresse": {
+                                    "$ref": "#/properties/data/properties/personalia/properties/postadresse"
+                                },
+                                "postadresse": {
+                                    "$schema": "http://json-schema.org/draft-06/schema#",
+                                    "title": "Angir en adresse.",
+                                    "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.adresse.Adresse",
+                                    "type": "object",
+                                    "oneOf": [
+                                        {
+                                            "$schema": "http://json-schema.org/draft-06/schema#",
+                                            "title": "Angir en gateadresse.",
+                                            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.adresse.GateAdresse",
+                                            "type": "object",
+                                            "extends": {
+                                                "ONLY_CODEGEN$ref": "../adresse.json"
+                                            },
+                                            "allOf": [
+                                                {
+                                                    "properties": {
+                                                        "type": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "gateadresse"
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            ],
+                                            "properties": {
+                                                "landkode": {
+                                                    "type": "string"
+                                                },
+                                                "kommunenummer": {
+                                                    "type": "string"
+                                                },
+                                                "adresselinjer": {
+                                                    "description": "Inneholder adresseringsinformasjon som skal presenteres mellom søkers navn og de andre adressefeltene. Eksempler på mulige verdier er \"c/o Ola Nordmann\", \"v/Kari Nordmann\" og \"Melkegården\".",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "bolignummer": {
+                                                    "type": "string"
+                                                },
+                                                "postnummer": {
+                                                    "type": "string"
+                                                },
+                                                "poststed": {
+                                                    "type": "string"
+                                                },
+                                                "gatenavn": {
+                                                    "type": "string"
+                                                },
+                                                "husnummer": {
+                                                    "type": "string"
+                                                },
+                                                "husbokstav": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "$schema": "http://json-schema.org/draft-06/schema#",
+                                            "title": "Angir en matrikkeladresse.",
+                                            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.adresse.MatrikkelAdresse",
+                                            "type": "object",
+                                            "extends": {
+                                                "ONLY_CODEGEN$ref": "../adresse.json"
+                                            },
+                                            "allOf": [
+                                                {
+                                                    "properties": {
+                                                        "type": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "matrikkeladresse"
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            ],
+                                            "properties": {
+                                                "gaardsnummer": {
+                                                    "type": "string"
+                                                },
+                                                "bruksnummer": {
+                                                    "type": "string"
+                                                },
+                                                "festenummer": {
+                                                    "type": "string"
+                                                },
+                                                "seksjonsnummer": {
+                                                    "type": "string"
+                                                },
+                                                "undernummer": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "$schema": "http://json-schema.org/draft-06/schema#",
+                                            "title": "Angir en postboksadresse.",
+                                            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.adresse.PostboksAdresse",
+                                            "type": "object",
+                                            "extends": {
+                                                "ONLY_CODEGEN$ref": "../adresse.json"
+                                            },
+                                            "allOf": [
+                                                {
+                                                    "properties": {
+                                                        "type": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "postboks"
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            ],
+                                            "properties": {
+                                                "postboks": {
+                                                    "type": "string"
+                                                },
+                                                "postnummer": {
+                                                    "type": "string"
+                                                },
+                                                "poststed": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "$schema": "http://json-schema.org/draft-06/schema#",
+                                            "title": "Angir ustrukturert adresse (liste med tekststrenger).",
+                                            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.adresse.UstrukturertAdresse",
+                                            "type": "object",
+                                            "extends": {
+                                                "ONLY_CODEGEN$ref": "../adresse.json"
+                                            },
+                                            "allOf": [
+                                                {
+                                                    "properties": {
+                                                        "type": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "ustrukturert"
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            ],
+                                            "properties": {
+                                                "adresse": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "properties": {
+                                        "kilde": {
+                                            "$ref": "#/properties/data/properties/utdanning/properties/kilde"
+                                        },
+                                        "type": {
+                                            "title": "Angir adressetypen og dermed hvilke felter som er satt.",
+                                            "description": "Eventuelle nye adressetyper vil enten bli lagt til som en ny major-version eller som nye felt under søknaden (for eksempel \"folkeregistrertAdresseV2\").",
+                                            "type": "string",
+                                            "enum": [
+                                                "gateadresse",
+                                                "matrikkeladresse",
+                                                "postboks",
+                                                "ustrukturert"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "kilde",
+                                        "type"
+                                    ]
+                                }
+                            },
+                            "required": [
+                                "personIdentifikator",
+                                "navn",
+                                "kontonummer"
+                            ]
+                        },
+                        "arbeid": {
+                            "title": "Arbeid",
+                            "type": "object",
+                            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.arbeid.Arbeid",
+                            "properties": {
+                                "forhold": {
+                                    "title": "Liste over arbeidsforhold de siste 3 månedene.",
+                                    "description": "Hvis \"forhold\" mangler betyr dette at man ikke har fått data fra AA-registeret. Feltet \"situasjon\" vil da istedenfor benyttes.",
+                                    "type": "array",
+                                    "items": {
+                                        "$schema": "http://json-schema.org/draft-06/schema#",
+                                        "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.arbeid.Arbeidsforhold",
+                                        "type": "object",
+                                        "properties": {
+                                            "kilde": {
+                                                "$ref": "#/properties/data/properties/utdanning/properties/kilde"
+                                            },
+                                            "arbeidsgivernavn": {
+                                                "title": "Navn på arbeidsgiver. Kan være navn på privatperson ved forenklet oppgjørsordning.",
+                                                "description": "Navnet kan være blankt.",
+                                                "type": "string"
+                                            },
+                                            "fom": {
+                                                "$ref": "#/properties/data/properties/arbeid/properties/forhold/items/properties/tom"
+                                            },
+                                            "tom": {
+                                                "$schema": "http://json-schema.org/draft-06/schema#",
+                                                "title": "En dato med formatet YYYY-MM-DD.",
+                                                "type": "string",
+                                                "pattern": "^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$"
+                                            },
+                                            "stillingsprosent": {
+                                                "type": "integer"
+                                            },
+                                            "stillingstype": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "variabel",
+                                                    "fast",
+                                                    "fastOgVariabel"
+                                                ]
+                                            },
+                                            "overstyrtAvBruker": {
+                                                "description": "Brukes når en søker overstyrer/endrer på et arbeidsforhold. Settes kun til \"true\" på arbeidsforhold med systemkilde. Anbefaler at man likevel viser dataene fra AA-registeret til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "required": [
+                                            "kilde",
+                                            "arbeidsgivernavn",
+                                            "fom",
+                                            "stillingsprosent",
+                                            "overstyrtAvBruker"
+                                        ]
+                                    }
+                                },
+                                "situasjon": {
+                                    "$schema": "http://json-schema.org/draft-06/schema#",
+                                    "title": "En oppsummering av arbeidssituasjonen.",
+                                    "description": "Hvis situasjon mangler vil \"forhold\" være satt (og mottsatt).",
+                                    "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.arbeid.Arbeidssituasjon",
+                                    "type": "object",
+                                    "properties": {
+                                        "kilde": {
+                                            "$ref": "#/properties/data/properties/bosituasjon/properties/kilde"
+                                        },
+                                        "erIJobb": {
+                                            "description": "Hvis \"erIJobb\" mangler betyr dette at bruker ikke har besvart spørsmålet i skjemaet.",
+                                            "type": "boolean"
+                                        },
+                                        "jobbGrad": {
+                                            "description": "Hvis \"jobbGrad\" mangler betyr dette at bruker ikke har besvart spørsmålet i skjemaet.",
+                                            "type": "string",
+                                            "enum": [
+                                                "heltid",
+                                                "deltid"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "kilde"
+                                    ]
+                                },
+                                "kommentarTilArbeidsforhold": {
+                                    "$schema": "http://json-schema.org/draft-06/schema#",
+                                    "title": "Kommentar",
+                                    "type": "object",
+                                    "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.arbeid.KommentarTilArbeidsforhold",
+                                    "properties": {
+                                        "kilde": {
+                                            "$ref": "#/properties/data/properties/bosituasjon/properties/kilde"
+                                        },
+                                        "verdi": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "dependencies": {
+                                "kommentarTilArbeidsforhold": [
+                                    "forhold"
+                                ]
+                            }
+                        },
+                        "utdanning": {
+                            "title": "Utdanning",
+                            "type": "object",
+                            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.utdanning.Utdanning",
+                            "properties": {
+                                "kilde": {
+                                    "$schema": "http://json-schema.org/draft-06/schema#",
+                                    "title": "Kilden for dataene.",
+                                    "description": "\"bruker\" når data kommer fra en bruker, \"system\" når data kommer fra et register og \"utdatert\" hvis data ikke lenger er relevant (og da ikke lenger kan vises saksbehandler).",
+                                    "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.common.JsonKilde",
+                                    "type": "string",
+                                    "enum": [
+                                        "bruker",
+                                        "system",
+                                        "utdatert"
+                                    ]
+                                },
+                                "erStudent": {
+                                    "description": "Hvis \"erStudent\" mangler betyr dette at søker ikke har svart på spørsmålet.",
+                                    "type": "boolean"
+                                },
+                                "studentgrad": {
+                                    "description": "Hvis \"studentgrad\" mangler betyr dette at søker ikke har svart på spørsmålet.",
+                                    "type": "string",
+                                    "enum": [
+                                        "heltid",
+                                        "deltid"
+                                    ]
+                                }
+                            },
+                            "required": [
+                                "kilde"
+                            ]
+                        },
+                        "familie": {
+                            "title": "Familie",
+                            "type": "object",
+                            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.Familie",
+                            "properties": {
+                                "sivilstatus": {
+                                    "$schema": "http://json-schema.org/draft-06/schema#",
+                                    "title": "Sivilstatus og informasjon om eventuell ektefelle.",
+                                    "description": "Hvis \"sivilstatus\" mangler betyr dette at søker ikke har svart på spørsmålet.",
+                                    "type": "object",
+                                    "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.Sivilstatus",
+                                    "properties": {
+                                        "kilde": {
+                                            "$ref": "#/properties/data/properties/utdanning/properties/kilde"
+                                        },
+                                        "status": {
+                                            "title": "Sivilstatus til søker.",
+                                            "type": "string",
+                                            "enum": [
+                                                "gift",
+                                                "ugift",
+                                                "samboer",
+                                                "enke",
+                                                "skilt",
+                                                "separert"
+                                            ]
+                                        },
+                                        "ektefelle": {
+                                            "title": "Søkers ektefelle",
+                                            "type": "object",
+                                            "properties": {
+                                                "navn": {
+                                                    "$ref": "#/properties/data/properties/personalia/properties/navn/extends"
+                                                },
+                                                "fodselsdato": {
+                                                    "$ref": "#/properties/data/properties/arbeid/properties/forhold/items/properties/tom"
+                                                },
+                                                "personIdentifikator": {
+                                                    "$ref": "#/properties/data/properties/personalia/properties/personIdentifikator/properties/verdi"
+                                                }
+                                            },
+                                            "required": [
+                                                "navn"
+                                            ]
+                                        },
+                                        "folkeregistrertMedEktefelle": {
+                                            "description": "Kun relevant hvis \"kilde\" er \"system\".",
+                                            "type": "boolean"
+                                        },
+                                        "borSammenMed": {
+                                            "description": "Kun relevant hvis \"kilde\" er \"bruker\".",
+                                            "type": "boolean"
+                                        },
+                                        "borIkkeSammenMedBegrunnelse": {
+                                            "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift). Kun relevant \"kilde\" er \"bruker\".",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "kilde",
+                                        "status"
+                                    ],
+                                    "dependencies": {
+                                        "status": {
+                                            "anyOf": [
+                                                {
+                                                    "properties": {
+                                                        "status": {
+                                                            "enum": [
+                                                                "gift"
+                                                            ]
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "ektefelle"
+                                                    ]
+                                                },
+                                                {
+                                                    "properties": {
+                                                        "status": {
+                                                            "enum": [
+                                                                "ugift",
+                                                                "samboer",
+                                                                "enke",
+                                                                "skilt",
+                                                                "separert"
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "ektefelle": {
+                                            "properties": {
+                                                "status": {
+                                                    "enum": [
+                                                        "gift"
+                                                    ]
+                                                }
+                                            }
+                                        },
+                                        "folkeregistrertMedEktefelle": {
+                                            "properties": {
+                                                "kilde": {
+                                                    "enum": [
+                                                        "system"
+                                                    ]
+                                                }
+                                            }
+                                        },
+                                        "borSammenMed": {
+                                            "properties": {
+                                                "kilde": {
+                                                    "enum": [
+                                                        "bruker"
+                                                    ]
+                                                }
+                                            }
+                                        },
+                                        "borIkkeSammenMedBegrunnelse": {
+                                            "properties": {
+                                                "kilde": {
+                                                    "enum": [
+                                                        "bruker"
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "folkeregistrertMedEktefelleAvviksforklaring": {
+                                    "$schema": "http://json-schema.org/draft-06/schema#",
+                                    "title": "Forklaring",
+                                    "type": "object",
+                                    "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.FolkeregistrertMedEktefelleAvviksforklaring",
+                                    "properties": {
+                                        "kilde": {
+                                            "$ref": "#/properties/data/properties/bosituasjon/properties/kilde"
+                                        },
+                                        "verdi": {
+                                            "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift).",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "kilde"
+                                    ]
+                                },
+                                "forsorgerplikt": {
+                                    "title": "Forsørgerplikt",
+                                    "type": "object",
+                                    "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.Forsorgerplikt",
+                                    "properties": {
+                                        "harForsorgerplikt": {
+                                            "$schema": "http://json-schema.org/draft-06/schema#",
+                                            "type": "object",
+                                            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.HarForsorgerplikt",
+                                            "properties": {
+                                                "kilde": {
+                                                    "$ref": "#/properties/data/properties/utdanning/properties/kilde"
+                                                },
+                                                "verdi": {
+                                                    "type": "boolean"
+                                                }
+                                            }
+                                        },
+                                        "barnebidrag": {
+                                            "type": "object",
+                                            "properties": {
+                                                "kilde": {
+                                                    "$ref": "#/properties/data/properties/bosituasjon/properties/kilde"
+                                                },
+                                                "verdi": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "betaler",
+                                                        "mottar",
+                                                        "begge",
+                                                        "ingen"
+                                                    ]
+                                                }
+                                            }
+                                        },
+                                        "ansvar": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.Ansvar",
+                                                "properties": {
+                                                    "barn": {
+                                                        "$schema": "http://json-schema.org/draft-06/schema#",
+                                                        "type": "object",
+                                                        "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.Barn",
+                                                        "properties": {
+                                                            "kilde": {
+                                                                "$ref": "#/properties/data/properties/utdanning/properties/kilde"
+                                                            },
+                                                            "navn": {
+                                                                "$ref": "#/properties/data/properties/personalia/properties/navn/extends"
+                                                            },
+                                                            "fodselsdato": {
+                                                                "$ref": "#/properties/data/properties/arbeid/properties/forhold/items/properties/tom"
+                                                            },
+                                                            "personIdentifikator": {
+                                                                "$ref": "#/properties/data/properties/personalia/properties/personIdentifikator/properties/verdi"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "kilde",
+                                                            "navn"
+                                                        ]
+                                                    },
+                                                    "borSammenMed": {
+                                                        "$schema": "http://json-schema.org/draft-06/schema#",
+                                                        "type": "object",
+                                                        "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.BorSammenMed",
+                                                        "properties": {
+                                                            "kilde": {
+                                                                "$ref": "#/properties/data/properties/bosituasjon/properties/kilde"
+                                                            },
+                                                            "verdi": {
+                                                                "type": "boolean"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "kilde",
+                                                            "verdi"
+                                                        ]
+                                                    },
+                                                    "erFolkeregistrertSammen": {
+                                                        "$schema": "http://json-schema.org/draft-06/schema#",
+                                                        "type": "object",
+                                                        "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.ErFolkeregistrertSammen",
+                                                        "properties": {
+                                                            "kilde": {
+                                                                "$schema": "http://json-schema.org/draft-06/schema#",
+                                                                "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.common.JsonKildeSystem",
+                                                                "title": "Alltid system eller utdatert.",
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "system",
+                                                                    "utdatert"
+                                                                ],
+                                                                "default": "system"
+                                                            },
+                                                            "verdi": {
+                                                                "type": "boolean"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "kilde",
+                                                            "verdi"
+                                                        ]
+                                                    },
+                                                    "samvarsgrad": {
+                                                        "$schema": "http://json-schema.org/draft-06/schema#",
+                                                        "type": "object",
+                                                        "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.Samvarsgrad",
+                                                        "properties": {
+                                                            "kilde": {
+                                                                "$ref": "#/properties/data/properties/bosituasjon/properties/kilde"
+                                                            },
+                                                            "verdi": {
+                                                                "description": "Samværsgraden angitt i prosent.",
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "kilde",
+                                                            "verdi"
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "required": [
+                                "forsorgerplikt"
+                            ],
+                            "dependencies": {
+                                "folkeregistrertMedEktefelleAvviksforklaring": {
+                                    "properties": {
+                                        "sivilstatus": {
+                                            "properties": {
+                                                "kilde": {
+                                                    "enum": [
+                                                        "system"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "kilde"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "sivilstatus"
+                                    ]
+                                }
+                            }
+                        },
+                        "begrunnelse": {
+                            "title": "Begrunnelse",
+                            "type": "object",
+                            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.begrunnelse.Begrunnelse",
+                            "properties": {
+                                "kilde": {
+                                    "$ref": "#/properties/data/properties/bosituasjon/properties/kilde"
+                                },
+                                "hvorforSoke": {
+                                    "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift).",
+                                    "type": "string"
+                                },
+                                "hvaSokesOm": {
+                                    "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift).",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "kilde",
+                                "hvorforSoke",
+                                "hvaSokesOm"
+                            ]
+                        },
+                        "bosituasjon": {
+                            "title": "Bosituasjon",
+                            "type": "object",
+                            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.bosituasjon.Bosituasjon",
+                            "properties": {
+                                "kilde": {
+                                    "$schema": "http://json-schema.org/draft-06/schema#",
+                                    "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.common.JsonKildeBruker",
+                                    "title": "Alltid bruker eller utdatert.",
+                                    "type": "string",
+                                    "enum": [
+                                        "bruker",
+                                        "utdatert"
+                                    ],
+                                    "default": "bruker"
+                                },
+                                "botype": {
+                                    "type": "string",
+                                    "enum": [
+                                        "eier",
+                                        "leier",
+                                        "kommunal",
+                                        "ingen",
+                                        "institusjon",
+                                        "krisesenter",
+                                        "fengsel",
+                                        "venner",
+                                        "foreldre",
+                                        "familie",
+                                        "annet"
+                                    ]
+                                },
+                                "antallPersoner": {
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "kilde"
+                            ]
+                        },
+                        "okonomi": {
+                            "title": "Økonomiske data.",
+                            "type": "object",
+                            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.Okonomi",
+                            "properties": {
+                                "opplysninger": {
+                                    "title": "Økonomiske opplysninger som ikke inngår i den strukturerte oversikten.",
+                                    "description": "Flott hvis saksbehandlers behov/ønsker kan diskuteres på Slack slik at en mer strukturert måte å presentere dataene på kan utarbeides.",
+                                    "type": "object",
+                                    "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.Okonomiopplysninger",
+                                    "properties": {
+                                        "bekreftelse": {
+                                            "title": "Bekreftelser fra bruker.",
+                                            "description": "Det jobbes med å se på om søknaden kan presenteres på en annen måte slik at disse bekreftelsene ikke lenger er nødvendige, men det er ingen konkret plan for når dette eventuelt skjer.",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.Okonomibekreftelse",
+                                                "properties": {
+                                                    "kilde": {
+                                                        "$ref": "#/properties/data/properties/utdanning/properties/kilde"
+                                                    },
+                                                    "type": {
+                                                        "description": "Kodeverdi som angir hva slags type bekreftelse det er. Dette feltet kan for eksempel brukes til å filtrere bort bekreftelser man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"bostotte\", \"verdi\", \"sparing\", \"utbetaling\", \"boutgifter\" og \"barneutgifter\".",
+                                                        "type": "string"
+                                                    },
+                                                    "tittel": {
+                                                        "description": "En tittel som MÅ brukes hvis bekreftelsen skal presenteres til saksbehandler.",
+                                                        "type": "string"
+                                                    },
+                                                    "verdi": {
+                                                        "description": "Kan være manglende hvis bruker ikke har besvart spørsmålet.",
+                                                        "type": "boolean"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "kilde",
+                                                    "type",
+                                                    "tittel"
+                                                ]
+                                            }
+                                        },
+                                        "beskrivelseAvAnnet": {
+                                            "title": "Beskrivelsesfelter for inntekter, utgifter og verdier.",
+                                            "description": "Disse feltene er overflødige og vil bli tatt bort.",
+                                            "type": "object",
+                                            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.OkonomibeskrivelserAvAnnet",
+                                            "properties": {
+                                                "kilde": {
+                                                    "$ref": "#/properties/data/properties/bosituasjon/properties/kilde"
+                                                },
+                                                "verdi": {
+                                                    "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av annet brukeren har av økonomisk verdi.",
+                                                    "type": "string"
+                                                },
+                                                "sparing": {
+                                                    "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av annet brukeren har av innskudd eller sparing.",
+                                                    "type": "string"
+                                                },
+                                                "utbetaling": {
+                                                    "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av annet brukeren har av utbetalinger.",
+                                                    "type": "string"
+                                                },
+                                                "boutgifter": {
+                                                    "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av annet brukeren har av boutgifter.",
+                                                    "type": "string"
+                                                },
+                                                "barneutgifter": {
+                                                    "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av andre utgifter til barn som brukeren har.",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "kilde",
+                                                "verdi",
+                                                "sparing",
+                                                "utbetaling",
+                                                "boutgifter",
+                                                "barneutgifter"
+                                            ]
+                                        },
+                                        "utbetaling": {
+                                            "title": "Utbetalinger søker har mottatt",
+                                            "type": "array",
+                                            "items": {
+                                                "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.OkonomiOpplysningUtbetaling",
+                                                "type": "object",
+                                                "properties": {
+                                                    "kilde": {
+                                                        "$ref": "#/properties/data/properties/utdanning/properties/kilde"
+                                                    },
+                                                    "type": {
+                                                        "description": "Kodeverdi som angir hva slags type utbetaling det er. Dette feltet kan for eksempel brukes til å filtrere bort utbetalinger man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"utbytte\", \"salg\", \"forsikring\" og \"annen\".",
+                                                        "type": "string"
+                                                    },
+                                                    "tittel": {
+                                                        "description": "En tittel som MÅ brukes hvis utbetalingen skal presenteres til saksbehandler. Brukerangitt tekst kan være inkludert i tittelen.",
+                                                        "type": "string"
+                                                    },
+                                                    "belop": {
+                                                        "type": "integer"
+                                                    },
+                                                    "overstyrtAvBruker": {
+                                                        "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på utbetaling med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
+                                                        "type": "boolean"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "kilde",
+                                                    "type",
+                                                    "tittel",
+                                                    "overstyrtAvBruker"
+                                                ]
+                                            }
+                                        },
+                                        "utgift": {
+                                            "title": "Månedlige utgifter",
+                                            "type": "array",
+                                            "items": {
+                                                "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.OkonomiOpplysningUtgift",
+                                                "type": "object",
+                                                "properties": {
+                                                    "kilde": {
+                                                        "$ref": "#/properties/data/properties/utdanning/properties/kilde"
+                                                    },
+                                                    "type": {
+                                                        "description": "Kodeverdi som angir hva slags type utgift det er. Dette feltet kan for eksempel brukes til å filtrere bort utgifter man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"strom\", \"kommunalAvgift\", \"oppvarming\", \"annenBoutgift\", \"barnFritidsaktiviteter\", \"barnTannregulering\", \"annenBarneutgift\" og \"annen\".",
+                                                        "type": "string"
+                                                    },
+                                                    "tittel": {
+                                                        "description": "En tittel som MÅ brukes hvis utgiften skal presenteres til saksbehandler. Brukerangitt tekst kan være inkludert i tittelen.",
+                                                        "type": "string"
+                                                    },
+                                                    "belop": {
+                                                        "type": "integer"
+                                                    },
+                                                    "overstyrtAvBruker": {
+                                                        "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på utgift med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
+                                                        "type": "boolean"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "kilde",
+                                                    "type",
+                                                    "tittel",
+                                                    "overstyrtAvBruker"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "utbetaling",
+                                        "utgift"
+                                    ]
+                                },
+                                "oversikt": {
+                                    "title": "Strukturert økonomisk oversikt.",
+                                    "type": "object",
+                                    "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.Okonomioversikt",
+                                    "properties": {
+                                        "inntekt": {
+                                            "title": "Månedlige inntekter",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.OkonomioversiktInntekt",
+                                                "properties": {
+                                                    "kilde": {
+                                                        "$ref": "#/properties/data/properties/utdanning/properties/kilde"
+                                                    },
+                                                    "type": {
+                                                        "description": "Kodeverdi som angir hva slags type inntekt det er. Dette feltet kan for eksempel brukes til å filtrere bort inntekter man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"jobb\", \"studielanOgStipend\", \"barnebidrag\" og \"bostotte\".",
+                                                        "type": "string"
+                                                    },
+                                                    "tittel": {
+                                                        "description": "En tittel som MÅ brukes hvis inntekten skal presenteres til saksbehandler. Brukerangitt tekst kan være inkludert i tittelen.",
+                                                        "type": "string"
+                                                    },
+                                                    "brutto": {
+                                                        "description": "Kan mangle hvis bruker har sagt at han/hun har en gitt type inntekt, men beløp mangler.",
+                                                        "type": "integer"
+                                                    },
+                                                    "netto": {
+                                                        "description": "Kan mangle hvis bruker har sagt at han/hun har en gitt type inntekt, men beløp mangler.",
+                                                        "type": "integer"
+                                                    },
+                                                    "overstyrtAvBruker": {
+                                                        "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på inntekt med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
+                                                        "type": "boolean"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "kilde",
+                                                    "type",
+                                                    "tittel",
+                                                    "overstyrtAvBruker"
+                                                ]
+                                            }
+                                        },
+                                        "utgift": {
+                                            "title": "Månedlige utgifter",
+                                            "type": "array",
+                                            "items": {
+                                                "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.OkonomioversiktUtgift",
+                                                "type": "object",
+                                                "properties": {
+                                                    "kilde": {
+                                                        "$ref": "#/properties/data/properties/utdanning/properties/kilde"
+                                                    },
+                                                    "type": {
+                                                        "description": "Kodeverdi som angir hva slags type utgift det er. Dette feltet kan for eksempel brukes til å filtrere bort utgifter man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"barnebidrag\", \"husleie\", \"boliglanAvdrag\", \"boliglanRenter\", \"barnehage\" og \"sfo\".",
+                                                        "type": "string"
+                                                    },
+                                                    "tittel": {
+                                                        "description": "En tittel som MÅ brukes hvis utgiften skal presenteres til saksbehandler. Brukerangitt tekst kan være inkludert i tittelen.",
+                                                        "type": "string"
+                                                    },
+                                                    "belop": {
+                                                        "description": "Kan mangle hvis bruker har sagt at han/hun har en gitt type utgift, men beløp mangler.",
+                                                        "type": "integer"
+                                                    },
+                                                    "overstyrtAvBruker": {
+                                                        "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på utgift med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
+                                                        "type": "boolean"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "kilde",
+                                                    "type",
+                                                    "tittel",
+                                                    "overstyrtAvBruker"
+                                                ]
+                                            }
+                                        },
+                                        "formue": {
+                                            "title": "Formue",
+                                            "type": "array",
+                                            "items": {
+                                                "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.OkonomioversiktFormue",
+                                                "type": "object",
+                                                "properties": {
+                                                    "kilde": {
+                                                        "$ref": "#/properties/data/properties/utdanning/properties/kilde"
+                                                    },
+                                                    "type": {
+                                                        "description": "Kodeverdi som angir hva slags type formue det er. Dette feltet kan for eksempel brukes til å filtrere bort formue man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"brukskonto\", \"bsu\", \"sparekonto\", \"livsforsikringssparedel\", \"verdipapirer\" og \"belop\".",
+                                                        "type": "string"
+                                                    },
+                                                    "tittel": {
+                                                        "description": "En tittel som MÅ brukes hvis formuen skal presenteres til saksbehandler. Brukerangitt tekst kan være inkludert i tittelen.",
+                                                        "type": "string"
+                                                    },
+                                                    "belop": {
+                                                        "description": "Kan mangle hvis bruker har sagt at han/hun har en gitt type formue, men beløp mangler.",
+                                                        "type": "integer"
+                                                    },
+                                                    "overstyrtAvBruker": {
+                                                        "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på formue med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
+                                                        "type": "boolean"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "kilde",
+                                                    "type",
+                                                    "tittel",
+                                                    "overstyrtAvBruker"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "inntekt",
+                                        "utgift",
+                                        "formue"
+                                    ]
+                                }
+                            },
+                            "required": [
+                                "opplysninger",
+                                "oversikt"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "personalia",
+                        "arbeid",
+                        "utdanning",
+                        "familie",
+                        "begrunnelse",
+                        "bosituasjon",
+                        "okonomi"
+                    ]
+                },
+                "driftsinformasjon": {
+                    "type": "string"
+                },
+                "kompatibilitet": {
+                    "title": "Liste med kompatibilitetstekster",
+                    "description": "Det er et MÅ-krav å vise saksbehandler alle kompatibilitetstekster for versjonen man parser soknads-JSON-en med. Det anbefales å ha et avsnitt (eller tilsvarende) mellom hver enkelt kompatibilitetstekst.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/kompatibilitet"
+                    }
+                }
+            },
+            "required": [
+                "version",
+                "data",
+                "driftsinformasjon",
+                "kompatibilitet"
+            ]
+        },
+        "kompatibilitet": {
+            "title": "Inneholder en Markdown-formatert kompatibilitetstekst.",
+            "description": "Kompatibilitetsteksten skal vises saksbehandler gitt at versjonen man forventer ved parsing av JSON er innenfor intervallet bestemt av \"minVersion\" og \"maxVersion\".",
+            "type": "object",
+            "properties": {
+                "minVersion": {
+                    "title": "Minimumsversjon for å vise kompatibilitetsteksten (inclusive).",
+                    "type": "string"
+                },
+                "maxVersion": {
+                    "title": "Maksimumsversjon for å vise kompatibilitetsteksten (inclusive).",
+                    "type": "string"
+                },
+                "text": {
+                    "title": "Markdown-formatert tekststreng som kan vises saksbehandler.",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$ref": "#/definitions/soknad"
+}

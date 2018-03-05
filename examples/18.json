@@ -1,0 +1,165 @@
+{
+    "version": "081016.416.61381559-q",
+    "data": {
+        "personalia": {
+            "personIdentifikator": {
+                "kilde": "system",
+                "verdi": "consequat enim pariatur in"
+            },
+            "navn": {
+                "fornavn": "Arne",
+                "mellomnavn": "Arne",
+                "etternavn": "Jensen",
+                "kilde": "system"
+            },
+            "kontonummer": {
+                "kilde": "bruker"
+            }
+        },
+        "arbeid": {
+            "forhold": [
+                {
+                    "kilde": "bruker",
+                    "arbeidsgivernavn": "Insurance Insurance AS",
+                    "fom": "2018-02-19",
+                    "stillingsprosent": 87,
+                    "overstyrtAvBruker": false
+                },
+                {
+                    "kilde": "bruker",
+                    "arbeidsgivernavn": "Group Insurance ASA",
+                    "fom": "2018-01-20",
+                    "stillingsprosent": 73,
+                    "overstyrtAvBruker": false
+                },
+                {
+                    "kilde": "bruker",
+                    "arbeidsgivernavn": "Energy Group ASA",
+                    "fom": "2018-01-27",
+                    "stillingsprosent": 65,
+                    "overstyrtAvBruker": false
+                },
+                {
+                    "kilde": "utdatert",
+                    "arbeidsgivernavn": "Systems Norway AS",
+                    "fom": "2018-02-14",
+                    "stillingsprosent": 24,
+                    "overstyrtAvBruker": false
+                }
+            ]
+        },
+        "utdanning": {
+            "kilde": "bruker"
+        },
+        "familie": {
+            "forsorgerplikt": {
+                "harForsorgerplikt": {
+                    "kilde": "bruker",
+                    "verdi": true
+                },
+                "barnebidrag": {
+                    "kilde": "utdatert",
+                    "verdi": "ingen"
+                }
+            }
+        },
+        "begrunnelse": {
+            "kilde": "bruker",
+            "hvorforSoke": "dolore ea non cillum",
+            "hvaSokesOm": "minim irure nulla"
+        },
+        "bosituasjon": {
+            "kilde": "utdatert"
+        },
+        "okonomi": {
+            "opplysninger": {
+                "utbetaling": [
+                    {
+                        "kilde": "bruker",
+                        "type": "nulla pariatur",
+                        "tittel": "adipisicing sint Ut",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "enim commodo ea consectetur anim",
+                        "tittel": "sed magna quis",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "mollit enim",
+                        "tittel": "qui reprehenderit ex sed",
+                        "overstyrtAvBruker": true
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "adipisi",
+                        "tittel": "sunt",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "in Duis fugiat est",
+                        "tittel": "ut velit",
+                        "overstyrtAvBruker": false
+                    }
+                ]
+            },
+            "oversikt": {
+                "inntekt": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "sit dolore",
+                        "tittel": "aliqua dolore",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "ad dolore",
+                        "tittel": "sunt reprehenderi",
+                        "overstyrtAvBruker": true
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "bruker",
+                        "type": "eiusmod",
+                        "tittel": "ipsum est sunt pariatur",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "occaecat anim id",
+                        "tittel": "consequat Lorem minim",
+                        "overstyrtAvBruker": false
+                    }
+                ],
+                "formue": [
+                    {
+                        "kilde": "bruker",
+                        "type": "ad proiden",
+                        "tittel": "nulla ex dolor mollit pariatur",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "ea adipisicing sed cupidatat",
+                        "tittel": "ut Lorem tempor eiusmod enim",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "ut esse aliqua",
+                        "tittel": "deserunt sit",
+                        "overstyrtAvBruker": false
+                    }
+                ]
+            }
+        }
+    },
+    "driftsinformasjon": "ut occaecat",
+    "kompatibilitet": []
+}

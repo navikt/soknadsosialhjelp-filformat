@@ -1,0 +1,151 @@
+{
+    "version": "8.9628.333417894-d+sfivLy09",
+    "data": {
+        "personalia": {
+            "personIdentifikator": {
+                "kilde": "system",
+                "verdi": "a"
+            },
+            "navn": {
+                "fornavn": "Bjørn",
+                "mellomnavn": "Per",
+                "etternavn": "Johansen",
+                "kilde": "system"
+            },
+            "kontonummer": {
+                "kilde": "utdatert"
+            }
+        },
+        "arbeid": {
+            "forhold": [
+                {
+                    "kilde": "bruker",
+                    "arbeidsgivernavn": "Stores Norwegian ASA",
+                    "fom": "2018-02-07",
+                    "stillingsprosent": 92,
+                    "overstyrtAvBruker": false
+                },
+                {
+                    "kilde": "utdatert",
+                    "arbeidsgivernavn": "Automotive General ASA",
+                    "fom": "2017-12-25",
+                    "stillingsprosent": 61,
+                    "overstyrtAvBruker": true
+                }
+            ],
+            "situasjon": {
+                "kilde": "utdatert"
+            }
+        },
+        "utdanning": {
+            "kilde": "bruker"
+        },
+        "familie": {
+            "forsorgerplikt": {}
+        },
+        "begrunnelse": {
+            "kilde": "bruker",
+            "hvorforSoke": "ut nulla pariatur in laborum",
+            "hvaSokesOm": "proident ve"
+        },
+        "bosituasjon": {
+            "kilde": "utdatert"
+        },
+        "okonomi": {
+            "opplysninger": {
+                "utbetaling": [
+                    {
+                        "kilde": "bruker",
+                        "type": "proident",
+                        "tittel": "ea Duis",
+                        "overstyrtAvBruker": false
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "ut",
+                        "tittel": "est",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "magna nulla",
+                        "tittel": "Ut Lorem pariatur magna",
+                        "overstyrtAvBruker": false
+                    }
+                ]
+            },
+            "oversikt": {
+                "inntekt": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "sint proident",
+                        "tittel": "exercitation consequat eu velit",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "laborum consequat aute in",
+                        "tittel": "ea incididunt consectetur qui sunt",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "sunt id ani",
+                        "tittel": "adipisicing cupidatat velit",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "nulla",
+                        "tittel": "labore sit exercitation in aliquip",
+                        "overstyrtAvBruker": false
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "dolore",
+                        "tittel": "eu sed Lorem",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "est dolor non",
+                        "tittel": "incididunt",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "exercitation id officia",
+                        "tittel": "non in qui",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "dolor esse aliqua",
+                        "tittel": "in magna",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "sit cupidatat",
+                        "tittel": "eu enim sit id ut",
+                        "overstyrtAvBruker": false
+                    }
+                ],
+                "formue": [
+                    {
+                        "kilde": "bruker",
+                        "type": "in et sit",
+                        "tittel": "anim sit proident",
+                        "overstyrtAvBruker": false
+                    }
+                ]
+            }
+        }
+    },
+    "driftsinformasjon": "cillum paria",
+    "kompatibilitet": []
+}

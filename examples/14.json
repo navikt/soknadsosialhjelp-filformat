@@ -1,0 +1,170 @@
+{
+    "version": "7547.47321268.4388029-bW3E48CZt+wWtaZvktT",
+    "data": {
+        "personalia": {
+            "personIdentifikator": {
+                "kilde": "system",
+                "verdi": "exercita"
+            },
+            "navn": {
+                "fornavn": "Thomas",
+                "mellomnavn": "Jan",
+                "etternavn": "Kristiansen",
+                "kilde": "system"
+            },
+            "kontonummer": {
+                "kilde": "utdatert"
+            }
+        },
+        "arbeid": {
+            "forhold": [
+                {
+                    "kilde": "utdatert",
+                    "arbeidsgivernavn": "Financial Data NUF",
+                    "fom": "2017-12-29",
+                    "stillingsprosent": 56,
+                    "overstyrtAvBruker": true
+                },
+                {
+                    "kilde": "bruker",
+                    "arbeidsgivernavn": "Communications Communications AS",
+                    "fom": "2018-02-18",
+                    "stillingsprosent": 83,
+                    "overstyrtAvBruker": true
+                },
+                {
+                    "kilde": "bruker",
+                    "arbeidsgivernavn": "Systems Corp. AS",
+                    "fom": "2018-01-02",
+                    "stillingsprosent": 14,
+                    "overstyrtAvBruker": false
+                },
+                {
+                    "kilde": "bruker",
+                    "arbeidsgivernavn": "Norway Communications",
+                    "fom": "2018-01-16",
+                    "stillingsprosent": 45,
+                    "overstyrtAvBruker": true
+                }
+            ],
+            "situasjon": {
+                "kilde": "bruker"
+            },
+            "kommentarTilArbeidsforhold": {
+                "kilde": "bruker"
+            }
+        },
+        "utdanning": {
+            "kilde": "utdatert"
+        },
+        "familie": {
+            "forsorgerplikt": {
+                "harForsorgerplikt": {}
+            }
+        },
+        "begrunnelse": {
+            "kilde": "utdatert",
+            "hvorforSoke": "non veniam labor",
+            "hvaSokesOm": "ut magna labore"
+        },
+        "bosituasjon": {
+            "kilde": "utdatert"
+        },
+        "okonomi": {
+            "opplysninger": {
+                "utbetaling": [
+                    {
+                        "kilde": "bruker",
+                        "type": "sed Lorem tempor culpa",
+                        "tittel": "est fugiat",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "Lorem",
+                        "tittel": "et",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "mollit laborum",
+                        "tittel": "exercitation laborum qui",
+                        "overstyrtAvBruker": true
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "bruker",
+                        "type": "voluptate adipisicing aute",
+                        "tittel": "consequat dolore occaecat",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "proident deserunt tempor",
+                        "tittel": "officia",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "Duis ut ex laborum",
+                        "tittel": "occaecat qui mollit elit",
+                        "overstyrtAvBruker": false
+                    }
+                ]
+            },
+            "oversikt": {
+                "inntekt": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "laboris ut",
+                        "tittel": "veniam do",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "deserunt velit labore ullamco ex",
+                        "tittel": "occaecat nostrud deserunt",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "consequat fugiat sit sed",
+                        "tittel": "in commodo",
+                        "overstyrtAvBruker": false
+                    }
+                ],
+                "utgift": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "Duis minim",
+                        "tittel": "sit",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "elit reprehenderit",
+                        "tittel": "voluptate",
+                        "overstyrtAvBruker": true
+                    }
+                ],
+                "formue": [
+                    {
+                        "kilde": "utdatert",
+                        "type": "in do",
+                        "tittel": "ipsum amet",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "deserunt",
+                        "tittel": "eiu",
+                        "overstyrtAvBruker": true
+                    }
+                ]
+            }
+        }
+    },
+    "driftsinformasjon": "dolore cillum ut",
+    "kompatibilitet": []
+}
