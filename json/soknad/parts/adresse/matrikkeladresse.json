@@ -20,6 +20,9 @@
 		}
 	],
 	"properties": {
+		"kommunenummer": {
+			"type": "string"
+		},
 		"gaardsnummer": {
 			"type": "string"
 		},
