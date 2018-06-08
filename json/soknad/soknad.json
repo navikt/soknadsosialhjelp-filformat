@@ -1,22 +1,19 @@
 {
   "$schema": "http://json-schema.org/draft-06/schema#",
-
-  "definitions": {    
+  "definitions": {
     "soknad": {
       "type": "object",
       "title": "JSON-formatert søknad om sosialhjelp.",
       "description": "Encoding er UTF-8.",
-      
+
       "properties": {
       	"version": {
           "$ref": "parts/version.json"
         },
-        
         "data": {
           "title": "Inneholder søknadsdataene uten meta- og kompatibilitetsdata.",
           "type": "object",
           "properties": {
-          
             "personalia": {
               "title": "Personalia",
               "type": "object",
@@ -54,7 +51,6 @@
                 "personIdentifikator", "navn", "kontonummer"
       	      ]
             },
-            
             "arbeid": {
               "title": "Arbeid",
               "type": "object",
@@ -79,7 +75,6 @@
                 "kommentarTilArbeidsforhold": ["forhold"]
               }
             },
-            
             "utdanning": {
               "title": "Utdanning",
               "type": "object",
@@ -100,8 +95,7 @@
 			  },
 			  "required": ["kilde"]
 			},
-			
-			"familie": {
+            "familie": {
 			  "title": "Familie",
 			  "type": "object",
 			  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.Familie",
@@ -175,8 +169,7 @@
 		        }
 		      }
 			},
-			
-			"begrunnelse": {
+            "begrunnelse": {
 			  "title": "Begrunnelse",
 			  "type": "object",
 			  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.begrunnelse.Begrunnelse",
@@ -197,8 +190,7 @@
 			  	"kilde", "hvorforSoke", "hvaSokesOm"
 			  ]
 			},
-			
-			"bosituasjon": {
+            "bosituasjon": {
 			  "title": "Bosituasjon",
 			  "type": "object",
 			  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.bosituasjon.Bosituasjon",
@@ -230,8 +222,7 @@
 			  	"kilde"
 			  ]
 			},
-			
-			"okonomi": {
+            "okonomi": {
 			  "title": "Økonomiske data.",
 			  "type": "object",
 			  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.Okonomi",
@@ -305,8 +296,7 @@
 			            "kilde", "verdi", "sparing", "utbetaling", "boutgifter", "barneutgifter"
 			          ]
 			    	},
-			    	
-			    	"utbetaling": {
+                    "utbetaling": {
 			          "title": "Utbetalinger søker har mottatt",
 			          "type": "array",
 			          "items": {
@@ -326,7 +316,64 @@
 			    		  },
 			    		  "belop": {
 			    		    "type": "integer"
-			    		  },
+                          },
+                          "netto": {
+                            "description": "Nettobeløp for utbetalingen.",
+                            "type": "number"
+                          },
+                          "brutto": {
+                            "description": "Bruttobeløp for utbetalingen.",
+                            "type": "number"
+                          },
+                          "skattetrekk": {
+                            "description": "Totalsum for skattetrekk som gjøres for utbetalingen.",
+                            "type": "number"
+                          },
+                          "andreTrekk": {
+                            "description": "Totalsum for andre trekk som gjøres for utbetalingen.",
+                            "type": "number"
+                          },
+                          "utbetalingsdato": {
+                            "$ref": "types/dato.json"
+                          },
+                          "periodeFom": {
+                            "description": "Ytelsen som gir utbetalingen gjelder fra og med denne datoen.",
+                            "$ref": "types/dato.json"
+                          },
+                          "periodeTom": {
+                            "description": "Ytelsen som gir utbetalingen gjelder til og med denne datoen.",
+                            "$ref": "types/dato.json"
+                          },
+                          "komponenter": {
+                            "description": "Liste over delutbetalinger hvis utbetalingen består av flere deler.",
+                            "type": "array",
+                            "items": {
+                              "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.OkonomiOpplysningUtbetalingKomponent",
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "description": "Beskrivelse av hva slags type delutbetaling det er. Eksempler: \"Arbeidstaker\", \"Grunnpensjon\" og \"Tilleggspensjon\".",
+                                  "type": "string"
+                                },
+                                "belop": {
+                                  "description": "Beløp for delutbetalingen. Resultat av satsType, satsAntall og satsBelop",
+                                  "type": "number"
+                                },
+                                "satsType": {
+                                  "description": "Beskrivelse av hva slags type sats det er. Eksempel: \"Dag\" og \"Prosent\".",
+                                  "type": "string"
+                                },
+                                "satsAntall": {
+                                  "description": "Antall enheter av satstypen for delutbetalingen.",
+                                  "type": "number"
+                                },
+                                "satsBelop": {
+                                  "description": "Satsbeløpet for delutbetalingen",
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          },
 			    		  "overstyrtAvBruker": {
 						    "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på utbetaling med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
 							"type": "boolean"
@@ -509,7 +556,6 @@
         "version", "data", "driftsinformasjon", "kompatibilitet"
       ]
     },
-    
     "kompatibilitet": {
       "title": "Inneholder en Markdown-formatert kompatibilitetstekst.",
       "description": "Kompatibilitetsteksten skal vises saksbehandler gitt at versjonen man forventer ved parsing av JSON er innenfor intervallet bestemt av \"minVersion\" og \"maxVersion\".",
