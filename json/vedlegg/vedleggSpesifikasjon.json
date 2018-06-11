@@ -46,6 +46,9 @@
       "properties": {
         "filnavn": {
           "type": "string"
+        },
+        "sha512": {
+          "type": "string"
         }
       }
     }
