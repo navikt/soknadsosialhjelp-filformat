@@ -1,0 +1,15 @@
+{
+  "kilde": "system",
+  "type": "navytelse",
+  "tittel": "Pensjon",
+  "belop": 14952,
+  "overstyrtAvBruker": false,
+  "netto": 14952.0,
+  "brutto": 18452.0,
+  "skattetrekk": -2500.0,
+  "andreTrekk": -1000.0,
+  "utbetalingsdato": "2018-02-22",
+  "periodeFom": "2018-02-01",
+  "periodeTom": "2018-02-28",
+  "komponenter": []
+}

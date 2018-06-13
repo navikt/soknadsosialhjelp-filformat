@@ -6,7 +6,7 @@ Scripts for å generere syntetiske testsøknader.
 ## 1. Slå sammen json schema filene til en schema fil
 
 ```
-$ node refParser.json > soknad_bundle.json
+$ node refParser.js > soknad_bundle.json
 ```
 
 ## 2. Generer søknad med "lorem ipsum" data
@@ -14,3 +14,5 @@ $ node refParser.json > soknad_bundle.json
 ```
 $ node generer_testsoknader.js
 ```
+
+Husk å kjøre mvn clean install først. 
