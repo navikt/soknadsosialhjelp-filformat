@@ -300,10 +300,7 @@
 			          "type": "array",
 			          "items": {
 						  "$ref": "okonomi/opplysninger/utbetaling.json"
-			    		},
-			    		"required": [
-			    		  "kilde", "type", "tittel", "overstyrtAvBruker"
-			    		]
+			    	  }
 			        },
 			        "utgift": {
 			          "title": "Månedlige utgifter",
