@@ -103,6 +103,7 @@
 				},
 				"folkeregistrertMedEktefelle": false
 			},
+			"ektefelleHarDiskresjonskode": false,
 			"folkeregistrertMedEktefelleAvviksforklaring": {
 				"kilde": "bruker",
 				"verdi": "Vi er i ferd med å skilles."

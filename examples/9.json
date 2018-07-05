@@ -1,52 +1,32 @@
 {
-    "version": "99485.168895.717381519+izL15YvU",
+    "version": "49883719.44965574370.284768+SLnYr",
     "data": {
         "personalia": {
             "personIdentifikator": {
                 "kilde": "system",
-                "verdi": "minim ei"
+                "verdi": "dolore voluptate tempor dolore ullamco"
             },
             "navn": {
-                "fornavn": "Per",
+                "fornavn": "Ole",
                 "mellomnavn": "Ole",
-                "etternavn": "Jensen",
+                "etternavn": "Kristiansen",
                 "kilde": "system"
             },
             "kontonummer": {
-                "kilde": "utdatert"
+                "kilde": "bruker"
             }
         },
-        "arbeid": {
-            "forhold": [
-                {
-                    "kilde": "utdatert",
-                    "arbeidsgivernavn": "Stores Stores AS",
-                    "fom": "2018-01-27",
-                    "stillingsprosent": 94,
-                    "overstyrtAvBruker": true
-                },
-                {
-                    "kilde": "bruker",
-                    "arbeidsgivernavn": "Holdings Norwegian AS",
-                    "fom": "2018-02-04",
-                    "stillingsprosent": 2,
-                    "overstyrtAvBruker": false
-                }
-            ],
-            "situasjon": {
-                "kilde": "utdatert"
-            }
-        },
+        "arbeid": {},
         "utdanning": {
-            "kilde": "bruker"
+            "kilde": "utdatert"
         },
         "familie": {
             "forsorgerplikt": {}
         },
         "begrunnelse": {
             "kilde": "utdatert",
-            "hvorforSoke": "amet",
-            "hvaSokesOm": "eu in eiusmod"
+            "hvorforSoke": "sunt esse adipisicing",
+            "hvaSokesOm": "ut pariatur esse Duis m"
         },
         "bosituasjon": {
             "kilde": "bruker"
@@ -55,35 +35,35 @@
             "opplysninger": {
                 "utbetaling": [
                     {
-                        "kilde": "utdatert",
-                        "type": "quis irure",
-                        "tittel": "consequat nisi sunt dolor ut",
-                        "overstyrtAvBruker": true
-                    },
-                    {
-                        "kilde": "utdatert",
-                        "type": "Excepteur et",
-                        "tittel": "do dolor pariatur",
-                        "overstyrtAvBruker": false
-                    },
-                    {
                         "kilde": "bruker",
-                        "type": "amet proident",
-                        "tittel": "dol",
+                        "type": "Lorem magna sunt aliqu",
+                        "tittel": "ut dolore id",
                         "overstyrtAvBruker": true
                     }
                 ],
                 "utgift": [
                     {
                         "kilde": "utdatert",
-                        "type": "commodo",
-                        "tittel": "minim laboris sed",
+                        "type": "labore ",
+                        "tittel": "Ut nisi",
                         "overstyrtAvBruker": true
                     },
                     {
                         "kilde": "utdatert",
-                        "type": "consequat minim",
-                        "tittel": "sunt labore",
+                        "type": "id ali",
+                        "tittel": "voluptate elit minim nostrud proident",
+                        "overstyrtAvBruker": true
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "ipsum minim in cupidatat",
+                        "tittel": "ut Lorem",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "utdatert",
+                        "type": "ut cillum",
+                        "tittel": "exercitation cons",
                         "overstyrtAvBruker": false
                     }
                 ]
@@ -92,54 +72,72 @@
                 "inntekt": [
                     {
                         "kilde": "utdatert",
-                        "type": "ut consectet",
-                        "tittel": "dolore ",
-                        "overstyrtAvBruker": false
+                        "type": "velit laborum id",
+                        "tittel": "ut minim ad",
+                        "overstyrtAvBruker": true
                     },
                     {
-                        "kilde": "bruker",
-                        "type": "non",
-                        "tittel": "ullamco",
+                        "kilde": "utdatert",
+                        "type": "ipsum nostrud",
+                        "tittel": "Excepteur irure Lorem minim",
                         "overstyrtAvBruker": true
                     }
                 ],
                 "utgift": [
                     {
-                        "kilde": "utdatert",
-                        "type": "cillum ipsum",
-                        "tittel": "esse consequat ",
+                        "kilde": "bruker",
+                        "type": "ven",
+                        "tittel": "ut",
                         "overstyrtAvBruker": false
                     },
                     {
-                        "kilde": "utdatert",
-                        "type": "sunt sint aliquip",
-                        "tittel": "fugiat ullamco",
+                        "kilde": "bruker",
+                        "type": "ut enim do",
+                        "tittel": "nostrud commodo cupidatat elit",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "sunt ullamco",
+                        "tittel": "enim tempor",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "Duis sunt et",
+                        "tittel": "ipsum Excepteur",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "irure velit",
+                        "tittel": "nisi",
                         "overstyrtAvBruker": true
                     }
                 ],
                 "formue": [
                     {
-                        "kilde": "bruker",
-                        "type": "eiusmod laborum",
-                        "tittel": "pariatur",
+                        "kilde": "utdatert",
+                        "type": "Excepteur est",
+                        "tittel": "cupidatat labore culpa sint dolore",
                         "overstyrtAvBruker": false
                     },
                     {
                         "kilde": "bruker",
-                        "type": "non dolore magna",
-                        "tittel": "labore culpa magna",
+                        "type": "amet u",
+                        "tittel": "voluptat",
+                        "overstyrtAvBruker": false
+                    },
+                    {
+                        "kilde": "bruker",
+                        "type": "reprehenderit ea aliqua",
+                        "tittel": "reprehenderit cupidatat aute ut",
                         "overstyrtAvBruker": true
-                    },
-                    {
-                        "kilde": "bruker",
-                        "type": "ex minim est labore",
-                        "tittel": "consequat commodo ullamco",
-                        "overstyrtAvBruker": false
                     }
                 ]
             }
         }
     },
-    "driftsinformasjon": "ad sint in et",
+    "driftsinformasjon": "in fugiat",
     "kompatibilitet": []
 }
