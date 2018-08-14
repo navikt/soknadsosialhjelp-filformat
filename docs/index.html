@@ -39,8 +39,13 @@
 <script src="./lib/swagger-ui-dist/swagger-ui-standalone-preset.js"> </script>
 <script>
 window.onload = function() {
-  
   let url = 'https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/json/swagger.json';
+	
+  const urlMatch = location.search.match(/branch=([a-zA-Z_0-9/-]*)/);
+  if (urlMatch != null) {
+	  url = 'https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/' + urlMatch[1] + 'json/swagger.json';
+  }
+  
   if (location.hostname === 'localhost') {
 	  url = 'swagger.json';
   }
