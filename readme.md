@@ -3,10 +3,10 @@ Filformat for Søknad om økonomisk sosialhjelp
 
 Se [dokumentasjon for JSON-formaterte filer](https://navikt.github.io/soknadsosialhjelp-filformat/).
 
-|Fil              |Filformat                                                                                                 |
-|:----------------|:---------------------------------------------------------------------------------------------------------|
-|Søknad           |[JSON](https://navikt.github.io/soknadsosialhjelp-filformat/#/soknad/getsoknad_json), [XML](readme-xsd.md)|
-|Vedlegg          |[JSON](readme-vedlegg-json.md)    
+|Filformat                                                                                                 |
+|:---------------------------------------------------------------------------------------------------------|
+|[Søknad](https://navikt.github.io/soknadsosialhjelp-filformat/#/soknad/getsoknad_json)                    |
+|[Vedlegg](readme-vedlegg-json.md)                                                                         | 
 
 
 ## Endringer og nye versjoner
@@ -15,8 +15,9 @@ Definisjon av eksisterende filformat ligger i [master branchen](https://github.c
 
 Planlagte fremtidige versjoner/endringer: 
 
-|Funksjonalitet                      |
-|:-----------------------------------|
+|Funksjonalitet                                                                                                                                             |
+|:----------------------------------------------------------------------------------------------------------------------------------------------------------|
+|[Familierelasjoner](https://navikt.github.io/soknadsosialhjelp-filformat/?branch=feature/DIGISOS-190-familierelasjoner-sivilstatus#/soknad/getsoknad_json) |
 
 
 ## Henvendelser
