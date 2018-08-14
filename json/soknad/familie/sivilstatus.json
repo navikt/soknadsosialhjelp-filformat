@@ -11,6 +11,7 @@
 		"status": {
 			"title": "Sivilstatus til søker.",
 			"type": "string",
+			"description": "Sivilstatus til søker. Med \"gift\" menes både gift og registrert partner.",
 			"enum": [
 				"gift",
 				"ugift",
