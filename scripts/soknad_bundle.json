@@ -534,6 +534,7 @@
                                         "status": {
                                             "title": "Sivilstatus til søker.",
                                             "type": "string",
+                                            "description": "Sivilstatus til søker. Med \"gift\" menes både gift og registrert partner.",
                                             "enum": [
                                                 "gift",
                                                 "ugift",
@@ -734,6 +735,10 @@
                                                             },
                                                             "personIdentifikator": {
                                                                 "$ref": "#/properties/data/properties/personalia/properties/personIdentifikator/properties/verdi"
+                                                            },
+                                                            "harDiskresjonskode": {
+                                                                "description": "Settes til true hvis barn har diskresjonskode 6 eller 7. Kun relevant hvis \"kilde\" er \"system\".",
+                                                                "type": "boolean"
                                                             }
                                                         },
                                                         "required": [
