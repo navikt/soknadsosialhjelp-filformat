@@ -43,7 +43,7 @@ window.onload = function() {
 	
   const urlMatch = location.search.match(/branch=([a-zA-Z_0-9/-]*)/);
   if (urlMatch != null) {
-	  url = 'https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/' + urlMatch[1] + 'json/swagger.json';
+	  url = 'https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/' + urlMatch[1] + '/json/swagger.json';
   }
   
   if (location.hostname === 'localhost') {
