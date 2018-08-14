@@ -16,7 +16,7 @@
 		"personIdentifikator": {
 			"$ref": "../parts/personIdentifikatorVerdi.json"
 		},
-		"barnHarDiskresjonskode": {
+		"harDiskresjonskode": {
 			"description": "Settes til true hvis barn har diskresjonskode 6 eller 7. Kun relevant hvis \"kilde\" er \"system\".",
 			"type": "boolean"
 		}
