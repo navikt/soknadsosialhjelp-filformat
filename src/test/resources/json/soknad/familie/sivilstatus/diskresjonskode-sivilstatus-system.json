@@ -1,0 +1,12 @@
+{
+	"kilde": "system",
+	"status": "gift",
+	"ektefelle": {
+		"navn": {
+			"fornavn": "",
+			"mellomnavn": "",
+			"etternavn": ""
+		}
+	},
+	"ektefelleHarDiskresjonskode": true
+}

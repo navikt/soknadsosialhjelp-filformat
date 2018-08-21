@@ -10,5 +10,6 @@
 		"fodselsdato": "1980-01-01",
 		"personIdentifikator": "12345678901"
 	},
-	"folkeregistrertMedEktefelle": true
+	"folkeregistrertMedEktefelle": true,
+	"ektefelleHarDiskresjonskode": false
 }

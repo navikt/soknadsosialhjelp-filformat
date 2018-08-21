@@ -11,6 +11,7 @@
 		"status": {
 			"title": "Sivilstatus til søker.",
 			"type": "string",
+			"description": "Sivilstatus til søker. Med \"gift\" menes både gift og registrert partner.",
 			"enum": [
 				"gift",
 				"ugift",
@@ -37,6 +38,10 @@
 			"required": [
 				"navn"
 			]
+		},
+		"ektefelleHarDiskresjonskode": {
+			"description": "Settes til true hvis ektefelle/registrert partner har diskresjonskode 6 eller 7. Kun relevant hvis \"kilde\" er \"system\".",
+			"type": "boolean"
 		},
 		"folkeregistrertMedEktefelle": {
 			"description": "Kun relevant hvis \"kilde\" er \"system\".",
@@ -95,6 +100,15 @@
 			}
 		},
 		"folkeregistrertMedEktefelle": {
+			"properties": {
+				"kilde": {
+					"enum": [
+						"system"
+					]
+				}
+			}
+		},
+		"ektefelleHarDiskresjonskode": {
 			"properties": {
 				"kilde": {
 					"enum": [

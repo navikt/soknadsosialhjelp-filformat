@@ -103,6 +103,7 @@
 				},
 				"folkeregistrertMedEktefelle": false
 			},
+			"ektefelleHarDiskresjonskode": false,
 			"folkeregistrertMedEktefelleAvviksforklaring": {
 				"kilde": "bruker",
 				"verdi": "Vi er i ferd med å skilles."
@@ -122,7 +123,8 @@
 								"etternavn": "Nordmann"
 							},
 							"fodselsdato": "2010-01-01",
-							"personIdentifikator": "00000000000"
+							"personIdentifikator": "00000000000",
+							"harDiskresjonskode": false
 						},
 						"erFolkeregistrertSammen": {
 						    "kilde": "system",
