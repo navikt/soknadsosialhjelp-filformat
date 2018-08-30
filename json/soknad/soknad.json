@@ -147,6 +147,9 @@
 		          	      "erFolkeregistrertSammen": {
 		          	      	"$ref": "familie/erFolkeregistrertSammen.json"
 		          	      },
+                          "harDeltBosted": {
+                            "$ref": "familie/harDeltBosted.json"
+                          },
 		          	      "samvarsgrad": {
 		          	        "$ref": "familie/samvarsgrad.json"
 		          	      }
