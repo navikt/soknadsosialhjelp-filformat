@@ -6,5 +6,6 @@
 		"etternavn": "Testesen"
 	},
 	"fodselsdato": "2017-01-01",
-	"personIdentifikator": "12345678901"
+	"personIdentifikator": "12345678901",
+	"harDiskresjonskode": false
 }
