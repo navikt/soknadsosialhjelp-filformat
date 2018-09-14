@@ -128,7 +128,11 @@
 						},
 						"erFolkeregistrertSammen": {
 						    "kilde": "system",
-						    "verdi": false
+						    "verdi": true
+						},
+						"HarDeltBosted": {
+							"kilde": "bruker",
+							"verdi": false
 						},
 						"samvarsgrad": {
 						    "kilde": "bruker",
@@ -147,7 +151,11 @@
 						},
 						"erFolkeregistrertSammen": {
 						    "kilde": "system",
-						    "verdi": false
+						    "verdi": true
+						},
+						"HarDeltBosted": {
+							"kilde": "bruker",
+							"verdi": true
 						},
 						"samvarsgrad": {
 						    "kilde": "bruker",
