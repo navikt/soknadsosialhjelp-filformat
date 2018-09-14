@@ -17,7 +17,7 @@ Planlagte fremtidige versjoner/endringer:
 
 |Funksjonalitet                                                                                                                                             |
 |:----------------------------------------------------------------------------------------------------------------------------------------------------------|
-|[Familierelasjoner](https://navikt.github.io/soknadsosialhjelp-filformat/?branch=feature/DIGISOS-190-familierelasjoner-sivilstatus#/soknad/getsoknad_json) |
+| |
 
 
 ## Henvendelser
