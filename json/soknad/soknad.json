@@ -1,22 +1,19 @@
 {
   "$schema": "http://json-schema.org/draft-06/schema#",
-
-  "definitions": {    
+  "definitions": {
     "soknad": {
       "type": "object",
       "title": "JSON-formatert søknad om sosialhjelp.",
       "description": "Encoding er UTF-8.",
-      
+
       "properties": {
       	"version": {
           "$ref": "parts/version.json"
         },
-        
         "data": {
           "title": "Inneholder søknadsdataene uten meta- og kompatibilitetsdata.",
           "type": "object",
           "properties": {
-          
             "personalia": {
               "title": "Personalia",
               "type": "object",
@@ -54,7 +51,6 @@
                 "personIdentifikator", "navn", "kontonummer"
       	      ]
             },
-            
             "arbeid": {
               "title": "Arbeid",
               "type": "object",
@@ -79,7 +75,6 @@
                 "kommentarTilArbeidsforhold": ["forhold"]
               }
             },
-            
             "utdanning": {
               "title": "Utdanning",
               "type": "object",
@@ -100,8 +95,7 @@
 			  },
 			  "required": ["kilde"]
 			},
-			
-			"familie": {
+            "familie": {
 			  "title": "Familie",
 			  "type": "object",
 			  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.Familie",
@@ -178,8 +172,7 @@
 		        }
 		      }
 			},
-			
-			"begrunnelse": {
+            "begrunnelse": {
 			  "title": "Begrunnelse",
 			  "type": "object",
 			  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.begrunnelse.Begrunnelse",
@@ -200,8 +193,7 @@
 			  	"kilde", "hvorforSoke", "hvaSokesOm"
 			  ]
 			},
-			
-			"bosituasjon": {
+            "bosituasjon": {
 			  "title": "Bosituasjon",
 			  "type": "object",
 			  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.bosituasjon.Bosituasjon",
@@ -233,8 +225,7 @@
 			  	"kilde"
 			  ]
 			},
-			
-			"okonomi": {
+            "okonomi": {
 			  "title": "Økonomiske data.",
 			  "type": "object",
 			  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.Okonomi",
@@ -308,37 +299,11 @@
 			            "kilde", "verdi", "sparing", "utbetaling", "boutgifter", "barneutgifter"
 			          ]
 			    	},
-			    	
-			    	"utbetaling": {
-			          "title": "Utbetalinger søker har mottatt",
+                    "utbetaling": {
 			          "type": "array",
 			          "items": {
-			            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.OkonomiOpplysningUtbetaling",
-			            "type": "object",
-			            "properties": {
-			              "kilde": {
-	              		    "$ref": "parts/kilde.json"
-			    		  },
-			    		  "type": {
-			    		    "description": "Kodeverdi som angir hva slags type utbetaling det er. Dette feltet kan for eksempel brukes til å filtrere bort utbetalinger man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"utbytte\", \"salg\", \"forsikring\" og \"annen\".",
-			    		    "type": "string"
-			    		  },
-			    		  "tittel": {
-			    		    "description": "En tittel som MÅ brukes hvis utbetalingen skal presenteres til saksbehandler. Brukerangitt tekst kan være inkludert i tittelen.",
-			    		    "type": "string"
-			    		  },
-			    		  "belop": {
-			    		    "type": "integer"
-			    		  },
-			    		  "overstyrtAvBruker": {
-						    "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på utbetaling med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
-							"type": "boolean"
-						  }
-			    		},
-			    		"required": [
-			    		  "kilde", "type", "tittel", "overstyrtAvBruker"
-			    		]
-			          }
+						  "$ref": "okonomi/opplysninger/utbetaling.json"
+			    	  }
 			        },
 			        "utgift": {
 			          "title": "Månedlige utgifter",
@@ -512,7 +477,6 @@
         "version", "data", "driftsinformasjon", "kompatibilitet"
       ]
     },
-    
     "kompatibilitet": {
       "title": "Inneholder en Markdown-formatert kompatibilitetstekst.",
       "description": "Kompatibilitetsteksten skal vises saksbehandler gitt at versjonen man forventer ved parsing av JSON er innenfor intervallet bestemt av \"minVersion\" og \"maxVersion\".",
