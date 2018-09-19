@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "definitions": {
+    "internalSoknad": {
+      "type": "object",
+      "properties": {
+        "soknad": {
+          "$ref": "../soknad/soknad.json#/definitions/soknad"
+        },
+        "testinternal": {
+          "title": "TestInternal",
+          "type": "object",
+          "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.internal.TestInternal",
+          "properties": {
+            "testStreng": {
+              "description": "Eksempeltekst.",
+              "type": "string"
+            },
+            "annenTestStreng": {
+              "description": "Eksempeltekst nummer 2.",
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "$ref": "#/definitions/internalSoknad"
+}
