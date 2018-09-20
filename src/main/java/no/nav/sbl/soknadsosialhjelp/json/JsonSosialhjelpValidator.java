@@ -56,6 +56,8 @@ public final class JsonSosialhjelpValidator {
                 schemaUri = toSkjemaUri("/json/soknad/soknad.json");
             } else if (args[0].equals("--vedlegg")) {
                 schemaUri = toSkjemaUri("/json/vedlegg/vedleggSpesifikasjon.json");
+            } else if (args[0].equals("--internal")) {
+                schemaUri = toSkjemaUri("/json/internal/internalSoknad.json");
             } else {
                 schemaUri = toSkjemaUri(args[0]);
             }
@@ -74,6 +76,14 @@ public final class JsonSosialhjelpValidator {
      */
     public static void ensureValidSoknad(String json) throws JsonSosialhjelpValidationException {
         final String schemaUri = toSkjemaUri("/json/soknad/soknad.json");
+        ensureValid(json, schemaUri);
+    }
+
+    /**
+     * Sikrer at den angitte JSON-strengen er gyldig mot det interne soknadskjemaet til Sosialhjelp.
+     */
+    public static void ensureValidInternalSoknad(String json) throws JsonSosialhjelpValidationException {
+        final String schemaUri = toSkjemaUri("/json/internal/internalSoknad.json");
         ensureValid(json, schemaUri);
     }
     
