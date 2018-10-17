@@ -19,8 +19,8 @@
 				"tags": [
 					"soknad"
 				],
-				"summary": "Versjon 1.0.1",
-				"description": "Denne dokumentasjonen er generert ut fra et [json-schema](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/json/soknad/soknad.json). Skjemaet kan utvides slik at det er egnet til autogenerering av kode, men dette må i så fall diskuteres på Slack først.\n\nSe relativt komplette eksempler på søknads-JSON med mest mulig [brukerutfylte](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/soknad/brukerdata.json) og [systemutfylte](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/soknad/systemdata.json) data.\n## Endringer\n### Neste versjon\n* Lagt til støtte for å vise om ektefelle eller barn har diskresjonskode.\n### Versjon 1.0.1\n* Lagt til feltet \"kommunenummer\" under matrikkeladresse.",
+				"summary": "Versjon 1.0.3",
+				"description": "Denne dokumentasjonen er generert ut fra et [json-schema](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/json/soknad/soknad.json). Skjemaet kan utvides slik at det er egnet til autogenerering av kode, men dette må i så fall diskuteres på Slack først.\n\nSe relativt komplette eksempler på søknads-JSON med mest mulig [brukerutfylte](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/soknad/brukerdata.json) og [systemutfylte](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/soknad/systemdata.json) data.\n## Endringer\n### Versjon 1.0.3\n* Utvidet informasjon om utbetalinger (netto, brutto osv).\n### Versjon 1.0.2\n* Endringer i forbindelse med familierelasjoner.\n### Versjon 1.0.1\n* Lagt til feltet \"kommunenummer\" under matrikkeladresse.",
 				"responses": {
 					"filformat": {
 						"description": "Definisjon av søknadsfil. Se på \"Model\" for definisjon av hvert enkelt felt. Se separate typedefinisjoner nederst på siden der det er forskjellige type-alternativer (nå gjelder dette kun for \"adresse\", men det kan bli flere typer senere).",
