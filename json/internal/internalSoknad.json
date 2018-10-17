@@ -7,17 +7,17 @@
         "soknad": {
           "$ref": "../soknad/soknad.json#/definitions/soknad"
         },
-        "testinternal": {
-          "title": "TestInternal",
+        "mottaker": {
+          "title": "Soknadsmottaker",
           "type": "object",
-          "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.internal.TestInternal",
+          "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.internal.Soknadsmottaker",
           "properties": {
-            "testStreng": {
-              "description": "Eksempeltekst.",
+            "organisasjonsnummer": {
+              "description": "Organisasjonsnummer for søknadsmottaker.",
               "type": "string"
             },
-            "annenTestStreng": {
-              "description": "Eksempeltekst nummer 2.",
+            "navEnhetsnavn": {
+              "description": "Navn på NAV-enhet som søknaden sendes til.",
               "type": "string"
             }
           }
