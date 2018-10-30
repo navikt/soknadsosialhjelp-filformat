@@ -126,21 +126,37 @@
                 <artifactId>jsonschema2pojo-maven-plugin</artifactId>
                 <version>0.5.1</version>
                 <configuration>
-                    <sourcePaths>
-                        <sourcePath>${basedir}/target/json/internal</sourcePath>
-                        <sourcePath>${basedir}/target/json/soknad</sourcePath>
-                    </sourcePaths>
-                    <targetPackage>no.nav.sbl.soknadsosialhjelp.soknad</targetPackage>
                     <classNamePrefix>Json</classNamePrefix>
                     <generateBuilders>true</generateBuilders>
                     <useCommonsLang3>true</useCommonsLang3>
                 </configuration>
                 <executions>
                     <execution>
+                        <id>soknad</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
+                        <configuration>
+                            <sourcePaths>
+                                <sourcePath>${basedir}/target/json/internal</sourcePath>
+                                <sourcePath>${basedir}/target/json/soknad</sourcePath>
+                            </sourcePaths>
+                            <targetPackage>no.nav.sbl.soknadsosialhjelp.soknad</targetPackage>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>vedlegg</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <sourcePaths>
+                                <sourcePath>${basedir}/target/json/vedlegg</sourcePath>
+                            </sourcePaths>
+                            <targetPackage>no.nav.sbl.soknadsosialhjelp.vedlegg</targetPackage>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
