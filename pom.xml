@@ -51,6 +51,16 @@
             <version>2.7.9.4</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.7.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -64,6 +74,110 @@
             </resource>
         </resources>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target/json</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>json</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.google.code.maven-replacer-plugin</groupId>
+                <artifactId>replacer</artifactId>
+                <version>1.5.3</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>replace</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <includes>
+                        <include>${basedir}/target/json/soknad/**/*.json</include>
+                        <include>${basedir}/target/json/internal/**/*.json</include>
+                    </includes>
+                    <replacements>
+                        <replacement>
+                            <token>ONLY_CODEGEN\$ref</token>
+                            <value>\$ref</value>
+                        </replacement>
+                    </replacements>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <version>0.5.1</version>
+                <configuration>
+                    <classNamePrefix>Json</classNamePrefix>
+                    <generateBuilders>true</generateBuilders>
+                    <useCommonsLang3>true</useCommonsLang3>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>soknad</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <sourcePaths>
+                                <sourcePath>${basedir}/target/json/internal</sourcePath>
+                                <sourcePath>${basedir}/target/json/soknad</sourcePath>
+                            </sourcePaths>
+                            <targetPackage>no.nav.sbl.soknadsosialhjelp.soknad</targetPackage>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>vedlegg</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <sourcePaths>
+                                <sourcePath>${basedir}/target/json/vedlegg</sourcePath>
+                            </sourcePaths>
+                            <targetPackage>no.nav.sbl.soknadsosialhjelp.vedlegg</targetPackage>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${basedir}/target/java-gen</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
