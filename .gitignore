@@ -6,3 +6,8 @@ scripts/node_modules/*
 \#*\#
 #*
 .#*
+.classpath
+.externalToolBuilders/
+.project
+.settings/
+maven-eclipse.xml

@@ -7,6 +7,9 @@
         "soknad": {
           "$ref": "../soknad/soknad.json#/definitions/soknad"
         },
+        "vedlegg": {
+          "$ref": "../vedlegg/vedleggSpesifikasjon.json#/definitions/vedleggSpesifikasjon"
+        },
         "mottaker": {
           "title": "Soknadsmottaker",
           "type": "object",
