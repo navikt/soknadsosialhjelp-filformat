@@ -33,7 +33,7 @@
           "type": "string"
         },
         "status": {
-          "description": "Status for vedlegget. Kan være \n* LastetOpp\n *, \n* VedleggKreves\n * eller \n* VedleggAlleredeSendt\n *. Hvis \n* status\n * har blitt satt til \n* VedleggAlleredeSendt\n * vil \n* filer\n * være en tom array.",
+          "description": "Status for vedlegget. Kan være \"LastetOpp\", \"VedleggKreves\" eller \"VedleggAlleredeSendt\". Hvis \"status\" har blitt satt til \"VedleggAlleredeSendt\" vil \"filer\" være en tom array.",
           "type": "string"
         },
         "filer": {
