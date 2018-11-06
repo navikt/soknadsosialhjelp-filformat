@@ -3,6 +3,7 @@
     {
       "type": "lonnslipp",
       "tilleggsinfo": "jobb",
+      "status": "LastetOpp",
       "garbagehfdh65ry": {"sdafasdf": ["sfadf", "sdfasdf"]},
       "filer": [
         {"filnavn": "lonn1-u95sfdgt.png"},
@@ -11,12 +12,14 @@
     }, {
       "type": "faktura",
       "tilleggsinfo": "barnehage",
+      "status": "LastetOpp",
       "filer": [
         {"filnavn": "barnehagefaktura-ytr64564.pdf"}
       ]
     }, {
       "type": "faktura",
       "tilleggsinfo": "fritidsaktiviteter",
+      "status": "LastetOpp",
       "filer": [
         {"filnavn": "fotball-ytr64564.pdf", "garbage435323": "dgsdg"},
         {"filnavn": "skikurs2017-08-01-med-langt-filnavn-564rftrfdserf-ytr64564.pdf"}
