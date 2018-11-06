@@ -4,6 +4,7 @@
   "definitions": {
     "vedleggSpesifikasjon": {
       "title": "JSON-formatert oversikt over vedlegg til søknad om sosialhjelp.",
+      "javaType": "no.nav.sbl.soknadsosialhjelp.vedlegg.VedleggSpesifikasjon",
       "description": "Encoding er UTF-8.",
       "type": "object",
       "properties": {
@@ -20,6 +21,7 @@
 
     "vedlegg": {
       "title": "Vedlegg",
+      "javaType": "no.nav.sbl.soknadsosialhjelp.vedlegg.Vedlegg",
       "type": "object",
       "properties": {
         "type": {
@@ -42,6 +44,7 @@
     },
 
     "fil": {
+      "javaType": "no.nav.sbl.soknadsosialhjelp.vedlegg.Filer",
       "type": "object",
       "properties": {
         "filnavn": {
