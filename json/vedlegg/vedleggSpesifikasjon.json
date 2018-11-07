@@ -33,7 +33,7 @@
           "type": "string"
         },
         "status": {
-          "description": "Status for vedlegget. Kan være \"LastetOpp\", \"VedleggKreves\" eller \"VedleggAlleredeSendt\". Hvis \"status\" har blitt satt til \"VedleggAlleredeSendt\" vil \"filer\" være en tom array.",
+          "description": "Status for vedlegget. Kan være \"LastetOpp\", \"VedleggKreves\" eller \"VedleggAlleredeSendt\". Hvis \"status\" har blitt satt til \"VedleggAlleredeSendt\" eller \"VedleggKreves\" vil \"filer\" være en tom array. Ukjente statusverdier skal ikke hindre visning/arkivering av eventuelle filer.",
           "type": "string"
         },
         "filer": {
