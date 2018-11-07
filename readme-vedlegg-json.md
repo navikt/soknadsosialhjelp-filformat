@@ -35,7 +35,7 @@ Vedlegg kommer som egne filer i meldingen. Spesifikasjonen over hvilke vedlegg s
 }
 ```
 
-Kort oppsummert har hvert vedlegg en "type", samt "tilleggsinfo" som gir litt mer kontekst. Vedleggene har også en status som sier om vedlegget allerede er sendt, eller om det er lastet opp. Deretter er det en liste over filnavn som bruker har lagt ved. Hvis vedlegget har status "VedleggAlleredeSendt" så vil listen over filer være tom. 
+Kort oppsummert har hvert vedlegg en "type", samt "tilleggsinfo" som gir litt mer kontekst. Vedleggene har også en status som sier om vedlegget allerede er sendt, eller om det er lastet opp. Deretter er det en liste over filnavn som bruker har lagt ved. Hvis vedlegget har status "VedleggAlleredeSendt" eller "VedleggKreves" så vil listen over filer være tom. 
 
 Det vil bli publisert en liste over mulige typer, men mottakere må uansett støtte å motta ukjente type/tilleggsinfo-kombinasjoner.
 
