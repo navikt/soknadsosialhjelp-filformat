@@ -3,6 +3,7 @@
     {
       "type": "lonnslipp",
       "tilleggsinfo": "jobb",
+      "status": "LastetOpp",
       "filer": [
         {"filnavn": "lonn1-u95sfdgt.png"},
         {"filnavn": "DCIM567-a43sgfg.jpg"}
@@ -10,6 +11,7 @@
     }, {
       "type": "faktura",
       "tilleggsinfo": "barnehage",
+      "status": "LastetOpp",
       "filer": [
         {"filnavn": "barnehagefaktura-ytr64564.pdf"}
       ]
@@ -20,6 +22,11 @@
         {"filnavn": "fotball-ytr64564.pdf"},
         {"filnavn": "skikurs2017-08-01-med-langt-filnavn-564rftrfdserf-ytr64564.pdf"}
       ]
+    }, {
+      "type": "student",
+      "tilleggsinfo": "vedtak",
+      "status": "VedleggAlleredeSendt",
+      "filer": []
     }
   ]
 }
