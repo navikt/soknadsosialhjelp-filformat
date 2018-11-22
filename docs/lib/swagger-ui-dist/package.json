@@ -1,35 +1,31 @@
 {
-  "_args": [
-    [
-      "swagger-ui-dist@3.9.2",
-      "W:\\workspace\\soknadsosialhjelp-xsd\\docs"
-    ]
-  ],
-  "_from": "swagger-ui-dist@3.9.2",
-  "_id": "swagger-ui-dist@3.9.2",
+  "_from": "swagger-ui-dist@^3.20.0",
+  "_id": "swagger-ui-dist@3.20.0",
   "_inBundle": false,
-  "_integrity": "sha1-XuK7G2IFPC3ydGnlVZDGX8AOidQ=",
+  "_integrity": "sha512-OOQep/BozOzF5H6Pa1T3SZW/kJ4M1kRyaq0TKtXRAwiZVgTWDbE8We/bx4Yq+FT1Em748U9UZco7Lum0PrKjRw==",
   "_location": "/swagger-ui-dist",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "swagger-ui-dist@3.9.2",
+    "raw": "swagger-ui-dist@^3.20.0",
     "name": "swagger-ui-dist",
     "escapedName": "swagger-ui-dist",
-    "rawSpec": "3.9.2",
+    "rawSpec": "^3.20.0",
     "saveSpec": null,
-    "fetchSpec": "3.9.2"
+    "fetchSpec": "^3.20.0"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "http://maven.adeo.no/nexus/content/groups/npm-all/swagger-ui-dist/-/swagger-ui-dist-3.9.2.tgz",
-  "_spec": "3.9.2",
+  "_resolved": "https://repo.adeo.no/repository/npm-public/swagger-ui-dist/-/swagger-ui-dist-3.20.0.tgz",
+  "_shasum": "b8d2d914d4739d02f8b169b9b47d7885f1e954ff",
+  "_spec": "swagger-ui-dist@^3.20.0",
   "_where": "W:\\workspace\\soknadsosialhjelp-xsd\\docs",
   "bugs": {
     "url": "https://github.com/swagger-api/swagger-ui/issues"
   },
+  "bundleDependencies": false,
   "contributors": [
     {
       "url": "in alphabetical order"
@@ -60,6 +56,7 @@
     }
   ],
   "dependencies": {},
+  "deprecated": false,
   "description": "[![NPM version](https://badge.fury.io/js/swagger-ui-dist.svg)](http://badge.fury.io/js/swagger-ui-dist)",
   "devDependencies": {},
   "homepage": "https://github.com/swagger-api/swagger-ui#readme",
@@ -70,5 +67,5 @@
     "type": "git",
     "url": "git+ssh://git@github.com/swagger-api/swagger-ui.git"
   },
-  "version": "3.9.2"
+  "version": "3.20.0"
 }

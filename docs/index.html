@@ -39,12 +39,39 @@
 <script src="./lib/swagger-ui-dist/swagger-ui-standalone-preset.js"> </script>
 <script>
 window.onload = function() {
-  let url = 'https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/json/swagger.json';
-	
-  const urlMatch = location.search.match(/branch=([a-zA-Z_0-9/-]*)/);
-  if (urlMatch != null) {
-	  url = 'https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/' + urlMatch[1] + '/json/swagger.json';
+  /*
+   * Skitten hack for å støtte visning andre brancher enn master for
+   * pull requests. Kan fjernes hvis den skaper problemer. Bytt da ut
+   * med standard index.html fra swagger-ui-dist (men definer "url").
+   */
+  function fixBranchLinks(branch) {
+    var links = document.getElementsByTagName("a");
+    var i;
+    for (i=0; i<links.length; i++) {
+      if (links[i].href != null && links[i].href.indexOf("soknadsosialhjelp-filformat/master") >= 0) {
+        links[i].href = links[i].href.replace("soknadsosialhjelp-filformat/master", "soknadsosialhjelp-filformat/" + branch);
+      }
+    }
   }
+  function listenOnDomChangesFixBranchLinks() {
+    const mutationCallback = function(mutationsList, observer) {
+      for(var mutation of mutationsList) {
+        if (mutation.type == 'childList') {
+          fixBranchLinks(branch);
+        }
+      }
+    };
+	
+	const observer = new MutationObserver(mutationCallback);
+	observer.observe(document.body, { 
+		childList: true,
+		subtree: true
+	});
+  }
+  
+  const urlMatch = location.search.match(/branch=([a-zA-Z_0-9/-]*)/);
+  const branch = (urlMatch != null) ? urlMatch[1] : "master";
+  let url = 'https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/' + branch + '/json/swagger.json';
   
   if (location.hostname === 'localhost') {
 	  url = 'swagger.json';
@@ -67,7 +94,11 @@ window.onload = function() {
     layout: "StandaloneLayout"
   })
 
-  window.ui = ui
+  window.ui = ui;
+  
+  if (branch !== 'master') {
+    listenOnDomChangesFixBranchLinks();
+  }
 }
 </script>
 </body>
