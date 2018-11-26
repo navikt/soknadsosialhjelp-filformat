@@ -12,7 +12,7 @@
 		},
 		"systemversjon": {
 			"type": "string",
-			"description": "Navnet på avsendersystemet. Brukes ved eventuell feilsøking av ugyldige data."
+			"description": "Versjonen til avsendersystemet. Brukes ved eventuell feilsøking av ugyldige data."
 		}
 	},
 	"required": [
