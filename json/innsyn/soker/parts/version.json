@@ -1,0 +1,8 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+	"title": "Skjemaversjon.",
+	"description": "Versjonsnummeret følger reglene definert i \"https://semver.org/\" med følgende unntak/presiseringer: \n* Ny majorversjon betyr at strengere validering kan defineres.\n* Gamle JSON-filer som tidligere validerte OK skal fortsette å validere med ny JSON-skjemavalidator så lenge det er samme majorversjon.",
+	"type": "string",
+	"pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(-[a-zA-Z0-9]+)?(\\+[a-zA-Z0-9]+)?$",
+	"default": "1.0.0-alpha"
+}

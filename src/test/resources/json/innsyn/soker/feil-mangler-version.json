@@ -1,0 +1,13 @@
+{
+	"avsender": {
+		"systemnavn": "Testsystemet",
+		"systemversjon": "1.0.0"
+	},
+	"hendelser": [
+		{
+			"type": "nyStatus",
+			"hendelsestidspunkt": "2018-10-04T13:37:00.134Z",
+			"status": "MOTTATT"
+		}
+	]
+}

@@ -1,0 +1,26 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+	
+	"title": "Angir en hendelse.",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.innsyn.soker.Hendelse",
+	"type": "object",
+	
+	"oneOf": [
+		{"$ref": "hendelse/tildeltNavKontor.json"},
+		{"$ref": "hendelse/nyStatus.json"}
+    ],
+	"properties": {
+		"type": {
+			"title": "Angir hendelsestypen og dermed også hvilke felter som må settes..",
+			"type": "string",
+			"description": "Det kan legges til nye hendelsestyper i enumen, men ingen gamle kan fjernes fra valideringsskjemaet (grunnet kompatibilitet).",
+			"enum": [
+			    "tildeltNavKontor", "nyStatus"
+			]
+		},
+		"hendelsestidspunkt": {
+			"$ref": "tidspunkt.json"
+		}
+	},
+	"required": ["type", "hendelsestidspunkt"]
+}

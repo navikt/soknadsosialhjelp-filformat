@@ -1,0 +1,31 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+	
+	"definitions": {
+		"innsynSoker": {
+			"type": "object",
+			"title": "Data for søkers innsyn",
+			"javaType": "no.nav.sbl.soknadsosialhjelp.innsyn.soker.InnsynSoker",
+			"description": "Encoding er UTF-8.",
+			"properties": {
+				"version": {
+					"$ref": "parts/version.json"
+				},
+				"avsender": {
+					"$ref": "parts/avsender.json"
+				},
+				"hendelser": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "parts/hendelse.json"
+				    }
+				}
+			},
+			"required": [
+				"version", "avsender", "hendelser"
+			]
+		}
+	},
+	"$ref": "#/definitions/innsynSoker"
+}
