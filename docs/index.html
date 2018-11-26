@@ -48,8 +48,8 @@ window.onload = function() {
     var links = document.getElementsByTagName("a");
     var i;
     for (i=0; i<links.length; i++) {
-      if (links[i].href != null && links[i].href.indexOf("soknadsosialhjelp-filformat/master") >= 0) {
-        links[i].href = links[i].href.replace("soknadsosialhjelp-filformat/master", "soknadsosialhjelp-filformat/" + branch);
+      if (links[i].href != null && links[i].href.indexOf("/master/") >= 0) {
+        links[i].href = links[i].href.replace("/master/", "/" + branch + "/");
       }
     }
   }
