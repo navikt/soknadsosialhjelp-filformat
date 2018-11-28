@@ -4,7 +4,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 /**
- * Kjører skjemavalidering av alle json-filer i "src/test/resouces/json/soknad".
+ * Kjører skjemavalidering av alle json-filer i "src/test/resouces/json/innsyn/soker".
  * 
  * <ol>
  *     <li>Filer som starter på "feil-" skal feile validering mens alle andre filer skal passere.</li>
@@ -12,12 +12,12 @@ import org.junit.runners.Parameterized.Parameters;
  * </ol>
  */
 @RunWith(Parameterized.class)
-public class SoknadTest {
+public class InnsynSokerTest {
 
     private final TestData testData;
 
     
-    public SoknadTest(String testName, TestData testData) {
+    public InnsynSokerTest(String testName, TestData testData) {
         this.testData = testData;
     }
     
@@ -25,9 +25,9 @@ public class SoknadTest {
     @Parameters(name="{0}")
     public static Iterable<Object[]> finnAlleTestdatafiler() {
         return TestDataFiles.list(new TestDataFiles.Config()
-                    .withSchemaDirectory("json/soknad")
-                    .withToplevelSchemaFilename("soknad.json")
-                    .withTestDataDirectory("src/test/resources/json/soknad/")
+                    .withSchemaDirectory("json/innsyn/soker")
+                    .withToplevelSchemaFilename("innsyn-soker.json")
+                    .withTestDataDirectory("src/test/resources/json/innsyn/soker/")
                 );
     }
     

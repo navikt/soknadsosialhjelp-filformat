@@ -11,6 +11,9 @@
 		}, {
 			"name": "vedlegg",
 			"description": ""
+		}, {
+			"name": "innsyn for søker",
+			"description": ""
 		}
 	],
 	"paths": {
@@ -70,6 +73,38 @@
 					"filformat": {
 						"schema": {
 							"$ref": "vedlegg/vedleggSpesifikasjon.json#/definitions/vedleggSpesifikasjon"
+						}
+					}
+				}
+			}
+		},
+		"innsyn-soker.json": {
+			"get": {
+			    "tags": [
+					"innsyn for søker"
+				],
+				"summary": "Versjon 1.0.0-alpha",
+				"description": "Denne dokumentasjonen er generert ut fra et [json-schema](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/json/innsyn/soker/innsyn-soker.json).\n\n## Krav\n* Allerede fra første innsending av \"innsyn-soker.json\" _må_ \"hendelser\" inneholde hendelsen \"nyStatus\" med statuskode \"MOTTATT\".\n\n## Eksempler og testfiler\n* Eksempler på søkerinnsyn-JSON med [kun påkrevde data](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/innsyn/soker/minimal.json) og [komplett utfylt](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/innsyn/soker/komplett.json).\n* [Flere testfiler](https://github.com/navikt/soknadsosialhjelp-filformat/tree/master/src/test/resources/json/innsyn/soker)\n",
+				"responses": {
+					"filformat": {
+						"description": "Definisjon av søkers innsynsfil. Se på \"Model\" for definisjon av hvert enkelt felt. Se separate typedefinisjoner nederst på siden der det er forskjellige type-alternativer (nå gjelder dette kun for \"hendelse\", men det kan bli flere typer senere).",
+						"schema": {
+							"$ref": "innsyn/soker/innsyn-soker.json#/definitions/innsynSoker"
+						}
+					},
+					"hendelse": {
+						"description": "Definisjon av hver enkelt hendelsestype.",
+						"schema": {
+					        "type": "object",
+							"title": "Definisjon av hendelsestyper.",
+							"properties": {
+								"tildeltNavKontor": {
+									"$ref": "innsyn/soker/parts/hendelse/tildeltNavKontor.json"
+								},
+								"nyStatus": {
+									"$ref": "innsyn/soker/parts/hendelse/nyStatus.json"
+								}
+							}
 						}
 					}
 				}
