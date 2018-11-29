@@ -21,9 +21,10 @@ public class AdresseSubTypeTest {
         mapper.addMixIn(JsonAdresse.class, AdresseMixIn.class);
         
         final JsonAdresse jsonAdresse = mapper.readValue(testfile, JsonAdresse.class);
-        assertEquals("Riktig subklasse skal velges", JsonGateAdresse.class, jsonAdresse.getClass());
         assertEquals("Skal lese felt som kun finnes på superklasse", JsonKilde.BRUKER, jsonAdresse.getKilde());
+        assertEquals("Skal lese delt felt", JsonAdresse.Type.GATEADRESSE, jsonAdresse.getType());
         
+        assertEquals("Riktig subklasse skal velges", JsonGateAdresse.class, jsonAdresse.getClass());
         final JsonGateAdresse gateadresse = (JsonGateAdresse) jsonAdresse; 
         assertEquals("Skal lese felt som kun finnes på subklasse", "Testeveien", gateadresse.getGatenavn());
     }
