@@ -399,7 +399,6 @@
 			}
 		}
 	},
-	"innsendingstidspunkt": "0000-00-00T00:00:00.000Z",
 	"driftsinformasjon": "Informasjon om arbeidsforhold er fylt ut manuelt av bruker grunnet tekniske problemer med å få data fra AA-registeret.",
 	"kompatibilitet": [
 		{

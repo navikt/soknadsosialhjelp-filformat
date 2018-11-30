@@ -478,7 +478,7 @@
         }
       },
       "required": [
-        "version", "data", "driftsinformasjon", "kompatibilitet", "innsendingstidspunkt"
+        "version", "data", "driftsinformasjon", "kompatibilitet"
       ]
     },
     "kompatibilitet": {
