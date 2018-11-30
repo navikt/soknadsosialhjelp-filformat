@@ -19,7 +19,7 @@
 			]
 		},
 		"hendelsestidspunkt": {
-			"$ref": "tidspunkt.json"
+			"$ref": "../../../types/tidspunkt.json"
 		}
 	},
 	"required": ["type", "hendelsestidspunkt"]

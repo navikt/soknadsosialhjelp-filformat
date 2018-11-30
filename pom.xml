@@ -110,9 +110,7 @@
                 </executions>
                 <configuration>
                     <includes>
-                        <include>${basedir}/target/json/soknad/**/*.json</include>
-                        <include>${basedir}/target/json/internal/**/*.json</include>
-                        <include>${basedir}/target/json/innsyn/soker/**/*.json</include>
+                        <include>${basedir}/target/json/**/*.json</include>
                     </includes>
                     <replacements>
                         <replacement>
@@ -140,24 +138,9 @@
                         </goals>
                         <configuration>
                             <sourcePaths>
-                                <sourcePath>${basedir}/target/json/internal</sourcePath>
-                                <sourcePath>${basedir}/target/json/soknad</sourcePath>
-                                <sourcePath>${basedir}/target/json/innsyn/soker</sourcePath>
+                                <sourcePath>${basedir}/target/json</sourcePath>
                             </sourcePaths>
-                            <targetPackage>no.nav.sbl.soknadsosialhjelp.soknad</targetPackage>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>vedlegg</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <sourcePaths>
-                                <sourcePath>${basedir}/target/json/vedlegg</sourcePath>
-                            </sourcePaths>
-                            <targetPackage>no.nav.sbl.soknadsosialhjelp.vedlegg</targetPackage>
+                            <targetPackage>no.nav.sbl.soknadsosialhjelp</targetPackage>
                         </configuration>
                     </execution>
                 </executions>
