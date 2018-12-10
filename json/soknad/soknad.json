@@ -3,6 +3,7 @@
   "definitions": {
     "soknad": {
       "type": "object",
+      "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.Soknad",
       "title": "JSON-formatert søknad om sosialhjelp.",
       "description": "Encoding er UTF-8.",
 
@@ -460,6 +461,9 @@
           "required": [
             "personalia", "arbeid", "utdanning", "familie", "begrunnelse", "bosituasjon", "okonomi"
       	  ]
+        },
+        "innsendingstidspunkt": {
+            "$ref": "../types/tidspunkt.json"
         },
         "driftsinformasjon": {
           "type": "string"

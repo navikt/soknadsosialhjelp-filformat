@@ -3,6 +3,7 @@
   "definitions": {
     "internalSoknad": {
       "type": "object",
+      "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.InternalSoknad",
       "properties": {
         "soknad": {
           "$ref": "../soknad/soknad.json#/definitions/soknad"
