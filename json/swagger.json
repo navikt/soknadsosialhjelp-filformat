@@ -98,11 +98,28 @@
 					        "type": "object",
 							"title": "Definisjon av hendelsestyper.",
 							"properties": {
+								"nyStatus": {
+									"$ref": "innsyn/soker/parts/hendelse/nyStatus.json"
+								},
 								"tildeltNavKontor": {
 									"$ref": "innsyn/soker/parts/hendelse/tildeltNavKontor.json"
 								},
-								"nyStatus": {
-									"$ref": "innsyn/soker/parts/hendelse/nyStatus.json"
+								"vedtakFattet": {
+									"$ref": "innsyn/soker/parts/hendelse/vedtakFattet.json"
+								}
+							}
+						}
+					},
+					"filreferanse": {
+						"description": "Filreferanser",
+						"schema": {
+					        "type": "object",
+							"properties": {
+								"dokumentlager": {
+									"$ref": "innsyn/soker/parts/filreferanse/dokumentlager.json"
+								},
+								"svarut": {
+									"$ref": "innsyn/soker/parts/filreferanse/svarut.json"
 								}
 							}
 						}

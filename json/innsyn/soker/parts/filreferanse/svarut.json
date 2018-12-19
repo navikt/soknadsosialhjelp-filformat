@@ -1,0 +1,37 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+
+	"title": "Referanse til en fil som har blitt lagret gjennom SvarUt.",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.innsyn.soker.filreferanse.SvarUtFilreferanse",
+	"type": "object",
+	"extends": {
+		"ONLY_CODEGEN$ref": "../filreferanse.json"
+	},
+	"typeNameForExtends": "svarut",
+	"allOf": [
+		{
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": [
+						"svarut"
+					]
+				}
+			}
+		}
+	],
+	"properties": {
+		"id": {
+			"type": "string",
+			"description": "En UUID som identifiserer SvarUt-forsendelsen.",
+			"pattern": "^[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]-[0-9a-f][0-9a-f][0-9a-f][0-9a-f]-[0-9a-f][0-9a-f][0-9a-f][0-9a-f]-[0-9a-f][0-9a-f][0-9a-f][0-9a-f]-[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]$"
+		},
+		"nr": {
+			"type": "integer",
+			"description": "Filnummer i SvarUt-forsendelsen."
+		}
+	},
+	"required": [
+		"id", "nr"
+	]
+}

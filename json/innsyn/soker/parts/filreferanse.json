@@ -1,0 +1,25 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+	
+	"title": "Filreferanse til FIKS",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.innsyn.soker.Filreferanse",
+	
+	"type": "object",
+	
+	"oneOf": [
+		{"$ref": "filreferanse/svarut.json"},
+		{"$ref": "filreferanse/dokumentlager.json"}
+    ],
+	"properties": {
+		"type": {
+			"type": "string",
+			"description": "Typen filreferanse.",
+			"enum": [
+				"svarut", "dokumentlager"
+			]
+		}
+	},
+	"required": [
+		"type"
+	]
+}
