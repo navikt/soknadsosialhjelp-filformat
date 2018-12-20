@@ -6,7 +6,8 @@ Se [dokumentasjon for JSON-formaterte filer](https://navikt.github.io/soknadsosi
 |Filformat                                                                                                 |
 |:---------------------------------------------------------------------------------------------------------|
 |[Søknad](https://navikt.github.io/soknadsosialhjelp-filformat/#/soknad/getsoknad_json)                    |
-|[Vedlegg](readme-vedlegg-json.md)                                                                         | 
+|[Vedlegg](readme-vedlegg-json.md)                                                                         |
+|[Søkers innsynsdata](https://navikt.github.io/soknadsosialhjelp-filformat/#/data%20fra%20fagsystem/getdigisos_soker_json)                                                                         |
 
 
 ## Endringer og nye versjoner
@@ -17,7 +18,7 @@ Planlagte fremtidige versjoner/endringer:
 
 |Funksjonalitet                                                                                                                                             |
 |:----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| |
+| [Ny fil for data fra fagsystem for søkers innsyn](https://navikt.github.io/soknadsosialhjelp-filformat/#/data%20fra%20fagsystem/getdigisos_soker_json) |
 
 
 ## Henvendelser

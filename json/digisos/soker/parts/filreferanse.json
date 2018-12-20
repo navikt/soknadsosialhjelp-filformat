@@ -2,7 +2,7 @@
 	"$schema": "http://json-schema.org/draft-06/schema#",
 	
 	"title": "Filreferanse til FIKS",
-	"javaType": "no.nav.sbl.soknadsosialhjelp.innsyn.soker.Filreferanse",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.Filreferanse",
 	
 	"type": "object",
 	

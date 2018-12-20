@@ -2,10 +2,10 @@
 	"$schema": "http://json-schema.org/draft-06/schema#",
 	
 	"definitions": {
-		"innsynSoker": {
+		"digisosSoker": {
 			"type": "object",
 			"title": "Data for søkers innsyn",
-			"javaType": "no.nav.sbl.soknadsosialhjelp.innsyn.soker.InnsynSoker",
+			"javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.DigisosSoker",
 			"description": "Encoding er UTF-8.",
 			"properties": {
 				"version": {
@@ -17,6 +17,7 @@
 				"hendelser": {
 					"type": "array",
 					"minItems": 1,
+					"title": "Hendelser",
 					"items": {
 						"$ref": "parts/hendelse.json"
 				    }
@@ -27,5 +28,5 @@
 			]
 		}
 	},
-	"$ref": "#/definitions/innsynSoker"
+	"$ref": "#/definitions/digisosSoker"
 }

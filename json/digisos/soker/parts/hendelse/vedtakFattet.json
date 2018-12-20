@@ -3,7 +3,7 @@
 
 	"title": "Et vedtak, i tilknytning til søknaden, har blitt fattet.",
 	"description": "Det er kun vedtak som ligger inn under Sosialtjenesteloven som skal sendes.",
-	"javaType": "no.nav.sbl.soknadsosialhjelp.innsyn.soker.hendelse.VedtakFattet",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.VedtakFattet",
 	"type": "object",
 	"extends": {
 		"ONLY_CODEGEN$ref": "../hendelse.json"
@@ -23,6 +23,7 @@
 	"properties": {
 		"vedtaksfil": {
 			"type": "object",
+			"title": "Vedtaksfil",
 			"description": "Vedtaksfilen som søker skal ha mulighet til å se. Det er ingen garanti for at filen blir vist til søker. Filformatet skal være PDF.",
 			"properties": {
 				"referanse": {
@@ -35,9 +36,11 @@
 		},
 		"vedlegg": {
 			"type": "array",
+			"title": "Vedlegg til vedtaksfil",
 			"description": "En liste med vedlegg til vedtaksfilen som søker skal ha mulighet til å se. Det er ingen garanti for at filene blir vist til søker. Filformatet skal være PDF.",
 			"items": {
 				"type": "object",
+				"title": "Vedlegg",
 				"properties": {
 					"tittel": {
 						"type": "string",

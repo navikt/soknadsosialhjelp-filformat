@@ -1,8 +1,9 @@
 {
 	"$schema": "http://json-schema.org/draft-06/schema#",
 	
-	"title": "Angir en hendelse.",
-	"javaType": "no.nav.sbl.soknadsosialhjelp.innsyn.soker.Hendelse",
+	"title": "Hendelse",
+	"description": "Feltet \"type\" angir hvilken type hendelse det er. Se egen definisjon per hendelse. Det som er dokumentert direkte under er kun det som er felles for alle hendelser.",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.Hendelse",
 	"type": "object",
 	
 	"oneOf": [

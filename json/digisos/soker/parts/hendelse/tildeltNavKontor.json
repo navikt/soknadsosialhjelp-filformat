@@ -2,7 +2,7 @@
 	"$schema": "http://json-schema.org/draft-06/schema#",
 
 	"title": "Nytt NAV-kontor behandler søknaden.",
-	"javaType": "no.nav.sbl.soknadsosialhjelp.innsyn.soker.hendelse.TildeltNavKontor",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.TildeltNavKontor",
 	"type": "object",
 	"extends": {
 		"ONLY_CODEGEN$ref": "../hendelse.json"
