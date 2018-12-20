@@ -12,12 +12,12 @@ import org.junit.runners.Parameterized.Parameters;
  * </ol>
  */
 @RunWith(Parameterized.class)
-public class InnsynSokerTest {
+public class DigisosSokerTest {
 
     private final TestData testData;
 
     
-    public InnsynSokerTest(String testName, TestData testData) {
+    public DigisosSokerTest(String testName, TestData testData) {
         this.testData = testData;
     }
     
@@ -25,9 +25,9 @@ public class InnsynSokerTest {
     @Parameters(name="{0}")
     public static Iterable<Object[]> finnAlleTestdatafiler() {
         return TestDataFiles.list(new TestDataFiles.Config()
-                    .withSchemaDirectory("json/innsyn/soker")
-                    .withToplevelSchemaFilename("innsyn-soker.json")
-                    .withTestDataDirectory("src/test/resources/json/innsyn/soker/")
+                    .withSchemaDirectory("json/digisos/soker")
+                    .withToplevelSchemaFilename("digisos-soker.json")
+                    .withTestDataDirectory("src/test/resources/json/digisos/soker/")
                 );
     }
     

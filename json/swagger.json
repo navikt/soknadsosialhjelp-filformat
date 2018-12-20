@@ -12,8 +12,8 @@
 			"name": "vedlegg",
 			"description": ""
 		}, {
-			"name": "innsyn for søker",
-			"description": ""
+			"name": "data fra fagsystem",
+			"description": "_**Utkast**_"
 		}
 	],
 	"paths": {
@@ -78,18 +78,18 @@
 				}
 			}
 		},
-		"innsyn-soker.json": {
+		"digisos-soker.json": {
 			"get": {
 			    "tags": [
-					"innsyn for søker"
+					"data fra fagsystem"
 				],
 				"summary": "Versjon 1.0.0-alpha",
-				"description": "Denne dokumentasjonen er generert ut fra et [json-schema](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/json/innsyn/soker/innsyn-soker.json).\n\n## Krav\n* Allerede fra første innsending av \"innsyn-soker.json\" _må_ \"hendelser\" inneholde hendelsen \"nyStatus\" med statuskode \"MOTTATT\".\n\n## Eksempler og testfiler\n* Eksempler på søkerinnsyn-JSON med [kun påkrevde data](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/innsyn/soker/minimal.json) og [komplett utfylt](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/innsyn/soker/komplett.json).\n* [Flere testfiler](https://github.com/navikt/soknadsosialhjelp-filformat/tree/master/src/test/resources/json/innsyn/soker)\n",
+				"description": "Definisjon av fil som brukes til å sende data, som søker skal kunne se, fra fagsystemet. Dette er fortsatt et utkast og det kan komme inkompatible endringer så lenge versjonsnummeret inneholder \"alpha\". Denne dokumentasjonen er generert ut fra et [json-schema](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/json/digisos/soker/digisos-soker.json).\n\n## Krav\n* Allerede fra første innsending av \"digisos-soker.json\" _må_ \"hendelser\" inneholde hendelsen \"nyStatus\" med statuskode \"MOTTATT\".\n\n## Eksempler og testfiler\n* Eksempler på søkerinnsyn-JSON med [kun påkrevde data](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/digisos/soker/minimal.json) og [komplett utfylt](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/digisos/soker/komplett.json).\n* [Flere testfiler](https://github.com/navikt/soknadsosialhjelp-filformat/tree/master/src/test/resources/json/digisos/soker)\n",
 				"responses": {
 					"filformat": {
 						"description": "Definisjon av søkers innsynsfil. Se på \"Model\" for definisjon av hvert enkelt felt. Se separate typedefinisjoner nederst på siden der det er forskjellige type-alternativer (nå gjelder dette kun for \"hendelse\", men det kan bli flere typer senere).",
 						"schema": {
-							"$ref": "innsyn/soker/innsyn-soker.json#/definitions/innsynSoker"
+							"$ref": "digisos/soker/digisos-soker.json#/definitions/digisosSoker"
 						}
 					},
 					"hendelse": {
@@ -99,13 +99,13 @@
 							"title": "Definisjon av hendelsestyper.",
 							"properties": {
 								"nyStatus": {
-									"$ref": "innsyn/soker/parts/hendelse/nyStatus.json"
+									"$ref": "digisos/soker/parts/hendelse/nyStatus.json"
 								},
 								"tildeltNavKontor": {
-									"$ref": "innsyn/soker/parts/hendelse/tildeltNavKontor.json"
+									"$ref": "digisos/soker/parts/hendelse/tildeltNavKontor.json"
 								},
 								"vedtakFattet": {
-									"$ref": "innsyn/soker/parts/hendelse/vedtakFattet.json"
+									"$ref": "digisos/soker/parts/hendelse/vedtakFattet.json"
 								}
 							}
 						}
@@ -116,10 +116,10 @@
 					        "type": "object",
 							"properties": {
 								"dokumentlager": {
-									"$ref": "innsyn/soker/parts/filreferanse/dokumentlager.json"
+									"$ref": "digisos/soker/parts/filreferanse/dokumentlager.json"
 								},
 								"svarut": {
-									"$ref": "innsyn/soker/parts/filreferanse/svarut.json"
+									"$ref": "digisos/soker/parts/filreferanse/svarut.json"
 								}
 							}
 						}

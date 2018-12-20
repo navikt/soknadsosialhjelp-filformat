@@ -1,4 +1,4 @@
-package no.nav.sbl.soknadsosialhjelp.innsyn.soker;
+package no.nav.sbl.soknadsosialhjelp.digisos.soker;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
@@ -7,15 +7,16 @@ import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import no.nav.sbl.soknadsosialhjelp.innsyn.soker.hendelse.JsonNyStatus;
-import no.nav.sbl.soknadsosialhjelp.innsyn.soker.hendelse.JsonNyStatus.Status;
+import no.nav.sbl.soknadsosialhjelp.digisos.soker.JsonHendelse;
+import no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.JsonNyStatus;
+import no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.JsonNyStatus.Status;
 import no.nav.sbl.soknadsosialhjelp.json.JsonSosialhjelpObjectMapper;
 
 public class HendelseSubTypeTest {
 
     @Test
     public void subtypeSkalBenyttesVedLesing() throws Exception {
-        final File testfile = new File("src/test/resources/json/innsyn/soker/parts/hendelse/minimal.json");
+        final File testfile = new File("src/test/resources/json/digisos/soker/parts/hendelse/minimal.json");
         
         final ObjectMapper mapper = JsonSosialhjelpObjectMapper.createObjectMapper();
 

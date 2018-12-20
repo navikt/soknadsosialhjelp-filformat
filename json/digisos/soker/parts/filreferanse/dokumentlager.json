@@ -1,20 +1,20 @@
 {
 	"$schema": "http://json-schema.org/draft-06/schema#",
 
-	"title": "Referanse til en fil som har blitt lagret gjennom SvarUt.",
-	"javaType": "no.nav.sbl.soknadsosialhjelp.innsyn.soker.filreferanse.SvarUtFilreferanse",
+	"title": "Referanse til en fil som ligger lagret i Dokumentlager.",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.filreferanse.DokumentlagerFilreferanse",
 	"type": "object",
 	"extends": {
 		"ONLY_CODEGEN$ref": "../filreferanse.json"
 	},
-	"typeNameForExtends": "svarut",
+	"typeNameForExtends": "dokumentlager",
 	"allOf": [
 		{
 			"properties": {
 				"type": {
 					"type": "string",
 					"enum": [
-						"svarut"
+						"dokumentlager"
 					]
 				}
 			}
@@ -23,15 +23,11 @@
 	"properties": {
 		"id": {
 			"type": "string",
-			"description": "En UUID som identifiserer SvarUt-forsendelsen.",
+			"description": "En UUID som identifiserer dokumentet i Dokumentlager.",
 			"pattern": "^[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]-[0-9a-f][0-9a-f][0-9a-f][0-9a-f]-[0-9a-f][0-9a-f][0-9a-f][0-9a-f]-[0-9a-f][0-9a-f][0-9a-f][0-9a-f]-[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]$"
-		},
-		"nr": {
-			"type": "integer",
-			"description": "Filnummer i SvarUt-forsendelsen."
 		}
 	},
 	"required": [
-		"id", "nr"
+		"id"
 	]
 }

@@ -1,8 +1,8 @@
 {
 	"$schema": "http://json-schema.org/draft-06/schema#",
 	
-	"title": "Avsender",
-	"javaType": "no.nav.sbl.soknadsosialhjelp.innsyn.soker.Avsender",
+	"title": "Fagsystemet",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.Avsender",
 	
 	"type": "object",
 	"properties": {
