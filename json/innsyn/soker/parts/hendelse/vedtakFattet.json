@@ -1,0 +1,59 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+
+	"title": "Et vedtak, i tilknytning til søknaden, har blitt fattet.",
+	"description": "Det er kun vedtak som ligger inn under Sosialtjenesteloven som skal sendes.",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.innsyn.soker.hendelse.VedtakFattet",
+	"type": "object",
+	"extends": {
+		"ONLY_CODEGEN$ref": "../hendelse.json"
+	},
+	"allOf": [
+		{
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": [
+						"vedtakFattet"
+					]
+				}
+			}
+		}
+	],
+	"properties": {
+		"vedtaksfil": {
+			"type": "object",
+			"description": "Vedtaksfilen som søker skal ha mulighet til å se. Det er ingen garanti for at filen blir vist til søker. Filformatet skal være PDF.",
+			"properties": {
+				"referanse": {
+					"$ref": "../filreferanse.json"
+				}
+			},
+			"required": [
+				"referanse"
+			]
+		},
+		"vedlegg": {
+			"type": "array",
+			"description": "En liste med vedlegg til vedtaksfilen som søker skal ha mulighet til å se. Det er ingen garanti for at filene blir vist til søker. Filformatet skal være PDF.",
+			"items": {
+				"type": "object",
+				"properties": {
+					"tittel": {
+						"type": "string",
+						"description": "En tittel som kan brukes som lenke/forklaringstekst til hva vedlegget er."
+					},
+					"referanse": {
+						"$ref": "../filreferanse.json"
+					}
+				},
+				"required": [
+					"tittel", "referanse"
+				]
+			}
+		}
+	},
+	"required": [
+		"vedtaksfil", "vedlegg"
+	]
+}

@@ -24,7 +24,7 @@
 			"type": "string",
 			"description": "Det kan legges til nye statustyper i enumen, men ingen gamle kan fjernes fra valideringsskjemaet (grunnet kompatibilitet).",
 			"enum": [
-			    "MOTTATT", "UNDER_BEHANDLING"
+			    "MOTTATT", "UNDER_BEHANDLING", "FERDIGBEHANDLET"
 			]
 		}
 	},

@@ -1,0 +1,10 @@
+{
+	"type": "vedtakFattet",
+	"hendelsestidspunkt": "2018-10-04T13:37:00.134Z",
+	"vedtaksfil": {
+		"referanse": {
+		    "type": "dokumentlager",
+		    "id": "12345678-9abc-def0-1234-56789abcdef0"
+		}
+	}
+}

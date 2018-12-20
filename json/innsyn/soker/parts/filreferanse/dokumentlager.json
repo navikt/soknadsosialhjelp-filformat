@@ -1,0 +1,33 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+
+	"title": "Referanse til en fil som ligger lagret i Dokumentlager.",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.innsyn.soker.filreferanse.DokumentlagerFilreferanse",
+	"type": "object",
+	"extends": {
+		"ONLY_CODEGEN$ref": "../filreferanse.json"
+	},
+	"typeNameForExtends": "dokumentlager",
+	"allOf": [
+		{
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": [
+						"dokumentlager"
+					]
+				}
+			}
+		}
+	],
+	"properties": {
+		"id": {
+			"type": "string",
+			"description": "En UUID som identifiserer dokumentet i Dokumentlager.",
+			"pattern": "^[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]-[0-9a-f][0-9a-f][0-9a-f][0-9a-f]-[0-9a-f][0-9a-f][0-9a-f][0-9a-f]-[0-9a-f][0-9a-f][0-9a-f][0-9a-f]-[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]$"
+		}
+	},
+	"required": [
+		"id"
+	]
+}
