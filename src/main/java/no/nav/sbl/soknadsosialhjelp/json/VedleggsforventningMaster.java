@@ -87,7 +87,8 @@ public class VedleggsforventningMaster {
             if (barnebidrag != null && (JsonBarnebidrag.Verdi.BETALER.equals(barnebidrag.getVerdi())
                     || JsonBarnebidrag.Verdi.BEGGE.equals(barnebidrag.getVerdi()))) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("barnebidrag").withTilleggsinfo("betaler"));
-            } else if (barnebidrag != null && (JsonBarnebidrag.Verdi.MOTTAR.equals(barnebidrag.getVerdi())
+            }
+            if (barnebidrag != null && (JsonBarnebidrag.Verdi.MOTTAR.equals(barnebidrag.getVerdi())
                     || JsonBarnebidrag.Verdi.BEGGE.equals(barnebidrag.getVerdi()))) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("barnebidrag").withTilleggsinfo("mottar"));
             }
