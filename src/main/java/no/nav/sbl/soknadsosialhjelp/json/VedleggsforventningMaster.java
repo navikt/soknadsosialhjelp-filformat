@@ -60,9 +60,9 @@ public class VedleggsforventningMaster {
             final List<JsonArbeidsforhold> alleArbeidsforhold = arbeid.getForhold();
             for (JsonArbeidsforhold arbeidsforhold : alleArbeidsforhold) {
                 String tom = arbeidsforhold.getTom();
-                if (tom == null) {
+                if (tom == null || !isBeforeOneMonthAheadInTime(tom)) {
                     paakrevdeVedlegg.add(new JsonVedlegg().withType("lonnslipp").withTilleggsinfo("arbeid"));
-                } else if (!tom.isEmpty() && isBeforeOneMonthAheadInTime(tom)) {
+                } else if (isBeforeOneMonthAheadInTime(tom)) {
                     paakrevdeVedlegg.add(new JsonVedlegg().withType("sluttoppgjor").withTilleggsinfo("arbeid"));
                 }
             }
@@ -95,7 +95,8 @@ public class VedleggsforventningMaster {
             final List<JsonAnsvar> forsorgerAnsvar = familie.getForsorgerplikt().getAnsvar();
             for (JsonAnsvar ansvar : forsorgerAnsvar) {
                 if (ansvar.getErFolkeregistrertSammen() != null && !ansvar.getErFolkeregistrertSammen().getVerdi()) {
-                    if (ansvar.getSamvarsgrad() != null && ansvar.getSamvarsgrad().getVerdi() <= 50) {
+                    if (ansvar.getSamvarsgrad() != null && ansvar.getSamvarsgrad().getVerdi() <= 50 &&
+                            ansvar.getSamvarsgrad().getVerdi() != 0) {
                         paakrevdeVedlegg.add(new JsonVedlegg().withType("samvarsavtale").withTilleggsinfo("barn"));
                         break;
                     }
