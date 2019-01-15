@@ -21,6 +21,35 @@
 			"type": "nyStatus",
 			"hendelsestidspunkt": "2018-10-10T13:42:00.134Z",
 			"status": "UNDER_BEHANDLING"
+		}, {
+			"type": "vedtakFattet",
+			"hendelsestidspunkt": "2018-10-12T13:37:00.134Z",
+			"vedtaksfil": {
+				"referanse": {
+				    "type": "dokumentlager",
+				    "id": "12345678-9abc-def0-1234-56789abcdef0"
+				}
+			},
+			"vedlegg": [
+				{
+					"tittel": "Foobar",
+					"referanse": {
+					    "type": "dokumentlager",
+					    "id": "12345678-9abc-def0-1234-56789abcdef0"			
+					}
+				}, {
+					"tittel": "Test",
+					"referanse": {
+				    	"type": "svarut",
+						"id": "12345678-9abc-def0-1234-56789abcdef0",
+						"nr": 1
+					}
+				}
+			]
+		}, {
+			"type": "nyStatus",
+			"hendelsestidspunkt": "2018-10-12T13:37:00.134Z",
+			"status": "FERDIGBEHANDLET"
 		}
 	]
 }
