@@ -25,6 +25,9 @@
 			    "postboks",
 			    "ustrukturert"
 			]
+		},
+		"adresseValg": {
+			"$ref": "../parts/adresseValg.json"
 		}
 	},
 	"required": ["kilde", "type"]

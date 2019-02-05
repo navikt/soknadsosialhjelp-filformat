@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+
+  "title": "Valgt adresse i søknad.",
+  "description": "\"folkeregistrert\" for folkeregistrert adresse, \"midlertidig\" for adresse lagret i NAV sine systemer som en midlertidig overstyring og \"soknad\" når bruker har fylt inn egen adresse i søknaden.",
+  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonAdresseValg",
+  "type": "string",
+  "enum": [
+    "folkeregistrert",
+    "midlertidig",
+    "soknad"
+  ]
+}

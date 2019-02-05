@@ -11,3 +11,4 @@ scripts/node_modules/*
 .project
 .settings/
 maven-eclipse.xml
+docs/node_modules/
