@@ -239,17 +239,7 @@ public class VedleggsforventningMaster {
             if (formue == null) {
                 continue;
             }
-            if ("bolig".equals(formue.getType())) {
-                paakrevdeVedlegg.add(new JsonVedlegg().withType("kjopekontrakt").withTilleggsinfo("kjopekontrakt"));
-            } else if ("kjoretoy".equals(formue.getType())) {
-                paakrevdeVedlegg.add(new JsonVedlegg().withType("dokumentasjon").withTilleggsinfo("kjoretoy"));
-            } else if ("campingvogn".equals(formue.getType())) {
-                paakrevdeVedlegg.add(new JsonVedlegg().withType("dokumentasjon").withTilleggsinfo("campingvogn"));
-            } else if ("fritidseiendom".equals(formue.getType())) {
-                paakrevdeVedlegg.add(new JsonVedlegg().withType("dokumentasjon").withTilleggsinfo("fritidseiendom"));
-            } else if ("annet".equals(formue.getType())) {
-                paakrevdeVedlegg.add(new JsonVedlegg().withType("dokumentasjon").withTilleggsinfo("annetverdi"));
-            } else if ("brukskonto".equals(formue.getType())) {
+            if ("brukskonto".equals(formue.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("kontooversikt").withTilleggsinfo("brukskonto"));
             } else if ("bsu".equals(formue.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("kontooversikt").withTilleggsinfo("bsu"));
