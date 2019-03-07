@@ -60,9 +60,9 @@ public class VedleggsforventningMaster {
             final List<JsonArbeidsforhold> alleArbeidsforhold = arbeid.getForhold();
             for (JsonArbeidsforhold arbeidsforhold : alleArbeidsforhold) {
                 String tom = arbeidsforhold.getTom();
-                if (tom == null || !isBeforeOneMonthAheadInTime(tom)) {
+                if (tom == null || !isWithinOneMonthAheadInTime(tom)) {
                     paakrevdeVedlegg.add(new JsonVedlegg().withType("lonnslipp").withTilleggsinfo("arbeid"));
-                } else if (isBeforeOneMonthAheadInTime(tom)) {
+                } else if (isWithinOneMonthAheadInTime(tom)) {
                     paakrevdeVedlegg.add(new JsonVedlegg().withType("sluttoppgjor").withTilleggsinfo("arbeid"));
                 }
             }
@@ -268,9 +268,9 @@ public class VedleggsforventningMaster {
                 .collect(Collectors.toList());
     }
 
-    private static boolean isBeforeOneMonthAheadInTime(String datoSomTekst) {
+    private static boolean isWithinOneMonthAheadInTime(String datoSomTekst) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(datoSomTekst, formatter);
-        return date.isBefore(now().plusMonths(1));
+        return date.isBefore(now().plusMonths(1).plusDays(1));
     }
 }
