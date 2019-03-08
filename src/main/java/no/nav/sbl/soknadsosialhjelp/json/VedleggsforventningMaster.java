@@ -39,6 +39,7 @@ public class VedleggsforventningMaster {
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForOkonomi(data.getOkonomi()));
 
         paakrevdeVedlegg.add(new JsonVedlegg().withType("skattemelding").withTilleggsinfo("skattemelding"));
+        paakrevdeVedlegg.add(new JsonVedlegg().withType("annet").withTilleggsinfo("annet"));
 
         return paakrevdeVedlegg;
     }
