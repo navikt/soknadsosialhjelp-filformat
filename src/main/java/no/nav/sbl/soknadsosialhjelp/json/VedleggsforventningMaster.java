@@ -39,6 +39,7 @@ public class VedleggsforventningMaster {
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForOkonomi(data.getOkonomi()));
 
         paakrevdeVedlegg.add(new JsonVedlegg().withType("skattemelding").withTilleggsinfo("skattemelding"));
+        paakrevdeVedlegg.add(new JsonVedlegg().withType("annet").withTilleggsinfo("annet"));
 
         return paakrevdeVedlegg;
     }
@@ -60,9 +61,9 @@ public class VedleggsforventningMaster {
             final List<JsonArbeidsforhold> alleArbeidsforhold = arbeid.getForhold();
             for (JsonArbeidsforhold arbeidsforhold : alleArbeidsforhold) {
                 String tom = arbeidsforhold.getTom();
-                if (tom == null || !isBeforeOneMonthAheadInTime(tom)) {
+                if (tom == null || !isWithinOneMonthAheadInTime(tom)) {
                     paakrevdeVedlegg.add(new JsonVedlegg().withType("lonnslipp").withTilleggsinfo("arbeid"));
-                } else if (isBeforeOneMonthAheadInTime(tom)) {
+                } else if (isWithinOneMonthAheadInTime(tom)) {
                     paakrevdeVedlegg.add(new JsonVedlegg().withType("sluttoppgjor").withTilleggsinfo("arbeid"));
                 }
             }
@@ -239,17 +240,7 @@ public class VedleggsforventningMaster {
             if (formue == null) {
                 continue;
             }
-            if ("bolig".equals(formue.getType())) {
-                paakrevdeVedlegg.add(new JsonVedlegg().withType("kjopekontrakt").withTilleggsinfo("kjopekontrakt"));
-            } else if ("kjoretoy".equals(formue.getType())) {
-                paakrevdeVedlegg.add(new JsonVedlegg().withType("dokumentasjon").withTilleggsinfo("kjoretoy"));
-            } else if ("campingvogn".equals(formue.getType())) {
-                paakrevdeVedlegg.add(new JsonVedlegg().withType("dokumentasjon").withTilleggsinfo("campingvogn"));
-            } else if ("fritidseiendom".equals(formue.getType())) {
-                paakrevdeVedlegg.add(new JsonVedlegg().withType("dokumentasjon").withTilleggsinfo("fritidseiendom"));
-            } else if ("annet".equals(formue.getType())) {
-                paakrevdeVedlegg.add(new JsonVedlegg().withType("dokumentasjon").withTilleggsinfo("annetverdi"));
-            } else if ("brukskonto".equals(formue.getType())) {
+            if ("brukskonto".equals(formue.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("kontooversikt").withTilleggsinfo("brukskonto"));
             } else if ("bsu".equals(formue.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("kontooversikt").withTilleggsinfo("bsu"));
@@ -268,9 +259,9 @@ public class VedleggsforventningMaster {
                 .collect(Collectors.toList());
     }
 
-    private static boolean isBeforeOneMonthAheadInTime(String datoSomTekst) {
+    private static boolean isWithinOneMonthAheadInTime(String datoSomTekst) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(datoSomTekst, formatter);
-        return date.isBefore(now().plusMonths(1));
+        return date.isBefore(now().plusMonths(1).plusDays(1));
     }
 }

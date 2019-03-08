@@ -222,7 +222,7 @@ public class VedleggsforventningMasterTest {
 
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForOkonomi(okonomi);
 
-        assertThat(paakrevdeVedlegg.size(), is(8));
+        assertThat(paakrevdeVedlegg.size(), is(7));
         assertThat(paakrevdeVedlegg.get(0).getType(), is("salgsoppgjor"));
         assertThat(paakrevdeVedlegg.get(0).getTilleggsinfo(), is("eiendom"));
         assertThat(paakrevdeVedlegg.get(1).getType(), is("faktura"));
@@ -235,10 +235,8 @@ public class VedleggsforventningMasterTest {
         assertThat(paakrevdeVedlegg.get(4).getTilleggsinfo(), is("avdraglaan"));
         assertThat(paakrevdeVedlegg.get(5).getType(), is("faktura"));
         assertThat(paakrevdeVedlegg.get(5).getTilleggsinfo(), is("barnehage"));
-        assertThat(paakrevdeVedlegg.get(6).getType(), is("dokumentasjon"));
-        assertThat(paakrevdeVedlegg.get(6).getTilleggsinfo(), is("kjoretoy"));
-        assertThat(paakrevdeVedlegg.get(7).getType(), is("kontooversikt"));
-        assertThat(paakrevdeVedlegg.get(7).getTilleggsinfo(), is("brukskonto"));
+        assertThat(paakrevdeVedlegg.get(6).getType(), is("kontooversikt"));
+        assertThat(paakrevdeVedlegg.get(6).getTilleggsinfo(), is("brukskonto"));
     }
 
     private JsonArbeidsforhold opprettArbeidsforholdMedTom() {
