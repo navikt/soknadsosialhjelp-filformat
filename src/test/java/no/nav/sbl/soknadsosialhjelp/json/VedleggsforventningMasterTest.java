@@ -34,10 +34,13 @@ public class VedleggsforventningMasterTest {
 
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedlegg(internalSoknad);
 
-        assertThat(paakrevdeVedlegg.size(), is(1));
+        assertThat(paakrevdeVedlegg.size(), is(2));
         JsonVedlegg vedlegg = paakrevdeVedlegg.get(0);
         assertThat(vedlegg.getType(), is("skattemelding"));
         assertThat(vedlegg.getTilleggsinfo(), is("skattemelding"));
+        JsonVedlegg vedlegg2 = paakrevdeVedlegg.get(1);
+        assertThat(vedlegg2.getType(), is("annet"));
+        assertThat(vedlegg2.getTilleggsinfo(), is("annet"));
     }
 
     @Test
