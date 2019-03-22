@@ -42,7 +42,8 @@
 				"type": "ustrukturert",
 				"adresse": [
 					"Under en bro i Oslo"
-				]
+				],
+				"adresseValg":  "soknad"
 			},
 			"postadresse": {
 				"kilde": "bruker",
