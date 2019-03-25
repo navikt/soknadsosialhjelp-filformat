@@ -15,6 +15,9 @@
       "description": "En tittel som MÅ brukes hvis utbetalingen skal presenteres til saksbehandler. Brukerangitt tekst kan være inkludert i tittelen.",
       "type": "string"
     },
+    "organisasjon": {
+      "$ref": "../../types/organisasjon.json"
+    },
     "belop": {
       "type": "integer"
     },
