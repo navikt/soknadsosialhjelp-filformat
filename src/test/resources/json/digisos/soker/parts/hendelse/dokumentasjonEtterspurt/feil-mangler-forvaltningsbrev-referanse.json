@@ -1,14 +1,12 @@
 {
   "type": "dokumentasjonEtterspurt",
   "hendelsestidspunkt": "2018-10-11T13:42:00.134Z",
-  "brevreferanse": {
-    "referanse": {
-      "type": "dokumentlager",
-      "id": "12345678-9abc-def0-1234-56789abcdef0"
-    }
+  "forvaltningsbrev": {
+
   },
   "dokumenter": [
     {
+      "dokumenttype": "Strømfaktura",
       "tilleggsinformasjon": "For periode 01.01.2019 til 01.02.2019"
     }
   ],

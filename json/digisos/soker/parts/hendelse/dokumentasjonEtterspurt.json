@@ -20,10 +20,10 @@
     }
   ],
   "properties": {
-    "brevreferanse": {
+    "forvaltningsbrev": {
       "type": "object",
-      "title": "brevreferanse",
-      "description": "Referanse til brev",
+      "title": "Forvaltningsbrev",
+      "description": "Forvaltningsbrevet som søker skal ha mulighet til å se. Det er ingen garanti for at filen blir vist til søker. Filformatet skal være PDF.",
       "properties": {
         "referanse": {
           "$ref": "../filreferanse.json"
@@ -32,6 +32,27 @@
       "required": [
         "referanse"
       ]
+    },
+    "vedlegg": {
+      "type": "array",
+      "title": "Vedlegg til forvaltningsbrev",
+      "description": "En liste med vedlegg til forvaltningsbrevet som søker skal ha mulighet til å se. Det er ingen garanti for at filene blir vist til søker. Filformatet skal være PDF.",
+      "items": {
+        "type": "object",
+        "title": "Vedlegg",
+        "properties": {
+          "tittel": {
+            "type": "string",
+            "description": "En tittel som kan brukes som lenke/forklaringstekst til hva vedlegget er."
+          },
+          "referanse": {
+            "$ref": "../filreferanse.json"
+          }
+        },
+        "required": [
+          "tittel", "referanse"
+        ]
+      }
     },
     "dokumenter": {
       "type": "array",
@@ -63,6 +84,6 @@
     }
   },
   "required": [
-    "brevreferanse", "dokumenter", "innsendelsesfrist"
+    "forvaltningsbrev", "dokumenter", "innsendelsesfrist"
   ]
 }

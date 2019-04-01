@@ -24,12 +24,28 @@
 		}, {
 			"type": "dokumentasjonEtterspurt",
 			"hendelsestidspunkt": "2018-10-11T13:42:00.134Z",
-			"brevreferanse": {
+			"forvaltningsbrev": {
 				"referanse": {
 					"type": "dokumentlager",
 					"id": "12345678-9abc-def0-1234-56789abcdef0"
 				}
 			},
+			"vedlegg": [
+				{
+					"tittel": "dokumentasjon etterspurt dokumentlager",
+					"referanse": {
+						"type": "dokumentlager",
+						"id": "12345678-9abc-def0-1234-56789abcdef0"
+					}
+				}, {
+					"tittel": "dokumentasjon etterspurt svarut",
+					"referanse": {
+						"type": "svarut",
+						"id": "12345678-9abc-def0-1234-56789abcdef0",
+						"nr": 1
+					}
+				}
+			],
 			"dokumenter": [
 				{
 					"dokumenttype": "Strømfaktura",
@@ -43,12 +59,28 @@
 		}, {
 			"type": "forelopigSvar",
 			"hendelsestidspunkt": "2018-10-12T07:37:00.134Z",
-			"brevreferanse": {
+			"forvaltningsbrev": {
 				"referanse": {
 					"type": "dokumentlager",
 					"id": "12345678-9abc-def0-1234-56789abcdef0"
 				}
-			}
+			},
+			"vedlegg": [
+				{
+					"tittel": "foreløpig svar dokumentlager",
+					"referanse": {
+						"type": "dokumentlager",
+						"id": "12345678-9abc-def0-1234-56789abcdef0"
+					}
+				}, {
+					"tittel": "foreløpig svar svarut",
+					"referanse": {
+						"type": "svarut",
+						"id": "12345678-9abc-def0-1234-56789abcdef0",
+						"nr": 1
+					}
+				}
+			]
 		}, {
 			"type": "vedtakFattet",
 			"hendelsestidspunkt": "2018-10-12T13:37:00.134Z",
