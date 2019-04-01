@@ -106,6 +106,12 @@
 								},
 								"vedtakFattet": {
 									"$ref": "digisos/soker/parts/hendelse/vedtakFattet.json"
+								},
+								"dokumentasjonEtterspurt": {
+									"$ref": "digisos/soker/parts/hendelse/dokumentasjonEtterspurt.json"
+								},
+								"forelopigSvar": {
+									"$ref": "digisos/soker/parts/hendelse/forelopigSvar.json"
 								}
 							}
 						}

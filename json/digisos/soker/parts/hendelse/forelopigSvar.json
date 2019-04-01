@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+
+  "title": "Foreløpig svar",
+  "javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.ForelopigSvar",
+  "type": "object",
+  "extends": {
+    "ONLY_CODEGEN$ref": "../hendelse.json"
+  },
+  "allOf": [
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "forelopigSvar"
+          ]
+        }
+      }
+    }
+  ],
+  "properties": {
+    "brevreferanse": {
+      "type": "object",
+      "title": "brevreferanse",
+      "description": "Referanse til brev",
+      "properties": {
+        "referanse": {
+          "$ref": "../filreferanse.json"
+        }
+      },
+      "required": [
+        "referanse"
+      ]
+    }
+  },
+  "required": [
+    "brevreferanse"
+  ]
+}

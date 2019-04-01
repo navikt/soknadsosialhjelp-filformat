@@ -1,0 +1,17 @@
+{
+  "type": "dokumentasjonEtterspurt",
+  "hendelsestidspunkt": "2018-10-11T13:42:00.134Z",
+  "brevreferanse": {
+    "referanse": {
+      "type": "dokumentlager",
+      "id": "12345678-9abc-def0-1234-56789abcdef0"
+    }
+  },
+  "dokumenter": [
+    {
+      "dokumenttype": "Strømfaktura",
+      "tilleggsinformasjon": "veldig lang tittel settes her slik at det grensen på 200 tegn overskrides. 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789"
+    }
+  ],
+  "innsendelsesfrist": "2018-10-20T07:37:00.134Z"
+}

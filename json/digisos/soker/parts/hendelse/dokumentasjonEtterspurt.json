@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+
+  "title": "Veileder ber om mer dokumentasjon fra søker",
+  "javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.DokumentasjonEtterspurt",
+  "type": "object",
+  "extends": {
+    "ONLY_CODEGEN$ref": "../hendelse.json"
+  },
+  "allOf": [
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "dokumentasjonEtterspurt"
+          ]
+        }
+      }
+    }
+  ],
+  "properties": {
+    "brevreferanse": {
+      "type": "object",
+      "title": "brevreferanse",
+      "description": "Referanse til brev",
+      "properties": {
+        "referanse": {
+          "$ref": "../filreferanse.json"
+        }
+      },
+      "required": [
+        "referanse"
+      ]
+    },
+    "dokumenter": {
+      "type": "array",
+      "title": "Liste over dokumentene etterspurt",
+      "items": {
+        "title": "Dokument",
+        "type": "object",
+        "properties": {
+          "dokumenttype": {
+            "title": "Dokumenttype",
+            "type": "string",
+            "maxLength": 50,
+            "description": "En predefinert eller fritekstbasert dokumenttype som veileder etterspør fra søker, eks: \"strømfaktura\" eller \"kontoutskrift\""
+          },
+          "tilleggsinformasjon": {
+            "title": "Tilleggsinformasjon",
+            "type": "string",
+            "maxLength": 200,
+            "description": "Tilleggsinformasjon til dokumenttypen veileder etterpør"
+          }
+        },
+        "required": [
+          "dokumenttype"
+        ]
+      }
+    },
+    "innsendelsesfrist": {
+      "$ref": "../../../../types/tidspunkt.json"
+    }
+  },
+  "required": [
+    "brevreferanse", "dokumenter", "innsendelsesfrist"
+  ]
+}
