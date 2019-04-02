@@ -71,7 +71,7 @@
             "title": "Tilleggsinformasjon",
             "type": "string",
             "maxLength": 200,
-            "description": "Tilleggsinformasjon til dokumenttypen veileder etterpør"
+            "description": "Tilleggsinformasjon til dokumenttypen veileder etterspør"
           }
         },
         "required": [
