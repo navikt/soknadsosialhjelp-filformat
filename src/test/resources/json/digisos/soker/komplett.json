@@ -27,7 +27,7 @@
 			"forvaltningsbrev": {
 				"referanse": {
 					"type": "dokumentlager",
-					"id": "12345678-9abc-def0-1234-56789abcdef0"
+					"id": "12345678-9abc-def0-1234-56789abcdez1"
 				}
 			},
 			"vedlegg": [
@@ -35,13 +35,13 @@
 					"tittel": "dokumentasjon etterspurt dokumentlager",
 					"referanse": {
 						"type": "dokumentlager",
-						"id": "12345678-9abc-def0-1234-56789abcdef0"
+						"id": "12345678-9abc-def0-1234-56789abcdez2"
 					}
 				}, {
 					"tittel": "dokumentasjon etterspurt svarut",
 					"referanse": {
 						"type": "svarut",
-						"id": "12345678-9abc-def0-1234-56789abcdef0",
+						"id": "12345678-9abc-def0-1234-56789abcdez3",
 						"nr": 1
 					}
 				}
@@ -62,7 +62,7 @@
 			"forvaltningsbrev": {
 				"referanse": {
 					"type": "dokumentlager",
-					"id": "12345678-9abc-def0-1234-56789abcdef0"
+					"id": "12345678-9abc-def0-1234-56789abcdex1"
 				}
 			},
 			"vedlegg": [
@@ -70,13 +70,13 @@
 					"tittel": "foreløpig svar dokumentlager",
 					"referanse": {
 						"type": "dokumentlager",
-						"id": "12345678-9abc-def0-1234-56789abcdef0"
+						"id": "12345678-9abc-def0-1234-56789abcdex2"
 					}
 				}, {
 					"tittel": "foreløpig svar svarut",
 					"referanse": {
 						"type": "svarut",
-						"id": "12345678-9abc-def0-1234-56789abcdef0",
+						"id": "12345678-9abc-def0-1234-56789abcdex3",
 						"nr": 1
 					}
 				}
