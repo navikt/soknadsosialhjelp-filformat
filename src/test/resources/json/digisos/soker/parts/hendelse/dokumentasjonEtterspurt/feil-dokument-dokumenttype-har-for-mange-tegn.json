@@ -1,0 +1,17 @@
+{
+  "type": "dokumentasjonEtterspurt",
+  "hendelsestidspunkt": "2018-10-11T13:42:00.134Z",
+  "forvaltningsbrev": {
+    "referanse": {
+      "type": "dokumentlager",
+      "id": "12345678-9abc-def0-1234-56789abcdef0"
+    }
+  },
+  "dokumenter": [
+    {
+      "dokumenttype": "Ganske lang dokumenttype som overskrider grensen på 50 tegn",
+      "tilleggsinformasjon": "For periode 01.01.2019 til 01.02.2019"
+    }
+  ],
+  "innsendelsesfrist": "2018-10-20T07:37:00.134Z"
+}
