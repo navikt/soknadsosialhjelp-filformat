@@ -1,0 +1,10 @@
+{
+  "type": "forelopigSvar",
+  "hendelsestidspunkt": "2018-10-12T07:37:00.134Z",
+  "forvaltningsbrev": {
+    "referanse": {
+      "type": "dokumentlager",
+      "id": "12345678-9abc-def0-1234-56789abcdef0"
+    }
+  }
+}
