@@ -12,7 +12,7 @@
 			"tittel": "Foobar",
 			"referanse": {
 			    "type": "dokumentlager",
-			    "id": "12345678-9abc-def0-1234-56789abcdef0"			
+			    "id": "12345678-9abc-def0-1234-56789abcdef0"
 			}
 		}, {
 			"tittel": "Test",
@@ -22,5 +22,9 @@
 				"nr": 1
 			}
 		}
-	]
+	],
+	"utfall": {
+		"saksreferanse": "SAK1",
+		"beskrivelse": "innvilget"
+	}
 }
