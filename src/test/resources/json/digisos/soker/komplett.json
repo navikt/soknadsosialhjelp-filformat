@@ -22,6 +22,66 @@
 			"hendelsestidspunkt": "2018-10-10T13:42:00.134Z",
 			"status": "UNDER_BEHANDLING"
 		}, {
+			"type": "dokumentasjonEtterspurt",
+			"hendelsestidspunkt": "2018-10-11T13:42:00.134Z",
+			"forvaltningsbrev": {
+				"referanse": {
+					"type": "dokumentlager",
+					"id": "12345678-9abc-def0-1234-56789abcdea1"
+				}
+			},
+			"vedlegg": [
+				{
+					"tittel": "dokumentasjon etterspurt dokumentlager",
+					"referanse": {
+						"type": "dokumentlager",
+						"id": "12345678-9abc-def0-1234-56789abcdea2"
+					}
+				}, {
+					"tittel": "dokumentasjon etterspurt svarut",
+					"referanse": {
+						"type": "svarut",
+						"id": "12345678-9abc-def0-1234-56789abcdea3",
+						"nr": 1
+					}
+				}
+			],
+			"dokumenter": [
+				{
+					"dokumenttype": "Strømfaktura",
+					"tilleggsinformasjon": "For periode 01.01.2019 til 01.02.2019"
+				}, {
+					"dokumenttype": "Kopi av depositumskonto",
+					"tilleggsinformasjon": "Signert av både deg og utleier"
+				}
+			],
+			"innsendelsesfrist": "2018-10-20T07:37:00.134Z"
+		}, {
+			"type": "forelopigSvar",
+			"hendelsestidspunkt": "2018-10-12T07:37:00.134Z",
+			"forvaltningsbrev": {
+				"referanse": {
+					"type": "dokumentlager",
+					"id": "12345678-9abc-def0-1234-56789abcdeb1"
+				}
+			},
+			"vedlegg": [
+				{
+					"tittel": "foreløpig svar dokumentlager",
+					"referanse": {
+						"type": "dokumentlager",
+						"id": "12345678-9abc-def0-1234-56789abcdeb2"
+					}
+				}, {
+					"tittel": "foreløpig svar svarut",
+					"referanse": {
+						"type": "svarut",
+						"id": "12345678-9abc-def0-1234-56789abcdeb3",
+						"nr": 1
+					}
+				}
+			]
+		}, {
 			"type": "vedtakFattet",
 			"hendelsestidspunkt": "2018-10-12T13:37:00.134Z",
 			"vedtaksfil": {

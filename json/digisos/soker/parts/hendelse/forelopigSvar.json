@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+
+  "title": "Foreløpig svar",
+  "javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.ForelopigSvar",
+  "type": "object",
+  "extends": {
+    "ONLY_CODEGEN$ref": "../hendelse.json"
+  },
+  "allOf": [
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "forelopigSvar"
+          ]
+        }
+      }
+    }
+  ],
+  "properties": {
+    "forvaltningsbrev": {
+      "type": "object",
+      "title": "Forvaltningsbrev",
+      "description": "Forvaltningsbrevet som søker skal ha mulighet til å se. Det er ingen garanti for at filen blir vist til søker. Filformatet skal være PDF.",
+      "properties": {
+        "referanse": {
+          "$ref": "../filreferanse.json"
+        }
+      },
+      "required": [
+        "referanse"
+      ]
+    },
+    "vedlegg": {
+      "type": "array",
+      "title": "Vedlegg til forvaltningsbrev",
+      "description": "En liste med vedlegg til forvaltningsbrevet som søker skal ha mulighet til å se. Det er ingen garanti for at filene blir vist til søker. Filformatet skal være PDF.",
+      "items": {
+        "type": "object",
+        "title": "Vedlegg",
+        "properties": {
+          "tittel": {
+            "type": "string",
+            "description": "En tittel som kan brukes som lenke/forklaringstekst til hva vedlegget er."
+          },
+          "referanse": {
+            "$ref": "../filreferanse.json"
+          }
+        },
+        "required": [
+          "tittel", "referanse"
+        ]
+      }
+    }
+  },
+  "required": [
+    "forvaltningsbrev"
+  ]
+}

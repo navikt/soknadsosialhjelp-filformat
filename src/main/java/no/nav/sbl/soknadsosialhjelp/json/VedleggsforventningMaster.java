@@ -55,7 +55,7 @@ public class VedleggsforventningMaster {
         return paakrevdeVedlegg;
     }
 
-    static List<JsonVedlegg> finnPaakrevdeVedleggForArbeid(JsonArbeid arbeid) {
+    public static List<JsonVedlegg> finnPaakrevdeVedleggForArbeid(JsonArbeid arbeid) {
         List<JsonVedlegg> paakrevdeVedlegg = new ArrayList<>();
         if (arbeid != null && arbeid.getForhold() != null && !arbeid.getForhold().isEmpty()) {
             final List<JsonArbeidsforhold> alleArbeidsforhold = arbeid.getForhold();

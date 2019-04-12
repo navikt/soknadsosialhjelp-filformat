@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+
+  "title": "Veileder ber om mer dokumentasjon fra søker",
+  "javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.DokumentasjonEtterspurt",
+  "type": "object",
+  "extends": {
+    "ONLY_CODEGEN$ref": "../hendelse.json"
+  },
+  "allOf": [
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "dokumentasjonEtterspurt"
+          ]
+        }
+      }
+    }
+  ],
+  "properties": {
+    "forvaltningsbrev": {
+      "type": "object",
+      "title": "Forvaltningsbrev",
+      "description": "Forvaltningsbrevet som søker skal ha mulighet til å se. Det er ingen garanti for at filen blir vist til søker. Filformatet skal være PDF.",
+      "properties": {
+        "referanse": {
+          "$ref": "../filreferanse.json"
+        }
+      },
+      "required": [
+        "referanse"
+      ]
+    },
+    "vedlegg": {
+      "type": "array",
+      "title": "Vedlegg til forvaltningsbrev",
+      "description": "En liste med vedlegg til forvaltningsbrevet som søker skal ha mulighet til å se. Det er ingen garanti for at filene blir vist til søker. Filformatet skal være PDF.",
+      "items": {
+        "type": "object",
+        "title": "Vedlegg",
+        "properties": {
+          "tittel": {
+            "type": "string",
+            "description": "En tittel som kan brukes som lenke/forklaringstekst til hva vedlegget er."
+          },
+          "referanse": {
+            "$ref": "../filreferanse.json"
+          }
+        },
+        "required": [
+          "tittel", "referanse"
+        ]
+      }
+    },
+    "dokumenter": {
+      "type": "array",
+      "title": "Liste over dokumentene etterspurt",
+      "items": {
+        "title": "Dokument",
+        "type": "object",
+        "properties": {
+          "dokumenttype": {
+            "title": "Dokumenttype",
+            "type": "string",
+            "maxLength": 50,
+            "description": "En predefinert eller fritekstbasert dokumenttype som veileder etterspør fra søker, eks: \"strømfaktura\" eller \"kontoutskrift\""
+          },
+          "tilleggsinformasjon": {
+            "title": "Tilleggsinformasjon",
+            "type": "string",
+            "maxLength": 200,
+            "description": "Tilleggsinformasjon til dokumenttypen veileder etterspør"
+          }
+        },
+        "required": [
+          "dokumenttype"
+        ]
+      }
+    },
+    "innsendelsesfrist": {
+      "$ref": "../../../../types/tidspunkt.json"
+    }
+  },
+  "required": [
+    "forvaltningsbrev", "dokumenter", "innsendelsesfrist"
+  ]
+}
