@@ -101,9 +101,9 @@
 					"fodselsdato": "1991-01-01",
 					"personIdentifikator": "12345678901"
 				},
+				"ektefelleHarDiskresjonskode": false,
 				"folkeregistrertMedEktefelle": false
 			},
-			"ektefelleHarDiskresjonskode": false,
 			"folkeregistrertMedEktefelleAvviksforklaring": {
 				"kilde": "bruker",
 				"verdi": "Vi er i ferd med å skilles."
