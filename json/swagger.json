@@ -120,6 +120,7 @@
 						"description": "Filreferanser",
 						"schema": {
 					        "type": "object",
+							"title": "Definisjon av filreferanser",
 							"properties": {
 								"dokumentlager": {
 									"$ref": "digisos/soker/parts/filreferanse/dokumentlager.json"
