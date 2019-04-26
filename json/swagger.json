@@ -87,7 +87,7 @@
 				"description": "Definisjon av fil som brukes til å sende data, som søker skal kunne se, fra fagsystemet. Dette er fortsatt et utkast og det kan komme inkompatible endringer så lenge versjonsnummeret inneholder \"alpha\". Denne dokumentasjonen er generert ut fra et [json-schema](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/json/digisos/soker/digisos-soker.json).\n\n## Krav\n* Allerede fra første innsending av \"digisos-soker.json\" _må_ \"hendelser\" inneholde hendelsen \"nyStatus\" med statuskode \"MOTTATT\".\n\n## Eksempler og testfiler\n* Eksempler på søkerinnsyn-JSON med [kun påkrevde data](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/digisos/soker/minimal.json) og [komplett utfylt](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/digisos/soker/komplett.json).\n* [Flere testfiler](https://github.com/navikt/soknadsosialhjelp-filformat/tree/master/src/test/resources/json/digisos/soker)\n",
 				"responses": {
 					"filformat": {
-						"description": "Definisjon av søkers innsynsfil. Se på \"Model\" for definisjon av hvert enkelt felt. Se separate typedefinisjoner nederst på siden der det er forskjellige type-alternativer (nå gjelder dette kun for \"hendelse\", men det kan bli flere typer senere).",
+						"description": "Definisjon av søkers innsynsfil. Se på \"Model\" for definisjon av hvert enkelt felt. Se separate typedefinisjoner nederst på siden der det er forskjellige type-alternativer (nå gjelder dette kun for \"hendelse\" og \"filreferanse\", men det kan bli flere typer senere).",
 						"schema": {
 							"$ref": "digisos/soker/digisos-soker.json#/definitions/digisosSoker"
 						}
