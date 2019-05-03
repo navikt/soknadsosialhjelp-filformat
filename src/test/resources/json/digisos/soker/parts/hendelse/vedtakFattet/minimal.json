@@ -7,9 +7,5 @@
 		    "id": "12345678-9abc-def0-1234-56789abcdef0"
 		}
 	},
-	"vedlegg": [],
-	"utfall": {
-		"beskrivelse": "invilget",
-		"saksreferanse": "Sak123"
-	}
+	"vedlegg": []
 }

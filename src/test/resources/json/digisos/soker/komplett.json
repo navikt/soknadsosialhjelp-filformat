@@ -90,10 +90,6 @@
 				    "id": "12345678-9abc-def0-1234-56789abcdef0"
 				}
 			},
-			"utfall": {
-				"saksreferanse": "SAK1",
-				"beskrivelse": "innvilget"
-			},
 			"vedlegg": [
 				{
 					"tittel": "Foobar",
@@ -114,13 +110,6 @@
 			"type": "nyStatus",
 			"hendelsestidspunkt": "2018-10-12T13:37:00.134Z",
 			"status": "FERDIGBEHANDLET"
-		},
-		{
-			"type": "saksStatus",
-			"hendelsestidspunkt": "2018-10-12T13:37:00.134Z",
-			"status": "UNDER_BEHANDLING",
-			"referanse": "SAK1",
-			"tittel": "Nødhjelp"
 		}
 	]
 }

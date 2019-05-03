@@ -21,21 +21,6 @@
 		}
 	],
 	"properties": {
-		"utfall": {
-			"type": "object",
-			"title": "Utfallet",
-			"description": "Utfallet i vedtaket",
-			"properties": {
-				"saksreferanse": {
-					"type": "string",
-					"description": "Saksreferanse for vedtaket"
-				},
-				"beskrivelse": {
-					"type": "string",
-					"description": "Beskrivelse av utfallet"
-				}
-			}
-		},
 		"vedtaksfil": {
 			"type": "object",
 			"title": "Vedtaksfil",
