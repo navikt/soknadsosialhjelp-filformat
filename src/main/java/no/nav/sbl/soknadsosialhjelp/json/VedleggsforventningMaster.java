@@ -2,14 +2,18 @@ package no.nav.sbl.soknadsosialhjelp.json;
 
 import no.nav.sbl.soknadsosialhjelp.soknad.JsonData;
 import no.nav.sbl.soknadsosialhjelp.soknad.JsonInternalSoknad;
-import no.nav.sbl.soknadsosialhjelp.soknad.arbeid.JsonArbeid;
-import no.nav.sbl.soknadsosialhjelp.soknad.arbeid.JsonArbeidsforhold;
 import no.nav.sbl.soknadsosialhjelp.soknad.bosituasjon.JsonBosituasjon;
-import no.nav.sbl.soknadsosialhjelp.soknad.familie.*;
-import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.*;
+import no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonAnsvar;
+import no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonBarnebidrag;
+import no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonFamilie;
+import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.JsonOkonomi;
+import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.JsonOkonomiopplysninger;
+import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.JsonOkonomioversikt;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.JsonOkonomiOpplysningUtbetaling;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.JsonOkonomiOpplysningUtgift;
-import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.*;
+import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.JsonOkonomioversiktFormue;
+import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.JsonOkonomioversiktInntekt;
+import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.JsonOkonomioversiktUtgift;
 import no.nav.sbl.soknadsosialhjelp.soknad.personalia.JsonPersonalia;
 import no.nav.sbl.soknadsosialhjelp.soknad.utdanning.JsonUtdanning;
 import no.nav.sbl.soknadsosialhjelp.vedlegg.JsonVedlegg;
@@ -32,7 +36,6 @@ public class VedleggsforventningMaster {
         final JsonData data = internalSoknad.getSoknad().getData();
 
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForPersonalia(data.getPersonalia()));
-        paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForArbeid(data.getArbeid()));
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForUtdanning(data.getUtdanning()));
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForFamilie(data.getFamilie()));
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForBosituasjon(data.getBosituasjon()));
@@ -53,24 +56,6 @@ public class VedleggsforventningMaster {
             }
         }
         return paakrevdeVedlegg;
-    }
-
-    public static List<JsonVedlegg> finnPaakrevdeVedleggForArbeid(JsonArbeid arbeid) {
-        List<JsonVedlegg> paakrevdeVedlegg = new ArrayList<>();
-        if (arbeid != null && arbeid.getForhold() != null && !arbeid.getForhold().isEmpty()) {
-            final List<JsonArbeidsforhold> alleArbeidsforhold = arbeid.getForhold();
-            for (JsonArbeidsforhold arbeidsforhold : alleArbeidsforhold) {
-                String tom = arbeidsforhold.getTom();
-                if (tom == null || !isWithinOneMonthAheadInTime(tom)) {
-                    paakrevdeVedlegg.add(new JsonVedlegg().withType("lonnslipp").withTilleggsinfo("arbeid"));
-                } else if (isWithinOneMonthAheadInTime(tom)) {
-                    paakrevdeVedlegg.add(new JsonVedlegg().withType("sluttoppgjor").withTilleggsinfo("arbeid"));
-                }
-            }
-        }
-        return paakrevdeVedlegg.stream()
-                .distinct()
-                .collect(Collectors.toList());
     }
 
     static List<JsonVedlegg> finnPaakrevdeVedleggForUtdanning(JsonUtdanning utdanning) {
