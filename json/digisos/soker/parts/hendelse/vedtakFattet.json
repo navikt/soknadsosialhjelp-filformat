@@ -21,15 +21,15 @@
 		}
 	],
 	"properties": {
+		"referanse": {
+			"type": "string",
+			"description": "Referanse vedtaket skal tilknyttes til"
+		},
 		"utfall": {
 			"type": "object",
 			"title": "Utfallet",
 			"description": "Utfallet i vedtaket",
 			"properties": {
-				"saksreferanse": {
-					"type": "string",
-					"description": "Referanse vedtaket skal tilknyttes til"
-				},
 				"utfall": {
 					"type": "string",
 					"description": "Utfallet av vedtaket",
