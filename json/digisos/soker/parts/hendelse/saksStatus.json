@@ -22,7 +22,7 @@
 	],
 	"properties": {
 		"referanse": {
-			"description": "En referanse for saken slik at et vedtak kan tilknyttes på et senere tidspunkt",
+			"description": "En referanse slik at et vedtak kan tilknyttes på et senere tidspunkt",
 			"type": "string"
 		},
 		"tittel": {
@@ -31,7 +31,7 @@
 		},
 		"status": {
 			"type": "string",
-			"description": "Det kan legges til nye statustyper i enumen, men ingen gamle kan fjernes fra valideringsskjemaet (grunnet kompatibilitet).",
+			"description": "Det kan legges til nye statustyper i enumen, men ingen gamle kan fjernes fra valideringsskjemaet (grunnet bakover kompatibilitet).",
 			"enum": [
 				"UNDER_BEHANDLING"
 			]

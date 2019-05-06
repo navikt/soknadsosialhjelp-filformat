@@ -92,7 +92,7 @@
 			},
 			"utfall": {
 				"saksreferanse": "SAK1",
-				"beskrivelse": "innvilget"
+				"utfall": "INNVILGET"
 			},
 			"vedlegg": [
 				{

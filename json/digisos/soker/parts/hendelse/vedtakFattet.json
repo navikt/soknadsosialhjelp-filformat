@@ -28,11 +28,14 @@
 			"properties": {
 				"saksreferanse": {
 					"type": "string",
-					"description": "Saksreferanse for vedtaket"
+					"description": "Referanse vedtaket skal tilknyttes til"
 				},
-				"beskrivelse": {
+				"utfall": {
 					"type": "string",
-					"description": "Beskrivelse av utfallet"
+					"description": "Utfallet av vedtaket",
+					"enum": [
+						"INNVILGET", "DELVIS_INNVILGET", "AVSLATT", "AVVIST"
+					]
 				}
 			}
 		},
