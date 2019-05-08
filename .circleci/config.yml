@@ -33,7 +33,10 @@ jobs:
           - maven-{{ checksum "pom.xml" }}
     - run:
         name: Decrypt GPG key for deployment til Maven Central
-        command: "gpg --yes --batch --passphrase=$DECRYPT_GPG_KEY_PASSPHRASE codesigning.asc.gpg && gpg --fast-import codesigning.asc"
+        command: "gpg --yes --batch --passphrase=$DECRYPT_GPG_KEY_PASSPHRASE codesigning.asc.gpg"
+    - run:
+        name: Import GPG private key to keyring
+        command: "gpg --fast-import codesigning.asc"
     - run:
         name: Dummy task - list files in target directory
         command: "find ."
