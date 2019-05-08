@@ -34,6 +34,9 @@ jobs:
       - attach_workspace:
           at: /tmp/workspace
       - run:
+          name: Decrypt GPG key for deployment til Maven Central
+          command: "gpg --yes --batch --passphrase=$DECRYPT_GPG_KEY_PASSPHRASE && gpg --fast-import codesigning.asc"
+      - run:
           name: Dummy task - list files in target directory
           command: "find ."
 
