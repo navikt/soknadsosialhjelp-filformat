@@ -38,8 +38,8 @@ jobs:
         name: Import GPG private key to keyring
         command: "gpg --yes --batch --fast-import codesigning.asc"
     - run:
-        name: Dummy task - list files in target directory
-        command: "find ."
+        name: Deploy to Maven Central
+        command: "mvn --settings maven-settings.xml deploy -Prelease -DskipTests=true"
 
 workflows:
   version: 2
