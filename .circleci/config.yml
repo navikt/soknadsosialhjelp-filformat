@@ -18,27 +18,25 @@ jobs:
         key: maven-{{ checksum "pom.xml" }}
         paths:
           - ~/.m2
-
     - run:
         name: Build (and run tests)
         command: "mvn clean install"
-    - persist_to_workspace:
-        root: .
-        paths:
-          - ./target/*
 
   deploy:
     docker:
     - image: circleci/openjdk:8-jdk
     steps:
-      - attach_workspace:
-          at: /tmp/workspace
-      - run:
-          name: Decrypt GPG key for deployment til Maven Central
-          command: "gpg --yes --batch --passphrase=$DECRYPT_GPG_KEY_PASSPHRASE codesigning.asc.gpg && gpg --fast-import codesigning.asc"
-      - run:
-          name: Dummy task - list files in target directory
-          command: "find ."
+    - checkout
+    - restore_cache:
+        name: Restore cached dependencies
+        keys:
+          - maven-{{ checksum "pom.xml" }}
+    - run:
+        name: Decrypt GPG key for deployment til Maven Central
+        command: "gpg --yes --batch --passphrase=$DECRYPT_GPG_KEY_PASSPHRASE codesigning.asc.gpg && gpg --fast-import codesigning.asc"
+    - run:
+        name: Dummy task - list files in target directory
+        command: "find ."
 
 workflows:
   version: 2
