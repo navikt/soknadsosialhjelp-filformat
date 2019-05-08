@@ -30,7 +30,7 @@ jobs:
     - restore_cache:
         name: Restore cached dependencies
         keys:
-          - maven-{{ checksum "pom.xml" }}
+          - maven2-{{ checksum "pom.xml" }}
     - run:
         name: Decrypt GPG key for deployment til Maven Central
         command: "gpg --yes --batch --passphrase=$DECRYPT_GPG_KEY_PASSPHRASE codesigning.asc.gpg"
