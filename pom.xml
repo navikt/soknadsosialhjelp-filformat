@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Søknad-sosialhjelp filformat</name>
+    <name>soknadsosialhjelp-filformat</name>
     <description>
         Definisjon av filformater som skal brukes i forbindelse med søknad for økonomisk sosialhjelp
     </description>
