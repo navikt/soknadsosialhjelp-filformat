@@ -9,13 +9,13 @@ jobs:
     - restore_cache:
         name: Restore cached dependencies
         keys:
-          - maven-{{ checksum "pom.xml" }}
+          - maven2-{{ checksum "pom.xml" }}
     - run:
         name: Resolve/Update Dependencies
-        command: mvn dependency:resolve
+        command: mvn dependency:go-offline
     - save_cache:
         name: Cache Maven dependencies
-        key: maven-{{ checksum "pom.xml" }}
+        key: maven2-{{ checksum "pom.xml" }}
         paths:
           - ~/.m2
     - run:
@@ -39,7 +39,7 @@ jobs:
         command: "gpg --yes --batch --fast-import codesigning.asc"
     - run:
         name: Deploy to Maven Central
-        command: "mvn --settings maven-settings.xml deploy -Prelease -DskipTests=true"
+        command: "export GPG_TTY=$(tty) && mvn --settings maven-settings.xml deploy -Prelease -DskipTests=true"
 
 workflows:
   version: 2
