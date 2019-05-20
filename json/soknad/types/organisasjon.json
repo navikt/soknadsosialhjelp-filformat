@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "type": "object",
+  "title": "Organisasjon",
+  "properties": {
+    "navn": {
+      "description": "Navn på organisasjonen.",
+      "type": "string"
+    },
+    "organisasjonsnummer": {
+      "description": "Organisasjonsnummer.",
+      "type": "string",
+      "pattern": "^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$"
+    }
+  },
+  "required": [
+    "navn", "organisasjonsnummer"
+  ]
+}

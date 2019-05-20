@@ -90,6 +90,10 @@
 				    "id": "12345678-9abc-def0-1234-56789abcdef0"
 				}
 			},
+			"referanse": "SAK1",
+			"utfall": {
+				"utfall": "INNVILGET"
+			},
 			"vedlegg": [
 				{
 					"tittel": "Foobar",

@@ -101,9 +101,9 @@
 					"fodselsdato": "1991-01-01",
 					"personIdentifikator": "12345678901"
 				},
+				"ektefelleHarDiskresjonskode": false,
 				"folkeregistrertMedEktefelle": false
 			},
-			"ektefelleHarDiskresjonskode": false,
 			"folkeregistrertMedEktefelleAvviksforklaring": {
 				"kilde": "bruker",
 				"verdi": "Vi er i ferd med å skilles."
@@ -233,6 +233,20 @@
 								"satsBelop": 0.0
 							}
 						]
+					},
+					{
+						"kilde": "system",
+						"type": "skatteopplysninger",
+						"tittel": "Lønn",
+						"overstyrtAvBruker": false,
+						"brutto": 18452.0,
+						"skattetrekk": -2500.0,
+						"periodeFom": "2018-02-01",
+						"periodeTom": "2018-02-28",
+						"organisasjon": {
+							"navn": "Arbeidsgiver",
+							"organisasjonsnummer": "123456789"
+						}
 					}
 				],
 				"utgift": []

@@ -21,6 +21,24 @@
 		}
 	],
 	"properties": {
+		"referanse": {
+			"type": "string",
+			"description": "Referanse vedtaket skal tilknyttes til"
+		},
+		"utfall": {
+			"type": "object",
+			"title": "Utfallet",
+			"description": "Utfallet i vedtaket",
+			"properties": {
+				"utfall": {
+					"type": "string",
+					"description": "Utfallet av vedtaket",
+					"enum": [
+						"INNVILGET", "DELVIS_INNVILGET", "AVSLATT", "AVVIST"
+					]
+				}
+			}
+		},
 		"vedtaksfil": {
 			"type": "object",
 			"title": "Vedtaksfil",

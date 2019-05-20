@@ -50,8 +50,7 @@ public class VedleggsforventningMaster {
     static List<JsonVedlegg> finnPaakrevdeVedleggForPersonalia(JsonPersonalia personalia) {
         List<JsonVedlegg> paakrevdeVedlegg = new ArrayList<>();
         if (personalia != null) {
-            if (personalia.getStatsborgerskap() != null && !"NOR".equals(personalia.getStatsborgerskap().getVerdi())
-                    && personalia.getNordiskBorger() != null && Boolean.FALSE.equals(personalia.getNordiskBorger().getVerdi())) {
+            if (personalia.getNordiskBorger() == null || Boolean.FALSE.equals(personalia.getNordiskBorger().getVerdi())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("oppholdstillatel").withTilleggsinfo("oppholdstillatel"));
             }
         }
