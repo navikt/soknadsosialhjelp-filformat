@@ -2,6 +2,8 @@ package no.nav.sbl.soknadsosialhjelp.json;
 
 import no.nav.sbl.soknadsosialhjelp.soknad.JsonData;
 import no.nav.sbl.soknadsosialhjelp.soknad.JsonInternalSoknad;
+import no.nav.sbl.soknadsosialhjelp.soknad.arbeid.JsonArbeid;
+import no.nav.sbl.soknadsosialhjelp.soknad.arbeid.JsonArbeidsforhold;
 import no.nav.sbl.soknadsosialhjelp.soknad.bosituasjon.JsonBosituasjon;
 import no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonAnsvar;
 import no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonBarnebidrag;
@@ -36,6 +38,7 @@ public class VedleggsforventningMaster {
         final JsonData data = internalSoknad.getSoknad().getData();
 
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForPersonalia(data.getPersonalia()));
+        paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForArbeid(internalSoknad));
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForUtdanning(data.getUtdanning()));
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForFamilie(data.getFamilie()));
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForBosituasjon(data.getBosituasjon()));
@@ -55,6 +58,26 @@ public class VedleggsforventningMaster {
             }
         }
         return paakrevdeVedlegg;
+    }
+
+    public static List<JsonVedlegg> finnPaakrevdeVedleggForArbeid(JsonInternalSoknad jsonInternalSoknad) {
+        List<JsonVedlegg> paakrevdeVedlegg = new ArrayList<>();
+        JsonArbeid arbeid = jsonInternalSoknad.getSoknad().getData().getArbeid();
+        if (arbeid != null && arbeid.getForhold() != null && !arbeid.getForhold().isEmpty()) {
+            List<JsonArbeidsforhold> alleArbeidsforhold = arbeid.getForhold();
+            for (JsonArbeidsforhold arbeidsforhold : alleArbeidsforhold) {
+                String tom = arbeidsforhold.getTom();
+                boolean utbetalingerFeiletFraSkatt = "Kunne ikke hente skattbar inntekt fra Skatteetaten".equals(jsonInternalSoknad.getSoknad().getDriftsinformasjon());
+                if (tom == null || !isWithinOneMonthAheadInTime(tom) && utbetalingerFeiletFraSkatt) {
+                    paakrevdeVedlegg.add(new JsonVedlegg().withType("lonnslipp").withTilleggsinfo("arbeid"));
+                } else if (isWithinOneMonthAheadInTime(tom)  && utbetalingerFeiletFraSkatt) {
+                    paakrevdeVedlegg.add(new JsonVedlegg().withType("sluttoppgjor").withTilleggsinfo("arbeid"));
+                }
+            }
+        }
+        return paakrevdeVedlegg.stream()
+                .distinct()
+                .collect(Collectors.toList());
     }
 
     static List<JsonVedlegg> finnPaakrevdeVedleggForUtdanning(JsonUtdanning utdanning) {
