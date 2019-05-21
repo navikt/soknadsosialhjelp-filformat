@@ -25,6 +25,15 @@ Planlagte fremtidige versjoner/endringer:
 |:----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [Ny fil for data fra fagsystem for søkers innsyn](https://navikt.github.io/soknadsosialhjelp-filformat/#/data%20fra%20fagsystem/getdigisos_soker_json) |
 
+##### Hvordan release nye stable-versjoner til Maven Central
+
+Kjør `mvn release:prepare` lokalt, velg nytt versjonsnummer.
+Denne kommandoen vil endre versjonsnumre, gjøre noen git-commits og git-tags, og pushe til Github.
+(Hvis ikke, så push endringene til Github manuelt.)
+Det blir opprettet noen midlertidige filer (release.properties, xxx.releaseBackup osv.), disse skal _ikke_ sjekkes
+inn i koden, men slettes. Man kan f.eks. `git add --all && git reset --hard`.
+
+Circle CI vil så bygge stable-versjonen og release den til Maven Central (om alt går som planlagt).
 
 ## Henvendelser
 
