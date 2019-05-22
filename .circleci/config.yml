@@ -51,7 +51,7 @@ jobs:
         name: Deploy to Maven Central
         command: "export GPG_TTY=$(tty) && mvn --settings maven-settings.xml deploy -Prelease -DskipTests=true"
 
-  deploy-snaphot:
+  deploy-snapshot:
     docker:
       - image: circleci/openjdk:8-jdk
     steps:
