@@ -38,8 +38,48 @@ jobs:
         name: Import GPG private key to keyring
         command: "gpg --yes --batch --fast-import codesigning.asc"
     - run:
+        name: "Setting version"
+        command: |
+          TIME=$(TZ="Europe/Oslo" date +%Y.%m.%d-%H.%M)
+          COMMIT=$(git rev-parse --short=12 HEAD)
+          VERSION="1.$TIME-$COMMIT"
+          echo "Setting version $VERSION"
+          mvn versions:set -DnewVersion="$VERSION"
+          mvn versions:commit
+
+    - run:
         name: Deploy to Maven Central
         command: "export GPG_TTY=$(tty) && mvn --settings maven-settings.xml deploy -Prelease -DskipTests=true"
+
+  deploy-snapshot:
+    docker:
+      - image: circleci/openjdk:8-jdk
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore cached dependencies
+          keys:
+            - maven3-{{ checksum "pom.xml" }}
+      - run:
+          name: Decrypt GPG key for deployment til Maven Central
+          command: "gpg --yes --batch --passphrase=$DECRYPT_GPG_KEY_PASSPHRASE codesigning.asc.gpg"
+      - run:
+          name: Import GPG private key to keyring
+          command: "gpg --yes --batch --fast-import codesigning.asc"
+      - run:
+          name: "Setting version"
+          command: |
+            TIME=$(TZ="Europe/Oslo" date +%Y.%m.%d-%H.%M)
+            COMMIT=$(git rev-parse --short=12 HEAD)
+            VERSION="1.$TIME-$COMMIT-SNAPSHOT"
+            echo "Setting version $VERSION"
+            mvn versions:set -DnewVersion="$VERSION"
+            mvn versions:commit
+
+      - run:
+          name: Deploy to Maven Central
+          command: "export GPG_TTY=$(tty) && mvn --settings maven-settings.xml deploy -Prelease -DskipTests=true"
+
 
 workflows:
   version: 2
@@ -52,3 +92,10 @@ workflows:
           filters:
             branches:
               only: master
+      - deploy-snapshot:
+          requires:
+            - build
+          filters:
+            branches:
+              ignore:
+                - master
