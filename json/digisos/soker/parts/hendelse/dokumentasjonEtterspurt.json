@@ -72,18 +72,18 @@
             "type": "string",
             "maxLength": 200,
             "description": "Tilleggsinformasjon til dokumenttypen veileder etterspør"
+          },
+          "innsendelsesfrist": {
+            "$ref": "../../../../types/tidspunkt.json"
           }
         },
         "required": [
-          "dokumenttype"
+          "dokumenttype", "innsendelsesfrist"
         ]
       }
-    },
-    "innsendelsesfrist": {
-      "$ref": "../../../../types/tidspunkt.json"
     }
   },
   "required": [
-    "forvaltningsbrev", "dokumenter", "innsendelsesfrist"
+    "forvaltningsbrev", "dokumenter"
   ]
 }

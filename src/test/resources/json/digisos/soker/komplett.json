@@ -49,13 +49,14 @@
 			"dokumenter": [
 				{
 					"dokumenttype": "Strømfaktura",
-					"tilleggsinformasjon": "For periode 01.01.2019 til 01.02.2019"
+					"tilleggsinformasjon": "For periode 01.01.2019 til 01.02.2019",
+					"innsendelsesfrist": "2018-10-20T07:37:00.134Z"
 				}, {
 					"dokumenttype": "Kopi av depositumskonto",
-					"tilleggsinformasjon": "Signert av både deg og utleier"
+					"tilleggsinformasjon": "Signert av både deg og utleier",
+					"innsendelsesfrist": "2018-10-20T07:37:30.000Z"
 				}
-			],
-			"innsendelsesfrist": "2018-10-20T07:37:00.134Z"
+			]
 		}, {
 			"type": "forelopigSvar",
 			"hendelsestidspunkt": "2018-10-12T07:37:00.134Z",
