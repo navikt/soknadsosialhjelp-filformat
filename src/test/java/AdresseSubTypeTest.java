@@ -1,16 +1,13 @@
-import static org.junit.Assert.assertEquals;
-
-import java.io.File;
-
-import org.junit.Test;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import no.nav.sbl.soknadsosialhjelp.json.AdresseMixIn;
 import no.nav.sbl.soknadsosialhjelp.json.JsonSosialhjelpObjectMapper;
 import no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonAdresse;
 import no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonGateAdresse;
 import no.nav.sbl.soknadsosialhjelp.soknad.common.JsonKilde;
+import org.junit.Test;
+
+import java.io.File;
+
+import static org.junit.Assert.assertEquals;
 
 public class AdresseSubTypeTest {
 

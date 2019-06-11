@@ -1,20 +1,15 @@
-import static org.junit.Assert.assertEquals;
-
-import java.io.File;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Predicate;
-
+import com.github.fge.jsonschema.core.report.ProcessingReport;
+import no.nav.sbl.soknadsosialhjelp.json.JsonSosialhjelpValidator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import com.github.fge.jsonschema.core.report.ProcessingReport;
+import java.io.File;
+import java.nio.file.Paths;
+import java.util.Arrays;
 
-import no.nav.sbl.soknadsosialhjelp.json.JsonSosialhjelpValidator;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class VedleggTest {
@@ -29,7 +24,7 @@ public class VedleggTest {
     }
 
     @Test
-    public void jsonValiderer() throws Exception {
+    public void jsonValiderer() {
         valider(this.navn, this.skalKjore);
     }
     

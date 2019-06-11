@@ -1,13 +1,4 @@
 package no.nav.sbl.soknadsosialhjelp.json;
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.EnumSet;
-import java.util.List;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.fge.jackson.JsonLoader;
@@ -20,14 +11,20 @@ import com.github.fge.jsonschema.core.report.LogLevel;
 import com.github.fge.jsonschema.core.report.ProcessingMessage;
 import com.github.fge.jsonschema.core.report.ProcessingReport;
 import com.github.fge.jsonschema.core.tree.SchemaTree;
-import com.github.fge.jsonschema.library.DraftV4Library;
-import com.github.fge.jsonschema.library.Keyword;
-import com.github.fge.jsonschema.library.KeywordBuilder;
-import com.github.fge.jsonschema.library.Library;
-import com.github.fge.jsonschema.library.LibraryBuilder;
+import com.github.fge.jsonschema.library.*;
 import com.github.fge.jsonschema.main.JsonSchema;
 import com.github.fge.jsonschema.main.JsonSchemaFactory;
 import com.github.fge.msgsimple.bundle.MessageBundle;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.EnumSet;
+import java.util.List;
 
 public final class JsonSosialhjelpValidator {
     
@@ -36,7 +33,7 @@ public final class JsonSosialhjelpValidator {
     }
     
     
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) {
         if (args.length != 2) {
             System.out.println("Bruk: java -jar soknadsosialhjelp-filformat-...-shaded.jar [ --soknad SOKNAD_JSON | --vedlegg VEDLEGG_JSON | SCHEMA JSON ]");
             System.out.println();
@@ -52,14 +49,19 @@ public final class JsonSosialhjelpValidator {
         
         try {
             final String schemaUri;
-            if (args[0].equals("--soknad")) {
-                schemaUri = toSkjemaUri("/json/soknad/soknad.json");
-            } else if (args[0].equals("--vedlegg")) {
-                schemaUri = toSkjemaUri("/json/vedlegg/vedleggSpesifikasjon.json");
-            } else if (args[0].equals("--internal")) {
-                schemaUri = toSkjemaUri("/json/internal/internalSoknad.json");
-            } else {
-                schemaUri = toSkjemaUri(args[0]);
+            switch (args[0]) {
+                case "--soknad":
+                    schemaUri = toSkjemaUri("/json/soknad/soknad.json");
+                    break;
+                case "--vedlegg":
+                    schemaUri = toSkjemaUri("/json/vedlegg/vedleggSpesifikasjon.json");
+                    break;
+                case "--internal":
+                    schemaUri = toSkjemaUri("/json/internal/internalSoknad.json");
+                    break;
+                default:
+                    schemaUri = toSkjemaUri(args[0]);
+                    break;
             }
             
             final String json = Files.readAllLines(Paths.get(args[1])).stream().reduce((a, b) -> a + b).get();
@@ -142,8 +144,7 @@ public final class JsonSosialhjelpValidator {
     private static ProcessingReport validate(JsonNode json, String schemaUri) {
         try {
             final JsonSchema skjema = createValidator(schemaUri);
-            final ProcessingReport report = skjema.validate(json);
-            return report;
+            return skjema.validate(json);
         } catch (ProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -183,11 +184,10 @@ public final class JsonSosialhjelpValidator {
     
     private static ValidationConfiguration createValidationConfiguration() {
         final Library library = withIgnoredKeywords(DraftV4Library.get(), Arrays.asList("javaType", "extends"));
-        final ValidationConfiguration config = ValidationConfiguration.newBuilder()
+
+        return ValidationConfiguration.newBuilder()
                 .setDefaultLibrary("http://json-schema.org/draft-06/schema", library)
                 .freeze();
-                
-        return config;
     }
     
     private static class IgnoreSyntaxCheck implements SyntaxChecker {
@@ -198,7 +198,7 @@ public final class JsonSosialhjelpValidator {
         
         @Override
         public void checkSyntax(Collection<JsonPointer> pointers, MessageBundle bundle, ProcessingReport report,
-                SchemaTree tree) throws ProcessingException {
+                SchemaTree tree) {
             // Ignore
         }
     }
