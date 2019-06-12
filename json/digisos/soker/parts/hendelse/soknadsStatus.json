@@ -2,7 +2,7 @@
 	"$schema": "http://json-schema.org/draft-06/schema#",
 
 	"title": "Ny status på søknaden.",
-	"javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.NyStatus",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.SoknadsStatus",
 	"type": "object",
 	"extends": {
 		"ONLY_CODEGEN$ref": "../hendelse.json"
@@ -13,7 +13,7 @@
 				"type": {
 					"type": "string",
 					"enum": [
-						"nyStatus"
+						"soknadsStatus"
 					]
 				}
 			}
