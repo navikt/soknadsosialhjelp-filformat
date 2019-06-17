@@ -64,13 +64,11 @@
           "dokumenttype": {
             "title": "Dokumenttype",
             "type": "string",
-            "maxLength": 50,
             "description": "En predefinert eller fritekstbasert dokumenttype som veileder etterspør fra søker, eks: \"strømfaktura\" eller \"kontoutskrift\""
           },
           "tilleggsinformasjon": {
             "title": "Tilleggsinformasjon",
             "type": "string",
-            "maxLength": 200,
             "description": "Tilleggsinformasjon til dokumenttypen veileder etterspør"
           },
           "innsendelsesfrist": {
