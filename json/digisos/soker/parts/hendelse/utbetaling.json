@@ -8,10 +8,22 @@
 	"extends": {
 		"ONLY_CODEGEN$ref": "../hendelse.json"
 	},
+	"allOf": [
+	{
+		"properties": {
+			"type": {
+				"type": "string",
+				"enum": [
+					"utbetaling"
+				]
+			}
+		}
+	}
+],
 	"properties": {
 		"utbetalingsreferanse": {
 			"type": "string",
-			"description": "Unik referanse per utbetaling slik at "
+			"description": "Unik referanse per utbetaling slik at utbetalingsinformasjonen kan bli skiftet ut når det kommer ny informasjon"
 		},
 		"saksreferanse": {
 			"type": "string",
@@ -43,10 +55,6 @@
 		"mottaker": {
 			"type": "string",
 			"description": "Mottaker (søker eller annen mottaker)"
-		},
-		"vilkar": {
-			"$ref": "vilkar.json"
 		}
-
 	}
 }

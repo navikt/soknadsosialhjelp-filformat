@@ -5,7 +5,23 @@
 	"description": "Vilkar",
 	"javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.Vilkar",
 	"type": "object",
+	"allOf": [
+		{
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": [
+						"vilkar"
+					]
+				}
+			}
+		}
+	],
 	"properties": {
+		"utbetalingsreferanse": {
+			"type": "string",
+			"description": "Hvilken utbetaling vilkåret er knyttet til"
+		},
 		"beskrivelse": {
 			"type": "string",
 			"description": "Hva som må gjøres"

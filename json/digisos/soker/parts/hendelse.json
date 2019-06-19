@@ -12,7 +12,9 @@
 		{"$ref": "hendelse/vedtakFattet.json"},
 		{"$ref": "hendelse/dokumentasjonEtterspurt.json"},
 		{"$ref": "hendelse/forelopigSvar.json"},
-		{"$ref": "hendelse/saksStatus.json"}
+		{"$ref": "hendelse/saksStatus.json"},
+		{"$ref": "hendelse/utbetaling.json"},
+		{"$ref": "hendelse/vilkar.json"}
     ],
 	"properties": {
 		"type": {
@@ -20,7 +22,7 @@
 			"type": "string",
 			"description": "Det kan legges til nye hendelsestyper i enumen, men ingen gamle kan fjernes fra valideringsskjemaet (grunnet kompatibilitet).",
 			"enum": [
-			    "tildeltNavKontor", "soknadsStatus", "vedtakFattet", "dokumentasjonEtterspurt", "forelopigSvar", "saksStatus"
+			    "tildeltNavKontor", "soknadsStatus", "vedtakFattet", "dokumentasjonEtterspurt", "forelopigSvar", "saksStatus, utbetaling, vilkar"
 			]
 		},
 		"hendelsestidspunkt": {
