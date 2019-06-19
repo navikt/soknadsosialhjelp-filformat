@@ -1,0 +1,26 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+
+	"title": "Endret utbetalingsplan ",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.TildeltNavKontor",
+	"type": "object",
+	"extends": {
+		"ONLY_CODEGEN$ref": "../hendelse.json"
+	},
+	"properties": {
+		"referanse": {
+			"type": "string",
+			"description": "Referanse utbetalingene skal tilknyttes til"
+		},
+		"utbetalinger": {
+			"description": "Ferdige utbetalinger",
+			"type": "array",
+			"items": {
+				"$ref": "../utbetalinger/utbetaling.json"
+			}
+		}
+	},
+	"required": [
+		"navKontor"
+	]
+}

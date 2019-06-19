@@ -1,0 +1,52 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+
+	"title": "Utbetaling",
+	"description": "Utbetalingsinformasjon",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.Utbetaling",
+	"type": "object",
+	"extends": {
+		"ONLY_CODEGEN$ref": "../hendelse.json"
+	},
+	"properties": {
+		"utbetalingsreferanse": {
+			"type": "string",
+			"description": "Unik referanse per utbetaling slik at "
+		},
+		"saksreferanse": {
+			"type": "string",
+			"description": "Referanse utbetalingen skal tilknyttes til (samme som i vedtak fattet og saksstatus)"
+		},
+		"belop": {
+			"type": "number",
+			"description": "Utbetalingsbeløp i kr"
+		},
+		"beskrivelse": {
+			"description": "Stønaden utbetalingen gjelder for (livsopphold, strøm etc.)"
+		},
+		"posteringsdato": {
+			"description": "Når posteringen ble gjort",
+			"$ref": "../../../../soknad/types/dato.json"
+		},
+		"utbetalingsdato": {
+			"description": "Når utbetalingen kom inn på konto",
+			"$ref": "../../../../soknad/types/dato.json"
+		},
+		"fom": {
+			"description": "Utbetalingsperiode (Fra)",
+			"$ref": "../../../../soknad/types/dato.json"
+		},
+		"tom": {
+			"description": "Utbetalingsperiode (Til)",
+			"$ref": "../../../../soknad/types/dato.json"
+		},
+		"mottaker": {
+			"type": "string",
+			"description": "Mottaker (søker eller annen mottaker)"
+		},
+		"vilkar": {
+			"$ref": "vilkar.json"
+		}
+
+	}
+}
