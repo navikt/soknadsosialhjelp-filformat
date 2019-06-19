@@ -1,0 +1,14 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+
+	"title": "Vilkar",
+	"description": "Vilkar",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.Vilkar",
+	"type": "object",
+	"properties": {
+		"beskrivelse": {
+			"type": "string",
+			"description": "Hva som mmå gjøres"
+		}
+	}
+}
