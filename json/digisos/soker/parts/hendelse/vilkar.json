@@ -19,8 +19,11 @@
 	],
 	"properties": {
 		"utbetalingsreferanse": {
-			"type": "string",
-			"description": "Hvilken utbetaling vilkåret er knyttet til"
+			"type": "array",
+			"description": "Hvilke utbetalinger vilkåret er knyttet til",
+			"items": {
+				"type": "string"
+			}
 		},
 		"beskrivelse": {
 			"type": "string",

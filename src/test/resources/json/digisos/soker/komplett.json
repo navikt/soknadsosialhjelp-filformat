@@ -129,6 +129,25 @@
 			"status": "IKKE_INNSYN",
 			"referanse": "SAK2",
 			"tittel": "KVP"
+		},
+		{
+			"type": "utbetaling",
+			"hendelsestidspunkt": "2018-10-12T13:37:00.134Z",
+			"saksreferanse": "SAK2",
+			"utbetalingsreferanse": ["UTBETALINGNR1SAK2"],
+			"belop": 5000.00,
+			"beskrivelse": "strøm, ikke utbetalt ennå",
+			"posteringsdato": "2018-10-11T13:37:00.134Z",
+			"fom": "2018-10-11T13:37:00.134Z",
+			"tom": "2018-10-11T13:37:00.134Z",
+			"mottaker": "Utleier",
+			"status": "PLANLAGT_UTBETALING"
+		},
+		{
+			"type": "vilkar",
+			"hendelsestidspunkt": "2018-10-12T13:37:00.134Z",
+			"utbetalingsreferanse": ["UTBETALINGNR1SAK2"],
+			"beskrivelse": "Gå en tur hver dag"
 		}
 	]
 }

@@ -29,6 +29,13 @@
 			"type": "string",
 			"description": "Referanse utbetalingen skal tilknyttes til (samme som i vedtak fattet og saksstatus)"
 		},
+		"status": {
+			"type": "string",
+			"description": "Status for utbetalingen",
+			"enum": [
+				"PLANLAGT_UTBETALING", "UTBETALT", "STOPPET"
+			]
+		},
 		"belop": {
 			"type": "number",
 			"description": "Utbetalingsbeløp i kr"
@@ -38,23 +45,27 @@
 		},
 		"posteringsdato": {
 			"description": "Når posteringen ble gjort",
-			"$ref": "../../../../soknad/types/dato.json"
+			"$ref": "../../../../types/dato.json"
 		},
 		"utbetalingsdato": {
 			"description": "Når utbetalingen kom inn på konto",
-			"$ref": "../../../../soknad/types/dato.json"
+			"$ref": "../../../../types/dato.json"
 		},
 		"fom": {
 			"description": "Utbetalingsperiode (Fra)",
-			"$ref": "../../../../soknad/types/dato.json"
+			"$ref": "../../../../types/dato.json"
 		},
 		"tom": {
 			"description": "Utbetalingsperiode (Til)",
-			"$ref": "../../../../soknad/types/dato.json"
+			"$ref": "../../../../types/dato.json"
 		},
 		"mottaker": {
 			"type": "string",
 			"description": "Mottaker (søker eller annen mottaker)"
 		}
-	}
+	},
+	"required": [
+		"saksreferanse",
+		"utbetalingsreferanse"
+	]
 }
