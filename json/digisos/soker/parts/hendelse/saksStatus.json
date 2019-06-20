@@ -33,7 +33,7 @@
 			"type": "string",
 			"description": "Det kan legges til nye statustyper i enumen, men ingen gamle kan fjernes fra valideringsskjemaet (grunnet bakover kompatibilitet).",
 			"enum": [
-				"UNDER_BEHANDLING"
+				"UNDER_BEHANDLING", "IKKE_INNSYN"
 			]
 		}
 	},
