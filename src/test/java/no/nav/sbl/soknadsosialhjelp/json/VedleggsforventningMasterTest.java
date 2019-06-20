@@ -1,15 +1,22 @@
 package no.nav.sbl.soknadsosialhjelp.json;
 
-import no.nav.sbl.soknadsosialhjelp.soknad.*;
-import no.nav.sbl.soknadsosialhjelp.soknad.arbeid.JsonArbeid;
+import no.nav.sbl.soknadsosialhjelp.soknad.JsonData;
+import no.nav.sbl.soknadsosialhjelp.soknad.JsonInternalSoknad;
+import no.nav.sbl.soknadsosialhjelp.soknad.JsonSoknad;
 import no.nav.sbl.soknadsosialhjelp.soknad.arbeid.JsonArbeidsforhold;
 import no.nav.sbl.soknadsosialhjelp.soknad.bosituasjon.JsonBosituasjon;
 import no.nav.sbl.soknadsosialhjelp.soknad.familie.*;
-import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.*;
+import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.JsonOkonomi;
+import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.JsonOkonomiopplysninger;
+import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.JsonOkonomioversikt;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.JsonOkonomiOpplysningUtbetaling;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.JsonOkonomiOpplysningUtgift;
-import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.*;
-import no.nav.sbl.soknadsosialhjelp.soknad.personalia.*;
+import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.JsonOkonomioversiktFormue;
+import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.JsonOkonomioversiktInntekt;
+import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.JsonOkonomioversiktUtgift;
+import no.nav.sbl.soknadsosialhjelp.soknad.personalia.JsonNordiskBorger;
+import no.nav.sbl.soknadsosialhjelp.soknad.personalia.JsonPersonalia;
+import no.nav.sbl.soknadsosialhjelp.soknad.personalia.JsonStatsborgerskap;
 import no.nav.sbl.soknadsosialhjelp.soknad.utdanning.JsonUtdanning;
 import no.nav.sbl.soknadsosialhjelp.vedlegg.JsonVedlegg;
 import org.junit.Test;
@@ -65,58 +72,6 @@ public class VedleggsforventningMasterTest {
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForPersonalia(personalia);
 
         assertThat(paakrevdeVedlegg.size(), is(0));
-    }
-
-    @Test
-    public void finnPaakrevdeVedleggForArbeidKreverSluttoppgjorHvisForholdetAvsluttesOmUnderEnMnd() {
-        JsonArbeidsforhold arbeidsforholdMedTom = opprettArbeidsforholdMedTom();
-        List<JsonArbeidsforhold> arbeidsforhold = new ArrayList<>();
-        arbeidsforhold.add(arbeidsforholdMedTom);
-        JsonArbeid arbeid = new JsonArbeid().withForhold(arbeidsforhold);
-
-        List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForArbeid(arbeid);
-
-        assertThat(paakrevdeVedlegg.size(), is(1));
-        JsonVedlegg vedlegg = paakrevdeVedlegg.get(0);
-        assertThat(vedlegg.getType(), is("sluttoppgjor"));
-        assertThat(vedlegg.getTilleggsinfo(), is("arbeid"));
-    }
-
-    @Test
-    public void finnPaakrevdeVedleggForArbeidKreverKunEnLonnsslippForToArbeidsforhold() {
-        JsonArbeidsforhold arbeidsforhold1 = new JsonArbeidsforhold().withFom("2005-05-01");
-        JsonArbeidsforhold arbeidsforhold2 = new JsonArbeidsforhold().withFom("2010-05-01");
-        List<JsonArbeidsforhold> alleArbeidsforhold = new ArrayList<>();
-        alleArbeidsforhold.add(arbeidsforhold1);
-        alleArbeidsforhold.add(arbeidsforhold2);
-        JsonArbeid arbeid = new JsonArbeid().withForhold(alleArbeidsforhold);
-
-        List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForArbeid(arbeid);
-
-        assertThat(paakrevdeVedlegg.size(), is(1));
-        JsonVedlegg vedlegg = paakrevdeVedlegg.get(0);
-        assertThat(vedlegg.getType(), is("lonnslipp"));
-        assertThat(vedlegg.getTilleggsinfo(), is("arbeid"));
-    }
-
-    @Test
-    public void finnPaakrevdeVedleggForArbeidKreverSluttoppgjorOgLonnslipp() {
-        JsonArbeidsforhold arbeidsforholdMedTom = opprettArbeidsforholdMedTom();
-        JsonArbeidsforhold arbeidsforholdUtenTom = new JsonArbeidsforhold().withFom("2010-05-01");
-        List<JsonArbeidsforhold> arbeidsforhold = new ArrayList<>();
-        arbeidsforhold.add(arbeidsforholdMedTom);
-        arbeidsforhold.add(arbeidsforholdUtenTom);
-        JsonArbeid arbeid = new JsonArbeid().withForhold(arbeidsforhold);
-
-        List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForArbeid(arbeid);
-
-        assertThat(paakrevdeVedlegg.size(), is(2));
-        JsonVedlegg vedlegg = paakrevdeVedlegg.get(0);
-        assertThat(vedlegg.getType(), is("sluttoppgjor"));
-        assertThat(vedlegg.getTilleggsinfo(), is("arbeid"));
-        JsonVedlegg vedlegg2 = paakrevdeVedlegg.get(1);
-        assertThat(vedlegg2.getType(), is("lonnslipp"));
-        assertThat(vedlegg2.getTilleggsinfo(), is("arbeid"));
     }
 
     @Test
