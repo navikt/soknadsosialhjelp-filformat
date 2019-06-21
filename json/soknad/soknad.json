@@ -465,6 +465,21 @@
         "innsendingstidspunkt": {
             "$ref": "../types/tidspunkt.json"
         },
+        "mottaker": {
+          "title": "Soknadsmottaker",
+          "type": "object",
+          "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.internal.Soknadsmottaker",
+          "properties": {
+            "organisasjonsnummer": {
+              "description": "Organisasjonsnummer for søknadsmottaker.",
+              "type": "string"
+            },
+            "navEnhetsnavn": {
+              "description": "Navn på NAV-enhet som søknaden sendes til.",
+              "type": "string"
+            }
+          }
+        },
         "driftsinformasjon": {
           "type": "string"
         },
@@ -478,7 +493,7 @@
         }
       },
       "required": [
-        "version", "data", "driftsinformasjon", "kompatibilitet"
+        "version", "data", "mottaker", "driftsinformasjon", "kompatibilitet"
       ]
     },
     "kompatibilitet": {

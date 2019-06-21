@@ -400,6 +400,10 @@
 			}
 		}
 	},
+	"mottaker": {
+		"organisasjonsnummer": "910229567",
+		"navEnhetsnavn": "Eiganes og Tasta, Stavanger kommune"
+	},
 	"driftsinformasjon": "Informasjon om arbeidsforhold er fylt ut manuelt av bruker grunnet tekniske problemer med å få data fra AA-registeret.",
 	"kompatibilitet": [
 		{

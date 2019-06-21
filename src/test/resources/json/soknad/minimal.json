@@ -47,6 +47,10 @@
 			}
 		}
 	},
+	"mottaker": {
+		"organisasjonsnummer": "",
+		"navEnhetsnavn": ""
+	},
 	"driftsinformasjon": "",
 	"kompatibilitet": []
 }

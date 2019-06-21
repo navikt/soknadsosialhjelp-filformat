@@ -1,3 +1,8 @@
+[![CircleCI](https://circleci.com/gh/navikt/soknadsosialhjelp-filformat.svg?style=svg)](https://circleci.com/gh/navikt/soknadsosialhjelp-filformat)
+
+[![Published on Maven](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/no/nav/sbl/dialogarena/soknadsosialhjelp-filformat/maven-metadata.xml.svg)](http://central.maven.org/maven2/no/nav/sbl/dialogarena/soknadsosialhjelp-filformat/)
+
+
 Filformat for Søknad om økonomisk sosialhjelp
 =============================================
 

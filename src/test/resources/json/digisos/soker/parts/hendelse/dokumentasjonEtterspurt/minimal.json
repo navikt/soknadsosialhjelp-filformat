@@ -9,8 +9,8 @@
   },
   "dokumenter": [
     {
-      "dokumenttype": "Strømfaktura"
+      "dokumenttype": "Strømfaktura",
+      "innsendelsesfrist": "2018-10-20T07:37:00.134Z"
     }
-  ],
-  "innsendelsesfrist": "2018-10-20T07:37:00.134Z"
+  ]
 }

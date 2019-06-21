@@ -4,8 +4,8 @@
   "dokumenter": [
     {
       "dokumenttype": "Strømfaktura",
-      "tilleggsinformasjon": "For periode 01.01.2019 til 01.02.2019"
+      "tilleggsinformasjon": "For periode 01.01.2019 til 01.02.2019",
+      "innsendelsesfrist": "2018-10-20T07:37:00.134Z"
     }
-  ],
-  "innsendelsesfrist": "2018-10-20T07:37:00.134Z"
+  ]
 }
