@@ -136,11 +136,12 @@
 			"saksreferanse": "SAK2",
 			"utbetalingsreferanse": ["UTBETALINGNR1SAK2"],
 			"belop": 5000.00,
-			"beskrivelse": "strøm, ikke utbetalt ennå",
+			"beskrivelse": "strøm",
 			"posteringsdato": "2018-10-11T13:37:00.134Z",
 			"fom": "2018-10-11T13:37:00.134Z",
 			"tom": "2018-10-11T13:37:00.134Z",
 			"mottaker": "Utleier",
+			"utbetalingsform": "kontooverføring",
 			"status": "PLANLAGT_UTBETALING"
 		},
 		{
