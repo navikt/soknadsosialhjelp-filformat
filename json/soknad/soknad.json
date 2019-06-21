@@ -493,7 +493,7 @@
         }
       },
       "required": [
-        "version", "data", "innsendingstidspunkt", "mottaker", "driftsinformasjon", "kompatibilitet"
+        "version", "data", "mottaker", "driftsinformasjon", "kompatibilitet"
       ]
     },
     "kompatibilitet": {
