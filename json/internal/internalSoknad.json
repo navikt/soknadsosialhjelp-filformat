@@ -25,6 +25,9 @@
               "type": "string"
             }
           }
+        },
+        "midlertidigAdresse": {
+          "$ref": "../soknad/parts/adresse.json"
         }
       }
     }
