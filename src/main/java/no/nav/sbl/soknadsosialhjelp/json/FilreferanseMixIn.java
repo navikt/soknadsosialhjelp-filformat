@@ -8,7 +8,7 @@ import no.nav.sbl.soknadsosialhjelp.digisos.soker.filreferanse.JsonSvarUtFilrefe
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "type", visible = true)
 @JsonSubTypes({
-    @JsonSubTypes.Type(value = JsonSvarUtFilreferanse.class, name = "svarUt"),
+    @JsonSubTypes.Type(value = JsonSvarUtFilreferanse.class, name = "svarut"),
     @JsonSubTypes.Type(value = JsonDokumentlagerFilreferanse.class, name = "dokumentlager")
 })
 public interface FilreferanseMixIn {}
