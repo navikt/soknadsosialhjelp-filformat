@@ -46,6 +46,10 @@
 			}
 		}
 	},
+	"mottaker": {
+		"enhetsnummer": "",
+		"navEnhetsnavn": ""
+	},
 	"driftsinformasjon": "",
 	"kompatibilitet": []
 }
