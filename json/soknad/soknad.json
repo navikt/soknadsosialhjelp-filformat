@@ -468,7 +468,7 @@
         "mottaker": {
           "title": "Soknadsmottaker",
           "type": "object",
-          "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.internal.Soknadsmottaker",
+          "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.Soknadsmottaker",
           "properties": {
             "enhetsnummer": {
               "description": "Enhetssnummer for søknadsmottaker.",
