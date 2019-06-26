@@ -5,6 +5,9 @@
 	"description": "Vilkar",
 	"javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.Vilkar",
 	"type": "object",
+	"extends": {
+		"ONLY_CODEGEN$ref": "../hendelse.json"
+	},
 	"allOf": [
 		{
 			"properties": {

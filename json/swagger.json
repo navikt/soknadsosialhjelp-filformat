@@ -2,7 +2,8 @@
 	"swagger": "2.0",
 	"info": {
 		"title": "Søknad om sosialhjelp",
-		"description": "Dokumentasjon av JSON-filer som inngår i en søknad om sosialhjelp."
+		"description": "Dokumentasjon av JSON-filer som inngår i en søknad om sosialhjelp.",
+		"version": "1"
 	},
 	"tags": [
 		{
@@ -115,6 +116,12 @@
 								},
 								"saksStatus": {
 									"$ref": "digisos/soker/parts/hendelse/saksStatus.json"
+								},
+								"utbetaling": {
+									"$ref": "digisos/soker/parts/hendelse/utbetaling.json"
+								},
+								"vilkar": {
+									"$ref": "digisos/soker/parts/hendelse/vilkar.json"
 								}
 							}
 						}
