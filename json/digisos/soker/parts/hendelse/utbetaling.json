@@ -1,0 +1,71 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+
+	"title": "Utbetaling",
+	"description": "Utbetalingsinformasjon",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.Utbetaling",
+	"type": "object",
+	"extends": {
+		"ONLY_CODEGEN$ref": "../hendelse.json"
+	},
+	"allOf": [
+	{
+		"properties": {
+			"type": {
+				"type": "string",
+				"enum": [
+					"utbetaling"
+				]
+			}
+		}
+	}
+],
+	"properties": {
+		"utbetalingsreferanse": {
+			"type": "string",
+			"description": "Unik referanse per utbetaling slik at utbetalingsinformasjonen kan bli skiftet ut når det kommer ny informasjon"
+		},
+		"saksreferanse": {
+			"type": "string",
+			"description": "Referanse utbetalingen skal tilknyttes til (samme som i vedtak fattet og saksstatus)"
+		},
+		"status": {
+			"type": "string",
+			"description": "Status for utbetalingen",
+			"enum": [
+				"PLANLAGT_UTBETALING", "UTBETALT", "STOPPET"
+			]
+		},
+		"belop": {
+			"type": "number",
+			"description": "Utbetalingsbeløp i kr"
+		},
+		"beskrivelse": {
+			"description": "Stønaden utbetalingen gjelder for (livsopphold, strøm etc.)"
+		},
+		"posteringsdato": {
+			"description": "Når posteringen ble gjort",
+			"$ref": "../../../../types/dato.json"
+		},
+		"utbetalingsdato": {
+			"description": "Når utbetalingen kom inn på konto",
+			"$ref": "../../../../types/dato.json"
+		},
+		"fom": {
+			"description": "Utbetalingsperiode (Fra)",
+			"$ref": "../../../../types/dato.json"
+		},
+		"tom": {
+			"description": "Utbetalingsperiode (Til)",
+			"$ref": "../../../../types/dato.json"
+		},
+		"mottaker": {
+			"type": "string",
+			"description": "Mottaker (søker eller annen mottaker)"
+		}
+	},
+	"required": [
+		"saksreferanse",
+		"utbetalingsreferanse"
+	]
+}

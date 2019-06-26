@@ -13,10 +13,10 @@
 			"type": "string"
 		},
 		"fom": {
-			"$ref": "../types/dato.json"
+			"$ref": "../../types/dato.json"
 		},
 		"tom": {
-			"$ref": "../types/dato.json"
+			"$ref": "../../types/dato.json"
 		},
 		"stillingsprosent": {
 			"type": "integer"

@@ -16,7 +16,7 @@
       "type": "string"
     },
     "organisasjon": {
-      "$ref": "../../types/organisasjon.json"
+      "$ref": "../../../types/organisasjon.json"
     },
     "belop": {
       "type": "integer"
@@ -38,15 +38,15 @@
       "type": "number"
     },
     "utbetalingsdato": {
-      "$ref": "../../types/dato.json"
+      "$ref": "../../../types/dato.json"
     },
     "periodeFom": {
       "description": "Ytelsen som gir utbetalingen gjelder fra og med denne datoen.",
-      "$ref": "../../types/dato.json"
+      "$ref": "../../../types/dato.json"
     },
     "periodeTom": {
       "description": "Ytelsen som gir utbetalingen gjelder til og med denne datoen.",
-      "$ref": "../../types/dato.json"
+      "$ref": "../../../types/dato.json"
     },
     "komponenter": {
       "description": "Liste over delutbetalinger hvis utbetalingen består av flere deler.",
