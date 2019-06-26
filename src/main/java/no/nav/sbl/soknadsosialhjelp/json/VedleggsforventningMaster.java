@@ -64,7 +64,7 @@ public class VedleggsforventningMaster {
         List<JsonVedlegg> paakrevdeVedlegg = new ArrayList<>();
         JsonArbeid arbeid = jsonInternalSoknad.getSoknad().getData().getArbeid();
         if (arbeid != null && arbeid.getForhold() != null && !arbeid.getForhold().isEmpty()) {
-            final List<JsonArbeidsforhold> alleArbeidsforhold = arbeid.getForhold();
+            List<JsonArbeidsforhold> alleArbeidsforhold = arbeid.getForhold();
             for (JsonArbeidsforhold arbeidsforhold : alleArbeidsforhold) {
                 String tom = arbeidsforhold.getTom();
                 if (tom == null || !isWithinOneMonthAheadInTime(tom)) {
