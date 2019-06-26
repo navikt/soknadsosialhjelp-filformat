@@ -31,9 +31,9 @@
 		},
 		"status": {
 			"type": "string",
-			"description": "Det kan legges til nye statustyper i enumen, men ingen gamle kan fjernes fra valideringsskjemaet (grunnet bakover kompatibilitet).",
+			"description": "Det kan legges til nye statustyper i enumen, men ingen gamle kan fjernes fra valideringsskjemaet (grunnet bakover kompatibilitet). Ved annulering vil saken vises, men vil aldri få vedtak. Ved feilregistrering vil saken forsvinne.",
 			"enum": [
-				"UNDER_BEHANDLING", "IKKE_INNSYN"
+				"UNDER_BEHANDLING", "IKKE_INNSYN", "ANNULERT", "FEILREGISTRERT"
 			]
 		}
 	},
