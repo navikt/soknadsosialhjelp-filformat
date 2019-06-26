@@ -468,10 +468,10 @@
         "mottaker": {
           "title": "Soknadsmottaker",
           "type": "object",
-          "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.internal.Soknadsmottaker",
+          "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.Soknadsmottaker",
           "properties": {
-            "organisasjonsnummer": {
-              "description": "Organisasjonsnummer for søknadsmottaker.",
+            "enhetsnummer": {
+              "description": "Enhetssnummer for søknadsmottaker.",
               "type": "string"
             },
             "navEnhetsnavn": {
@@ -493,7 +493,7 @@
         }
       },
       "required": [
-        "version", "data", "innsendingstidspunkt", "mottaker", "driftsinformasjon", "kompatibilitet"
+        "version", "data", "mottaker", "driftsinformasjon", "kompatibilitet"
       ]
     },
     "kompatibilitet": {

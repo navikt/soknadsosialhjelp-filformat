@@ -22,8 +22,8 @@
 	"properties": {
 		"navKontor": {
 			"type": "string",
-			"description": "En identifikator for NAV-kontor. I utgangspunktet støttes bare ett NAV-kontor per bydel/kommune, men dette kan endres etter bestilling. NAV-kontor i en kommune uten bydel identifiseres med kommunenummer (for eksempel \"0701\"). NAV-kontor i en kommune med bydel identifiseres med bydelsnummer (for eksempel \"030101\"). Se [bydelsinndeling](https://data.norge.no/data/statistisk-sentralbyr%C3%A5/bydelsinndeling).",
-			"pattern": "^[0-9][0-9][0-9][0-9]([0-9][0-9])?$"
+			"description": "En identifikator for NAV-kontor. Vi benytter NORG som har oversikt over alle NAV-kontor i Norge, for hver kommune og bydel.",
+			"pattern": "^[0-9][0-9][0-9][0-9]$"
 		}
 	},
 	"required": [

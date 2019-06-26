@@ -112,6 +112,9 @@
 								},
 								"forelopigSvar": {
 									"$ref": "digisos/soker/parts/hendelse/forelopigSvar.json"
+								},
+								"saksStatus": {
+									"$ref": "digisos/soker/parts/hendelse/saksStatus.json"
 								}
 							}
 						}
