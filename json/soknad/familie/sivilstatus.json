@@ -29,7 +29,7 @@
 					"$ref": "../parts/navn.json"
 				},
 				"fodselsdato": {
-					"$ref": "../types/dato.json"
+					"$ref": "../../types/dato.json"
 				},
 				"personIdentifikator": {
 					"$ref": "../parts/personIdentifikatorVerdi.json"
