@@ -67,10 +67,9 @@ public class VedleggsforventningMaster {
             List<JsonArbeidsforhold> alleArbeidsforhold = arbeid.getForhold();
             for (JsonArbeidsforhold arbeidsforhold : alleArbeidsforhold) {
                 String tom = arbeidsforhold.getTom();
-                boolean utbetalingerFeiletFraSkatt = "Kunne ikke hente skattbar inntekt fra Skatteetaten".equals(jsonInternalSoknad.getSoknad().getDriftsinformasjon());
-                if (tom == null || !isWithinOneMonthAheadInTime(tom) && utbetalingerFeiletFraSkatt) {
+                if (tom == null || !isWithinOneMonthAheadInTime(tom)) {
                     paakrevdeVedlegg.add(new JsonVedlegg().withType("lonnslipp").withTilleggsinfo("arbeid"));
-                } else if (isWithinOneMonthAheadInTime(tom)  && utbetalingerFeiletFraSkatt) {
+                } else if (isWithinOneMonthAheadInTime(tom)) {
                     paakrevdeVedlegg.add(new JsonVedlegg().withType("sluttoppgjor").withTilleggsinfo("arbeid"));
                 }
             }
