@@ -34,7 +34,7 @@
 					"type": "string",
 					"description": "Utfallet av vedtaket",
 					"enum": [
-						"INNVILGET", "DELVIS_INNVILGET", "AVSLATT", "AVVIST"
+						"INNVILGET", "DELVIS_INNVILGET", "AVSLATT", "AVVIST", "OMGJORT"
 					]
 				}
 			}
