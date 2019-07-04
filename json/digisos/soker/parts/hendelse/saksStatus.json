@@ -33,7 +33,7 @@
 			"type": "string",
 			"description": "Det kan legges til nye statustyper i enumen, men ingen gamle kan fjernes fra valideringsskjemaet (grunnet bakoverkompatibilitet). Saker uten innsyn blir behandlet, men søkeren får ikke innsyn i saken (feks. når saken ikke gjelder økonomisk sosialhjelp), Ved feilregistrering vil ikke saken vises.",
 			"enum": [
-				"UNDER_BEHANDLING", "IKKE_INNSYN", "FEILREGISTRERT"
+				"UNDER_BEHANDLING", "IKKE_INNSYN", "BEHANDLES_IKKE", "FEILREGISTRERT"
 			]
 		}
 	},
