@@ -14,7 +14,6 @@ public class FasitCaseTest {
 
     @Test
     public void lagFasitJson() throws JsonProcessingException {
-        System.out.println("test");
         ObjectMapper mapper = JsonSosialhjelpObjectMapper.createObjectMapper();
         JsonDigisosSoker jsonDigisosSoker = new JsonDigisosSoker();
         jsonDigisosSoker.setHendelser(asList(
