@@ -33,7 +33,7 @@
 			"type": "string",
 			"description": "Status for utbetalingen",
 			"enum": [
-				"PLANLAGT_UTBETALING", "UTBETALT", "STOPPET", "ANNULERT"
+				"PLANLAGT_UTBETALING", "UTBETALT", "STOPPET", "ANNULLERT"
 			]
 		},
 		"belop": {

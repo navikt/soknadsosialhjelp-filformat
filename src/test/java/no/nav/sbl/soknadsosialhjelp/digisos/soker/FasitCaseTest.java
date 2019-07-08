@@ -77,7 +77,7 @@ public class FasitCaseTest {
                         .withUtbetalingsreferanse("Betaling 7")
                         .withBeskrivelse("Basis August")
                         .withUtbetalingsdato("2019-08-01")
-                        .withStatus(JsonUtbetaling.Status.ANNULERT)
+                        .withStatus(JsonUtbetaling.Status.ANNULLERT)
                         .withType(JsonHendelse.Type.UTBETALING),
 
                 new JsonSaksStatus()
@@ -97,7 +97,7 @@ public class FasitCaseTest {
                         .withUtbetalingsreferanse("Betaling 8")
                         .withBeskrivelse("Basis August")
                         .withUtbetalingsdato("2019-08-01")
-                        .withStatus(JsonUtbetaling.Status.ANNULERT)
+                        .withStatus(JsonUtbetaling.Status.ANNULLERT)
                         .withType(JsonHendelse.Type.UTBETALING),
                 new JsonUtbetaling()
                         .withSaksreferanse("SAK3")
