@@ -41,6 +41,7 @@
 			"description": "Utbetalingsbeløp i kr"
 		},
 		"beskrivelse": {
+			"type": "string",
 			"description": "Stønaden utbetalingen gjelder for (livsopphold, strøm etc.)"
 		},
 		"posteringsdato": {
