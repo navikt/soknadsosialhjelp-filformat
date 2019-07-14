@@ -63,18 +63,16 @@ public class VedleggsforventningMaster {
     public static List<JsonVedlegg> finnPaakrevdeVedleggForArbeid(JsonInternalSoknad jsonInternalSoknad) {
         List<JsonVedlegg> paakrevdeVedlegg = new ArrayList<>();
         JsonArbeid arbeid = jsonInternalSoknad.getSoknad().getData().getArbeid();
-        if (arbeid != null && arbeid.getForhold() != null && !arbeid.getForhold().isEmpty()) {
+        boolean utbetalingerFeiletFraSkatt = jsonInternalSoknad.getSoknad().getDriftsinformasjon().toLowerCase()
+                .contains("Kunne ikke hente skattbar inntekt fra Skatteetaten".toLowerCase());
+        if (utbetalingerFeiletFraSkatt && arbeid != null && arbeid.getForhold() != null && !arbeid.getForhold().isEmpty()) {
             List<JsonArbeidsforhold> alleArbeidsforhold = arbeid.getForhold();
             for (JsonArbeidsforhold arbeidsforhold : alleArbeidsforhold) {
                 String tom = arbeidsforhold.getTom();
-                boolean utbetalingerFeiletFraSkatt = jsonInternalSoknad.getSoknad().getDriftsinformasjon().toLowerCase()
-                        .contains("Kunne ikke hente skattbar inntekt fra Skatteetaten".toLowerCase());
-                if (utbetalingerFeiletFraSkatt) {
-                    if (tom == null || !isWithinOneMonthAheadInTime(tom)) {
-                        paakrevdeVedlegg.add(new JsonVedlegg().withType("lonnslipp").withTilleggsinfo("arbeid"));
-                    } else if (isWithinOneMonthAheadInTime(tom)) {
-                        paakrevdeVedlegg.add(new JsonVedlegg().withType("sluttoppgjor").withTilleggsinfo("arbeid"));
-                    }
+                if (tom == null || !isWithinOneMonthAheadInTime(tom)) {
+                    paakrevdeVedlegg.add(new JsonVedlegg().withType("lonnslipp").withTilleggsinfo("arbeid"));
+                } else if (isWithinOneMonthAheadInTime(tom)) {
+                    paakrevdeVedlegg.add(new JsonVedlegg().withType("sluttoppgjor").withTilleggsinfo("arbeid"));
                 }
             }
         }
