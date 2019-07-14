@@ -37,7 +37,8 @@ public class VedleggsforventningMasterTest {
     public void finnPaakrevdeVedleggLeggerKunTilSkattemeldingHvisAltAnnetMangler() {
         JsonInternalSoknad internalSoknad = new JsonInternalSoknad()
                 .withSoknad(new JsonSoknad()
-                        .withData(new JsonData()));
+                        .withData(new JsonData())
+                        .withDriftsinformasjon(""));
 
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedlegg(internalSoknad);
 
