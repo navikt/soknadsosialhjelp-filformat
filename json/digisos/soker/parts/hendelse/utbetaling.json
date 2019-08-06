@@ -44,9 +44,13 @@
 			"type": "string",
 			"description": "Stønaden utbetalingen gjelder for (livsopphold, strøm etc.)"
 		},
-		"posteringsdato": {
-			"description": "Når posteringen ble gjort",
+		"forfallsdato": {
+			"description": "Når betalingen er lagt til forfall",
 			"$ref": "../../../../types/dato.json"
+		},
+		"stonadstype": {
+			"type": "string",
+			"description": "Grupperingsnøkkel"
 		},
 		"utbetalingsdato": {
 			"description": "Når utbetalingen kom inn på konto",
@@ -63,6 +67,10 @@
 		"mottaker": {
 			"type": "string",
 			"description": "Mottaker (søker eller annen mottaker)"
+		},
+		"utbetalingsform": {
+			"type": "string",
+			"description": "Utbetalingsform, eks kontooverføring, kontantkort"
 		}
 	},
 	"required": [
