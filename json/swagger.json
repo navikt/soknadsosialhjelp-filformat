@@ -122,6 +122,9 @@
 								},
 								"vilkar": {
 									"$ref": "digisos/soker/parts/hendelse/vilkar.json"
+								},
+								"rammevedtak": {
+									"$ref": "digisos/soker/parts/hendelse/rammevedtak.json"
 								}
 							}
 						}
