@@ -29,6 +29,10 @@
 			"type": "string",
 			"description": "Referanse utbetalingen skal tilknyttes til (samme som i vedtak fattet og saksstatus)"
 		},
+		"rammevedtaksreferanse": {
+			"type": "string",
+			"description": "Settes dersom utbetalingen er en del av et rammevedtak"
+		},
 		"status": {
 			"type": "string",
 			"description": "Status for utbetalingen",
