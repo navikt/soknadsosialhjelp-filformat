@@ -21,7 +21,7 @@
 		}
 	],
 	"properties": {
-		"referanse": {
+		"saksreferanse": {
 			"type": "string",
 			"description": "Referanse vedtaket skal tilknyttes til"
 		},
@@ -62,6 +62,6 @@
 		}
 	},
 	"required": [
-		"vedtaksfil", "vedlegg"
+		"vedtaksfil", "vedlegg", "saksreferanse"
 	]
 }
