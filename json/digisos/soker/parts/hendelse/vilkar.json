@@ -35,8 +35,8 @@
 			"type": "string",
 			"description": "Status for vilkåret",
 			"enum": [
-				"FULLFORT",
-				"IKKE_FULLFORT"
+				"OPPFYLT",
+				"IKKE_OPPFYLT"
 			]
 		}
 	}
