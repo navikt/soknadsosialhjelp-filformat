@@ -147,6 +147,7 @@
 			"utbetalingsreferanse": [
 				"UTBETALINGNR1SAK2"
 			],
+			"status": "OPPFYLT",
 			"beskrivelse": "Gå en tur hver dag"
 		},
 		{
