@@ -51,6 +51,10 @@
 		"enhetsnummer": "",
 		"navEnhetsnavn": ""
 	},
-	"driftsinformasjon": "",
+	"driftsinformasjon": {
+		"utbetalingerFraNavFeilet": false,
+		"inntektFraSkatteetatenFeilet": false,
+		"stotteFraHusbankenFeilet": false
+	},
 	"kompatibilitet": []
 }

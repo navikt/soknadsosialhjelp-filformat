@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+
+  "title": "Forvaltningsbrevet som søker skal ha mulighet til å se. Det er ingen garanti for at filen blir vist til søker. Filformatet skal være PDF.",
+  "javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.Forvaltningsbrev",
+  "type": "object",
+
+  "properties": {
+    "referanse": {
+      "$ref": "filreferanse.json"
+    }
+  },
+  "required": [
+    "referanse"
+  ]
+}

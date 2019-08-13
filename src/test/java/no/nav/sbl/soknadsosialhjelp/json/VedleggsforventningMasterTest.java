@@ -1,6 +1,7 @@
 package no.nav.sbl.soknadsosialhjelp.json;
 
 import no.nav.sbl.soknadsosialhjelp.soknad.JsonData;
+import no.nav.sbl.soknadsosialhjelp.soknad.JsonDriftsinformasjon;
 import no.nav.sbl.soknadsosialhjelp.soknad.JsonInternalSoknad;
 import no.nav.sbl.soknadsosialhjelp.soknad.JsonSoknad;
 import no.nav.sbl.soknadsosialhjelp.soknad.arbeid.JsonArbeidsforhold;
@@ -37,7 +38,11 @@ public class VedleggsforventningMasterTest {
     public void finnPaakrevdeVedleggLeggerKunTilSkattemeldingHvisAltAnnetMangler() {
         JsonInternalSoknad internalSoknad = new JsonInternalSoknad()
                 .withSoknad(new JsonSoknad()
-                        .withData(new JsonData()));
+                        .withData(new JsonData())
+                        .withDriftsinformasjon(new JsonDriftsinformasjon()
+                                .withUtbetalingerFraNavFeilet(false)
+                                .withInntektFraSkatteetatenFeilet(false)
+                                .withStotteFraHusbankenFeilet(false)));
 
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedlegg(internalSoknad);
 

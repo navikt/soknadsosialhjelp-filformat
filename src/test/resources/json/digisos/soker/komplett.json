@@ -147,7 +147,18 @@
 			"utbetalingsreferanse": [
 				"UTBETALINGNR1SAK2"
 			],
+			"status": "OPPFYLT",
 			"beskrivelse": "Gå en tur hver dag"
+		},
+		{
+			"type": "rammevedtak",
+			"saksreferanse": "SAK2",
+			"hendelsestidspunkt": "2018-10-12T13:37:00.134Z",
+			"belop": 6000.00,
+			"beskrivelse": "Strøm for en periode",
+			"fom": "2018-10-11",
+			"tom": "2018-10-13",
+			"rammevedtaksreferanse": "rammevedtaksreferanse"
 		},
 		{
 			"type": "utbetaling",
@@ -156,12 +167,14 @@
 			"hendelsestidspunkt": "2018-10-12T13:37:00.134Z",
 			"belop": 5000.00,
 			"beskrivelse": "strøm",
-			"posteringsdato": "2018-10-11",
+			"forfallsdato": "2018-10-11",
 			"fom": "2018-10-11",
 			"tom": "2018-10-13",
 			"mottaker": "Utleier",
 			"utbetalingsform": "kontooverføring",
-			"status": "PLANLAGT_UTBETALING"
+			"status": "PLANLAGT_UTBETALING",
+			"stonadstype": "Strømregninger",
+			"rammevedtaksreferanse": "rammevedtaksreferanse"
 		}
 	]
 }
