@@ -79,14 +79,6 @@ public class VedleggsforventningMaster {
                 .collect(Collectors.toList());
     }
 
-    static List<JsonVedlegg> finnPaakrevdeVedleggForUtdanning(JsonUtdanning utdanning) {
-        List<JsonVedlegg> paakrevdeVedlegg = new ArrayList<>();
-        if (utdanning != null && utdanning.getErStudent() != null && utdanning.getErStudent()) {
-            paakrevdeVedlegg.add(new JsonVedlegg().withType("student").withTilleggsinfo("vedtak"));
-        }
-        return paakrevdeVedlegg;
-    }
-
     static List<JsonVedlegg> finnPaakrevdeVedleggForFamilie(JsonFamilie familie) {
         List<JsonVedlegg> paakrevdeVedlegg = new ArrayList<>();
         if (familie != null && familie.getForsorgerplikt() != null) {
