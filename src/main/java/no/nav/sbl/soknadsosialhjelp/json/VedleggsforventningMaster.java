@@ -39,7 +39,6 @@ public class VedleggsforventningMaster {
 
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForPersonalia(data.getPersonalia()));
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForArbeid(internalSoknad));
-        paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForUtdanning(data.getUtdanning()));
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForFamilie(data.getFamilie()));
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForBosituasjon(data.getBosituasjon()));
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForOkonomi(data.getOkonomi()));
@@ -78,14 +77,6 @@ public class VedleggsforventningMaster {
         return paakrevdeVedlegg.stream()
                 .distinct()
                 .collect(Collectors.toList());
-    }
-
-    static List<JsonVedlegg> finnPaakrevdeVedleggForUtdanning(JsonUtdanning utdanning) {
-        List<JsonVedlegg> paakrevdeVedlegg = new ArrayList<>();
-        if (utdanning != null && utdanning.getErStudent() != null && utdanning.getErStudent()) {
-            paakrevdeVedlegg.add(new JsonVedlegg().withType("student").withTilleggsinfo("vedtak"));
-        }
-        return paakrevdeVedlegg;
     }
 
     static List<JsonVedlegg> finnPaakrevdeVedleggForFamilie(JsonFamilie familie) {
@@ -213,6 +204,8 @@ public class VedleggsforventningMaster {
             }
             if ("bostotte".equals(inntekt.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("bostotte").withTilleggsinfo("vedtak"));
+            } else if ("studielanOgStipend".equals(inntekt.getType())) {
+                paakrevdeVedlegg.add(new JsonVedlegg().withType("student").withTilleggsinfo("vedtak"));
             }
         }
         return paakrevdeVedlegg.stream()
