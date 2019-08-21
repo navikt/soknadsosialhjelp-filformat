@@ -65,7 +65,6 @@
 					"arbeidsgivernavn": "Firmaet AS",
 					"fom": "2018-01-01",
 					"stillingsprosent": 0,
-					"stillingstype": "variabel",
 					"overstyrtAvBruker": false
 				},
 				{
@@ -74,7 +73,6 @@
 					"fom": "2010-10-01",
 					"tom": "2017-13-01",
 					"stillingsprosent": 50,
-					"stillingstype": "fastOgVariabel",
 					"overstyrtAvBruker": false
 				}
 		    ],
