@@ -249,7 +249,7 @@
 	              		    "$ref": "parts/kilde.json"
 			    		  },
 			    		  "type": {
-			    		  	"description": "Kodeverdi som angir hva slags type bekreftelse det er. Dette feltet kan for eksempel brukes til å filtrere bort bekreftelser man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"bostotte\", \"verdi\", \"sparing\", \"utbetaling\", \"boutgifter\" og \"barneutgifter\".",
+			    		  	"description": "Kodeverdi som angir hva slags type bekreftelse det er. Dette feltet kan for eksempel brukes til å filtrere bort bekreftelser man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"studielanOgStipend\", \"bostotte\", \"verdi\", \"sparing\", \"utbetaling\", \"boutgifter\" og \"barneutgifter\".",
 			    		    "type": "string"
 			    		  },
 			    		  "tittel": {
