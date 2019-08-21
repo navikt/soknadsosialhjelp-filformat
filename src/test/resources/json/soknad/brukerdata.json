@@ -63,7 +63,8 @@
 		"utdanning": {
 			"kilde": "bruker",
 			"erStudent": true,
-			"studentgrad": "heltid"
+			"studentgrad": "heltid",
+			"mottarStudielan": true
 		},
 		"familie": {
 			"sivilstatus": {

@@ -92,6 +92,10 @@
 			      "description": "Hvis \"studentgrad\" mangler betyr dette at søker ikke har svart på spørsmålet.",
 			      "type": "string",
 			      "enum": ["heltid", "deltid"]
+			    },
+			    "mottarStudielan": {
+				  "description": "Hvis \"mottarStudielan\" mangler betyr dette at søker ikke har svart på spørsmålet.",
+				  "type": "boolean"
 			    }
 			  },
 			  "required": ["kilde"]
