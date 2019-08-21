@@ -4,7 +4,6 @@ import no.nav.sbl.soknadsosialhjelp.soknad.JsonData;
 import no.nav.sbl.soknadsosialhjelp.soknad.JsonDriftsinformasjon;
 import no.nav.sbl.soknadsosialhjelp.soknad.JsonInternalSoknad;
 import no.nav.sbl.soknadsosialhjelp.soknad.JsonSoknad;
-import no.nav.sbl.soknadsosialhjelp.soknad.arbeid.JsonArbeidsforhold;
 import no.nav.sbl.soknadsosialhjelp.soknad.bosituasjon.JsonBosituasjon;
 import no.nav.sbl.soknadsosialhjelp.soknad.familie.*;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.JsonOkonomi;
@@ -18,16 +17,12 @@ import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.JsonOkonomioversiktU
 import no.nav.sbl.soknadsosialhjelp.soknad.personalia.JsonNordiskBorger;
 import no.nav.sbl.soknadsosialhjelp.soknad.personalia.JsonPersonalia;
 import no.nav.sbl.soknadsosialhjelp.soknad.personalia.JsonStatsborgerskap;
-import no.nav.sbl.soknadsosialhjelp.soknad.utdanning.JsonUtdanning;
 import no.nav.sbl.soknadsosialhjelp.vedlegg.JsonVedlegg;
 import org.junit.Test;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.time.LocalDate.now;
 import static no.nav.sbl.soknadsosialhjelp.json.VedleggsforventningMaster.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -77,17 +72,6 @@ public class VedleggsforventningMasterTest {
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForPersonalia(personalia);
 
         assertThat(paakrevdeVedlegg.size(), is(0));
-    }
-
-    @Test
-    public void finnPaakrevdeVedleggForUtdanningKreverVedleggHvisStudent() {
-        JsonUtdanning utdanning = new JsonUtdanning().withErStudent(true);
-
-        List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForUtdanning(utdanning);
-
-        JsonVedlegg vedlegg = paakrevdeVedlegg.get(0);
-        assertThat(vedlegg.getType(), is("student"));
-        assertThat(vedlegg.getTilleggsinfo(), is("vedtak"));
     }
 
     @Test
@@ -185,7 +169,7 @@ public class VedleggsforventningMasterTest {
 
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForOkonomi(okonomi);
 
-        assertThat(paakrevdeVedlegg.size(), is(7));
+        assertThat(paakrevdeVedlegg.size(), is(8));
         assertThat(paakrevdeVedlegg.get(0).getType(), is("salgsoppgjor"));
         assertThat(paakrevdeVedlegg.get(0).getTilleggsinfo(), is("eiendom"));
         assertThat(paakrevdeVedlegg.get(1).getType(), is("faktura"));
@@ -194,26 +178,21 @@ public class VedleggsforventningMasterTest {
         assertThat(paakrevdeVedlegg.get(2).getTilleggsinfo(), is("oppvarming"));
         assertThat(paakrevdeVedlegg.get(3).getType(), is("bostotte"));
         assertThat(paakrevdeVedlegg.get(3).getTilleggsinfo(), is("vedtak"));
-        assertThat(paakrevdeVedlegg.get(4).getType(), is("nedbetalingsplan"));
-        assertThat(paakrevdeVedlegg.get(4).getTilleggsinfo(), is("avdraglaan"));
-        assertThat(paakrevdeVedlegg.get(5).getType(), is("faktura"));
-        assertThat(paakrevdeVedlegg.get(5).getTilleggsinfo(), is("barnehage"));
-        assertThat(paakrevdeVedlegg.get(6).getType(), is("kontooversikt"));
-        assertThat(paakrevdeVedlegg.get(6).getTilleggsinfo(), is("brukskonto"));
-    }
-
-    private JsonArbeidsforhold opprettArbeidsforholdMedTom() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate tom = now().plusDays(7);
-        return new JsonArbeidsforhold()
-                .withFom("2005-05-01")
-                .withTom(tom.format(formatter));
+        assertThat(paakrevdeVedlegg.get(4).getType(), is("student"));
+        assertThat(paakrevdeVedlegg.get(4).getTilleggsinfo(), is("vedtak"));
+        assertThat(paakrevdeVedlegg.get(5).getType(), is("nedbetalingsplan"));
+        assertThat(paakrevdeVedlegg.get(5).getTilleggsinfo(), is("avdraglaan"));
+        assertThat(paakrevdeVedlegg.get(6).getType(), is("faktura"));
+        assertThat(paakrevdeVedlegg.get(6).getTilleggsinfo(), is("barnehage"));
+        assertThat(paakrevdeVedlegg.get(7).getType(), is("kontooversikt"));
+        assertThat(paakrevdeVedlegg.get(7).getTilleggsinfo(), is("brukskonto"));
     }
 
     private List<JsonOkonomioversiktInntekt> lagInntekter() {
         List<JsonOkonomioversiktInntekt> inntekter = new ArrayList<>();
         inntekter.add(new JsonOkonomioversiktInntekt().withType("bostotte"));
         inntekter.add(new JsonOkonomioversiktInntekt().withType("bostotte"));
+        inntekter.add(new JsonOkonomioversiktInntekt().withType("studielanOgStipend"));
         return inntekter;
     }
 
