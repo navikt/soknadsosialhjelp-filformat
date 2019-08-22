@@ -404,11 +404,7 @@
 		"enhetsnummer": "1161",
 		"navEnhetsnavn": "Eiganes og Tasta, Stavanger kommune"
 	},
-	"driftsinformasjon": {
-		"utbetalingerFraNavFeilet": false,
-		"inntektFraSkatteetatenFeilet": false,
-		"stotteFraHusbankenFeilet": false
-	},
+	"driftsinformasjon": "Informasjon om arbeidsforhold er fylt ut manuelt av bruker grunnet tekniske problemer med å få data fra AA-registeret.",
 	"kompatibilitet": [
 		{
 			"minVersion": "1.0.0",
