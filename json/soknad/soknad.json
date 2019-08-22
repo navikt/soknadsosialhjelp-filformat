@@ -497,10 +497,7 @@
 			  "description": "Hvis økonomisk støtte fra Husbanken ikke kunne hentes er denne true.",
 			  "type": "boolean"
 		    }
-		  },
-          "required": [
-            "utbetalingerFraNavFeilet", "inntektFraSkatteetatenFeilet", "stotteFraHusbankenFeilet"
-          ]
+		  }
         },
         "kompatibilitet": {
           "title": "Liste med kompatibilitetstekster",
