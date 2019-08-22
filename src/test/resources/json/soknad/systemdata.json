@@ -264,9 +264,7 @@
 		"navEnhetsnavn": "Eiganes og Tasta, Stavanger kommune"
 	},
 	"driftsinformasjon": {
-		"utbetalingerFraNavFeilet": false,
-		"inntektFraSkatteetatenFeilet": true,
-		"stotteFraHusbankenFeilet": false
+		"inntektFraSkatteetatenFeilet": true
 	},
 	"kompatibilitet": []
 }
