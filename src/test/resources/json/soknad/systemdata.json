@@ -263,8 +263,6 @@
 		"enhetsnummer": "1161",
 		"navEnhetsnavn": "Eiganes og Tasta, Stavanger kommune"
 	},
-	"driftsinformasjon": {
-		"inntektFraSkatteetatenFeilet": true
-	},
+	"driftsinformasjon": "",
 	"kompatibilitet": []
 }

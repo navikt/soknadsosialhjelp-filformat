@@ -481,23 +481,7 @@
           }
         },
         "driftsinformasjon": {
-		  "title": "Inneholder informasjon om status for henting av opplysninger fra andre tjenester.",
-		  "type": "object",
-		  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.Driftsinformasjon",
-		  "properties": {
-		    "utbetalingerFraNavFeilet": {
-			  "description": "Hvis utbetalinger fra NAV ikke kunne hentes er denne true.",
-			  "type": "boolean"
-		    },
-		    "inntektFraSkatteetatenFeilet": {
-			  "description": "Hvis skattbar inntekt hos skatteetaten ikke kunne hentes er denne true.",
-			  "type": "boolean"
-		    },
-		    "stotteFraHusbankenFeilet": {
-			  "description": "Hvis økonomisk støtte fra Husbanken ikke kunne hentes er denne true.",
-			  "type": "boolean"
-		    }
-		  }
+          "type": "string"
         },
         "kompatibilitet": {
           "title": "Liste med kompatibilitetstekster",
