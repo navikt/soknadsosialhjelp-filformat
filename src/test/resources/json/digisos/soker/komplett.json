@@ -171,7 +171,6 @@
 			"fom": "2018-10-11",
 			"tom": "2018-10-13",
 			"annenMottaker": true,
-			"mottakertekst": "Betales til utleier",
 			"utbetalingsform": "kontooverføring",
 			"status": "PLANLAGT_UTBETALING",
 			"stonadstype": "Strømregninger",
