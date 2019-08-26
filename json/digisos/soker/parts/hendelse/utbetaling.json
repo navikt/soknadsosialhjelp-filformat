@@ -72,10 +72,6 @@
 			"type": "boolean",
 			"description": "Om en annen mottaker enn brukeren skal ha pengene"
 		},
-		"mottakertekst": {
-			"type": "string",
-			"description": "Visningstekst til bruker"
-		},
 		"utbetalingsform": {
 			"type": "string",
 			"description": "Utbetalingsform, eks kontooverføring, kontantkort"
