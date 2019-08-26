@@ -70,7 +70,12 @@
 		},
 		"mottaker": {
 			"type": "string",
-			"description": "Mottaker (søker eller annen mottaker)"
+			"description": "Mottaker (søker eller annen mottaker), fnummer, orgnummer, eller navn"
+		},
+		"kontonummer": {
+			"type": "string",
+			"description": "Mottakers kontonummer, bank i Norge, blir bare vist dersom mottaker er brukeren",
+			"pattern": "^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$"
 		},
 		"utbetalingsform": {
 			"type": "string",
