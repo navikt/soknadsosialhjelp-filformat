@@ -172,7 +172,7 @@
 			"tom": "2018-10-13",
 			"mottaker": "Utleier",
 			"kontonummer": "76940512057",
-			"utbetalingsform": "kontooverføring",
+			"utbetalingsmetode": "kontooverføring",
 			"status": "PLANLAGT_UTBETALING",
 			"stonadstype": "Strømregninger",
 			"rammevedtaksreferanse": "rammevedtaksreferanse"
