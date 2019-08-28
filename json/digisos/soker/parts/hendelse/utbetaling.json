@@ -77,9 +77,9 @@
 			"description": "Mottakers kontonummer, bank i Norge, blir bare vist dersom mottaker er brukeren",
 			"pattern": "^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$"
 		},
-		"utbetalingsform": {
+		"utbetalingsmetode": {
 			"type": "string",
-			"description": "Utbetalingsform, eks kontooverføring, kontantkort"
+			"description": "Utbetalingsmetode, eks kontooverføring, kontantkort"
 		}
 	},
 	"required": [
