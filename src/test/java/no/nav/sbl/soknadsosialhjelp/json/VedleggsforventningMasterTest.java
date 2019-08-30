@@ -33,7 +33,10 @@ public class VedleggsforventningMasterTest {
         JsonInternalSoknad internalSoknad = new JsonInternalSoknad()
                 .withSoknad(new JsonSoknad()
                         .withData(new JsonData())
-                        .withDriftsinformasjon(""));
+                        .withDriftsinformasjon(new JsonDriftsinformasjon()
+                                .withUtbetalingerFraNavFeilet(false)
+                                .withInntektFraSkatteetatenFeilet(false)
+                                .withStotteFraHusbankenFeilet(false)));
 
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedlegg(internalSoknad);
 
