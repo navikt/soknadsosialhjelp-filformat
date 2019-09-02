@@ -62,8 +62,7 @@ public class VedleggsforventningMaster {
     public static List<JsonVedlegg> finnPaakrevdeVedleggForArbeid(JsonInternalSoknad jsonInternalSoknad) {
         List<JsonVedlegg> paakrevdeVedlegg = new ArrayList<>();
         JsonArbeid arbeid = jsonInternalSoknad.getSoknad().getData().getArbeid();
-        boolean utbetalingerFeiletFraSkatt = jsonInternalSoknad.getSoknad().getDriftsinformasjon().toLowerCase()
-                .contains("Kunne ikke hente skattbar inntekt fra Skatteetaten".toLowerCase());
+        boolean utbetalingerFeiletFraSkatt = jsonInternalSoknad.getSoknad().getDriftsinformasjon().getInntektFraSkatteetatenFeilet();
         if (utbetalingerFeiletFraSkatt && arbeid != null && arbeid.getForhold() != null && !arbeid.getForhold().isEmpty()) {
             List<JsonArbeidsforhold> alleArbeidsforhold = arbeid.getForhold();
             for (JsonArbeidsforhold arbeidsforhold : alleArbeidsforhold) {
