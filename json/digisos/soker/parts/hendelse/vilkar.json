@@ -20,6 +20,13 @@
 		}
 	],
 	"properties": {
+		"vilkarreferanse": {
+			"type": "string",
+			"description": "referansen til vilkåret",
+			"items": {
+				"type": "string"
+			}
+		},
 		"utbetalingsreferanse": {
 			"type": "array",
 			"description": "Hvilke utbetalinger vilkåret er knyttet til",
@@ -39,5 +46,8 @@
 				"IKKE_OPPFYLT"
 			]
 		}
-	}
+	},
+	"required": [
+		"vilkarreferanse"
+	]
 }
