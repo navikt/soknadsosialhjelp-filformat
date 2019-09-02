@@ -143,6 +143,7 @@
 		},
 		{
 			"type": "vilkar",
+			"vilkarreferanse": "vilkar1",
 			"hendelsestidspunkt": "2018-10-12T13:37:00.134Z",
 			"utbetalingsreferanse": [
 				"UTBETALINGNR1SAK2"
