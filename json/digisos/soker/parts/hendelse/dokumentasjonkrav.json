@@ -1,0 +1,53 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+	"title": "Dokumentasjonkrav",
+	"description": "Dokumentasjonkrav",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.Dokumentasjonkrav",
+	"type": "object",
+	"extends": {
+		"ONLY_CODEGEN$ref": "../hendelse.json"
+	},
+	"allOf": [
+		{
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": [
+						"dokumentasjonkrav"
+					]
+				}
+			}
+		}
+	],
+	"properties": {
+		"dokumentasjonkravreferanse": {
+			"type": "string",
+			"description": "referansen til dokumentasjonkravet",
+			"items": {
+				"type": "string"
+			}
+		},
+		"utbetalingsreferanse": {
+			"type": "array",
+			"description": "Hvilke utbetalinger dokumentasjonkravet er knyttet til",
+			"items": {
+				"type": "string"
+			}
+		},
+		"beskrivelse": {
+			"type": "string",
+			"description": "Hva som må gjøres"
+		},
+		"status": {
+			"type": "string",
+			"description": "Status for dokumentasjonkravet",
+			"enum": [
+				"OPPFYLT",
+				"IKKE_OPPFYLT"
+			]
+		}
+	},
+	"required": [
+		"dokumentasjonkravreferanse"
+	]
+}

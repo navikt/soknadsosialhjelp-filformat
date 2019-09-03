@@ -152,6 +152,16 @@
 			"beskrivelse": "Gå en tur hver dag"
 		},
 		{
+			"type": "dokumentasjonkrav",
+			"dokumentasjonkravreferanse": "dokumentasjonkrav1",
+			"hendelsestidspunkt": "2018-10-12T13:37:00.134Z",
+			"utbetalingsreferanse": [
+				"UTBETALINGNR1SAK2"
+			],
+			"status": "OPPFYLT",
+			"beskrivelse": "Levere kvittering for strømregning"
+		},
+		{
 			"type": "rammevedtak",
 			"saksreferanse": "SAK2",
 			"hendelsestidspunkt": "2018-10-12T13:37:00.134Z",
