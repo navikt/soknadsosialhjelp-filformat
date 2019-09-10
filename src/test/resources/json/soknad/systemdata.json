@@ -260,6 +260,7 @@
 	},
 	"innsendingstidspunkt": "2018-10-04T13:37:00.134Z",
 	"mottaker": {
+		"kommunenummer": "1161",
 		"enhetsnummer": "1161",
 		"navEnhetsnavn": "Eiganes og Tasta, Stavanger kommune"
 	},
