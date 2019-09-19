@@ -68,6 +68,9 @@
 			"description": "Utbetalingsperiode (Til)",
 			"$ref": "../../../../types/dato.json"
 		},
+		"annenMottaker": {
+			"type": "boolean",
+			"description": "Om en annen mottaker enn brukeren skal ha pengene"
 		"mottaker": {
 			"type": "string",
 			"description": "Mottaker (søker eller annen mottaker), fnummer, orgnummer, eller navn"
