@@ -336,8 +336,14 @@
 			    		  "kilde", "type", "tittel", "overstyrtAvBruker"
 			    		]
 			          }
-			        }
-			      },
+			        },
+					"sak": {
+						  "type": "array",
+						  "items": {
+							  "$ref": "okonomi/opplysninger/sak.json"
+						  }
+					  }
+				  },
 			      "required": [
 			      	"utbetaling", "utgift"
 			      ]
