@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "type": "object",
+  "title": "Saker som bruker har",
+  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.OkonomiOpplysningUtbetaling",
+  "properties": {
+    "kilde": {
+      "$ref": "../../parts/kilde.json"
+    },
+    "type": {
+      "description": "Kodeverdi som angir hva slags type utbetaling det er. Dette feltet kan for eksempel brukes til å filtrere bort utbetalinger man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"utbytte\", \"salg\", \"forsikring\" og \"annen\".",
+      "type": "string"
+    },
+    "dato": {
+      "$ref": "../../../types/dato.json"
+    },
+    "beskrivelse": {
+      "description": "En beskrivelse av status.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "kilde", "type", "tittel", "overstyrtAvBruker"
+  ]
+}
