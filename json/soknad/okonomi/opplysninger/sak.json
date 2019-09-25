@@ -14,12 +14,16 @@
     "dato": {
       "$ref": "../../../types/dato.json"
     },
+    "status": {
+      "description": "Saksstatus. Eksempler: \"UNDER_BEHANDLING\", \"VEDTATT\"",
+      "type": "string"
+    },
     "beskrivelse": {
-      "description": "En beskrivelse av status.",
+      "description": "En tilleggsbeskrivelse til status.",
       "type": "string"
     }
   },
   "required": [
-    "kilde", "type", "dato", "beskrivelse"
+    "kilde", "type", "dato", "status"
   ]
 }
