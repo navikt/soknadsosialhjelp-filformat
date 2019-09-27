@@ -4,6 +4,8 @@ public class SoknadJsonTyper {
     public static final String BARNEBIDRAG = "barnebidrag";
     public static final String BOSTOTTE = "bostotte";
     public static final String STUDIELAN = "studielanOgStipend";
+    public static final String JOBB = "jobb";
+    public static final String SLUTTOPPGJOER = "sluttoppgjoer";
     public static final String BEKREFTELSE_SPARING = "sparing";
     public static final String BEKREFTELSE_UTBETALING = "utbetaling";
     public static final String BEKREFTELSE_VERDI = "verdi";
