@@ -17,7 +17,6 @@ import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.JsonOkonomioversiktF
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.JsonOkonomioversiktInntekt;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.JsonOkonomioversiktUtgift;
 import no.nav.sbl.soknadsosialhjelp.soknad.personalia.JsonPersonalia;
-import no.nav.sbl.soknadsosialhjelp.soknad.utdanning.JsonUtdanning;
 import no.nav.sbl.soknadsosialhjelp.vedlegg.JsonVedlegg;
 
 import java.time.LocalDate;
@@ -27,6 +26,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static java.time.LocalDate.now;
+import static no.nav.sbl.soknadsosialhjelp.json.SoknadJsonTyper.*;
 
 public class VedleggsforventningMaster {
 
@@ -152,13 +152,13 @@ public class VedleggsforventningMaster {
             if (utbetaling == null) {
                 continue;
             }
-            if ("utbytte".equals(utbetaling.getType())) {
+            if (UTBETALING_UTBYTTE.equals(utbetaling.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("dokumentasjon").withTilleggsinfo("utbytte"));
-            } else if ("salg".equals(utbetaling.getType())) {
+            } else if (UTBETALING_SALG.equals(utbetaling.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("salgsoppgjor").withTilleggsinfo("eiendom"));
-            } else if ("forsikring".equals(utbetaling.getType())) {
+            } else if (UTBETALING_FORSIKRING.equals(utbetaling.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("dokumentasjon").withTilleggsinfo("forsikringsutbetaling"));
-            } else if ("annen".equals(utbetaling.getType())) {
+            } else if (UTBETALING_ANNET.equals(utbetaling.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("dokumentasjon").withTilleggsinfo("annetinntekter"));
             }
         }
@@ -173,21 +173,21 @@ public class VedleggsforventningMaster {
             if (utgift == null) {
                 continue;
             }
-            if ("strom".equals(utgift.getType())) {
+            if (UTGIFTER_STROM.equals(utgift.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("faktura").withTilleggsinfo("strom"));
-            } else if ("kommunalAvgift".equals(utgift.getType())) {
+            } else if (UTGIFTER_KOMMUNAL_AVGIFT.equals(utgift.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("faktura").withTilleggsinfo("kommunaleavgifter"));
-            } else if ("oppvarming".equals(utgift.getType())) {
+            } else if (UTGIFTER_OPPVARMING.equals(utgift.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("faktura").withTilleggsinfo("oppvarming"));
-            } else if ("annenBoutgift".equals(utgift.getType())) {
+            } else if (UTGIFTER_ANNET_BO.equals(utgift.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("dokumentasjon").withTilleggsinfo("annetboutgift"));
-            } else if ("barnFritidsaktiviteter".equals(utgift.getType())) {
+            } else if (UTGIFTER_BARN_FRITIDSAKTIVITETER.equals(utgift.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("faktura").withTilleggsinfo("fritidsaktivitet"));
-            } else if ("barnTannregulering".equals(utgift.getType())) {
+            } else if (UTGIFTER_BARN_TANNREGULERING.equals(utgift.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("faktura").withTilleggsinfo("tannbehandling"));
-            } else if ("annenBarneutgift".equals(utgift.getType())) {
+            } else if (UTGIFTER_ANNET_BARN.equals(utgift.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("faktura").withTilleggsinfo("annetbarnutgift"));
-            } else if ("annen".equals(utgift.getType())) {
+            } else if (UTGIFTER_ANDRE_UTGIFTER.equals(utgift.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("annet").withTilleggsinfo("annet"));
             }
         }
@@ -202,9 +202,9 @@ public class VedleggsforventningMaster {
             if (inntekt == null) {
                 continue;
             }
-            if ("bostotte".equals(inntekt.getType())) {
+            if (BOSTOTTE.equals(inntekt.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("bostotte").withTilleggsinfo("vedtak"));
-            } else if ("studielanOgStipend".equals(inntekt.getType())) {
+            } else if (STUDIELAN.equals(inntekt.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("student").withTilleggsinfo("vedtak"));
             }
         }
@@ -219,13 +219,13 @@ public class VedleggsforventningMaster {
             if (utgift == null) {
                 continue;
             }
-            if ("husleie".equals(utgift.getType())) {
+            if (UTGIFTER_HUSLEIE.equals(utgift.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("faktura").withTilleggsinfo("husleie"));
-            } else if ("boliglanAvdrag".equals(utgift.getType())) {
+            } else if (UTGIFTER_BOLIGLAN_AVDRAG.equals(utgift.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("nedbetalingsplan").withTilleggsinfo("avdraglaan"));
-            } else if ("barnehage".equals(utgift.getType())) {
+            } else if (UTGIFTER_BARNEHAGE.equals(utgift.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("faktura").withTilleggsinfo("barnehage"));
-            } else if ("sfo".equals(utgift.getType())) {
+            } else if (UTGIFTER_SFO.equals(utgift.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("faktura").withTilleggsinfo("sfo"));
             }
         }
@@ -240,17 +240,17 @@ public class VedleggsforventningMaster {
             if (formue == null) {
                 continue;
             }
-            if ("brukskonto".equals(formue.getType())) {
+            if (FORMUE_BRUKSKONTO.equals(formue.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("kontooversikt").withTilleggsinfo("brukskonto"));
-            } else if ("bsu".equals(formue.getType())) {
+            } else if (FORMUE_BSU.equals(formue.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("kontooversikt").withTilleggsinfo("bsu"));
-            } else if ("sparekonto".equals(formue.getType())) {
+            } else if (FORMUE_SPAREKONTO.equals(formue.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("kontooversikt").withTilleggsinfo("sparekonto"));
-            } else if ("livsforsikringssparedel".equals(formue.getType())) {
+            } else if (FORMUE_LIVSFORSIKRING.equals(formue.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("kontooversikt").withTilleggsinfo("livsforsikring"));
-            } else if ("verdipapirer".equals(formue.getType())) {
+            } else if (FORMUE_VERDIPAPIRER.equals(formue.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("kontooversikt").withTilleggsinfo("aksjer"));
-            } else if ("belop".equals(formue.getType())) {
+            } else if (FORMUE_ANNET.equals(formue.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("kontooversikt").withTilleggsinfo("annet"));
             }
         }
