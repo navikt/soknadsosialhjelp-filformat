@@ -470,6 +470,10 @@
           "type": "object",
           "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.Soknadsmottaker",
           "properties": {
+			"kommunenummer": {
+				"description": "Kommunenummer for søknadsmottaker.",
+				"type": "string"
+			},
             "enhetsnummer": {
               "description": "Enhetssnummer for søknadsmottaker.",
               "type": "string"
