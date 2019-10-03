@@ -2,6 +2,7 @@
 	"$schema": "http://json-schema.org/draft-06/schema#",
 	
 	"title": "Forklaring",
+	"description": "Feltet er utdatert.",
 	"type": "object",
 	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.FolkeregistrertMedEktefelleAvviksforklaring",
 	"properties": {
