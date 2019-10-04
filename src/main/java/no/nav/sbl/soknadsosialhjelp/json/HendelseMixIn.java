@@ -15,6 +15,7 @@ import no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.*;
     @JsonSubTypes.Type(value = JsonUtbetaling.class, name = "utbetaling"),
     @JsonSubTypes.Type(value = JsonVilkar.class, name = "vilkar"),
     @JsonSubTypes.Type(value = JsonRammevedtak.class, name = "rammevedtak"),
-    @JsonSubTypes.Type(value = JsonForelopigSvar.class, name = "forelopigSvar")
+    @JsonSubTypes.Type(value = JsonForelopigSvar.class, name = "forelopigSvar"),
+    @JsonSubTypes.Type(value = JsonDokumentasjonkrav.class, name = "dokumentasjonkrav")
 })
 public interface HendelseMixIn {}
