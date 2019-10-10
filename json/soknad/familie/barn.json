@@ -17,7 +17,7 @@
 			"$ref": "../parts/personIdentifikatorVerdi.json"
 		},
 		"harDiskresjonskode": {
-			"description": "Settes til true hvis barn har diskresjonskode 6 eller 7. Kun relevant hvis \"kilde\" er \"system\".",
+			"description": "Settes til true hvis barn har diskresjonskode 6 eller 7. Kun relevant hvis \"kilde\" er \"system\". Feltet er utdatert.",
 			"type": "boolean"
 		}
 	},

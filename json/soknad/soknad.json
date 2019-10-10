@@ -288,11 +288,11 @@
 			    		  "type": "string"
 			    		},
 			    		"boutgifter": {
-			    		  "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av annet brukeren har av boutgifter.",
+			    		  "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av annet brukeren har av boutgifter. Feltet er utdatert.",
 			    		  "type": "string"
 			    		},
 			    		"barneutgifter": {
-			    		  "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av andre utgifter til barn som brukeren har.",
+			    		  "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av andre utgifter til barn som brukeren har. Feltet er utdatert.",
 			    		  "type": "string"
 			    		}
 			    	  },
