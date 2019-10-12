@@ -123,6 +123,9 @@
 								"vilkar": {
 									"$ref": "digisos/soker/parts/hendelse/vilkar.json"
 								},
+								"dokumentasjonkrav": {
+									"$ref": "digisos/soker/parts/hendelse/dokumentasjonkrav.json"
+								},
 								"rammevedtak": {
 									"$ref": "digisos/soker/parts/hendelse/rammevedtak.json"
 								}
