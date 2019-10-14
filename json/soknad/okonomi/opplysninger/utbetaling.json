@@ -23,7 +23,7 @@
       "$ref": "../../../types/organisasjon.json"
     },
     "belop": {
-      "type": "number"
+      "type": "integer"
     },
     "netto": {
       "description": "Nettobeløp for utbetalingen.",
