@@ -5,7 +5,7 @@
   "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.OkonomiOpplysningSak",
   "properties": {
     "kilde": {
-      "$ref": "../../parts/kildeSystem.json"
+      "$ref": "../parts/kildeSystem.json"
     },
     "type": {
       "description": "Kodeverdi som angir hva slags type sak det er. Dette feltet kan for eksempel brukes til å filtrere bort saker man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"husbanken\" og \"annet\".",
@@ -13,7 +13,7 @@
     },
     "dato": {
       "description": "Dato som denne saken er registrert på.",
-      "$ref": "../../../types/dato.json"
+      "$ref": "../../types/dato.json"
     },
     "status": {
       "description": "Saksstatus. Eksempler: \"UNDER_BEHANDLING\", \"VEDTATT\"",
