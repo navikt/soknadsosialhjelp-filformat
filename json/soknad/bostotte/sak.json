@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-06/schema#",
   "type": "object",
   "title": "Saker som bruker har",
-  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.OkonomiOpplysningSak",
+  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.bostotte.BostotteSak",
   "properties": {
     "kilde": {
       "$ref": "../parts/kildeSystem.json"
