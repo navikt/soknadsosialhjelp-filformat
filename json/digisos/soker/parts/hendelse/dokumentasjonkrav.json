@@ -22,10 +22,7 @@
 	"properties": {
 		"dokumentasjonkravreferanse": {
 			"type": "string",
-			"description": "referansen til dokumentasjonkravet",
-			"items": {
-				"type": "string"
-			}
+			"description": "referansen til dokumentasjonkravet"
 		},
 		"utbetalingsreferanse": {
 			"type": "array",
