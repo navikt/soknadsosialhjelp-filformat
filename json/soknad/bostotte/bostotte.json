@@ -16,8 +16,5 @@
         "$ref": "bostotteutbetaling.json"
       }
     }
-  },
-  "required": [
-    "kilde", "type", "dato", "status"
-  ]
+  }
 }
