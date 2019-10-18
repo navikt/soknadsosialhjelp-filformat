@@ -247,27 +247,30 @@
 							"navn": "Arbeidsgiver",
 							"organisasjonsnummer": "123456789"
 						}
-					},
-					{
-						"kilde": "system",
-						"type": "husbanken",
-						"tittel": "Statlig bostotte",
-						"mottaker": "Husstand",
-						"utbetalingsdato": "2018-02-20",
-						"belop": 5000,
-						"overstyrtAvBruker": false
 					}
 				],
 				"utgift": [],
-				"sak": [
-					{
-						"kilde": "system",
-						"type": "husbanken",
-						"dato": "2018-02-01",
-						"status": "VEDTATT",
-						"beskrivelse": "Innvilget bostøtte, ord. saker"
-					}
-				]
+				"bostotte": {
+					"saker": [
+						{
+							"kilde": "system",
+							"type": "husbanken",
+							"dato": "2018-02-01",
+							"status": "VEDTATT",
+							"beskrivelse": "Innvilget bostøtte, ord. saker"
+						}
+					],
+					"utbetalinger": [
+						{
+							"kilde": "system",
+							"type": "husbanken",
+							"tittel": "Statlig bostotte",
+							"mottaker": "Husstand",
+							"belop": 5000.0,
+							"utbetalingsdato": "2018-02-20"
+						}
+					]
+				}
 			},
 			"oversikt": {
 				"inntekt": [],

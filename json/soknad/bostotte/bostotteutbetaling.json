@@ -8,11 +8,11 @@
       "$ref": "../parts/kildeSystem.json"
     },
     "type": {
-      "description": "Kodeverdi som angir hva slags type utbetaling det er. Dette feltet kan for eksempel brukes til å filtrere bort utbetalinger man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"utbytte\", \"salg\", \"forsikring\" og \"annen\".",
+      "description": "Kodeverdi som angir hva slags type utbetaling det er. Dette feltet kan for eksempel brukes til å filtrere bort utbetalinger man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"husbanken\" og \"annet\".",
       "type": "string"
     },
     "tittel": {
-      "description": "En tittel som MÅ brukes hvis utbetalingen skal presenteres til saksbehandler. Brukerangitt tekst kan være inkludert i tittelen.",
+      "description": "En tittel for utbetalingen.",
       "type": "string"
     },
     "mottaker": {
