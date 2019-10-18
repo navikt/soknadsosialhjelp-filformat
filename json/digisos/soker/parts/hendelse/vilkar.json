@@ -22,10 +22,7 @@
 	"properties": {
 		"vilkarreferanse": {
 			"type": "string",
-			"description": "referansen til vilkåret",
-			"items": {
-				"type": "string"
-			}
+			"description": "referansen til vilkåret"
 		},
 		"utbetalingsreferanse": {
 			"type": "array",
