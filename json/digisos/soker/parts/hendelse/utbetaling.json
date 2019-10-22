@@ -87,7 +87,6 @@
 		}
 	},
 	"required": [
-		"saksreferanse",
 		"utbetalingsreferanse"
 	]
 }
