@@ -96,7 +96,15 @@ public final class JsonSosialhjelpValidator {
         final String schemaUri = toSkjemaUri("/json/vedlegg/vedleggSpesifikasjon.json");
         ensureValid(json, schemaUri);
     }
-    
+
+      /**
+     * Sikrer at den angitte JSON-strengen er gyldig mot vedleggskjemaet til Sosialhjelp.
+     */
+    public static void ensureValidInnsyn(String json) throws JsonSosialhjelpValidationException {
+        final String schemaUri = toSkjemaUri("/json/digisos/soker/digisos-soker.json");
+        ensureValid(json, schemaUri);
+    }
+
     /**
      * Sikrer at den angitte JSON-strengen følger det angitte skjemaet.
      * 
