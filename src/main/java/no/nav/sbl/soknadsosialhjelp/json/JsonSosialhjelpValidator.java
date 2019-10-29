@@ -27,12 +27,12 @@ import java.util.EnumSet;
 import java.util.List;
 
 public final class JsonSosialhjelpValidator {
-    
+
     private JsonSosialhjelpValidator() {
-        
+
     }
-    
-    
+
+
     public static void main(String[] args) {
         if (args.length != 2) {
             System.out.println("Bruk: java -jar soknadsosialhjelp-filformat-...-shaded.jar [ --soknad SOKNAD_JSON | --vedlegg VEDLEGG_JSON | SCHEMA JSON ]");
@@ -46,7 +46,7 @@ public final class JsonSosialhjelpValidator {
             System.out.println("JSON         - En JSON-fil med som skal følge angitt format.");
             System.exit(1);
         }
-        
+
         try {
             final String schemaUri;
             switch (args[0]) {
@@ -63,7 +63,7 @@ public final class JsonSosialhjelpValidator {
                     schemaUri = toSkjemaUri(args[0]);
                     break;
             }
-            
+
             final String json = Files.readAllLines(Paths.get(args[1])).stream().reduce((a, b) -> a + b).get();
             ensureValid(json, schemaUri);
         } catch (Exception e) {
@@ -71,8 +71,8 @@ public final class JsonSosialhjelpValidator {
             System.exit(1);
         }
     }
-    
-    
+
+
     /**
      * Sikrer at den angitte JSON-strengen er gyldig mot soknadskjemaet til Sosialhjelp.
      */
@@ -88,7 +88,7 @@ public final class JsonSosialhjelpValidator {
         final String schemaUri = toSkjemaUri("/json/internal/internalSoknad.json");
         ensureValid(json, schemaUri);
     }
-    
+
     /**
      * Sikrer at den angitte JSON-strengen er gyldig mot vedleggskjemaet til Sosialhjelp.
      */
@@ -97,8 +97,8 @@ public final class JsonSosialhjelpValidator {
         ensureValid(json, schemaUri);
     }
 
-      /**
-     * Sikrer at den angitte JSON-strengen er gyldig mot vedleggskjemaet til Sosialhjelp.
+    /**
+     * Sikrer at den angitte JSON-strengen er gyldig mot digisos-soker til Sosialhjelp.
      */
     public static void ensureValidInnsyn(String json) throws JsonSosialhjelpValidationException {
         final String schemaUri = toSkjemaUri("/json/digisos/soker/digisos-soker.json");
@@ -107,8 +107,8 @@ public final class JsonSosialhjelpValidator {
 
     /**
      * Sikrer at den angitte JSON-strengen følger det angitte skjemaet.
-     * 
-     * @param json The JSON as a <code>String</code>
+     *
+     * @param json      The JSON as a <code>String</code>
      * @param schemaUri Plasseringen til skjemaet som blir benyttet til valideringen.
      * @throws JsonSosialhjelpValidationException hvis JSON-strengen ikke følger skjemaet.
      */
@@ -122,11 +122,11 @@ public final class JsonSosialhjelpValidator {
             throw new RuntimeException(e);
         }
     }
-    
+
     /**
      * Validerer JSON-fil mot et skjema.
-     * 
-     * @param testfile JSON-filen som skal valideres.
+     *
+     * @param testfile  JSON-filen som skal valideres.
      * @param skjemaUri Plasseringen til skjemaet som blir benyttet til valideringen.
      */
     public static ProcessingReport validateFile(File testfile, String schemaUri) {
@@ -136,7 +136,7 @@ public final class JsonSosialhjelpValidator {
             throw new RuntimeException(e);
         }
     }
-        
+
     /**
      * Sjekker om angitt <code>ProcessingReport</code> inneholder advarsler.
      */
@@ -148,7 +148,7 @@ public final class JsonSosialhjelpValidator {
         }
         return false;
     }
-    
+
     private static ProcessingReport validate(JsonNode json, String schemaUri) {
         try {
             final JsonSchema skjema = createValidator(schemaUri);
@@ -157,7 +157,7 @@ public final class JsonSosialhjelpValidator {
             throw new RuntimeException(e);
         }
     }
-    
+
     private static String toSkjemaUri(String skjemaFil) {
         final String schemaUri;
         try {
@@ -167,7 +167,7 @@ public final class JsonSosialhjelpValidator {
         }
         return schemaUri;
     }
-    
+
     private static JsonSchema createValidator(String schemaUri) {
         try {
             return JsonSchemaFactory
@@ -189,7 +189,7 @@ public final class JsonSosialhjelpValidator {
         }
         return builder.freeze();
     }
-    
+
     private static ValidationConfiguration createValidationConfiguration() {
         final Library library = withIgnoredKeywords(DraftV4Library.get(), Arrays.asList("javaType", "extends"));
 
@@ -197,16 +197,16 @@ public final class JsonSosialhjelpValidator {
                 .setDefaultLibrary("http://json-schema.org/draft-06/schema", library)
                 .freeze();
     }
-    
+
     private static class IgnoreSyntaxCheck implements SyntaxChecker {
         @Override
         public EnumSet<NodeType> getValidTypes() {
             return null;
         }
-        
+
         @Override
         public void checkSyntax(Collection<JsonPointer> pointers, MessageBundle bundle, ProcessingReport report,
-                SchemaTree tree) {
+                                SchemaTree tree) {
             // Ignore
         }
     }
