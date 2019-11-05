@@ -9,12 +9,6 @@
       "items": {
         "$ref": "sak.json"
       }
-    },
-    "utbetalinger": {
-      "type": "array",
-      "items": {
-        "$ref": "bostotteutbetaling.json"
-      }
     }
   }
 }
