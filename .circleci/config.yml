@@ -33,7 +33,7 @@ jobs:
           - maven3-{{ checksum "pom.xml" }}
     - run:
         name: Import gpg key
-          command: echo $GPG_KEY_BASE64 | base64 --decode | gpg --yes --batch --import
+        command: echo $GPG_KEY_BASE64 | base64 --decode | gpg --yes --batch --import
     - run:
         name: "Setting version"
         command: |
@@ -58,7 +58,7 @@ jobs:
           keys:
             - maven3-{{ checksum "pom.xml" }}
       - run:
-        name: Import gpg key
+          name: Import gpg key
           command: echo $GPG_KEY_BASE64 | base64 --decode | gpg --yes --batch --import
       - run:
           name: "Setting version"
