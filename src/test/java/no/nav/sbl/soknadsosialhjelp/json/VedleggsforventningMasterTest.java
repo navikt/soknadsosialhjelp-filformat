@@ -23,6 +23,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static no.nav.sbl.soknadsosialhjelp.json.SoknadJsonTyper.*;
 import static no.nav.sbl.soknadsosialhjelp.json.VedleggsforventningMaster.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -190,40 +191,40 @@ public class VedleggsforventningMasterTest {
 
     private List<JsonOkonomioversiktInntekt> lagInntekter() {
         List<JsonOkonomioversiktInntekt> inntekter = new ArrayList<>();
-        inntekter.add(new JsonOkonomioversiktInntekt().withType("bostotte"));
-        inntekter.add(new JsonOkonomioversiktInntekt().withType("bostotte"));
-        inntekter.add(new JsonOkonomioversiktInntekt().withType("studielanOgStipend"));
+        inntekter.add(new JsonOkonomioversiktInntekt().withType(BOSTOTTE));
+        inntekter.add(new JsonOkonomioversiktInntekt().withType(BOSTOTTE));
+        inntekter.add(new JsonOkonomioversiktInntekt().withType(STUDIELAN));
         return inntekter;
     }
 
     private List<JsonOkonomioversiktUtgift> lagUtgifter() {
         List<JsonOkonomioversiktUtgift> utgifter = new ArrayList<>();
-        utgifter.add(new JsonOkonomioversiktUtgift().withType("boliglanAvdrag"));
-        utgifter.add(new JsonOkonomioversiktUtgift().withType("barnehage"));
-        utgifter.add(new JsonOkonomioversiktUtgift().withType("barnehage"));
+        utgifter.add(new JsonOkonomioversiktUtgift().withType(UTGIFTER_BOLIGLAN_AVDRAG));
+        utgifter.add(new JsonOkonomioversiktUtgift().withType(UTGIFTER_BARNEHAGE));
+        utgifter.add(new JsonOkonomioversiktUtgift().withType(UTGIFTER_BARNEHAGE));
         return utgifter;
     }
 
     private List<JsonOkonomioversiktFormue> lagFormue() {
         List<JsonOkonomioversiktFormue> formuer = new ArrayList<>();
-        formuer.add(new JsonOkonomioversiktFormue().withType("kjoretoy"));
-        formuer.add(new JsonOkonomioversiktFormue().withType("kjoretoy"));
-        formuer.add(new JsonOkonomioversiktFormue().withType("brukskonto"));
+        formuer.add(new JsonOkonomioversiktFormue().withType(VERDI_KJORETOY));
+        formuer.add(new JsonOkonomioversiktFormue().withType(VERDI_KJORETOY));
+        formuer.add(new JsonOkonomioversiktFormue().withType(FORMUE_BRUKSKONTO));
         return formuer;
     }
 
     private List<JsonOkonomiOpplysningUtbetaling> lagUtbetalinger() {
         List<JsonOkonomiOpplysningUtbetaling> utbetalinger = new ArrayList<>();
-        utbetalinger.add(new JsonOkonomiOpplysningUtbetaling().withType("salg"));
-        utbetalinger.add(new JsonOkonomiOpplysningUtbetaling().withType("salg"));
+        utbetalinger.add(new JsonOkonomiOpplysningUtbetaling().withType(UTBETALING_SALG));
+        utbetalinger.add(new JsonOkonomiOpplysningUtbetaling().withType(UTBETALING_SALG));
         return utbetalinger;
     }
 
     private List<JsonOkonomiOpplysningUtgift> lagOpplysningUtgifter() {
         List<JsonOkonomiOpplysningUtgift> utgifter = new ArrayList<>();
-        utgifter.add(new JsonOkonomiOpplysningUtgift().withType("strom"));
-        utgifter.add(new JsonOkonomiOpplysningUtgift().withType("oppvarming"));
-        utgifter.add(new JsonOkonomiOpplysningUtgift().withType("strom"));
+        utgifter.add(new JsonOkonomiOpplysningUtgift().withType(UTGIFTER_STROM));
+        utgifter.add(new JsonOkonomiOpplysningUtgift().withType(UTGIFTER_OPPVARMING));
+        utgifter.add(new JsonOkonomiOpplysningUtgift().withType(UTGIFTER_STROM));
         return utgifter;
     }
 }
