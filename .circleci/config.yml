@@ -93,6 +93,7 @@ workflows:
             branches:
               only: master
       - deploy-snapshot:
+          context: Maven Central Release
           requires:
             - build
           filters:
