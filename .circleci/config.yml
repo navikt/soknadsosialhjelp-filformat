@@ -33,7 +33,7 @@ jobs:
           - maven3-{{ checksum "pom.xml" }}
     - run:
         name: Decrypt GPG key for deployment til Maven Central
-        command: "gpg --yes --batch --passphrase=$DECRYPT_GPG_KEY_PASSPHRASE codesigning.asc.gpg"
+        command: "gpg --yes --batch --passphrase=$GPG_PASSPHRASE codesigning.asc.gpg"
     - run:
         name: Import GPG private key to keyring
         command: "gpg --yes --batch --fast-import codesigning.asc"
@@ -62,7 +62,7 @@ jobs:
             - maven3-{{ checksum "pom.xml" }}
       - run:
           name: Decrypt GPG key for deployment til Maven Central
-          command: "gpg --yes --batch --passphrase=$DECRYPT_GPG_KEY_PASSPHRASE codesigning.asc.gpg"
+          command: "gpg --yes --batch --passphrase=$GPG_PASSPHRASE codesigning.asc.gpg"
       - run:
           name: Import GPG private key to keyring
           command: "gpg --yes --batch --fast-import codesigning.asc"
