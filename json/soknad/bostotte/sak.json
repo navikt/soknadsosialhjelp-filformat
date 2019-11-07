@@ -22,6 +22,15 @@
     "beskrivelse": {
       "description": "En tilleggsbeskrivelse til status. Kan være tom.",
       "type": "string"
+    },
+    "vedtaksstatus": {
+      "description": "Vedtaksstatus. Eksempler: \"INNVILGET\", \"AVSLAG\", \"AVVIST\".",
+      "type": "string",
+      "enum": [
+        "INNVILGET",
+        "AVSLAG",
+        "AVVIST"
+      ]
     }
   },
   "required": [
