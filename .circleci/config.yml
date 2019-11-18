@@ -32,11 +32,8 @@ jobs:
         keys:
           - maven3-{{ checksum "pom.xml" }}
     - run:
-        name: Decrypt GPG key for deployment til Maven Central
-        command: "gpg --yes --batch --passphrase=$DECRYPT_GPG_KEY_PASSPHRASE codesigning.asc.gpg"
-    - run:
-        name: Import GPG private key to keyring
-        command: "gpg --yes --batch --fast-import codesigning.asc"
+        name: Import gpg key
+        command: echo $GPG_KEY_BASE64 | base64 --decode | gpg --yes --batch --import
     - run:
         name: "Setting version"
         command: |
@@ -49,7 +46,7 @@ jobs:
 
     - run:
         name: Deploy to Maven Central
-        command: "export GPG_TTY=$(tty) && mvn --settings maven-settings.xml deploy -Prelease -DskipTests=true"
+        command: "mvn --settings maven-settings.xml deploy -Prelease -DskipTests=true"
 
   deploy-snapshot:
     docker:
@@ -61,11 +58,8 @@ jobs:
           keys:
             - maven3-{{ checksum "pom.xml" }}
       - run:
-          name: Decrypt GPG key for deployment til Maven Central
-          command: "gpg --yes --batch --passphrase=$DECRYPT_GPG_KEY_PASSPHRASE codesigning.asc.gpg"
-      - run:
-          name: Import GPG private key to keyring
-          command: "gpg --yes --batch --fast-import codesigning.asc"
+          name: Import gpg key
+          command: echo $GPG_KEY_BASE64 | base64 --decode | gpg --yes --batch --import
       - run:
           name: "Setting version"
           command: |
@@ -78,7 +72,7 @@ jobs:
 
       - run:
           name: Deploy to Maven Central
-          command: "export GPG_TTY=$(tty) && mvn --settings maven-settings.xml deploy -Prelease -DskipTests=true"
+          command: "mvn --settings maven-settings.xml deploy -Prelease -DskipTests=true"
 
 
 workflows:
@@ -93,6 +87,7 @@ workflows:
             branches:
               only: master
       - deploy-snapshot:
+          context: Maven Central Release
           requires:
             - build
           filters:
