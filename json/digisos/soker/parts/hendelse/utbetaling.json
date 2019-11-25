@@ -52,10 +52,6 @@
 			"description": "Når betalingen er lagt til forfall",
 			"$ref": "../../../../types/dato.json"
 		},
-		"stonadstype": {
-			"type": "string",
-			"description": "Grupperingsnøkkel"
-		},
 		"utbetalingsdato": {
 			"description": "Når utbetalingen kom inn på konto",
 			"$ref": "../../../../types/dato.json"

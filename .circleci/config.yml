@@ -74,13 +74,13 @@ jobs:
           name: Deploy to Maven Central
           command: "mvn --settings maven-settings.xml deploy -Prelease -DskipTests=true"
 
-
 workflows:
   version: 2
   build-and-deploy:
     jobs:
       - build
       - deploy:
+          context: Maven Central Release
           requires:
             - build
           filters:
