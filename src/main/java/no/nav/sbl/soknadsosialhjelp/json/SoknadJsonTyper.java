@@ -27,6 +27,7 @@ public class SoknadJsonTyper {
     public static final String UTBETALING_UTBYTTE = "utbytte";
     public static final String UTBETALING_SALG = "salg";
     public static final String UTBETALING_FORSIKRING = "forsikring";
+    public static final String UTBETALING_HUSBANKEN = "husbanken";
     public static final String UTBETALING_ANNET = "annen";
     public static final String UTGIFTER_BARNEHAGE = "barnehage";
     public static final String UTGIFTER_SFO = "sfo";
