@@ -247,9 +247,37 @@
 							"navn": "Arbeidsgiver",
 							"organisasjonsnummer": "123456789"
 						}
+					},
+					{
+						"kilde" : "system",
+						"type" : "husbanken",
+						"tittel" : "Statlig bostøtte",
+						"netto" : 6000.0,
+						"utbetalingsdato" : "2019-11-20",
+						"komponenter" : [ ],
+						"overstyrtAvBruker" : false,
+						"mottaker" : "Husstand"
 					}
 				],
-				"utgift": []
+				"utgift": [],
+				"bostotte": {
+					"saker": [
+						{
+							"kilde" : "system",
+							"type" : "husbanken",
+							"dato" : "2019-11-01",
+							"status" : "UNDER_BEHANDLING"
+						},
+						{
+							"kilde": "system",
+							"type": "husbanken",
+							"dato": "2018-02-01",
+							"status": "VEDTATT",
+							"beskrivelse" : "Søknaden din er innvilget.",
+							"vedtaksstatus" : "INNVILGET"
+						}
+					]
+				}
 			},
 			"oversikt": {
 				"inntekt": [],

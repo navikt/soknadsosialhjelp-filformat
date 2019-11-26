@@ -81,6 +81,14 @@
     "overstyrtAvBruker": {
       "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på utbetaling med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
       "type": "boolean"
+    },
+    "mottaker": {
+      "description": "Hvem som har mottatt utbetalingen. Eksempler: \"Husstand\", \"Kommune\".",
+      "type": "string",
+      "enum": [
+        "Husstand",
+        "Kommune"
+      ]
     }
   },
   "required": [

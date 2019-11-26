@@ -336,8 +336,11 @@
 			    		  "kilde", "type", "tittel", "overstyrtAvBruker"
 			    		]
 			          }
-			        }
-			      },
+			        },
+					"bostotte": {
+						  "$ref": "bostotte/bostotte.json"
+					}
+				  },
 			      "required": [
 			      	"utbetaling", "utgift"
 			      ]

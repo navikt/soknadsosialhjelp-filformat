@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "type": "object",
+  "title": "Bostøtte informasjon om bruker.",
+  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.bostotte.Bostotte",
+  "properties": {
+    "saker": {
+      "type": "array",
+      "items": {
+        "$ref": "sak.json"
+      }
+    }
+  }
+}
