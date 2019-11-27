@@ -46,7 +46,7 @@ jobs:
 
     - run:
         name: Deploy to Maven Central
-        command: "mvn --settings maven-settings.xml deploy -Prelease -DskipTests=true"
+        command: "export GPG_TTY=$(tty) && mvn --settings maven-settings.xml deploy -Prelease -DskipTests=true"
 
   deploy-snapshot:
     docker:
@@ -72,7 +72,7 @@ jobs:
 
       - run:
           name: Deploy to Maven Central
-          command: "mvn --settings maven-settings.xml deploy -Prelease -DskipTests=true"
+          command: "export GPG_TTY=$(tty) && mvn --settings maven-settings.xml deploy -Prelease -DskipTests=true"
 
 workflows:
   version: 2
