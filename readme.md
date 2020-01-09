@@ -29,7 +29,7 @@ Planlagte fremtidige versjoner/endringer:
 ## Henvendelser
 
 Spørsmål knyttet til koden eller prosjektet kan rettes mot:
-* https://github.com/orgs/navikt/teams/digisos
+* https://github.com/orgs/navikt/teams/teamdigisos
 
 ### For kommunalt ansatte og leverandører av sosialsystemer
 * Be om tilgang til https://digisos-nav-it.slack.com/
