@@ -7,5 +7,10 @@
 		    "type": "dokumentlager",
 		    "id": "12345678-9abc-def0-1234-56789abcdef0"
 		}
-	}
+	},
+	"vedlegg": [
+		{
+			"tittel": "tittel"
+		}
+	]
 }
