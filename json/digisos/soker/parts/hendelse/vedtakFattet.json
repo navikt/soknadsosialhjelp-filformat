@@ -55,6 +55,6 @@
 		}
 	},
 	"required": [
-		"vedtaksfil", "vedlegg", "saksreferanse"
+		"vedtaksfil", "saksreferanse"
 	]
 }
