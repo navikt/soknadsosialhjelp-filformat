@@ -3,6 +3,7 @@ package no.nav.sbl.soknadsosialhjelp.json;
 public class SoknadJsonTyper {
     public static final String BARNEBIDRAG = "barnebidrag";
     public static final String BOSTOTTE = "bostotte";
+    public static final String BOSTOTTE_SAMTYKKE = "bostotte_samtykke";
     public static final String STUDIELAN = "studielanOgStipend";
     public static final String JOBB = "jobb";
     public static final String SLUTTOPPGJOER = "sluttoppgjoer";
@@ -23,6 +24,7 @@ public class SoknadJsonTyper {
     public static final String VERDI_FRITIDSEIENDOM = "fritidseiendom";
     public static final String VERDI_ANNET = "annet";
     public static final String UTBETALING_SKATTEETATEN = "skatteetaten";
+    public static final String UTBETALING_SKATTEETATEN_SAMTYKKE = "skatteetaten_samtykke";
     public static final String UTBETALING_NAVYTELSE = "navytelse";
     public static final String UTBETALING_UTBYTTE = "utbytte";
     public static final String UTBETALING_SALG = "salg";
