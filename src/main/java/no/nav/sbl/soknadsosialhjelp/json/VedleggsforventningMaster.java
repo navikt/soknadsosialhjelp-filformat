@@ -13,6 +13,7 @@ import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.JsonOkonomiopplysninger;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.JsonOkonomioversikt;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.JsonOkonomiOpplysningUtbetaling;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.JsonOkonomiOpplysningUtgift;
+import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.JsonOkonomibekreftelse;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.JsonOkonomioversiktFormue;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.JsonOkonomioversiktInntekt;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.JsonOkonomioversiktUtgift;
@@ -63,7 +64,8 @@ public class VedleggsforventningMaster {
         List<JsonVedlegg> paakrevdeVedlegg = new ArrayList<>();
         JsonArbeid arbeid = jsonInternalSoknad.getSoknad().getData().getArbeid();
         boolean utbetalingerFeiletFraSkatt = jsonInternalSoknad.getSoknad().getDriftsinformasjon().getInntektFraSkatteetatenFeilet();
-        if (utbetalingerFeiletFraSkatt && arbeid != null && arbeid.getForhold() != null && !arbeid.getForhold().isEmpty()) {
+        boolean manglerSamtykke = !sjekkOmViHarSamtykke(jsonInternalSoknad);
+        if ((utbetalingerFeiletFraSkatt || manglerSamtykke) && arbeid != null && arbeid.getForhold() != null && !arbeid.getForhold().isEmpty()) {
             List<JsonArbeidsforhold> alleArbeidsforhold = arbeid.getForhold();
             for (JsonArbeidsforhold arbeidsforhold : alleArbeidsforhold) {
                 String tom = arbeidsforhold.getTom();
@@ -77,6 +79,13 @@ public class VedleggsforventningMaster {
         return paakrevdeVedlegg.stream()
                 .distinct()
                 .collect(Collectors.toList());
+    }
+
+    private static boolean sjekkOmViHarSamtykke(JsonInternalSoknad soknad) {
+        return soknad.getSoknad().getData().getOkonomi().getOpplysninger().getBekreftelse().stream()
+                .filter(bekreftelse -> bekreftelse.getType().equals(UTBETALING_SKATTEETATEN_SAMTYKKE))
+                .anyMatch(JsonOkonomibekreftelse::getVerdi);
+
     }
 
     static List<JsonVedlegg> finnPaakrevdeVedleggForFamilie(JsonFamilie familie) {
