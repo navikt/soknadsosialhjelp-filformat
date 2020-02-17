@@ -21,6 +21,7 @@ import no.nav.sbl.soknadsosialhjelp.vedlegg.JsonVedlegg;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static no.nav.sbl.soknadsosialhjelp.json.SoknadJsonTyper.*;
@@ -34,7 +35,10 @@ public class VedleggsforventningMasterTest {
     public void finnPaakrevdeVedleggLeggerKunTilSkattemeldingHvisAltAnnetMangler() {
         JsonInternalSoknad internalSoknad = new JsonInternalSoknad()
                 .withSoknad(new JsonSoknad()
-                        .withData(new JsonData())
+                        .withData(new JsonData()
+                                .withOkonomi(new JsonOkonomi()
+                                        .withOpplysninger(new JsonOkonomiopplysninger()
+                                                .withBekreftelse(Collections.EMPTY_LIST))))
                         .withDriftsinformasjon(new JsonDriftsinformasjon()
                                 .withUtbetalingerFraNavFeilet(false)
                                 .withInntektFraSkatteetatenFeilet(false)
