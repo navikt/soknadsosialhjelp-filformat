@@ -217,16 +217,96 @@ public class VedleggsforventningMasterTest {
 
     @Test
     public void finnPaakrevdeVedleggForOkonomiHenterVedleggForAlleTyperInntekterUtgifterOgFormue() {
-        JsonOkonomi okonomi = new JsonOkonomi()
-                .withOversikt(new JsonOkonomioversikt()
-                        .withInntekt(lagInntekter())
-                        .withUtgift(lagUtgifter())
-                        .withFormue(lagFormue()))
-                .withOpplysninger(new JsonOkonomiopplysninger()
-                        .withUtbetaling(lagUtbetalinger())
-                        .withUtgift(lagOpplysningUtgifter()));
+        JsonSoknad soknad = new JsonSoknad()
+                .withDriftsinformasjon(new JsonDriftsinformasjon()
+                        .withStotteFraHusbankenFeilet(false))
+                .withData(new JsonData()
+                        .withOkonomi(new JsonOkonomi()
+                                .withOversikt(new JsonOkonomioversikt()
+                                        .withInntekt(lagInntekter())
+                                        .withUtgift(lagUtgifter())
+                                        .withFormue(lagFormue()))
+                                .withOpplysninger(new JsonOkonomiopplysninger()
+                                        .withUtbetaling(lagUtbetalinger())
+                                        .withUtgift(lagOpplysningUtgifter()))));
 
-        List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForOkonomi(okonomi);
+        List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForOkonomi(soknad);
+
+        assertThat(paakrevdeVedlegg.size(), is(8));
+        assertThat(paakrevdeVedlegg.get(0).getType(), is("salgsoppgjor"));
+        assertThat(paakrevdeVedlegg.get(0).getTilleggsinfo(), is("eiendom"));
+        assertThat(paakrevdeVedlegg.get(1).getType(), is("faktura"));
+        assertThat(paakrevdeVedlegg.get(1).getTilleggsinfo(), is("strom"));
+        assertThat(paakrevdeVedlegg.get(2).getType(), is("faktura"));
+        assertThat(paakrevdeVedlegg.get(2).getTilleggsinfo(), is("oppvarming"));
+        assertThat(paakrevdeVedlegg.get(3).getType(), is("bostotte"));
+        assertThat(paakrevdeVedlegg.get(3).getTilleggsinfo(), is("vedtak"));
+        assertThat(paakrevdeVedlegg.get(4).getType(), is("student"));
+        assertThat(paakrevdeVedlegg.get(4).getTilleggsinfo(), is("vedtak"));
+        assertThat(paakrevdeVedlegg.get(5).getType(), is("nedbetalingsplan"));
+        assertThat(paakrevdeVedlegg.get(5).getTilleggsinfo(), is("avdraglaan"));
+        assertThat(paakrevdeVedlegg.get(6).getType(), is("faktura"));
+        assertThat(paakrevdeVedlegg.get(6).getTilleggsinfo(), is("barnehage"));
+        assertThat(paakrevdeVedlegg.get(7).getType(), is("kontooversikt"));
+        assertThat(paakrevdeVedlegg.get(7).getTilleggsinfo(), is("brukskonto"));
+    }
+
+    @Test
+    public void finnPaakrevdeVedleggForOkonomiHarIkkeBostotteDersomViHarSamtykke() {
+        JsonSoknad soknad = new JsonSoknad()
+                .withDriftsinformasjon(new JsonDriftsinformasjon()
+                        .withStotteFraHusbankenFeilet(false))
+                .withData(new JsonData()
+                        .withOkonomi(new JsonOkonomi()
+                                .withOversikt(new JsonOkonomioversikt()
+                                        .withInntekt(lagInntekter())
+                                        .withUtgift(lagUtgifter())
+                                        .withFormue(lagFormue()))
+                                .withOpplysninger(new JsonOkonomiopplysninger()
+                                        .withUtbetaling(lagUtbetalinger())
+                                        .withUtgift(lagOpplysningUtgifter())
+                                        .withBekreftelse(Lists.newArrayList(new JsonOkonomibekreftelse()
+                                                .withType(BOSTOTTE_SAMTYKKE)
+                                                .withVerdi(true))))));
+
+        List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForOkonomi(soknad);
+
+        assertThat(paakrevdeVedlegg.size(), is(7));
+        assertThat(paakrevdeVedlegg.get(0).getType(), is("salgsoppgjor"));
+        assertThat(paakrevdeVedlegg.get(0).getTilleggsinfo(), is("eiendom"));
+        assertThat(paakrevdeVedlegg.get(1).getType(), is("faktura"));
+        assertThat(paakrevdeVedlegg.get(1).getTilleggsinfo(), is("strom"));
+        assertThat(paakrevdeVedlegg.get(2).getType(), is("faktura"));
+        assertThat(paakrevdeVedlegg.get(2).getTilleggsinfo(), is("oppvarming"));
+        assertThat(paakrevdeVedlegg.get(3).getType(), is("student"));
+        assertThat(paakrevdeVedlegg.get(3).getTilleggsinfo(), is("vedtak"));
+        assertThat(paakrevdeVedlegg.get(4).getType(), is("nedbetalingsplan"));
+        assertThat(paakrevdeVedlegg.get(4).getTilleggsinfo(), is("avdraglaan"));
+        assertThat(paakrevdeVedlegg.get(5).getType(), is("faktura"));
+        assertThat(paakrevdeVedlegg.get(5).getTilleggsinfo(), is("barnehage"));
+        assertThat(paakrevdeVedlegg.get(6).getType(), is("kontooversikt"));
+        assertThat(paakrevdeVedlegg.get(6).getTilleggsinfo(), is("brukskonto"));
+    }
+
+    @Test
+    public void finnPaakrevdeVedleggForOkonomiHarBostotteDersomViHarSamtykkeMenHentingenHarFeilet() {
+        JsonSoknad soknad = new JsonSoknad()
+                .withDriftsinformasjon(new JsonDriftsinformasjon()
+                        .withStotteFraHusbankenFeilet(true))
+                .withData(new JsonData()
+                        .withOkonomi(new JsonOkonomi()
+                                .withOversikt(new JsonOkonomioversikt()
+                                        .withInntekt(lagInntekter())
+                                        .withUtgift(lagUtgifter())
+                                        .withFormue(lagFormue()))
+                                .withOpplysninger(new JsonOkonomiopplysninger()
+                                        .withUtbetaling(lagUtbetalinger())
+                                        .withUtgift(lagOpplysningUtgifter())
+                                        .withBekreftelse(Lists.newArrayList(new JsonOkonomibekreftelse()
+                                                .withType(BOSTOTTE_SAMTYKKE)
+                                                .withVerdi(true))))));
+
+        List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForOkonomi(soknad);
 
         assertThat(paakrevdeVedlegg.size(), is(8));
         assertThat(paakrevdeVedlegg.get(0).getType(), is("salgsoppgjor"));

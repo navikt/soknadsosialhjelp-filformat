@@ -2,6 +2,7 @@ package no.nav.sbl.soknadsosialhjelp.json;
 
 import no.nav.sbl.soknadsosialhjelp.soknad.JsonData;
 import no.nav.sbl.soknadsosialhjelp.soknad.JsonInternalSoknad;
+import no.nav.sbl.soknadsosialhjelp.soknad.JsonSoknad;
 import no.nav.sbl.soknadsosialhjelp.soknad.arbeid.JsonArbeid;
 import no.nav.sbl.soknadsosialhjelp.soknad.arbeid.JsonArbeidsforhold;
 import no.nav.sbl.soknadsosialhjelp.soknad.bosituasjon.JsonBosituasjon;
@@ -42,7 +43,7 @@ public class VedleggsforventningMaster {
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForArbeid(internalSoknad));
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForFamilie(data.getFamilie()));
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForBosituasjon(data.getBosituasjon()));
-        paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForOkonomi(data.getOkonomi()));
+        paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForOkonomi(internalSoknad.getSoknad()));
 
         paakrevdeVedlegg.add(new JsonVedlegg().withType("skattemelding").withTilleggsinfo("skattemelding"));
         paakrevdeVedlegg.add(new JsonVedlegg().withType("annet").withTilleggsinfo("annet"));
@@ -64,7 +65,7 @@ public class VedleggsforventningMaster {
         List<JsonVedlegg> paakrevdeVedlegg = new ArrayList<>();
         JsonArbeid arbeid = jsonInternalSoknad.getSoknad().getData().getArbeid();
         boolean utbetalingerFeiletFraSkatt = jsonInternalSoknad.getSoknad().getDriftsinformasjon().getInntektFraSkatteetatenFeilet();
-        boolean manglerSamtykke = !sjekkOmViHarSamtykke(jsonInternalSoknad);
+        boolean manglerSamtykke = !sjekkOmViHarSamtykke(jsonInternalSoknad.getSoknad().getData().getOkonomi(), UTBETALING_SKATTEETATEN_SAMTYKKE);
         if ((utbetalingerFeiletFraSkatt || manglerSamtykke) && arbeid != null && arbeid.getForhold() != null && !arbeid.getForhold().isEmpty()) {
             List<JsonArbeidsforhold> alleArbeidsforhold = arbeid.getForhold();
             for (JsonArbeidsforhold arbeidsforhold : alleArbeidsforhold) {
@@ -81,9 +82,11 @@ public class VedleggsforventningMaster {
                 .collect(Collectors.toList());
     }
 
-    private static boolean sjekkOmViHarSamtykke(JsonInternalSoknad soknad) {
-        return soknad.getSoknad().getData().getOkonomi().getOpplysninger().getBekreftelse().stream()
-                .filter(bekreftelse -> bekreftelse.getType().equals(UTBETALING_SKATTEETATEN_SAMTYKKE))
+    private static boolean sjekkOmViHarSamtykke(JsonOkonomi okonomi, String key) {
+        return okonomi.getOpplysninger().getBekreftelse().stream()
+                .filter(bekreftelse -> {
+                    return bekreftelse.getType().equals(key);
+                })
                 .anyMatch(JsonOkonomibekreftelse::getVerdi);
 
     }
@@ -126,8 +129,9 @@ public class VedleggsforventningMaster {
         return paakrevdeVedlegg;
     }
 
-    static List<JsonVedlegg> finnPaakrevdeVedleggForOkonomi(JsonOkonomi okonomi) {
+    static List<JsonVedlegg> finnPaakrevdeVedleggForOkonomi(JsonSoknad soknad) {
         List<JsonVedlegg> paakrevdeVedlegg = new ArrayList<>();
+        JsonOkonomi okonomi = soknad.getData().getOkonomi();
         if (okonomi != null) {
             final JsonOkonomiopplysninger opplysninger = okonomi.getOpplysninger();
             if (opplysninger != null) {
@@ -142,7 +146,7 @@ public class VedleggsforventningMaster {
             final JsonOkonomioversikt oversikt = okonomi.getOversikt();
             if (oversikt != null) {
                 if (oversikt.getInntekt() != null && !oversikt.getInntekt().isEmpty()) {
-                    paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForOkonomiOversiktInntekt(oversikt.getInntekt()));
+                    paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForOkonomiOversiktInntekt(soknad));
                 }
                 if (oversikt.getUtgift() != null && !oversikt.getUtgift().isEmpty()) {
                     paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForOkonomiOversiktUtgift(oversikt.getUtgift()));
@@ -205,15 +209,22 @@ public class VedleggsforventningMaster {
                 .collect(Collectors.toList());
     }
 
-    static List<JsonVedlegg> finnPaakrevdeVedleggForOkonomiOversiktInntekt(List<JsonOkonomioversiktInntekt> okonomioversiktInntekter) {
+    static List<JsonVedlegg> finnPaakrevdeVedleggForOkonomiOversiktInntekt(
+            JsonSoknad soknad) {
         List<JsonVedlegg> paakrevdeVedlegg = new ArrayList<>();
+        List<JsonOkonomioversiktInntekt> okonomioversiktInntekter = soknad.getData().getOkonomi().getOversikt().getInntekt();
         for (JsonOkonomioversiktInntekt inntekt : okonomioversiktInntekter) {
             if (inntekt == null) {
                 continue;
             }
             if (BOSTOTTE.equals(inntekt.getType())) {
-                paakrevdeVedlegg.add(new JsonVedlegg().withType("bostotte").withTilleggsinfo("vedtak"));
-            } else if (STUDIELAN.equals(inntekt.getType())) {
+                boolean harBostotteSamtykke = sjekkOmViHarSamtykke(soknad.getData().getOkonomi(), BOSTOTTE_SAMTYKKE);
+                Boolean harBostotteFeilet = soknad.getDriftsinformasjon().getStotteFraHusbankenFeilet();
+                if(!harBostotteSamtykke || harBostotteFeilet) {
+                    paakrevdeVedlegg.add(new JsonVedlegg().withType("bostotte").withTilleggsinfo("vedtak"));
+                }
+            }
+            if (STUDIELAN.equals(inntekt.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("student").withTilleggsinfo("vedtak"));
             }
         }
