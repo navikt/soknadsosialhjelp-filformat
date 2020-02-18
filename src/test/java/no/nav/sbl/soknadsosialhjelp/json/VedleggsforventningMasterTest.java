@@ -1,9 +1,12 @@
 package no.nav.sbl.soknadsosialhjelp.json;
 
+import com.google.common.collect.Lists;
 import no.nav.sbl.soknadsosialhjelp.soknad.JsonData;
 import no.nav.sbl.soknadsosialhjelp.soknad.JsonDriftsinformasjon;
 import no.nav.sbl.soknadsosialhjelp.soknad.JsonInternalSoknad;
 import no.nav.sbl.soknadsosialhjelp.soknad.JsonSoknad;
+import no.nav.sbl.soknadsosialhjelp.soknad.arbeid.JsonArbeid;
+import no.nav.sbl.soknadsosialhjelp.soknad.arbeid.JsonArbeidsforhold;
 import no.nav.sbl.soknadsosialhjelp.soknad.bosituasjon.JsonBosituasjon;
 import no.nav.sbl.soknadsosialhjelp.soknad.familie.*;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.JsonOkonomi;
@@ -11,6 +14,7 @@ import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.JsonOkonomiopplysninger;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.JsonOkonomioversikt;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.JsonOkonomiOpplysningUtbetaling;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.JsonOkonomiOpplysningUtgift;
+import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.JsonOkonomibekreftelse;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.JsonOkonomioversiktFormue;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.JsonOkonomioversiktInntekt;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.JsonOkonomioversiktUtgift;
@@ -77,6 +81,56 @@ public class VedleggsforventningMasterTest {
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForPersonalia(personalia);
 
         assertThat(paakrevdeVedlegg.size(), is(0));
+    }
+
+    @Test
+    public void finnPaakrevdeVedleggForInntektNarSkatteetatenFeiler() {
+        JsonInternalSoknad soknad = new JsonInternalSoknad()
+                .withSoknad(new JsonSoknad()
+                        .withDriftsinformasjon(new JsonDriftsinformasjon()
+                                .withInntektFraSkatteetatenFeilet(true))
+                        .withData(new JsonData()
+                                .withArbeid(new JsonArbeid()
+                                        .withForhold(Lists.newArrayList(new JsonArbeidsforhold().withStillingsprosent(100))))
+                                .withOkonomi(new JsonOkonomi()
+                                        .withOpplysninger(new JsonOkonomiopplysninger()
+                                                .withBekreftelse(Lists.newArrayList(
+                                                        new JsonOkonomibekreftelse()
+                                                                .withType(UTBETALING_SKATTEETATEN_SAMTYKKE)
+                                                                .withVerdi(true)
+                                                ))))));
+
+        List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForArbeid(soknad);
+
+        assertThat(paakrevdeVedlegg.size(), is(1));
+        JsonVedlegg vedlegg = paakrevdeVedlegg.get(0);
+        assertThat(vedlegg.getType(), is("lonnslipp"));
+        assertThat(vedlegg.getTilleggsinfo(), is("arbeid"));
+    }
+
+    @Test
+    public void finnPaakrevdeVedleggForInntektNarViIkkeHarSamtykke() {
+        JsonInternalSoknad soknad = new JsonInternalSoknad()
+                .withSoknad(new JsonSoknad()
+                        .withDriftsinformasjon(new JsonDriftsinformasjon()
+                                .withInntektFraSkatteetatenFeilet(false))
+                        .withData(new JsonData()
+                                .withArbeid(new JsonArbeid()
+                                        .withForhold(Lists.newArrayList(new JsonArbeidsforhold().withStillingsprosent(100))))
+                                .withOkonomi(new JsonOkonomi()
+                                        .withOpplysninger(new JsonOkonomiopplysninger()
+                                                .withBekreftelse(Lists.newArrayList(
+                                                        new JsonOkonomibekreftelse()
+                                                                .withType(UTBETALING_SKATTEETATEN_SAMTYKKE)
+                                                                .withVerdi(false)
+                                                ))))));
+
+        List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForArbeid(soknad);
+
+        assertThat(paakrevdeVedlegg.size(), is(1));
+        JsonVedlegg vedlegg = paakrevdeVedlegg.get(0);
+        assertThat(vedlegg.getType(), is("lonnslipp"));
+        assertThat(vedlegg.getTilleggsinfo(), is("arbeid"));
     }
 
     @Test
