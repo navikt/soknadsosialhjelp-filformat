@@ -48,10 +48,6 @@
       "description": "Ytelsen som gir utbetalingen gjelder til og med denne datoen.",
       "$ref": "../../../types/dato.json"
     },
-    "oppdateringsDato": {
-      "description": "Dato for når denne utbetalingen ble sist oppdatert.",
-      "$ref": "../../../types/dato.json"
-    },
     "komponenter": {
       "description": "Liste over delutbetalinger hvis utbetalingen består av flere deler.",
       "type": "array",

@@ -15,10 +15,6 @@
       "description": "Dato som denne saken er registrert på.",
       "$ref": "../../types/dato.json"
     },
-    "oppdateringsDato": {
-      "description": "Dato for når denne saken ble sist oppdatert.",
-      "$ref": "../../types/dato.json"
-    },
     "status": {
       "description": "Saksstatus. Eksempler: \"UNDER_BEHANDLING\", \"VEDTATT\"",
       "type": "string"
