@@ -30,6 +30,7 @@ import java.util.stream.Collectors;
 import static java.time.LocalDate.now;
 import static no.nav.sbl.soknadsosialhjelp.json.SoknadJsonTyper.*;
 
+@SuppressWarnings("WeakerAccess")
 public class VedleggsforventningMaster {
 
     public static List<JsonVedlegg> finnPaakrevdeVedlegg(JsonInternalSoknad internalSoknad) {
@@ -84,9 +85,7 @@ public class VedleggsforventningMaster {
 
     private static boolean sjekkOmViHarSamtykke(JsonOkonomi okonomi, String key) {
         return okonomi.getOpplysninger().getBekreftelse().stream()
-                .filter(bekreftelse -> {
-                    return bekreftelse.getType().equals(key);
-                })
+                .filter(bekreftelse -> bekreftelse.getType().equals(key))
                 .anyMatch(JsonOkonomibekreftelse::getVerdi);
 
     }
@@ -136,7 +135,7 @@ public class VedleggsforventningMaster {
             final JsonOkonomiopplysninger opplysninger = okonomi.getOpplysninger();
             if (opplysninger != null) {
                 if (opplysninger.getUtbetaling() != null && !opplysninger.getUtbetaling().isEmpty()) {
-                    paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForOkonomiOpplysningerUtbetaling(opplysninger.getUtbetaling()));
+                    paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForOkonomiOpplysningerUtbetaling(soknad));
                 }
                 if (opplysninger.getUtgift() != null && !opplysninger.getUtgift().isEmpty()) {
                     paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForOkonomiOpplysningerUtgift(opplysninger.getUtgift()));
@@ -159,9 +158,10 @@ public class VedleggsforventningMaster {
         return paakrevdeVedlegg;
     }
 
-    static List<JsonVedlegg> finnPaakrevdeVedleggForOkonomiOpplysningerUtbetaling(List<JsonOkonomiOpplysningUtbetaling> okonomiOpplysningUtbetalinger) {
+    static List<JsonVedlegg> finnPaakrevdeVedleggForOkonomiOpplysningerUtbetaling(JsonSoknad soknad) {
+        List<JsonOkonomiOpplysningUtbetaling> utbetalinger = soknad.getData().getOkonomi().getOpplysninger().getUtbetaling();
         List<JsonVedlegg> paakrevdeVedlegg = new ArrayList<>();
-        for (JsonOkonomiOpplysningUtbetaling utbetaling : okonomiOpplysningUtbetalinger) {
+        for (JsonOkonomiOpplysningUtbetaling utbetaling : utbetalinger) {
             if (utbetaling == null) {
                 continue;
             }
@@ -173,6 +173,12 @@ public class VedleggsforventningMaster {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("dokumentasjon").withTilleggsinfo("forsikringsutbetaling"));
             } else if (UTBETALING_ANNET.equals(utbetaling.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("dokumentasjon").withTilleggsinfo("annetinntekter"));
+            } else if (BOSTOTTE.equals(utbetaling.getType())) {
+                boolean harBostotteSamtykke = sjekkOmViHarSamtykke(soknad.getData().getOkonomi(), BOSTOTTE_SAMTYKKE);
+                Boolean harBostotteFeilet = soknad.getDriftsinformasjon().getStotteFraHusbankenFeilet();
+                if (!harBostotteSamtykke || harBostotteFeilet) {
+                    paakrevdeVedlegg.add(new JsonVedlegg().withType("bostotte").withTilleggsinfo("vedtak"));
+                }
             }
         }
         return paakrevdeVedlegg.stream()
@@ -209,20 +215,12 @@ public class VedleggsforventningMaster {
                 .collect(Collectors.toList());
     }
 
-    static List<JsonVedlegg> finnPaakrevdeVedleggForOkonomiOversiktInntekt(
-            JsonSoknad soknad) {
+    static List<JsonVedlegg> finnPaakrevdeVedleggForOkonomiOversiktInntekt(JsonSoknad soknad) {
         List<JsonVedlegg> paakrevdeVedlegg = new ArrayList<>();
         List<JsonOkonomioversiktInntekt> okonomioversiktInntekter = soknad.getData().getOkonomi().getOversikt().getInntekt();
         for (JsonOkonomioversiktInntekt inntekt : okonomioversiktInntekter) {
             if (inntekt == null) {
                 continue;
-            }
-            if (BOSTOTTE.equals(inntekt.getType())) {
-                boolean harBostotteSamtykke = sjekkOmViHarSamtykke(soknad.getData().getOkonomi(), BOSTOTTE_SAMTYKKE);
-                Boolean harBostotteFeilet = soknad.getDriftsinformasjon().getStotteFraHusbankenFeilet();
-                if(!harBostotteSamtykke || harBostotteFeilet) {
-                    paakrevdeVedlegg.add(new JsonVedlegg().withType("bostotte").withTilleggsinfo("vedtak"));
-                }
             }
             if (STUDIELAN.equals(inntekt.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("student").withTilleggsinfo("vedtak"));

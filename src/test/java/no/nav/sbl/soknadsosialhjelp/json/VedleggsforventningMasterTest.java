@@ -42,7 +42,7 @@ public class VedleggsforventningMasterTest {
                         .withData(new JsonData()
                                 .withOkonomi(new JsonOkonomi()
                                         .withOpplysninger(new JsonOkonomiopplysninger()
-                                                .withBekreftelse(Collections.EMPTY_LIST))))
+                                                .withBekreftelse(new ArrayList<>()))))
                         .withDriftsinformasjon(new JsonDriftsinformasjon()
                                 .withUtbetalingerFraNavFeilet(false)
                                 .withInntektFraSkatteetatenFeilet(false)
@@ -233,14 +233,14 @@ public class VedleggsforventningMasterTest {
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForOkonomi(soknad);
 
         assertThat(paakrevdeVedlegg.size(), is(8));
-        assertThat(paakrevdeVedlegg.get(0).getType(), is("salgsoppgjor"));
-        assertThat(paakrevdeVedlegg.get(0).getTilleggsinfo(), is("eiendom"));
-        assertThat(paakrevdeVedlegg.get(1).getType(), is("faktura"));
-        assertThat(paakrevdeVedlegg.get(1).getTilleggsinfo(), is("strom"));
+        assertThat(paakrevdeVedlegg.get(0).getType(), is("bostotte"));
+        assertThat(paakrevdeVedlegg.get(0).getTilleggsinfo(), is("vedtak"));
+        assertThat(paakrevdeVedlegg.get(1).getType(), is("salgsoppgjor"));
+        assertThat(paakrevdeVedlegg.get(1).getTilleggsinfo(), is("eiendom"));
         assertThat(paakrevdeVedlegg.get(2).getType(), is("faktura"));
-        assertThat(paakrevdeVedlegg.get(2).getTilleggsinfo(), is("oppvarming"));
-        assertThat(paakrevdeVedlegg.get(3).getType(), is("bostotte"));
-        assertThat(paakrevdeVedlegg.get(3).getTilleggsinfo(), is("vedtak"));
+        assertThat(paakrevdeVedlegg.get(2).getTilleggsinfo(), is("strom"));
+        assertThat(paakrevdeVedlegg.get(3).getType(), is("faktura"));
+        assertThat(paakrevdeVedlegg.get(3).getTilleggsinfo(), is("oppvarming"));
         assertThat(paakrevdeVedlegg.get(4).getType(), is("student"));
         assertThat(paakrevdeVedlegg.get(4).getTilleggsinfo(), is("vedtak"));
         assertThat(paakrevdeVedlegg.get(5).getType(), is("nedbetalingsplan"));
@@ -309,14 +309,14 @@ public class VedleggsforventningMasterTest {
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForOkonomi(soknad);
 
         assertThat(paakrevdeVedlegg.size(), is(8));
-        assertThat(paakrevdeVedlegg.get(0).getType(), is("salgsoppgjor"));
-        assertThat(paakrevdeVedlegg.get(0).getTilleggsinfo(), is("eiendom"));
-        assertThat(paakrevdeVedlegg.get(1).getType(), is("faktura"));
-        assertThat(paakrevdeVedlegg.get(1).getTilleggsinfo(), is("strom"));
+        assertThat(paakrevdeVedlegg.get(0).getType(), is("bostotte"));
+        assertThat(paakrevdeVedlegg.get(0).getTilleggsinfo(), is("vedtak"));
+        assertThat(paakrevdeVedlegg.get(1).getType(), is("salgsoppgjor"));
+        assertThat(paakrevdeVedlegg.get(1).getTilleggsinfo(), is("eiendom"));
         assertThat(paakrevdeVedlegg.get(2).getType(), is("faktura"));
-        assertThat(paakrevdeVedlegg.get(2).getTilleggsinfo(), is("oppvarming"));
-        assertThat(paakrevdeVedlegg.get(3).getType(), is("bostotte"));
-        assertThat(paakrevdeVedlegg.get(3).getTilleggsinfo(), is("vedtak"));
+        assertThat(paakrevdeVedlegg.get(2).getTilleggsinfo(), is("strom"));
+        assertThat(paakrevdeVedlegg.get(3).getType(), is("faktura"));
+        assertThat(paakrevdeVedlegg.get(3).getTilleggsinfo(), is("oppvarming"));
         assertThat(paakrevdeVedlegg.get(4).getType(), is("student"));
         assertThat(paakrevdeVedlegg.get(4).getTilleggsinfo(), is("vedtak"));
         assertThat(paakrevdeVedlegg.get(5).getType(), is("nedbetalingsplan"));
@@ -329,8 +329,6 @@ public class VedleggsforventningMasterTest {
 
     private List<JsonOkonomioversiktInntekt> lagInntekter() {
         List<JsonOkonomioversiktInntekt> inntekter = new ArrayList<>();
-        inntekter.add(new JsonOkonomioversiktInntekt().withType(BOSTOTTE));
-        inntekter.add(new JsonOkonomioversiktInntekt().withType(BOSTOTTE));
         inntekter.add(new JsonOkonomioversiktInntekt().withType(STUDIELAN));
         return inntekter;
     }
@@ -353,6 +351,8 @@ public class VedleggsforventningMasterTest {
 
     private List<JsonOkonomiOpplysningUtbetaling> lagUtbetalinger() {
         List<JsonOkonomiOpplysningUtbetaling> utbetalinger = new ArrayList<>();
+        utbetalinger.add(new JsonOkonomiOpplysningUtbetaling().withType(BOSTOTTE));
+        utbetalinger.add(new JsonOkonomiOpplysningUtbetaling().withType(BOSTOTTE));
         utbetalinger.add(new JsonOkonomiOpplysningUtbetaling().withType(UTBETALING_SALG));
         utbetalinger.add(new JsonOkonomiOpplysningUtbetaling().withType(UTBETALING_SALG));
         return utbetalinger;
