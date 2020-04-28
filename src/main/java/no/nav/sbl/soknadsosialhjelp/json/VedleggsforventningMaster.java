@@ -173,7 +173,7 @@ public class VedleggsforventningMaster {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("dokumentasjon").withTilleggsinfo("forsikringsutbetaling"));
             } else if (UTBETALING_ANNET.equals(utbetaling.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("dokumentasjon").withTilleggsinfo("annetinntekter"));
-            } else if (BOSTOTTE.equals(utbetaling.getType())) {
+            } else if (UTBETALING_HUSBANKEN.equals(utbetaling.getType())) {
                 boolean harBostotteSamtykke = sjekkOmViHarSamtykke(soknad.getData().getOkonomi(), BOSTOTTE_SAMTYKKE);
                 Boolean harBostotteFeilet = soknad.getDriftsinformasjon().getStotteFraHusbankenFeilet();
                 if (!harBostotteSamtykke || harBostotteFeilet) {

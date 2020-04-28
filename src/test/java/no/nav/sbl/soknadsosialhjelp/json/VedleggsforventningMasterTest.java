@@ -351,8 +351,8 @@ public class VedleggsforventningMasterTest {
 
     private List<JsonOkonomiOpplysningUtbetaling> lagUtbetalinger() {
         List<JsonOkonomiOpplysningUtbetaling> utbetalinger = new ArrayList<>();
-        utbetalinger.add(new JsonOkonomiOpplysningUtbetaling().withType(BOSTOTTE));
-        utbetalinger.add(new JsonOkonomiOpplysningUtbetaling().withType(BOSTOTTE));
+        utbetalinger.add(new JsonOkonomiOpplysningUtbetaling().withType(UTBETALING_HUSBANKEN));
+        utbetalinger.add(new JsonOkonomiOpplysningUtbetaling().withType(UTBETALING_HUSBANKEN));
         utbetalinger.add(new JsonOkonomiOpplysningUtbetaling().withType(UTBETALING_SALG));
         utbetalinger.add(new JsonOkonomiOpplysningUtbetaling().withType(UTBETALING_SALG));
         return utbetalinger;
