@@ -177,7 +177,7 @@ public class VedleggsforventningMaster {
                 boolean harBostotteSamtykke = sjekkOmViHarSamtykke(soknad.getData().getOkonomi(), BOSTOTTE_SAMTYKKE);
                 Boolean harBostotteFeilet = soknad.getDriftsinformasjon().getStotteFraHusbankenFeilet();
                 if (!harBostotteSamtykke || harBostotteFeilet) {
-                    paakrevdeVedlegg.add(new JsonVedlegg().withType("bostotte").withTilleggsinfo("vedtak"));
+                    paakrevdeVedlegg.add(new JsonVedlegg().withType(UTBETALING_HUSBANKEN).withTilleggsinfo("vedtak"));
                 }
             }
         }
