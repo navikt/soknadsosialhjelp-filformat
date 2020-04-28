@@ -233,7 +233,7 @@ public class VedleggsforventningMasterTest {
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForOkonomi(soknad);
 
         assertThat(paakrevdeVedlegg.size(), is(8));
-        assertThat(paakrevdeVedlegg.get(0).getType(), is("bostotte"));
+        assertThat(paakrevdeVedlegg.get(0).getType(), is("husbanken"));
         assertThat(paakrevdeVedlegg.get(0).getTilleggsinfo(), is("vedtak"));
         assertThat(paakrevdeVedlegg.get(1).getType(), is("salgsoppgjor"));
         assertThat(paakrevdeVedlegg.get(1).getTilleggsinfo(), is("eiendom"));
@@ -309,7 +309,7 @@ public class VedleggsforventningMasterTest {
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForOkonomi(soknad);
 
         assertThat(paakrevdeVedlegg.size(), is(8));
-        assertThat(paakrevdeVedlegg.get(0).getType(), is("bostotte"));
+        assertThat(paakrevdeVedlegg.get(0).getType(), is("husbanken"));
         assertThat(paakrevdeVedlegg.get(0).getTilleggsinfo(), is("vedtak"));
         assertThat(paakrevdeVedlegg.get(1).getType(), is("salgsoppgjor"));
         assertThat(paakrevdeVedlegg.get(1).getTilleggsinfo(), is("eiendom"));
