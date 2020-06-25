@@ -2,6 +2,7 @@ package no.nav.sbl.soknadsosialhjelp.json;
 
 import no.nav.sbl.soknadsosialhjelp.soknad.JsonData;
 import no.nav.sbl.soknadsosialhjelp.soknad.JsonInternalSoknad;
+import no.nav.sbl.soknadsosialhjelp.soknad.JsonSoknad;
 import no.nav.sbl.soknadsosialhjelp.soknad.arbeid.JsonArbeid;
 import no.nav.sbl.soknadsosialhjelp.soknad.arbeid.JsonArbeidsforhold;
 import no.nav.sbl.soknadsosialhjelp.soknad.bosituasjon.JsonBosituasjon;
@@ -13,6 +14,7 @@ import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.JsonOkonomiopplysninger;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.JsonOkonomioversikt;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.JsonOkonomiOpplysningUtbetaling;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.JsonOkonomiOpplysningUtgift;
+import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.JsonOkonomibekreftelse;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.JsonOkonomioversiktFormue;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.JsonOkonomioversiktInntekt;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.JsonOkonomioversiktUtgift;
@@ -28,6 +30,7 @@ import java.util.stream.Collectors;
 import static java.time.LocalDate.now;
 import static no.nav.sbl.soknadsosialhjelp.json.SoknadJsonTyper.*;
 
+@SuppressWarnings("WeakerAccess")
 public class VedleggsforventningMaster {
 
     public static List<JsonVedlegg> finnPaakrevdeVedlegg(JsonInternalSoknad internalSoknad) {
@@ -41,7 +44,7 @@ public class VedleggsforventningMaster {
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForArbeid(internalSoknad));
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForFamilie(data.getFamilie()));
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForBosituasjon(data.getBosituasjon()));
-        paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForOkonomi(data.getOkonomi()));
+        paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForOkonomi(internalSoknad.getSoknad()));
 
         paakrevdeVedlegg.add(new JsonVedlegg().withType("skattemelding").withTilleggsinfo("skattemelding"));
         paakrevdeVedlegg.add(new JsonVedlegg().withType("annet").withTilleggsinfo("annet"));
@@ -63,7 +66,8 @@ public class VedleggsforventningMaster {
         List<JsonVedlegg> paakrevdeVedlegg = new ArrayList<>();
         JsonArbeid arbeid = jsonInternalSoknad.getSoknad().getData().getArbeid();
         boolean utbetalingerFeiletFraSkatt = jsonInternalSoknad.getSoknad().getDriftsinformasjon().getInntektFraSkatteetatenFeilet();
-        if (utbetalingerFeiletFraSkatt && arbeid != null && arbeid.getForhold() != null && !arbeid.getForhold().isEmpty()) {
+        boolean manglerSamtykke = !sjekkOmViHarSamtykke(jsonInternalSoknad.getSoknad().getData().getOkonomi(), UTBETALING_SKATTEETATEN_SAMTYKKE);
+        if ((utbetalingerFeiletFraSkatt || manglerSamtykke) && arbeid != null && arbeid.getForhold() != null && !arbeid.getForhold().isEmpty()) {
             List<JsonArbeidsforhold> alleArbeidsforhold = arbeid.getForhold();
             for (JsonArbeidsforhold arbeidsforhold : alleArbeidsforhold) {
                 String tom = arbeidsforhold.getTom();
@@ -77,6 +81,13 @@ public class VedleggsforventningMaster {
         return paakrevdeVedlegg.stream()
                 .distinct()
                 .collect(Collectors.toList());
+    }
+
+    private static boolean sjekkOmViHarSamtykke(JsonOkonomi okonomi, String key) {
+        return okonomi.getOpplysninger().getBekreftelse().stream()
+                .filter(bekreftelse -> bekreftelse.getType().equals(key))
+                .anyMatch(JsonOkonomibekreftelse::getVerdi);
+
     }
 
     static List<JsonVedlegg> finnPaakrevdeVedleggForFamilie(JsonFamilie familie) {
@@ -117,13 +128,14 @@ public class VedleggsforventningMaster {
         return paakrevdeVedlegg;
     }
 
-    static List<JsonVedlegg> finnPaakrevdeVedleggForOkonomi(JsonOkonomi okonomi) {
+    static List<JsonVedlegg> finnPaakrevdeVedleggForOkonomi(JsonSoknad soknad) {
         List<JsonVedlegg> paakrevdeVedlegg = new ArrayList<>();
+        JsonOkonomi okonomi = soknad.getData().getOkonomi();
         if (okonomi != null) {
             final JsonOkonomiopplysninger opplysninger = okonomi.getOpplysninger();
             if (opplysninger != null) {
                 if (opplysninger.getUtbetaling() != null && !opplysninger.getUtbetaling().isEmpty()) {
-                    paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForOkonomiOpplysningerUtbetaling(opplysninger.getUtbetaling()));
+                    paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForOkonomiOpplysningerUtbetaling(soknad));
                 }
                 if (opplysninger.getUtgift() != null && !opplysninger.getUtgift().isEmpty()) {
                     paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForOkonomiOpplysningerUtgift(opplysninger.getUtgift()));
@@ -133,7 +145,7 @@ public class VedleggsforventningMaster {
             final JsonOkonomioversikt oversikt = okonomi.getOversikt();
             if (oversikt != null) {
                 if (oversikt.getInntekt() != null && !oversikt.getInntekt().isEmpty()) {
-                    paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForOkonomiOversiktInntekt(oversikt.getInntekt()));
+                    paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForOkonomiOversiktInntekt(soknad));
                 }
                 if (oversikt.getUtgift() != null && !oversikt.getUtgift().isEmpty()) {
                     paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForOkonomiOversiktUtgift(oversikt.getUtgift()));
@@ -146,9 +158,10 @@ public class VedleggsforventningMaster {
         return paakrevdeVedlegg;
     }
 
-    static List<JsonVedlegg> finnPaakrevdeVedleggForOkonomiOpplysningerUtbetaling(List<JsonOkonomiOpplysningUtbetaling> okonomiOpplysningUtbetalinger) {
+    static List<JsonVedlegg> finnPaakrevdeVedleggForOkonomiOpplysningerUtbetaling(JsonSoknad soknad) {
+        List<JsonOkonomiOpplysningUtbetaling> utbetalinger = soknad.getData().getOkonomi().getOpplysninger().getUtbetaling();
         List<JsonVedlegg> paakrevdeVedlegg = new ArrayList<>();
-        for (JsonOkonomiOpplysningUtbetaling utbetaling : okonomiOpplysningUtbetalinger) {
+        for (JsonOkonomiOpplysningUtbetaling utbetaling : utbetalinger) {
             if (utbetaling == null) {
                 continue;
             }
@@ -160,6 +173,12 @@ public class VedleggsforventningMaster {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("dokumentasjon").withTilleggsinfo("forsikringsutbetaling"));
             } else if (UTBETALING_ANNET.equals(utbetaling.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("dokumentasjon").withTilleggsinfo("annetinntekter"));
+            } else if (UTBETALING_HUSBANKEN.equals(utbetaling.getType())) {
+                boolean harBostotteSamtykke = sjekkOmViHarSamtykke(soknad.getData().getOkonomi(), BOSTOTTE_SAMTYKKE);
+                Boolean harBostotteFeilet = soknad.getDriftsinformasjon().getStotteFraHusbankenFeilet();
+                if (!harBostotteSamtykke || harBostotteFeilet) {
+                    paakrevdeVedlegg.add(new JsonVedlegg().withType(UTBETALING_HUSBANKEN).withTilleggsinfo("vedtak"));
+                }
             }
         }
         return paakrevdeVedlegg.stream()
@@ -196,15 +215,14 @@ public class VedleggsforventningMaster {
                 .collect(Collectors.toList());
     }
 
-    static List<JsonVedlegg> finnPaakrevdeVedleggForOkonomiOversiktInntekt(List<JsonOkonomioversiktInntekt> okonomioversiktInntekter) {
+    static List<JsonVedlegg> finnPaakrevdeVedleggForOkonomiOversiktInntekt(JsonSoknad soknad) {
         List<JsonVedlegg> paakrevdeVedlegg = new ArrayList<>();
+        List<JsonOkonomioversiktInntekt> okonomioversiktInntekter = soknad.getData().getOkonomi().getOversikt().getInntekt();
         for (JsonOkonomioversiktInntekt inntekt : okonomioversiktInntekter) {
             if (inntekt == null) {
                 continue;
             }
-            if (BOSTOTTE.equals(inntekt.getType())) {
-                paakrevdeVedlegg.add(new JsonVedlegg().withType("bostotte").withTilleggsinfo("vedtak"));
-            } else if (STUDIELAN.equals(inntekt.getType())) {
+            if (STUDIELAN.equals(inntekt.getType())) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("student").withTilleggsinfo("vedtak"));
             }
         }

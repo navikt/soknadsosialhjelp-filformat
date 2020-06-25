@@ -239,7 +239,7 @@
 			      "properties": {
 			        "bekreftelse": {
 			          "title": "Bekreftelser fra bruker.",
-			          "description": "Det jobbes med å se på om søknaden kan presenteres på en annen måte slik at disse bekreftelsene ikke lenger er nødvendige, men det er ingen konkret plan for når dette eventuelt skjer.",
+			          "description": "Både ja/nei-svar og samtykker fra bruker.",
 			          "type": "array",
 			          "items": {
 			            "type": "object",
@@ -259,8 +259,12 @@
 			    		  "verdi": {
 			    		  	"description": "Kan være manglende hvis bruker ikke har besvart spørsmålet.",
 			    		    "type": "boolean"
-			    		  }
-			            },
+			    		  },
+						  "bekreftelsesDato": {
+							"description": "Tidspunkt for når denne bekreftelsen ble gitt.",
+							"$ref": "../types/tidspunkt.json"
+						  }
+						},
 			            "required": [
 			              "kilde", "type", "tittel"
 			            ]
