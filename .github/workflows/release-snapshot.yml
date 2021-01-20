@@ -26,7 +26,7 @@ jobs:
           VERSION="1.$TIME-$COMMIT-SNAPSHOT"
           echo "Setting version $VERSION"
           mvn versions:set -DnewVersion="$VERSION"
-          mvn versions:commit'
+          mvn versions:commit
       - name: Release Maven package
         env:
           SONATYPE_USER: ${{ secrets.SONATYPE_USER }}
