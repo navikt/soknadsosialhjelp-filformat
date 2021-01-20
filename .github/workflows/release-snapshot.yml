@@ -19,7 +19,7 @@ jobs:
           java-version: 1.8
       - name: Build with Maven
         run: mvn clean install
-      - name: Setting version
+      - name: Setting version (snapshot)
         run: |
           TIME=$(TZ="Europe/Oslo" date +%Y.%m.%d-%H.%M)
           COMMIT=$(git rev-parse --short=12 HEAD)
