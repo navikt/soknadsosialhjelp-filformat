@@ -40,6 +40,20 @@
         <jackson-coreutils.version>1.8</jackson-coreutils.version>
         <msg-simple.version>1.1</msg-simple.version>
         <commons-lang3.version>3.5</commons-lang3.version>
+
+        <!--plugin versions-->
+        <maven-war-plugin.version>3.2.2</maven-war-plugin.version>
+        <maven-ear-plugin.version>2.10.1</maven-ear-plugin.version>
+        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
+        <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
+        <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>3.1.0</maven-javadoc-plugin.version>
+        <maven-resources-plugin.version>3.0.2</maven-resources-plugin.version>
+        <replacer.version>1.5.3</replacer.version>
+        <jsonschema2pojo-maven-plugin.version>0.5.1</jsonschema2pojo-maven-plugin.version>
+        <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
+        <maven-shade-plugin.version>3.1.0</maven-shade-plugin.version>
+        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
     </properties>
 
     <distributionManagement>
@@ -126,7 +140,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>3.2.2</version>
+                <version>${maven-war-plugin.version}</version>
                 <configuration>
                     <archive>
                         <manifest>
@@ -138,7 +152,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-ear-plugin</artifactId>
-                <version>2.10.1</version>
+                <version>${maven-ear-plugin.version}</version>
                 <configuration>
                     <version>7</version>
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
@@ -155,7 +169,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.3</version>
+                <version>${maven-release-plugin.version}</version>
                 <configuration>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <useReleaseProfile>true</useReleaseProfile>
@@ -167,7 +181,7 @@
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.8</version>
+                <version>${nexus-staging-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>default-deploy</id>
@@ -188,7 +202,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
+                <version>${maven-source-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -202,7 +216,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>${maven-javadoc-plugin.version}</version>
                 <configuration>
                     <additionalOptions>
                         <additionalOption>-Xdoclint:none</additionalOption>
@@ -221,7 +235,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>3.0.2</version>
+                <version>${maven-resources-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>copy-resources</id>
@@ -243,7 +257,7 @@
             <plugin>
                 <groupId>com.google.code.maven-replacer-plugin</groupId>
                 <artifactId>replacer</artifactId>
-                <version>1.5.3</version>
+                <version>${replacer.version}</version>
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>
@@ -267,7 +281,7 @@
             <plugin>
                 <groupId>org.jsonschema2pojo</groupId>
                 <artifactId>jsonschema2pojo-maven-plugin</artifactId>
-                <version>0.5.1</version>
+                <version>${jsonschema2pojo-maven-plugin.version}</version>
                 <configuration>
                     <classNamePrefix>Json</classNamePrefix>
                     <generateBuilders>true</generateBuilders>
@@ -292,7 +306,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>${build-helper-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>
@@ -310,7 +324,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>${maven-shade-plugin.version}</version>
                 <configuration>
                     <shadedArtifactAttached>true</shadedArtifactAttached>
                     <transformers>
@@ -339,7 +353,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.6</version>
+                        <version>${maven-gpg-plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -347,14 +361,15 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
+                                <configuration>
+                                    <!-- Prevent `gpg` from using pinentry programs -->
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
+                                </configuration>
                             </execution>
                         </executions>
-                        <configuration>
-                            <gpgArguments>
-                                <arg>--pinentry-mode</arg>
-                                <arg>loopback</arg>
-                            </gpgArguments>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>
@@ -364,7 +379,7 @@
     <scm>
         <developerConnection>scm:git:git@github.com:navikt/soknadsosialhjelp-filformat.git</developerConnection>
         <connection>scm:git:git@github.com:navikt/soknadsosialhjelp-filformat.git</connection>
-        <url>https://github.com/navikt/soknadsosialhjelp-filformatc</url>
+        <url>https://github.com/navikt/soknadsosialhjelp-filformat</url>
         <tag>soknadsosialhjelp-filformat-1.0.0</tag>
     </scm>
 </project>
