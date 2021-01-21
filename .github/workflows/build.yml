@@ -25,3 +25,21 @@ jobs:
         uses: actions/checkout@v2
       - name: Build with Maven
         run: mvn clean install
+# snapshot
+      - name: Setting snapshot
+        run: |
+          TIME=$(TZ="Europe/Oslo" date +%Y.%m.%d-%H.%M)
+          COMMIT=$(git rev-parse --short=12 HEAD)
+          VERSION="1.$TIME-$COMMIT-SNAPSHOT"
+          echo "Setting version $VERSION"
+          mvn versions:set -DnewVersion="$VERSION"
+          mvn versions:commit
+      - name: Release Maven package
+        env:
+          SONATYPE_USER: ${{ secrets.SONATYPE_USER }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
+          GPG_KEYS: ${{ secrets.GPG_KEYS }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: |
+          export GPG_TTY=$(tty) && echo -e "$GPG_KEYS" | gpg --fast-import --batch
+          mvn -B -Prelease -DskipTests=true --settings maven-settings.xml deploy
