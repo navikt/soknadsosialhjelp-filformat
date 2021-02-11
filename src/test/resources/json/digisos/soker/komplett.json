@@ -140,36 +140,6 @@
 			"tittel": "KVP"
 		},
 		{
-			"type": "vilkar",
-			"vilkarreferanse": "vilkar1",
-			"hendelsestidspunkt": "2018-10-12T13:37:00.134Z",
-			"utbetalingsreferanse": [
-				"UTBETALINGNR1SAK2"
-			],
-			"status": "OPPFYLT",
-			"beskrivelse": "Gå en tur hver dag"
-		},
-		{
-			"type": "dokumentasjonkrav",
-			"dokumentasjonkravreferanse": "dokumentasjonkrav1",
-			"hendelsestidspunkt": "2018-10-12T13:37:00.134Z",
-			"utbetalingsreferanse": [
-				"UTBETALINGNR1SAK2"
-			],
-			"status": "OPPFYLT",
-			"beskrivelse": "Levere kvittering for strømregning"
-		},
-		{
-			"type": "rammevedtak",
-			"saksreferanse": "SAK2",
-			"hendelsestidspunkt": "2018-10-12T13:37:00.134Z",
-			"belop": 6000.00,
-			"beskrivelse": "Strøm for en periode",
-			"fom": "2018-10-11",
-			"tom": "2018-10-13",
-			"rammevedtaksreferanse": "rammevedtaksreferanse"
-		},
-		{
 			"type": "utbetaling",
 			"saksreferanse": "SAK2",
 			"utbetalingsreferanse": "UTBETALINGNR1SAK2",
@@ -184,6 +154,92 @@
 			"utbetalingsmetode": "kontooverføring",
 			"status": "PLANLAGT_UTBETALING",
 			"rammevedtaksreferanse": "rammevedtaksreferanse"
+		},
+		{
+			"type": "vilkar",
+			"vilkarreferanse": "vilkar1",
+			"hendelsestidspunkt": "2018-10-12T13:37:00.134Z",
+			"saksreferanse": "SAK1",
+			"utbetalingsreferanse": [
+				"UTBETALINGNR1SAK2"
+			],
+			"status": "RELEVANT",
+			"tittel": "Betale husleie",
+			"beskrivelse": "Du må betale din husleie hver måned"
+		},
+		{
+			"type": "vilkar",
+			"vilkarreferanse": "vilkar1",
+			"hendelsestidspunkt": "2018-10-13T13:37:00.134Z",
+			"saksreferanse": "SAK1",
+			"utbetalingsreferanse": [
+				"UTBETALINGNR1SAK2"
+			],
+			"status": "ANNULLERT",
+			"tittel": "Betale husleie",
+			"beskrivelse": "Annullert som følge av nytt vedtak"
+		},
+		{
+			"type": "vilkar",
+			"vilkarreferanse": "vilkar2",
+			"hendelsestidspunkt": "2018-10-13T13:37:00.134Z",
+			"saksreferanse": "SAK1",
+			"utbetalingsreferanse": [
+				"UTBETALINGNR1SAK2"
+			],
+			"status": "RELEVANT",
+			"tittel": "Søke bostøtte",
+			"beskrivelse": "Du har nylig flyttet og kan ha rett på statlig bostøtte. Du må søke bostøtte hos Husbanken innen 1. april på husbanken.no/bostotte/ ."
+		},
+		{
+			"type": "dokumentasjonkrav",
+			"dokumentasjonkravreferanse": "dokumentasjonkrav1",
+			"hendelsestidspunkt": "2018-10-12T13:37:00.134Z",
+			"saksreferanse": "SAK1",
+			"utbetalingsreferanse": [
+				"UTBETALINGNR1SAK2"
+			],
+			"status": "RELEVANT",
+			"tittel": "Legeerklæring",
+			"beskrivelse": "Du må levere legeerklæring eller annen dokumentasjon fra lege som viser at du mottar oppfølging for din helsesituasjon."
+		},
+		{
+			"type": "dokumentasjonkrav",
+			"dokumentasjonkravreferanse": "dokumentasjonkrav2",
+			"hendelsestidspunkt": "2018-10-12T13:37:00.134Z",
+			"saksreferanse": "SAK1",
+			"utbetalingsreferanse": [
+				"UTBETALINGNR1SAK2"
+			],
+			"frist": "2018-02-28T23:59:59.000Z",
+			"status": "RELEVANT",
+			"tittel": "Husleie for februar",
+			"beskrivelse": "Du må levere kopi av faktura for husleien din."
+		},
+		{
+			"type": "dokumentasjonkrav",
+			"dokumentasjonkravreferanse": "dokumentasjonkrav2",
+			"hendelsestidspunkt": "2018-10-13T13:37:00.134Z",
+			"saksreferanse": "SAK1",
+			"utbetalingsreferanse": [
+				"UTBETALINGNR1SAK2"
+			],
+			"frist": "2018-02-28T23:59:59.000Z",
+			"status": "ANULLERT",
+			"tittel": "Husleie for februar",
+			"beskrivelse": "Annullert som følge av nytt vedtak."
+		},
+		{
+			"type": "dokumentasjonkrav",
+			"dokumentasjonkravreferanse": "dokumentasjonkrav1",
+			"hendelsestidspunkt": "2018-10-12T13:37:00.134Z",
+			"saksreferanse": "SAK1",
+			"utbetalingsreferanse": [
+				"UTBETALINGNR1SAK2"
+			],
+			"status": "LEVERT_TIDLIGERE",
+			"tittel": "Legeerklæring",
+			"beskrivelse": "Du må levere legeerklæring eller annen dokumentasjon fra lege som viser at du mottar oppfølging for din helsesituasjon."
 		}
 	]
 }

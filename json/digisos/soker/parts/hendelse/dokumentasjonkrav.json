@@ -24,6 +24,10 @@
 			"type": "string",
 			"description": "referansen til dokumentasjonkravet"
 		},
+		"saksreferanse": {
+			"type": "string",
+			"description": "En referanse til saken dokumentasjonkravet gjelder for. Denne er påkrevd, men blir lagt til som optional for bakover-kompatibilitet."
+		},
 		"utbetalingsreferanse": {
 			"type": "array",
 			"description": "Hvilke utbetalinger dokumentasjonkravet er knyttet til",
@@ -31,14 +35,24 @@
 				"type": "string"
 			}
 		},
+		"tittel": {
+			"type": "string",
+			"description": "Hva dokumentasjonkravet gjelder. Denne er påkrevd, men blir lagt til som optional for bakover-kompatibilitet."
+		},
 		"beskrivelse": {
 			"type": "string",
-			"description": "Hva som må gjøres"
+			"description": "En eventuelt mer detaljert beskrivelse rundt hva dokumentasjonkravet omhandler. Denne teksten kan også inneholde feks. periode og hvordan en søker kan oppfylle kravet."
+		},
+		"frist": {
+			"$ref": "../../../../types/tidspunkt.json"
 		},
 		"status": {
 			"type": "string",
-			"description": "Status for dokumentasjonkravet",
+			"description": "Status som forteller om dokumentasjonkravet er relevant eller ikke. \nRELEVANT brukes for alle dokumentasjonkrav som er relevante for saken. \nLEVERT_TIDLIGERE benyttes dersom dokumentasjonkravet er levert via andre kanaler, eller er oppfylt av et annet dokument søker har sendt inn. \nANNULLERT benyttes dersom et dokumentasjonkrav er feilregistrert, skal fjernes av tekniske årsaker eller er erstattet av nytt vedtak. Annullerte dokumentasjonkrav vil ikke vises, og benyttes i tilfeller der et dokumentasjonkrav skal slettes fra nav.no på grunn av en feilsituasjon. \nOPPFYLT og IKKE_OPPFYLT er deprecated men fjernes ikke, for bakover-kompatibilitet. De blir tolket som RELEVANT.",
 			"enum": [
+				"RELEVANT",
+				"LEVERT_TIDLIGERE",
+				"ANNULLERT",
 				"OPPFYLT",
 				"IKKE_OPPFYLT"
 			]
