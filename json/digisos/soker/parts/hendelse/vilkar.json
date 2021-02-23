@@ -24,6 +24,10 @@
 			"type": "string",
 			"description": "referansen til vilkåret"
 		},
+		"saksreferanse": {
+			"type": "string",
+			"description": "En referanse til saken vilkåret gjelder for. Denne er påkrevd, men blir lagt til som optional for bakover-kompatibilitet."
+		},
 		"utbetalingsreferanse": {
 			"type": "array",
 			"description": "Hvilke utbetalinger vilkåret er knyttet til",
@@ -31,14 +35,20 @@
 				"type": "string"
 			}
 		},
+		"tittel": {
+			"type": "string",
+			"description": "Hva vilkåret gjelder. Er påkrevd, men blir lagt til som optional for bakover-kompatibilitet."
+		},
 		"beskrivelse": {
 			"type": "string",
-			"description": "Hva som må gjøres"
+			"description": "En eventuelt mer detaljert beskrivelse rundt hva vilkåret omhandler. Denne teksten kan også inneholde feks. periode og hvordan en søker kan oppfylle vilkåret."
 		},
 		"status": {
 			"type": "string",
-			"description": "Status for vilkåret",
+			"description": "Status som forteller om vilkåret er relevant eller ikke. \nRELEVANT brukes for alle vilkåret som er relevante for saken. \nANNULLERT benyttes dersom et vilkår er feilregistrert, skal fjernes av tekniske årsaker eller er erstattet av nytt vedtak. Annullerte vilkår vil ikke vises, og benyttes i tilfeller der et vilkår skal slettes fra nav.no på grunn av en feilsituasjon. \nOPPFYLT og IKKE_OPPFYLT er deprecated men fjernes ikke, for bakover-kompatibilitet. De blir tolket som RELEVANT.",
 			"enum": [
+				"RELEVANT",
+				"ANNULLERT",
 				"OPPFYLT",
 				"IKKE_OPPFYLT"
 			]

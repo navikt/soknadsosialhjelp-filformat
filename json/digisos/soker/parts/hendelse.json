@@ -24,7 +24,7 @@
 			"type": "string",
 			"description": "Det kan legges til nye hendelsestyper i enumen, men ingen gamle kan fjernes fra valideringsskjemaet (grunnet kompatibilitet).",
 			"enum": [
-			    "tildeltNavKontor", "soknadsStatus", "vedtakFattet", "dokumentasjonEtterspurt", "forelopigSvar", "saksStatus", "utbetaling", "vilkar", "dokumentasjonkrav","rammevedtak"
+			    "tildeltNavKontor", "soknadsStatus", "vedtakFattet", "dokumentasjonEtterspurt", "forelopigSvar", "saksStatus", "utbetaling", "vilkar", "dokumentasjonkrav", "rammevedtak"
 			]
 		},
 		"hendelsestidspunkt": {
