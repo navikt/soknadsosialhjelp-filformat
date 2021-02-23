@@ -225,7 +225,7 @@
 				"UTBETALINGNR1SAK2"
 			],
 			"frist": "2018-02-28T23:59:59.000Z",
-			"status": "ANULLERT",
+			"status": "ANNULLERT",
 			"tittel": "Husleie for februar",
 			"beskrivelse": "Annullert som følge av nytt vedtak."
 		},
