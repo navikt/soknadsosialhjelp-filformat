@@ -43,6 +43,20 @@
           "items": {
             "$ref": "#/definitions/fil"
           }
+        },
+        "hendelseType": {
+          "description": "Angir typen til hendelsen som fikk brukeren til å laste opp dette vedlegget. Mulige typer:\n* dokumentasjonEtterspurt - om vedlegget ble lastet opp på grunn av hendelsen dokumentasjonEtterspurt \n* dokumentasjonkrav - om vedlegget ble lastet opp på grunn av hendelsen dokumentasjonkrav \n* soknad - om vedlegget ble lastet opp på grunn av vedleggskrav generert av søknaden \n* bruker - når bruker selv velger å laste opp annen dokumentasjon",
+          "type": "string",
+          "enum": [
+            "dokumentasjonEtterspurt",
+            "dokumentasjonkrav",
+            "soknad",
+            "bruker"
+          ]
+        },
+        "hendelseReferanse": {
+          "description": "Peker på referansen til hendelsen som fikk brukeren til å laste opp dette vedlegget.",
+          "type": "string"
         }
       }
     },

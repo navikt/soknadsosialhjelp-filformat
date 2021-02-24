@@ -50,6 +50,11 @@
           },
           "innsendelsesfrist": {
             "$ref": "../../../../types/tidspunkt.json"
+          },
+          "dokumentreferanse": {
+            "title": "Dokumentreferanse",
+            "type": "string",
+            "description": "Referansen til dette dokumentet som etterspørres. Vil bli sendt tilbake i vedlegg.json"
           }
         },
         "required": [

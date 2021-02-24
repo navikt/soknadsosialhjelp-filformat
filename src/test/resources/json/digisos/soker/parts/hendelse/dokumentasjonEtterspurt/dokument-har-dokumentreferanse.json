@@ -1,0 +1,21 @@
+{
+  "type": "dokumentasjonEtterspurt",
+  "hendelsestidspunkt": "2018-10-11T13:42:00.134Z",
+  "forvaltningsbrev": {
+    "referanse": {
+      "type": "dokumentlager",
+      "id": "12345678-9abc-def0-1234-56789abcdef0"
+    }
+  },
+  "dokumenter": [
+    {
+      "dokumenttype": "Husleiekvittering Januar",
+      "innsendelsesfrist": "2018-10-20T07:37:00.134Z",
+      "dokumentreferanse": "dokumentreferanse1"
+    },
+    {
+      "dokumenttype": "Husleiekvittering Februar",
+      "innsendelsesfrist": "2018-10-20T07:37:00.134Z"
+    }
+  ]
+}

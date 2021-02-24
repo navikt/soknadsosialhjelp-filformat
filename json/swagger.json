@@ -68,8 +68,8 @@
 			    "tags": [
 					"vedlegg"
 				],
-				"summary": "Versjon 1.0.0",
-				"description": "Denne dokumentasjonen er generert ut fra et [json-schema](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/json/vedlegg/vedleggSpesifikasjon.json). Skjemaet kan utvides slik at det er egnet til autogenerering av kode, men dette må i så fall diskuteres på Slack først.",
+				"summary": "Versjon 1.1.0",
+				"description": "Denne dokumentasjonen er generert ut fra et [json-schema](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/json/vedlegg/vedleggSpesifikasjon.json). Skjemaet kan utvides slik at det er egnet til autogenerering av kode, men dette må i så fall diskuteres på Slack først.\n## Endringer\n### Versjon 1.1.0\n* Utvidelse med to nye, optional felter: hendelseType og hendelseReferanse. Som følge av løsningsbeskrivelsen 'Nye felter i vedlegg.json' \n### Versjon 1.0.0\n* Lanseringsversjon \n",
 				"responses": {
 					"filformat": {
 						"schema": {
@@ -84,8 +84,8 @@
 			    "tags": [
 					"data fra fagsystem"
 				],
-				"summary": "Versjon 1.2.0",
-				"description": "Definisjon av fil som brukes til å sende data, som søker skal kunne se, fra fagsystemet. Denne dokumentasjonen er generert ut fra et [json-schema](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/json/digisos/soker/digisos-soker.json).\n\n## Krav\n* Allerede fra første innsending av \"digisos-soker.json\" _må_ \"hendelser\" inneholde hendelsen \"soknadsStatus\" med statuskode \"MOTTATT\".\n\n## Eksempler og testfiler\n* Eksempler på søkerinnsyn-JSON med [kun påkrevde data](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/digisos/soker/minimal.json) og [komplett utfylt](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/digisos/soker/komplett.json).\n* [Flere testfiler](https://github.com/navikt/soknadsosialhjelp-filformat/tree/master/src/test/resources/json/digisos/soker)\n\n## Endringer\n### Versjon 1.2.0\n* Utvidet hendelsene vilkar og dokumentasjonkrav med bakoverkompatible endringer fra løsningsbeskrivelsen om vilkår og dokumentasjonskrav. \n",
+				"summary": "Versjon 1.2.1",
+				"description": "Definisjon av fil som brukes til å sende data, som søker skal kunne se, fra fagsystemet. Denne dokumentasjonen er generert ut fra et [json-schema](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/json/digisos/soker/digisos-soker.json).\n\n## Krav\n* Allerede fra første innsending av \"digisos-soker.json\" _må_ \"hendelser\" inneholde hendelsen \"soknadsStatus\" med statuskode \"MOTTATT\".\n\n## Eksempler og testfiler\n* Eksempler på søkerinnsyn-JSON med [kun påkrevde data](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/digisos/soker/minimal.json) og [komplett utfylt](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/digisos/soker/komplett.json).\n* [Flere testfiler](https://github.com/navikt/soknadsosialhjelp-filformat/tree/master/src/test/resources/json/digisos/soker)\n\n## Endringer\n### Versjon 1.2.1\n* Utvider dokumentasjonEtterspurt med dokumentreferanse på dokumenter. Som følge av løsningsbeskrivelsen 'Nye felter i vedlegg.json' \n### Versjon 1.2.0\n* Utvidet hendelsene vilkar og dokumentasjonkrav med bakoverkompatible endringer fra løsningsbeskrivelsen om vilkår og dokumentasjonskrav. \n",
 				"responses": {
 					"filformat": {
 						"description": "Definisjon av søkers innsynsfil. Se på \"Model\" for definisjon av hvert enkelt felt. Se separate typedefinisjoner nederst på siden der det er forskjellige type-alternativer (nå gjelder dette kun for \"hendelse\" og \"filreferanse\", men det kan bli flere typer senere).",
