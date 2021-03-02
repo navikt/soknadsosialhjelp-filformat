@@ -1,0 +1,11 @@
+{
+  "vedlegg": [
+    {
+      "type": "faktura",
+      "tilleggsinfo": "sfo",
+      "status": "LastetOpp",
+      "hendelseType": "annet",
+      "filer": []
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "vedlegg": [
+    {
+      "hendelseType": "dokumentasjonEtterspurt"
+    },
+    {
+      "hendelseType": "dokumentasjonkrav"
+    },
+    {
+      "hendelseType": "soknad"
+    },
+    {
+      "hendelseType": "bruker"
+    },
+    {
+      "type": "faktura",
+      "tilleggsinfo": "sfo",
+      "status": "LastetOpp",
+      "filer": []
+    }
+  ]
+}

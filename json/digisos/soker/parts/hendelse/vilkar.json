@@ -45,7 +45,7 @@
 		},
 		"status": {
 			"type": "string",
-			"description": "Status som forteller om vilkåret er relevant eller ikke. \nRELEVANT brukes for alle vilkåret som er relevante for saken. \nANNULLERT benyttes dersom et vilkår er feilregistrert, skal fjernes av tekniske årsaker eller er erstattet av nytt vedtak. Annullerte vilkår vil ikke vises, og benyttes i tilfeller der et vilkår skal slettes fra nav.no på grunn av en feilsituasjon. \nOPPFYLT og IKKE_OPPFYLT er deprecated men fjernes ikke, for bakover-kompatibilitet. De blir tolket som RELEVANT.",
+			"description": "Status som forteller om vilkåret er relevant eller ikke. \n* RELEVANT - benyttes for alle vilkår som er relevante for saken. \n* ANNULLERT - benyttes dersom et vilkår er feilregistrert, skal fjernes av tekniske årsaker eller er erstattet av nytt vedtak. Annullerte vilkår vil ikke vises, og benyttes i tilfeller der et vilkår skal slettes fra nav.no på grunn av en feilsituasjon. \n* OPPFYLT og IKKE_OPPFYLT  - er deprecated men fjernes ikke, for bakover-kompatibilitet. De blir tolket som RELEVANT.",
 			"enum": [
 				"RELEVANT",
 				"ANNULLERT",

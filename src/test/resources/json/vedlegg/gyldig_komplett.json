@@ -1,0 +1,42 @@
+{
+  "vedlegg": [
+    {
+      "type": "faktura",
+      "tilleggsinfo": "sfo",
+      "status": "LastetOpp",
+      "hendelseType": "soknad",
+      "filer": [
+        {
+          "filnavn": "endaenfil-u95sdfght.png",
+          "sha512": "sha512sha512sha512sha512sha1"
+        },
+        {
+          "filnavn": "DCIM6666-ae94343bc.jpg",
+          "sha512": "sha512sha512sha512sha512sha2"
+        }
+      ]
+    },
+    {
+      "type": "faktura",
+      "tilleggsinfo": "tannregulering",
+      "status": "LastetOpp",
+      "hendelseType": "dokumentasjonEtterspurt",
+      "hendelseReferanse": "dokumentreferanse1",
+      "filer": [
+        {
+          "filnavn": "yeyeye-u95sdfght.png",
+          "sha512": "sha512sha512sha512sha512sha3"
+        },
+        {
+          "filnavn": "alalla-ae94343bc.jpg"
+        }
+      ]
+    },
+    {
+      "type": "faktura",
+      "tilleggsinfo": "oppvarming",
+      "status": "VedleggAlleredeSendt",
+      "filer": []
+    }
+  ]
+}

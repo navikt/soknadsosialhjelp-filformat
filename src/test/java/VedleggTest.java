@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 @RunWith(Parameterized.class)
 public class VedleggTest {
@@ -35,7 +36,10 @@ public class VedleggTest {
                 testMed("gyldig_minimal2", true),
                 testMed("gyldig_standard", true),
                 testMed("gyldig_ekstrafelter", true),
+                testMed("gyldig_komplett", true),
+                testMed("gyldig_hendelseTyper", true),
                 testMed("ikkegyldig_ugyldigvedlegg", false),
+                testMed("ikkegyldig_ugyldigHendelseType", false),
                 testMed("ikkegyldig_ugyldigfil", false)
                 );
     }
@@ -55,7 +59,7 @@ public class VedleggTest {
         final String message = "Fil " + testfile.getName() + " forventes " + (forventGyldig ? "gyldig" : "ugyldig") + "\n" + report;
         assertEquals(message, forventGyldig, report.isSuccess());
         if (forventGyldig) {
-            assertEquals("Det er warnings for fil " + testfile.getName() + "\n" + report, true, !JsonSosialhjelpValidator.hasWarnings(report));
+            assertFalse("Det er warnings for fil " + testfile.getName() + "\n" + report, JsonSosialhjelpValidator.hasWarnings(report));
         }
     }
 }
