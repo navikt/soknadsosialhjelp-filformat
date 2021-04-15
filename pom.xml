@@ -31,14 +31,14 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
-        <guava.version>30.1-jre</guava.version>
-        <jackson.version>2.12.1</jackson.version>
-        <junit.version>4.13.1</junit.version>
-        <hamcrest-core.version>1.3</hamcrest-core.version>
-        <json-schema-validator.version>2.2.6</json-schema-validator.version>
-        <json-schema-core.version>1.2.5</json-schema-core.version>
-        <jackson-coreutils.version>1.8</jackson-coreutils.version>
-        <msg-simple.version>1.1</msg-simple.version>
+        <guava.version>30.1.1-jre</guava.version>
+        <jackson.version>2.12.3</jackson.version>
+        <junit.version>4.13.2</junit.version>
+        <hamcrest.version>2.2</hamcrest.version>
+        <json-schema-validator.version>2.2.14</json-schema-validator.version>
+        <json-schema-core.version>1.2.14</json-schema-core.version>
+        <jackson-coreutils.version>2.0</jackson-coreutils.version>
+        <msg-simple.version>1.2</msg-simple.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
 
         <!--plugin versions-->
@@ -74,30 +74,30 @@
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-core</artifactId>
-            <version>${hamcrest-core.version}</version>
+            <artifactId>hamcrest</artifactId>
+            <version>${hamcrest.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.fge</groupId>
+            <groupId>com.github.java-json-tools</groupId>
             <artifactId>json-schema-validator</artifactId>
             <version>${json-schema-validator.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.fge</groupId>
+            <groupId>com.github.java-json-tools</groupId>
             <artifactId>json-schema-core</artifactId>
             <version>${json-schema-core.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.fge</groupId>
+            <groupId>com.github.java-json-tools</groupId>
             <artifactId>jackson-coreutils</artifactId>
             <version>${jackson-coreutils.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.fge</groupId>
+            <groupId>com.github.java-json-tools</groupId>
             <artifactId>msg-simple</artifactId>
             <version>${msg-simple.version}</version>
             <scope>compile</scope>
