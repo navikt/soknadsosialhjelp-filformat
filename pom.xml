@@ -30,6 +30,11 @@
         <java.jdk.version>1.8</java.jdk.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
+        <guava.version>30.1.1-jre</guava.version>
+        <jackson.version>2.12.3</jackson.version>
+        <junit.version>4.13.2</junit.version>
+        <hamcrest.version>2.2</hamcrest.version>
         <json-schema-validator.version>2.2.14</json-schema-validator.version>
         <json-schema-core.version>1.2.14</json-schema-core.version>
         <jackson-coreutils.version>2.0</jackson-coreutils.version>
@@ -69,8 +74,8 @@
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-core</artifactId>
-            <version>${hamcrest-core.version}</version>
+            <artifactId>hamcrest</artifactId>
+            <version>${hamcrest.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
