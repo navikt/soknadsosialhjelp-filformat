@@ -40,6 +40,7 @@
         <jackson-coreutils.version>2.0</jackson-coreutils.version>
         <msg-simple.version>1.2</msg-simple.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
+        <rhino.version>1.7.13</rhino.version>
 
         <!--plugin versions-->
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
@@ -122,6 +123,11 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mozilla</groupId>
+            <artifactId>rhino</artifactId>
+            <version>${rhino.version}</version>
         </dependency>
     </dependencies>
 
