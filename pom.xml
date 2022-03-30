@@ -33,7 +33,7 @@
 
         <guava.version>31.1-jre</guava.version>
         <jackson.version>2.13.2</jackson.version>
-        <jackson-databind.version>2.13.2.1</jackson-databind.version>
+        <jackson-databind.version>2.13.2.2</jackson-databind.version>
         <junit.version>4.13.2</junit.version>
         <hamcrest.version>2.2</hamcrest.version>
         <json-schema-validator.version>2.2.14</json-schema-validator.version>
