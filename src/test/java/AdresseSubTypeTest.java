@@ -7,22 +7,22 @@ import org.junit.Test;
 
 import java.io.File;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class AdresseSubTypeTest {
 
     @Test
     public void subtypeSkalBenyttesVedLesing() throws Exception {
         final File testfile = new File("src/test/resources/json/soknad/parts/adresse/fullstendig-gateadresse.json");
-        
+
         final ObjectMapper mapper = JsonSosialhjelpObjectMapper.createObjectMapper();
-        
+
         final JsonAdresse jsonAdresse = mapper.readValue(testfile, JsonAdresse.class);
-        assertEquals("Skal lese felt som kun finnes på superklasse", JsonKilde.BRUKER, jsonAdresse.getKilde());
-        assertEquals("Skal lese delt felt", JsonAdresse.Type.GATEADRESSE, jsonAdresse.getType());
-        
-        assertEquals("Riktig subklasse skal velges", JsonGateAdresse.class, jsonAdresse.getClass());
-        final JsonGateAdresse gateadresse = (JsonGateAdresse) jsonAdresse; 
-        assertEquals("Skal lese felt som kun finnes på subklasse", "Testeveien", gateadresse.getGatenavn());
+        assertThat(jsonAdresse.getKilde()).describedAs("Skal lese felt som kun finnes på superklasse").isEqualTo(JsonKilde.BRUKER);
+        assertThat(jsonAdresse.getType()).describedAs("Skal lese delt felt").isEqualTo(JsonAdresse.Type.GATEADRESSE);
+
+        assertThat(jsonAdresse).describedAs("Riktig subklasse skal velges").isInstanceOf(JsonGateAdresse.class);
+        final JsonGateAdresse gateadresse = (JsonGateAdresse) jsonAdresse;
+        assertThat(gateadresse.getGatenavn()).describedAs("Skal lese felt som kun finnes på subklasse").isEqualTo("Testeveien");
     }
 }

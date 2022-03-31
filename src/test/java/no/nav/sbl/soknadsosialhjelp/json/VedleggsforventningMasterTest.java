@@ -8,7 +8,12 @@ import no.nav.sbl.soknadsosialhjelp.soknad.JsonSoknad;
 import no.nav.sbl.soknadsosialhjelp.soknad.arbeid.JsonArbeid;
 import no.nav.sbl.soknadsosialhjelp.soknad.arbeid.JsonArbeidsforhold;
 import no.nav.sbl.soknadsosialhjelp.soknad.bosituasjon.JsonBosituasjon;
-import no.nav.sbl.soknadsosialhjelp.soknad.familie.*;
+import no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonAnsvar;
+import no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonBarnebidrag;
+import no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonErFolkeregistrertSammen;
+import no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonFamilie;
+import no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonForsorgerplikt;
+import no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonSamvarsgrad;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.JsonOkonomi;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.JsonOkonomiopplysninger;
 import no.nav.sbl.soknadsosialhjelp.soknad.okonomi.JsonOkonomioversikt;
@@ -25,13 +30,26 @@ import no.nav.sbl.soknadsosialhjelp.vedlegg.JsonVedlegg;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import static no.nav.sbl.soknadsosialhjelp.json.SoknadJsonTyper.*;
-import static no.nav.sbl.soknadsosialhjelp.json.VedleggsforventningMaster.*;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static no.nav.sbl.soknadsosialhjelp.json.SoknadJsonTyper.BOSTOTTE_SAMTYKKE;
+import static no.nav.sbl.soknadsosialhjelp.json.SoknadJsonTyper.FORMUE_BRUKSKONTO;
+import static no.nav.sbl.soknadsosialhjelp.json.SoknadJsonTyper.STUDIELAN;
+import static no.nav.sbl.soknadsosialhjelp.json.SoknadJsonTyper.UTBETALING_HUSBANKEN;
+import static no.nav.sbl.soknadsosialhjelp.json.SoknadJsonTyper.UTBETALING_SALG;
+import static no.nav.sbl.soknadsosialhjelp.json.SoknadJsonTyper.UTBETALING_SKATTEETATEN_SAMTYKKE;
+import static no.nav.sbl.soknadsosialhjelp.json.SoknadJsonTyper.UTGIFTER_BARNEHAGE;
+import static no.nav.sbl.soknadsosialhjelp.json.SoknadJsonTyper.UTGIFTER_BOLIGLAN_AVDRAG;
+import static no.nav.sbl.soknadsosialhjelp.json.SoknadJsonTyper.UTGIFTER_OPPVARMING;
+import static no.nav.sbl.soknadsosialhjelp.json.SoknadJsonTyper.UTGIFTER_STROM;
+import static no.nav.sbl.soknadsosialhjelp.json.SoknadJsonTyper.VERDI_KJORETOY;
+import static no.nav.sbl.soknadsosialhjelp.json.VedleggsforventningMaster.finnPaakrevdeVedlegg;
+import static no.nav.sbl.soknadsosialhjelp.json.VedleggsforventningMaster.finnPaakrevdeVedleggForArbeid;
+import static no.nav.sbl.soknadsosialhjelp.json.VedleggsforventningMaster.finnPaakrevdeVedleggForBosituasjon;
+import static no.nav.sbl.soknadsosialhjelp.json.VedleggsforventningMaster.finnPaakrevdeVedleggForFamilie;
+import static no.nav.sbl.soknadsosialhjelp.json.VedleggsforventningMaster.finnPaakrevdeVedleggForOkonomi;
+import static no.nav.sbl.soknadsosialhjelp.json.VedleggsforventningMaster.finnPaakrevdeVedleggForPersonalia;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class VedleggsforventningMasterTest {
 
@@ -50,13 +68,13 @@ public class VedleggsforventningMasterTest {
 
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedlegg(internalSoknad);
 
-        assertThat(paakrevdeVedlegg.size(), is(2));
+        assertThat(paakrevdeVedlegg).hasSize(2);
         JsonVedlegg vedlegg = paakrevdeVedlegg.get(0);
-        assertThat(vedlegg.getType(), is("skattemelding"));
-        assertThat(vedlegg.getTilleggsinfo(), is("skattemelding"));
+        assertThat(vedlegg.getType()).isEqualTo("skattemelding");
+        assertThat(vedlegg.getTilleggsinfo()).isEqualTo("skattemelding");
         JsonVedlegg vedlegg2 = paakrevdeVedlegg.get(1);
-        assertThat(vedlegg2.getType(), is("annet"));
-        assertThat(vedlegg2.getTilleggsinfo(), is("annet"));
+        assertThat(vedlegg2.getType()).isEqualTo("annet");
+        assertThat(vedlegg2.getTilleggsinfo()).isEqualTo("annet");
     }
 
     @Test
@@ -68,8 +86,8 @@ public class VedleggsforventningMasterTest {
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForPersonalia(personalia);
 
         JsonVedlegg vedlegg = paakrevdeVedlegg.get(0);
-        assertThat(vedlegg.getType(), is("oppholdstillatel"));
-        assertThat(vedlegg.getTilleggsinfo(), is("oppholdstillatel"));
+        assertThat(vedlegg.getType()).isEqualTo("oppholdstillatel");
+        assertThat(vedlegg.getTilleggsinfo()).isEqualTo("oppholdstillatel");
     }
 
     @Test
@@ -80,7 +98,7 @@ public class VedleggsforventningMasterTest {
 
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForPersonalia(personalia);
 
-        assertThat(paakrevdeVedlegg.size(), is(0));
+        assertThat(paakrevdeVedlegg).isEmpty();
     }
 
     @Test
@@ -102,10 +120,10 @@ public class VedleggsforventningMasterTest {
 
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForArbeid(soknad);
 
-        assertThat(paakrevdeVedlegg.size(), is(1));
+        assertThat(paakrevdeVedlegg).hasSize(1);
         JsonVedlegg vedlegg = paakrevdeVedlegg.get(0);
-        assertThat(vedlegg.getType(), is("lonnslipp"));
-        assertThat(vedlegg.getTilleggsinfo(), is("arbeid"));
+        assertThat(vedlegg.getType()).isEqualTo("lonnslipp");
+        assertThat(vedlegg.getTilleggsinfo()).isEqualTo("arbeid");
     }
 
     @Test
@@ -127,10 +145,10 @@ public class VedleggsforventningMasterTest {
 
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForArbeid(soknad);
 
-        assertThat(paakrevdeVedlegg.size(), is(1));
+        assertThat(paakrevdeVedlegg).hasSize(1);
         JsonVedlegg vedlegg = paakrevdeVedlegg.get(0);
-        assertThat(vedlegg.getType(), is("lonnslipp"));
-        assertThat(vedlegg.getTilleggsinfo(), is("arbeid"));
+        assertThat(vedlegg.getType()).isEqualTo("lonnslipp");
+        assertThat(vedlegg.getTilleggsinfo()).isEqualTo("arbeid");
     }
 
     @Test
@@ -142,8 +160,8 @@ public class VedleggsforventningMasterTest {
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForFamilie(familie);
 
         JsonVedlegg vedlegg = paakrevdeVedlegg.get(0);
-        assertThat(vedlegg.getType(), is("barnebidrag"));
-        assertThat(vedlegg.getTilleggsinfo(), is("mottar"));
+        assertThat(vedlegg.getType()).isEqualTo("barnebidrag");
+        assertThat(vedlegg.getTilleggsinfo()).isEqualTo("mottar");
     }
 
     @Test
@@ -155,8 +173,8 @@ public class VedleggsforventningMasterTest {
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForFamilie(familie);
 
         JsonVedlegg vedlegg = paakrevdeVedlegg.get(0);
-        assertThat(vedlegg.getType(), is("barnebidrag"));
-        assertThat(vedlegg.getTilleggsinfo(), is("betaler"));
+        assertThat(vedlegg.getType()).isEqualTo("barnebidrag");
+        assertThat(vedlegg.getTilleggsinfo()).isEqualTo("betaler");
     }
 
     @Test
@@ -168,11 +186,11 @@ public class VedleggsforventningMasterTest {
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForFamilie(familie);
 
         JsonVedlegg vedleggBetaler = paakrevdeVedlegg.get(0);
-        assertThat(vedleggBetaler.getType(), is("barnebidrag"));
-        assertThat(vedleggBetaler.getTilleggsinfo(), is("betaler"));
+        assertThat(vedleggBetaler.getType()).isEqualTo("barnebidrag");
+        assertThat(vedleggBetaler.getTilleggsinfo()).isEqualTo("betaler");
         JsonVedlegg vedleggMottar = paakrevdeVedlegg.get(1);
-        assertThat(vedleggMottar.getType(), is("barnebidrag"));
-        assertThat(vedleggMottar.getTilleggsinfo(), is("mottar"));
+        assertThat(vedleggMottar.getType()).isEqualTo("barnebidrag");
+        assertThat(vedleggMottar.getTilleggsinfo()).isEqualTo("mottar");
     }
 
     @Test
@@ -189,8 +207,8 @@ public class VedleggsforventningMasterTest {
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForFamilie(familie);
 
         JsonVedlegg vedlegg = paakrevdeVedlegg.get(0);
-        assertThat(vedlegg.getType(), is("samvarsavtale"));
-        assertThat(vedlegg.getTilleggsinfo(), is("barn"));
+        assertThat(vedlegg.getType()).isEqualTo("samvarsavtale");
+        assertThat(vedlegg.getTilleggsinfo()).isEqualTo("barn");
     }
 
     @Test
@@ -200,8 +218,8 @@ public class VedleggsforventningMasterTest {
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForBosituasjon(bosituasjon);
 
         JsonVedlegg vedlegg = paakrevdeVedlegg.get(0);
-        assertThat(vedlegg.getType(), is("husleiekontrakt"));
-        assertThat(vedlegg.getTilleggsinfo(), is("husleiekontrakt"));
+        assertThat(vedlegg.getType()).isEqualTo("husleiekontrakt");
+        assertThat(vedlegg.getTilleggsinfo()).isEqualTo("husleiekontrakt");
     }
 
     @Test
@@ -211,8 +229,8 @@ public class VedleggsforventningMasterTest {
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForBosituasjon(bosituasjon);
 
         JsonVedlegg vedlegg = paakrevdeVedlegg.get(0);
-        assertThat(vedlegg.getType(), is("husleiekontrakt"));
-        assertThat(vedlegg.getTilleggsinfo(), is("kommunal"));
+        assertThat(vedlegg.getType()).isEqualTo("husleiekontrakt");
+        assertThat(vedlegg.getTilleggsinfo()).isEqualTo("kommunal");
     }
 
     @Test
@@ -232,23 +250,23 @@ public class VedleggsforventningMasterTest {
 
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForOkonomi(soknad);
 
-        assertThat(paakrevdeVedlegg.size(), is(8));
-        assertThat(paakrevdeVedlegg.get(0).getType(), is("husbanken"));
-        assertThat(paakrevdeVedlegg.get(0).getTilleggsinfo(), is("vedtak"));
-        assertThat(paakrevdeVedlegg.get(1).getType(), is("salgsoppgjor"));
-        assertThat(paakrevdeVedlegg.get(1).getTilleggsinfo(), is("eiendom"));
-        assertThat(paakrevdeVedlegg.get(2).getType(), is("faktura"));
-        assertThat(paakrevdeVedlegg.get(2).getTilleggsinfo(), is("strom"));
-        assertThat(paakrevdeVedlegg.get(3).getType(), is("faktura"));
-        assertThat(paakrevdeVedlegg.get(3).getTilleggsinfo(), is("oppvarming"));
-        assertThat(paakrevdeVedlegg.get(4).getType(), is("student"));
-        assertThat(paakrevdeVedlegg.get(4).getTilleggsinfo(), is("vedtak"));
-        assertThat(paakrevdeVedlegg.get(5).getType(), is("nedbetalingsplan"));
-        assertThat(paakrevdeVedlegg.get(5).getTilleggsinfo(), is("avdraglaan"));
-        assertThat(paakrevdeVedlegg.get(6).getType(), is("faktura"));
-        assertThat(paakrevdeVedlegg.get(6).getTilleggsinfo(), is("barnehage"));
-        assertThat(paakrevdeVedlegg.get(7).getType(), is("kontooversikt"));
-        assertThat(paakrevdeVedlegg.get(7).getTilleggsinfo(), is("brukskonto"));
+        assertThat(paakrevdeVedlegg).hasSize(8);
+        assertThat(paakrevdeVedlegg.get(0).getType()).isEqualTo("husbanken");
+        assertThat(paakrevdeVedlegg.get(0).getTilleggsinfo()).isEqualTo("vedtak");
+        assertThat(paakrevdeVedlegg.get(1).getType()).isEqualTo("salgsoppgjor");
+        assertThat(paakrevdeVedlegg.get(1).getTilleggsinfo()).isEqualTo("eiendom");
+        assertThat(paakrevdeVedlegg.get(2).getType()).isEqualTo("faktura");
+        assertThat(paakrevdeVedlegg.get(2).getTilleggsinfo()).isEqualTo("strom");
+        assertThat(paakrevdeVedlegg.get(3).getType()).isEqualTo("faktura");
+        assertThat(paakrevdeVedlegg.get(3).getTilleggsinfo()).isEqualTo("oppvarming");
+        assertThat(paakrevdeVedlegg.get(4).getType()).isEqualTo("student");
+        assertThat(paakrevdeVedlegg.get(4).getTilleggsinfo()).isEqualTo("vedtak");
+        assertThat(paakrevdeVedlegg.get(5).getType()).isEqualTo("nedbetalingsplan");
+        assertThat(paakrevdeVedlegg.get(5).getTilleggsinfo()).isEqualTo("avdraglaan");
+        assertThat(paakrevdeVedlegg.get(6).getType()).isEqualTo("faktura");
+        assertThat(paakrevdeVedlegg.get(6).getTilleggsinfo()).isEqualTo("barnehage");
+        assertThat(paakrevdeVedlegg.get(7).getType()).isEqualTo("kontooversikt");
+        assertThat(paakrevdeVedlegg.get(7).getTilleggsinfo()).isEqualTo("brukskonto");
     }
 
     @Test
@@ -271,21 +289,21 @@ public class VedleggsforventningMasterTest {
 
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForOkonomi(soknad);
 
-        assertThat(paakrevdeVedlegg.size(), is(7));
-        assertThat(paakrevdeVedlegg.get(0).getType(), is("salgsoppgjor"));
-        assertThat(paakrevdeVedlegg.get(0).getTilleggsinfo(), is("eiendom"));
-        assertThat(paakrevdeVedlegg.get(1).getType(), is("faktura"));
-        assertThat(paakrevdeVedlegg.get(1).getTilleggsinfo(), is("strom"));
-        assertThat(paakrevdeVedlegg.get(2).getType(), is("faktura"));
-        assertThat(paakrevdeVedlegg.get(2).getTilleggsinfo(), is("oppvarming"));
-        assertThat(paakrevdeVedlegg.get(3).getType(), is("student"));
-        assertThat(paakrevdeVedlegg.get(3).getTilleggsinfo(), is("vedtak"));
-        assertThat(paakrevdeVedlegg.get(4).getType(), is("nedbetalingsplan"));
-        assertThat(paakrevdeVedlegg.get(4).getTilleggsinfo(), is("avdraglaan"));
-        assertThat(paakrevdeVedlegg.get(5).getType(), is("faktura"));
-        assertThat(paakrevdeVedlegg.get(5).getTilleggsinfo(), is("barnehage"));
-        assertThat(paakrevdeVedlegg.get(6).getType(), is("kontooversikt"));
-        assertThat(paakrevdeVedlegg.get(6).getTilleggsinfo(), is("brukskonto"));
+        assertThat(paakrevdeVedlegg).hasSize(7);
+        assertThat(paakrevdeVedlegg.get(0).getType()).isEqualTo("salgsoppgjor");
+        assertThat(paakrevdeVedlegg.get(0).getTilleggsinfo()).isEqualTo("eiendom");
+        assertThat(paakrevdeVedlegg.get(1).getType()).isEqualTo("faktura");
+        assertThat(paakrevdeVedlegg.get(1).getTilleggsinfo()).isEqualTo("strom");
+        assertThat(paakrevdeVedlegg.get(2).getType()).isEqualTo("faktura");
+        assertThat(paakrevdeVedlegg.get(2).getTilleggsinfo()).isEqualTo("oppvarming");
+        assertThat(paakrevdeVedlegg.get(3).getType()).isEqualTo("student");
+        assertThat(paakrevdeVedlegg.get(3).getTilleggsinfo()).isEqualTo("vedtak");
+        assertThat(paakrevdeVedlegg.get(4).getType()).isEqualTo("nedbetalingsplan");
+        assertThat(paakrevdeVedlegg.get(4).getTilleggsinfo()).isEqualTo("avdraglaan");
+        assertThat(paakrevdeVedlegg.get(5).getType()).isEqualTo("faktura");
+        assertThat(paakrevdeVedlegg.get(5).getTilleggsinfo()).isEqualTo("barnehage");
+        assertThat(paakrevdeVedlegg.get(6).getType()).isEqualTo("kontooversikt");
+        assertThat(paakrevdeVedlegg.get(6).getTilleggsinfo()).isEqualTo("brukskonto");
     }
 
     @Test
@@ -308,23 +326,23 @@ public class VedleggsforventningMasterTest {
 
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForOkonomi(soknad);
 
-        assertThat(paakrevdeVedlegg.size(), is(8));
-        assertThat(paakrevdeVedlegg.get(0).getType(), is("husbanken"));
-        assertThat(paakrevdeVedlegg.get(0).getTilleggsinfo(), is("vedtak"));
-        assertThat(paakrevdeVedlegg.get(1).getType(), is("salgsoppgjor"));
-        assertThat(paakrevdeVedlegg.get(1).getTilleggsinfo(), is("eiendom"));
-        assertThat(paakrevdeVedlegg.get(2).getType(), is("faktura"));
-        assertThat(paakrevdeVedlegg.get(2).getTilleggsinfo(), is("strom"));
-        assertThat(paakrevdeVedlegg.get(3).getType(), is("faktura"));
-        assertThat(paakrevdeVedlegg.get(3).getTilleggsinfo(), is("oppvarming"));
-        assertThat(paakrevdeVedlegg.get(4).getType(), is("student"));
-        assertThat(paakrevdeVedlegg.get(4).getTilleggsinfo(), is("vedtak"));
-        assertThat(paakrevdeVedlegg.get(5).getType(), is("nedbetalingsplan"));
-        assertThat(paakrevdeVedlegg.get(5).getTilleggsinfo(), is("avdraglaan"));
-        assertThat(paakrevdeVedlegg.get(6).getType(), is("faktura"));
-        assertThat(paakrevdeVedlegg.get(6).getTilleggsinfo(), is("barnehage"));
-        assertThat(paakrevdeVedlegg.get(7).getType(), is("kontooversikt"));
-        assertThat(paakrevdeVedlegg.get(7).getTilleggsinfo(), is("brukskonto"));
+        assertThat(paakrevdeVedlegg).hasSize(8);
+        assertThat(paakrevdeVedlegg.get(0).getType()).isEqualTo("husbanken");
+        assertThat(paakrevdeVedlegg.get(0).getTilleggsinfo()).isEqualTo("vedtak");
+        assertThat(paakrevdeVedlegg.get(1).getType()).isEqualTo("salgsoppgjor");
+        assertThat(paakrevdeVedlegg.get(1).getTilleggsinfo()).isEqualTo("eiendom");
+        assertThat(paakrevdeVedlegg.get(2).getType()).isEqualTo("faktura");
+        assertThat(paakrevdeVedlegg.get(2).getTilleggsinfo()).isEqualTo("strom");
+        assertThat(paakrevdeVedlegg.get(3).getType()).isEqualTo("faktura");
+        assertThat(paakrevdeVedlegg.get(3).getTilleggsinfo()).isEqualTo("oppvarming");
+        assertThat(paakrevdeVedlegg.get(4).getType()).isEqualTo("student");
+        assertThat(paakrevdeVedlegg.get(4).getTilleggsinfo()).isEqualTo("vedtak");
+        assertThat(paakrevdeVedlegg.get(5).getType()).isEqualTo("nedbetalingsplan");
+        assertThat(paakrevdeVedlegg.get(5).getTilleggsinfo()).isEqualTo("avdraglaan");
+        assertThat(paakrevdeVedlegg.get(6).getType()).isEqualTo("faktura");
+        assertThat(paakrevdeVedlegg.get(6).getTilleggsinfo()).isEqualTo("barnehage");
+        assertThat(paakrevdeVedlegg.get(7).getType()).isEqualTo("kontooversikt");
+        assertThat(paakrevdeVedlegg.get(7).getTilleggsinfo()).isEqualTo("brukskonto");
     }
 
     private List<JsonOkonomioversiktInntekt> lagInntekter() {

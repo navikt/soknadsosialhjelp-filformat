@@ -9,8 +9,7 @@ import java.io.File;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(Parameterized.class)
 public class VedleggTest {
@@ -18,19 +17,13 @@ public class VedleggTest {
     private final String navn;
     private final boolean skalKjore;
 
-    
     public VedleggTest(String navn, boolean skalkjore) {
         this.navn = navn;
         this.skalKjore = skalkjore;
     }
 
-    @Test
-    public void jsonValiderer() {
-        valider(this.navn, this.skalKjore);
-    }
-    
-    @Parameters(name="{0}")
-    public static Iterable<Object[]> alleTester(){
+    @Parameters(name = "{0}")
+    public static Iterable<Object[]> alleTester() {
         return Arrays.asList(
                 testMed("gyldig_minimal", true),
                 testMed("gyldig_minimal2", true),
@@ -41,25 +34,30 @@ public class VedleggTest {
                 testMed("ikkegyldig_ugyldigvedlegg", false),
                 testMed("ikkegyldig_ugyldigHendelseType", false),
                 testMed("ikkegyldig_ugyldigfil", false)
-                );
+        );
     }
 
     private static Object[] testMed(String navn, boolean skalKjore) {
-        return new Object[] {
-            navn, skalKjore
+        return new Object[]{
+                navn, skalKjore
         };
     }
-    
+
+    @Test
+    public void jsonValiderer() {
+        valider(this.navn, this.skalKjore);
+    }
+
     public void valider(String filnavn, boolean forventGyldig) {
         final File testfile = new File("src/test/resources/json/vedlegg/" + filnavn + ".json");
         final String schemaUri = Paths.get("json/vedlegg/vedleggSpesifikasjon.json").toUri().toString();
-        
+
         final ProcessingReport report = JsonSosialhjelpValidator.validateFile(testfile, schemaUri);
-        
+
         final String message = "Fil " + testfile.getName() + " forventes " + (forventGyldig ? "gyldig" : "ugyldig") + "\n" + report;
-        assertEquals(message, forventGyldig, report.isSuccess());
+        assertThat(report.isSuccess()).describedAs(message).isEqualTo(forventGyldig);
         if (forventGyldig) {
-            assertFalse("Det er warnings for fil " + testfile.getName() + "\n" + report, JsonSosialhjelpValidator.hasWarnings(report));
+            assertThat(JsonSosialhjelpValidator.hasWarnings(report)).describedAs("Det er warnings for fil " + testfile.getName() + "\n" + report).isFalse();
         }
     }
 }
