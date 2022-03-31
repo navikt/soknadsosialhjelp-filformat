@@ -9,8 +9,7 @@ import java.io.File;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(Parameterized.class)
 public class VedleggTest {
@@ -56,9 +55,9 @@ public class VedleggTest {
         final ProcessingReport report = JsonSosialhjelpValidator.validateFile(testfile, schemaUri);
 
         final String message = "Fil " + testfile.getName() + " forventes " + (forventGyldig ? "gyldig" : "ugyldig") + "\n" + report;
-        assertEquals(message, forventGyldig, report.isSuccess());
+        assertThat(report.isSuccess()).describedAs(message).isEqualTo(forventGyldig);
         if (forventGyldig) {
-            assertFalse("Det er warnings for fil " + testfile.getName() + "\n" + report, JsonSosialhjelpValidator.hasWarnings(report));
+            assertThat(JsonSosialhjelpValidator.hasWarnings(report)).describedAs("Det er warnings for fil " + testfile.getName() + "\n" + report).isFalse();
         }
     }
 }

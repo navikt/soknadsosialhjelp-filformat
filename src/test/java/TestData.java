@@ -3,7 +3,7 @@ import no.nav.sbl.soknadsosialhjelp.json.JsonSosialhjelpValidator;
 
 import java.io.File;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public final class TestData {
 
@@ -21,10 +21,10 @@ public final class TestData {
         final ProcessingReport report = JsonSosialhjelpValidator.validateFile(testfile, schemaUri);
 
         final String message = "Fil " + testfile.getName() + " forventes " + (forventGyldig ? "gyldig" : "ugyldig") + "\n" + report;
-        assertEquals(message, forventGyldig, report.isSuccess());
+        assertThat(report.isSuccess()).describedAs(message).isEqualTo(forventGyldig);
 
         if (forventGyldig) {
-            assertEquals("Det er warnings for fil " + testfile.getName() + "\n" + report, true, !JsonSosialhjelpValidator.hasWarnings(report));
+            assertThat(!JsonSosialhjelpValidator.hasWarnings(report)).describedAs("Det er warnings for fil " + testfile.getName() + "\n" + report).isTrue();
         }
     }
 }

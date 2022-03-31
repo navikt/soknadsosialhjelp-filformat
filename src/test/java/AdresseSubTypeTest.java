@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import java.io.File;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class AdresseSubTypeTest {
 
@@ -18,11 +18,11 @@ public class AdresseSubTypeTest {
         final ObjectMapper mapper = JsonSosialhjelpObjectMapper.createObjectMapper();
 
         final JsonAdresse jsonAdresse = mapper.readValue(testfile, JsonAdresse.class);
-        assertEquals("Skal lese felt som kun finnes på superklasse", JsonKilde.BRUKER, jsonAdresse.getKilde());
-        assertEquals("Skal lese delt felt", JsonAdresse.Type.GATEADRESSE, jsonAdresse.getType());
+        assertThat(jsonAdresse.getKilde()).describedAs("Skal lese felt som kun finnes på superklasse").isEqualTo(JsonKilde.BRUKER);
+        assertThat(jsonAdresse.getType()).describedAs("Skal lese delt felt").isEqualTo(JsonAdresse.Type.GATEADRESSE);
 
-        assertEquals("Riktig subklasse skal velges", JsonGateAdresse.class, jsonAdresse.getClass());
+        assertThat(jsonAdresse).describedAs("Riktig subklasse skal velges").isInstanceOf(JsonGateAdresse.class);
         final JsonGateAdresse gateadresse = (JsonGateAdresse) jsonAdresse;
-        assertEquals("Skal lese felt som kun finnes på subklasse", "Testeveien", gateadresse.getGatenavn());
+        assertThat(gateadresse.getGatenavn()).describedAs("Skal lese felt som kun finnes på subklasse").isEqualTo("Testeveien");
     }
 }
