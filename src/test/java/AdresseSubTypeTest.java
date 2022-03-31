@@ -9,10 +9,10 @@ import java.io.File;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class AdresseSubTypeTest {
+class AdresseSubTypeTest {
 
     @Test
-    public void subtypeSkalBenyttesVedLesing() throws Exception {
+    void subtypeSkalBenyttesVedLesing() throws Exception {
         final File testfile = new File("src/test/resources/json/soknad/parts/adresse/fullstendig-gateadresse.json");
 
         final ObjectMapper mapper = JsonSosialhjelpObjectMapper.createObjectMapper();
