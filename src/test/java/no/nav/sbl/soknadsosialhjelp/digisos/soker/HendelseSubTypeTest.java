@@ -4,16 +4,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.JsonSoknadsStatus;
 import no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.JsonSoknadsStatus.Status;
 import no.nav.sbl.soknadsosialhjelp.json.JsonSosialhjelpObjectMapper;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class HendelseSubTypeTest {
+class HendelseSubTypeTest {
 
     @Test
-    public void subtypeSkalBenyttesVedLesing() throws Exception {
+    void subtypeSkalBenyttesVedLesing() throws Exception {
         final File testfile = new File("src/test/resources/json/digisos/soker/parts/hendelse/minimal.json");
 
         final ObjectMapper mapper = JsonSosialhjelpObjectMapper.createObjectMapper();

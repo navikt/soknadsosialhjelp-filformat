@@ -3,16 +3,16 @@ import no.nav.sbl.soknadsosialhjelp.json.JsonSosialhjelpObjectMapper;
 import no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonAdresse;
 import no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonGateAdresse;
 import no.nav.sbl.soknadsosialhjelp.soknad.common.JsonKilde;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class AdresseSubTypeTest {
+class AdresseSubTypeTest {
 
     @Test
-    public void subtypeSkalBenyttesVedLesing() throws Exception {
+    void subtypeSkalBenyttesVedLesing() throws Exception {
         final File testfile = new File("src/test/resources/json/soknad/parts/adresse/fullstendig-gateadresse.json");
 
         final ObjectMapper mapper = JsonSosialhjelpObjectMapper.createObjectMapper();

@@ -27,7 +27,7 @@ import no.nav.sbl.soknadsosialhjelp.soknad.personalia.JsonNordiskBorger;
 import no.nav.sbl.soknadsosialhjelp.soknad.personalia.JsonPersonalia;
 import no.nav.sbl.soknadsosialhjelp.soknad.personalia.JsonStatsborgerskap;
 import no.nav.sbl.soknadsosialhjelp.vedlegg.JsonVedlegg;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,10 +51,10 @@ import static no.nav.sbl.soknadsosialhjelp.json.VedleggsforventningMaster.finnPa
 import static no.nav.sbl.soknadsosialhjelp.json.VedleggsforventningMaster.finnPaakrevdeVedleggForPersonalia;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class VedleggsforventningMasterTest {
+class VedleggsforventningMasterTest {
 
     @Test
-    public void finnPaakrevdeVedleggLeggerKunTilSkattemeldingHvisAltAnnetMangler() {
+    void finnPaakrevdeVedleggLeggerKunTilSkattemeldingHvisAltAnnetMangler() {
         JsonInternalSoknad internalSoknad = new JsonInternalSoknad()
                 .withSoknad(new JsonSoknad()
                         .withData(new JsonData()
@@ -78,7 +78,7 @@ public class VedleggsforventningMasterTest {
     }
 
     @Test
-    public void finnPaakrevdeVedleggForPersonaliaKreverVedleggForIkkeNordiskStatsborger() {
+    void finnPaakrevdeVedleggForPersonaliaKreverVedleggForIkkeNordiskStatsborger() {
         JsonPersonalia personalia = new JsonPersonalia()
                 .withNordiskBorger(new JsonNordiskBorger().withVerdi(false))
                 .withStatsborgerskap(new JsonStatsborgerskap().withVerdi("CHN"));
@@ -91,7 +91,7 @@ public class VedleggsforventningMasterTest {
     }
 
     @Test
-    public void finnPaakrevdeVedleggForPersonaliaKreverIkkeVedleggForNorskStatsborger() {
+    void finnPaakrevdeVedleggForPersonaliaKreverIkkeVedleggForNorskStatsborger() {
         JsonPersonalia personalia = new JsonPersonalia()
                 .withNordiskBorger(new JsonNordiskBorger().withVerdi(true))
                 .withStatsborgerskap(new JsonStatsborgerskap().withVerdi("NOR"));
@@ -102,7 +102,7 @@ public class VedleggsforventningMasterTest {
     }
 
     @Test
-    public void finnPaakrevdeVedleggForInntektNarSkatteetatenFeiler() {
+    void finnPaakrevdeVedleggForInntektNarSkatteetatenFeiler() {
         JsonInternalSoknad soknad = new JsonInternalSoknad()
                 .withSoknad(new JsonSoknad()
                         .withDriftsinformasjon(new JsonDriftsinformasjon()
@@ -127,7 +127,7 @@ public class VedleggsforventningMasterTest {
     }
 
     @Test
-    public void finnPaakrevdeVedleggForInntektNarViIkkeHarSamtykke() {
+    void finnPaakrevdeVedleggForInntektNarViIkkeHarSamtykke() {
         JsonInternalSoknad soknad = new JsonInternalSoknad()
                 .withSoknad(new JsonSoknad()
                         .withDriftsinformasjon(new JsonDriftsinformasjon()
@@ -152,7 +152,7 @@ public class VedleggsforventningMasterTest {
     }
 
     @Test
-    public void finnPaakrevdeVedleggForFamilieKreverVedleggHvisMottarBarnebidrag() {
+    void finnPaakrevdeVedleggForFamilieKreverVedleggHvisMottarBarnebidrag() {
         JsonFamilie familie = new JsonFamilie()
                 .withForsorgerplikt(new JsonForsorgerplikt()
                         .withBarnebidrag(new JsonBarnebidrag().withVerdi(JsonBarnebidrag.Verdi.MOTTAR)));
@@ -165,7 +165,7 @@ public class VedleggsforventningMasterTest {
     }
 
     @Test
-    public void finnPaakrevdeVedleggForFamilieKreverVedleggHvisBetalerBarnebidrag() {
+    void finnPaakrevdeVedleggForFamilieKreverVedleggHvisBetalerBarnebidrag() {
         JsonFamilie familie = new JsonFamilie()
                 .withForsorgerplikt(new JsonForsorgerplikt()
                         .withBarnebidrag(new JsonBarnebidrag().withVerdi(JsonBarnebidrag.Verdi.BETALER)));
@@ -178,7 +178,7 @@ public class VedleggsforventningMasterTest {
     }
 
     @Test
-    public void finnPaakrevdeVedleggForFamilieKreverVedleggHvisMottarOgBetalerBarnebidrag() {
+    void finnPaakrevdeVedleggForFamilieKreverVedleggHvisMottarOgBetalerBarnebidrag() {
         JsonFamilie familie = new JsonFamilie()
                 .withForsorgerplikt(new JsonForsorgerplikt()
                         .withBarnebidrag(new JsonBarnebidrag().withVerdi(JsonBarnebidrag.Verdi.BEGGE)));
@@ -194,7 +194,7 @@ public class VedleggsforventningMasterTest {
     }
 
     @Test
-    public void finnPaakrevdeVedleggForFamilieKreverVedleggHvisBarnBorMindreEnn50prosentHosForelder() {
+    void finnPaakrevdeVedleggForFamilieKreverVedleggHvisBarnBorMindreEnn50prosentHosForelder() {
         JsonAnsvar barnMedDeltBosted = new JsonAnsvar()
                 .withErFolkeregistrertSammen(new JsonErFolkeregistrertSammen().withVerdi(false))
                 .withSamvarsgrad(new JsonSamvarsgrad().withVerdi(30));
@@ -212,7 +212,7 @@ public class VedleggsforventningMasterTest {
     }
 
     @Test
-    public void finnPaakrevdeVedleggForBosituasjonKreverVedleggForLeie() {
+    void finnPaakrevdeVedleggForBosituasjonKreverVedleggForLeie() {
         JsonBosituasjon bosituasjon = new JsonBosituasjon().withBotype(JsonBosituasjon.Botype.LEIER);
 
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForBosituasjon(bosituasjon);
@@ -223,7 +223,7 @@ public class VedleggsforventningMasterTest {
     }
 
     @Test
-    public void finnPaakrevdeVedleggForBosituasjonKreverVedleggForKommunalBolig() {
+    void finnPaakrevdeVedleggForBosituasjonKreverVedleggForKommunalBolig() {
         JsonBosituasjon bosituasjon = new JsonBosituasjon().withBotype(JsonBosituasjon.Botype.KOMMUNAL);
 
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForBosituasjon(bosituasjon);
@@ -234,7 +234,7 @@ public class VedleggsforventningMasterTest {
     }
 
     @Test
-    public void finnPaakrevdeVedleggForOkonomiHenterVedleggForAlleTyperInntekterUtgifterOgFormue() {
+    void finnPaakrevdeVedleggForOkonomiHenterVedleggForAlleTyperInntekterUtgifterOgFormue() {
         JsonSoknad soknad = new JsonSoknad()
                 .withDriftsinformasjon(new JsonDriftsinformasjon()
                         .withStotteFraHusbankenFeilet(false))
@@ -270,7 +270,7 @@ public class VedleggsforventningMasterTest {
     }
 
     @Test
-    public void finnPaakrevdeVedleggForOkonomiHarIkkeBostotteDersomViHarSamtykke() {
+    void finnPaakrevdeVedleggForOkonomiHarIkkeBostotteDersomViHarSamtykke() {
         JsonSoknad soknad = new JsonSoknad()
                 .withDriftsinformasjon(new JsonDriftsinformasjon()
                         .withStotteFraHusbankenFeilet(false))
@@ -307,7 +307,7 @@ public class VedleggsforventningMasterTest {
     }
 
     @Test
-    public void finnPaakrevdeVedleggForOkonomiHarBostotteDersomViHarSamtykkeMenHentingenHarFeilet() {
+    void finnPaakrevdeVedleggForOkonomiHarBostotteDersomViHarSamtykkeMenHentingenHarFeilet() {
         JsonSoknad soknad = new JsonSoknad()
                 .withDriftsinformasjon(new JsonDriftsinformasjon()
                         .withStotteFraHusbankenFeilet(true))

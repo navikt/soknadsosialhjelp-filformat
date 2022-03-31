@@ -1,9 +1,7 @@
 import com.github.fge.jsonschema.core.report.ProcessingReport;
 import no.nav.sbl.soknadsosialhjelp.json.JsonSosialhjelpValidator;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -11,19 +9,9 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(Parameterized.class)
-public class VedleggTest {
+class VedleggTest {
 
-    private final String navn;
-    private final boolean skalKjore;
-
-    public VedleggTest(String navn, boolean skalkjore) {
-        this.navn = navn;
-        this.skalKjore = skalkjore;
-    }
-
-    @Parameters(name = "{0}")
-    public static Iterable<Object[]> alleTester() {
+    private static Iterable<Object[]> alleTester() {
         return Arrays.asList(
                 testMed("gyldig_minimal", true),
                 testMed("gyldig_minimal2", true),
@@ -43,12 +31,13 @@ public class VedleggTest {
         };
     }
 
-    @Test
-    public void jsonValiderer() {
-        valider(this.navn, this.skalKjore);
+    @ParameterizedTest
+    @MethodSource({"alleTester"})
+    void jsonValiderer(String navn, boolean skalKjore) {
+        valider(navn, skalKjore);
     }
 
-    public void valider(String filnavn, boolean forventGyldig) {
+    private void valider(String filnavn, boolean forventGyldig) {
         final File testfile = new File("src/test/resources/json/vedlegg/" + filnavn + ".json");
         final String schemaUri = Paths.get("json/vedlegg/vedleggSpesifikasjon.json").toUri().toString();
 
