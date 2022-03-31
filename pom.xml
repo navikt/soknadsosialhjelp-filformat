@@ -27,9 +27,9 @@
     </developers>
 
     <properties>
-        <java.jdk.version>1.8</java.jdk.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <java.jdk.version>11</java.jdk.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
 
         <guava.version>31.1-jre</guava.version>
         <jackson.version>2.13.2</jackson.version>
