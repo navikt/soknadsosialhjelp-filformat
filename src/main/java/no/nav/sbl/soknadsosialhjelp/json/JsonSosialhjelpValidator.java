@@ -11,7 +11,11 @@ import com.github.fge.jsonschema.core.report.LogLevel;
 import com.github.fge.jsonschema.core.report.ProcessingMessage;
 import com.github.fge.jsonschema.core.report.ProcessingReport;
 import com.github.fge.jsonschema.core.tree.SchemaTree;
-import com.github.fge.jsonschema.library.*;
+import com.github.fge.jsonschema.library.DraftV4Library;
+import com.github.fge.jsonschema.library.Keyword;
+import com.github.fge.jsonschema.library.KeywordBuilder;
+import com.github.fge.jsonschema.library.Library;
+import com.github.fge.jsonschema.library.LibraryBuilder;
 import com.github.fge.jsonschema.main.JsonSchema;
 import com.github.fge.jsonschema.main.JsonSchemaFactory;
 import com.github.fge.msgsimple.bundle.MessageBundle;
@@ -31,7 +35,6 @@ public final class JsonSosialhjelpValidator {
     private JsonSosialhjelpValidator() {
 
     }
-
 
     public static void main(String[] args) {
         if (args.length != 2) {
@@ -67,7 +70,7 @@ public final class JsonSosialhjelpValidator {
             final String json = Files.readAllLines(Paths.get(args[1])).stream().reduce((a, b) -> a + b).get();
             ensureValid(json, schemaUri);
         } catch (Exception e) {
-            System.err.println("Exception: " + e.toString());
+            System.err.println("Exception: " + e);
             System.exit(1);
         }
     }
