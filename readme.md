@@ -1,6 +1,5 @@
-[![CircleCI](https://circleci.com/gh/navikt/soknadsosialhjelp-filformat.svg?style=svg)](https://circleci.com/gh/navikt/soknadsosialhjelp-filformat)
-
-[![Published on Maven](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/no/nav/sbl/dialogarena/soknadsosialhjelp-filformat/maven-metadata.xml.svg)](http://central.maven.org/maven2/no/nav/sbl/dialogarena/soknadsosialhjelp-filformat/)
+[![Build and release](https://github.com/navikt/soknadsosialhjelp-filformat/actions/workflows/release.yml/badge.svg)](https://github.com/navikt/soknadsosialhjelp-filformat/actions/workflows/release.yml)
+[![Published on Maven](https://img.shields.io/maven-metadata/v/https/repo1.maven.org/maven2/no/nav/sbl/dialogarena/soknadsosialhjelp-filformat/maven-metadata.xml.svg)](https://repo1.maven.org/maven2/no/nav/sbl/dialogarena/soknadsosialhjelp-filformat/)
 
 
 Filformat for Søknad om økonomisk sosialhjelp
@@ -27,14 +26,16 @@ Planlagte fremtidige versjoner/endringer:
 
 
 ## Henvendelser
-
-Spørsmål knyttet til koden eller prosjektet kan rettes mot:
-* https://github.com/orgs/navikt/teams/teamdigisos
-
-### For kommunalt ansatte og leverandører av sosialsystemer
-* Be om tilgang til https://digisos-nav-it.slack.com/
-* Slack kanal #general
+Spørsmål knyttet til koden eller teamet kan stilles til teamdigisos@nav.no.
 
 ### For NAV-ansatte
+Interne henvendelser kan sendes via Slack i kanalen #team_digisos.
 
-Interne henvendelser kan sendes via Slack i kanalen #digisos.
+## Teknologi
+* Java
+* JDK 11
+* Maven
+* Json schema
+
+### Krav
+* JDK 11
