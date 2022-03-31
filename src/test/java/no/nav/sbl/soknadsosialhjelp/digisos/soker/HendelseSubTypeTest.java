@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.JsonSoknadsStatus;
 import no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.JsonSoknadsStatus.Status;
 import no.nav.sbl.soknadsosialhjelp.json.JsonSosialhjelpObjectMapper;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 

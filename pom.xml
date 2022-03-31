@@ -34,8 +34,7 @@
         <guava.version>31.1-jre</guava.version>
         <jackson.version>2.13.2</jackson.version>
         <jackson-databind.version>2.13.2.2</jackson-databind.version>
-        <junit.version>4.13.2</junit.version>
-        <hamcrest.version>2.2</hamcrest.version>
+        <junit-jupiter.version>5.8.2</junit-jupiter.version>
         <assertj.version>3.22.0</assertj.version>
         <json-schema-validator.version>2.2.14</json-schema-validator.version>
         <json-schema-core.version>1.2.14</json-schema-core.version>
@@ -70,15 +69,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-core</artifactId>
-            <version>${hamcrest.version}</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

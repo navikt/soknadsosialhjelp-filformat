@@ -27,7 +27,7 @@ import no.nav.sbl.soknadsosialhjelp.soknad.personalia.JsonNordiskBorger;
 import no.nav.sbl.soknadsosialhjelp.soknad.personalia.JsonPersonalia;
 import no.nav.sbl.soknadsosialhjelp.soknad.personalia.JsonStatsborgerskap;
 import no.nav.sbl.soknadsosialhjelp.vedlegg.JsonVedlegg;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;

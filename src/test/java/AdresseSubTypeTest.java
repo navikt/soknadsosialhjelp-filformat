@@ -3,7 +3,7 @@ import no.nav.sbl.soknadsosialhjelp.json.JsonSosialhjelpObjectMapper;
 import no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonAdresse;
 import no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonGateAdresse;
 import no.nav.sbl.soknadsosialhjelp.soknad.common.JsonKilde;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
