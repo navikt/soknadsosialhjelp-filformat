@@ -16,15 +16,15 @@ jobs:
           java-version: '11'
           cache: 'maven'
       - name: Build with Maven
-        run: /.mvnw clean install
+        run: ./mvnw clean install
       - name: Setting version
         run: |
           TIME=$(TZ="Europe/Oslo" date +%Y.%m.%d-%H.%M)
           COMMIT=$(git rev-parse --short=12 HEAD)
           VERSION="1.$TIME-$COMMIT"
           echo "Setting version $VERSION"
-          /.mvnw versions:set -DnewVersion="$VERSION"
-          /.mvnw versions:commit
+          ./mvnw versions:set -DnewVersion="$VERSION"
+          ./mvnw versions:commit
       - name: Release Maven package
         env:
           SONATYPE_USER: ${{ secrets.SONATYPE_USER }}
@@ -33,4 +33,4 @@ jobs:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: |
           export GPG_TTY=$(tty) && echo -e "$GPG_KEYS" | gpg --fast-import --batch
-          /.mvnw -B -Prelease -DskipTests=true --settings maven-settings.xml deploy
+          ./mvnw -B -Prelease -DskipTests=true --settings maven-settings.xml deploy
