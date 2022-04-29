@@ -39,3 +39,7 @@ Interne henvendelser kan sendes via Slack i kanalen #team_digisos.
 
 ### Krav
 * JDK 11
+
+### Maven wrapper
+Prosjektet inkluderer [maven wrapper](https://maven.apache.org/wrapper/), slik at man ikke er avhengig av å installere maven lokalt.\
+Kjør `./mvnw <command>` fremfor `mvn <command>`.
