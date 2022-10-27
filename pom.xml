@@ -79,19 +79,16 @@
             <groupId>com.github.java-json-tools</groupId>
             <artifactId>json-schema-core</artifactId>
             <version>${json-schema-core.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.java-json-tools</groupId>
             <artifactId>jackson-coreutils</artifactId>
             <version>${jackson-coreutils.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
