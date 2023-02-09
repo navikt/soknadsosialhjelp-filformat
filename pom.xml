@@ -32,10 +32,10 @@
         <maven.compiler.target>11</maven.compiler.target>
 
         <guava.version>31.1-jre</guava.version>
-        <jackson.version>2.14.1</jackson.version>
-        <jackson-databind.version>2.14.1</jackson-databind.version>
-        <junit-jupiter.version>5.9.1</junit-jupiter.version>
-        <assertj.version>3.23.1</assertj.version>
+        <jackson.version>2.14.2</jackson.version>
+        <jackson-databind.version>2.14.2</jackson-databind.version>
+        <junit-jupiter.version>5.9.2</junit-jupiter.version>
+        <assertj.version>3.24.2</assertj.version>
         <json-schema-validator.version>2.2.14</json-schema-validator.version>
         <json-schema-core.version>1.2.14</json-schema-core.version>
         <jackson-coreutils.version>2.0</jackson-coreutils.version>
