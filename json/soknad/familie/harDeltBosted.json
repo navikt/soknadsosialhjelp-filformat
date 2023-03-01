@@ -6,7 +6,7 @@
 	"description": "Om barn som er folkeregistrert sammen med søker har delt bosted. Kun relevant hvis \"erFolkeregistrertSammen\" er \"true\".",
 	"properties": {
 		"kilde": {
-			"$ref": "../parts/kildeBruker.json"
+			"$ref": "../parts/kilde.json"
 		},
 		"verdi": {
 			"type": "boolean"

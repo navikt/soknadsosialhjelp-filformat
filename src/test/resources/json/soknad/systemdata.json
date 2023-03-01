@@ -154,7 +154,7 @@
 						    "verdi": true
 						},
 						"HarDeltBosted": {
-							"kilde": "bruker",
+							"kilde": "system",
 							"verdi": true
 						},
 						"samvarsgrad": {
