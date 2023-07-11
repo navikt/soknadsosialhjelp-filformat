@@ -1,13 +1,7 @@
-name: Dependency Submission Gradle
+name: Dependency Submission Maven
 
 on:
-  workflow_call:
-    inputs:
-      githubUser:
-        required: false
-        type: string
-        description: GitHub Username
-        default: x-access-token
+  push:
 
 jobs:
   build:
