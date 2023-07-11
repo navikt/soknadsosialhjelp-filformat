@@ -3,7 +3,7 @@ name: Code Analysis (CodeQL and Dependency Submission)
 on:
   push:
     branches:
-      - 'main'
+      - 'master'
   pull_request:
   workflow_dispatch:
 
