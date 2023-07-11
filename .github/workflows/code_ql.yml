@@ -39,6 +39,3 @@ jobs:
         uses: github/codeql-action/analyze@v2
         with:
           category: "/language:java"
-
-      - name: Dependency Submission
-        uses: advanced-security/maven-dependency-submission-action@v3
