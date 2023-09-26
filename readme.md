@@ -3,7 +3,9 @@
 
 # Filformater for økonomisk sosialhjelp
 
-I dette repoet finner du definisjoner i JSON Schema, samt autogenererte klasser for Kotlin og Java, av dataformatene brukt til informasjonsutveksling mellom NAV Digisos og kommunale fagsystemer.
+I dette repoet finner du definisjoner av dataformatene brukt til informasjonsutveksling mellom NAV Digisos og kommunale fagsystemer.
+
+Filformatene defineres i JSON Schema, og vi autogenererer Java-klasser.
 
 Gjeldende filformat defineres av [hoved-branchen](https://github.com/navikt/soknadsosialhjelp-filformat/).
 
