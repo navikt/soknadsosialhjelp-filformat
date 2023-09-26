@@ -3,11 +3,9 @@
 
 # Filformater for økonomisk sosialhjelp
 
-I dette repoet finner du definisjoner av dataformatene brukt til informasjonsutveksling mellom NAV Digisos og kommunale fagsystemer.
+I dette repoet finner du definisjoner av dataformatene brukt til informasjonsutveksling mellom NAV Digisos og kommunale fagsystemer, samt DTO-er i Java for å representere disse formatene.
 
-Filformatene defineres i JSON Schema, og vi autogenererer Java-klasser.
-
-Gjeldende filformat defineres av [hoved-branchen](https://github.com/navikt/soknadsosialhjelp-filformat/).
+Gjeldende filformat er definert i JSON Schema av [hoved-branchen](https://github.com/navikt/soknadsosialhjelp-filformat/)
 
 Herfra publiseres [definisjoner og endringshistorikk](https://navikt.github.io/soknadsosialhjelp-filformat/) (direktelenker: [Søknad](https://navikt.github.io/soknadsosialhjelp-filformat/#/soknad/getsoknad_json), [Vedlegg](readme-vedlegg-json.md), [Brukerinnsyn](https://navikt.github.io/soknadsosialhjelp-filformat/#/data%20fra%20fagsystem/getdigisos_soker_json)).
 
