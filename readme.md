@@ -5,7 +5,7 @@
 
 I dette repoet finner du definisjoner av dataformatene brukt til informasjonsutveksling mellom NAV Digisos og kommunale fagsystemer, samt DTO-er i Java for å representere disse formatene.
 
-Gjeldende filformat er definert i JSON Schema av [hoved-branchen](https://github.com/navikt/soknadsosialhjelp-filformat/)
+Gjeldende filformat er definert i JSON Schema av [hoved-branchen](https://github.com/navikt/soknadsosialhjelp-filformat/).
 
 Herfra publiseres [definisjoner og endringshistorikk](https://navikt.github.io/soknadsosialhjelp-filformat/).
 
