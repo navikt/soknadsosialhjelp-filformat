@@ -25,8 +25,6 @@ NAV-interne henvendelser kan sendes via Slack til [#team_digisos](https://nav-it
 
 `json/`-katalogen inneholder JSON Schema-definisjonene.
 
-Kotlin-klassene ligger under `no.nav.sosialhjelp.json`.
-
 Java-klassene ligger under `no.nav.sbl.soknadsosialhjelp`.
 
 ### Bygging (maven)
@@ -38,13 +36,11 @@ Kjør `./mvnw [kommando]` fremfor `mvn [kommando]`.
 ### Teknologier
 
 * Java
-* Kotlin
 * JDK 11
 * Maven
 * Swagger UI
 * [JSON Schema](https://json-schema.org/)
 * [jsonschema2pojo](https://github.com/joelittlejohn/jsonschema2pojo) for Java-klasser fra JSON Schema
-* [json-kotlin-schema-codegen](https://github.com/pwall567/json-kotlin-schema-codegen) for Kotlin-klasser fra JSON Schema
 
 ## Planlagte fremtidige versjoner/endringer:
 
