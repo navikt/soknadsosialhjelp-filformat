@@ -43,6 +43,10 @@
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <rhino.version>1.7.14</rhino.version>
 
+        <!-- Deps for Kotlin-dataklasser -->
+        <kotlin.version>1.9.10</kotlin.version>
+        <json-kotlin-maven.version>0.94</json-kotlin-maven.version>
+
         <!--plugin versions-->
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
@@ -69,6 +73,11 @@
     </distributionManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.github.java-json-tools</groupId>
             <artifactId>json-schema-validator</artifactId>
@@ -280,6 +289,44 @@
                             </sourcePaths>
                             <targetPackage>no.nav.sbl.soknadsosialhjelp</targetPackage>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>net.pwall.json</groupId>
+                <artifactId>json-kotlin-maven</artifactId>
+                <version>${json-kotlin-maven.version}</version>
+                <executions>
+                    <execution>
+                        <id>soknad</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>codegen</goal>
+                        </goals>
+                        <configuration>
+                            <outputDir>${basedir}/target/java-gen/kotlin</outputDir>
+                            <inputFile>json</inputFile>
+                            <packageName>no.nav.sosialhjelp.json</packageName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <version>${kotlin.version}</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>test-compile</id>
+                        <goals>
+                            <goal>test-compile</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
