@@ -1,6 +1,7 @@
 package no.nav.sbl.soknadsosialhjelp.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import no.nav.sbl.soknadsosialhjelp.digisos.soker.JsonFilreferanse;
 import no.nav.sbl.soknadsosialhjelp.digisos.soker.JsonHendelse;
 import no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonAdresse;
@@ -15,6 +16,7 @@ public final class JsonSosialhjelpObjectMapper {
         mapper.addMixIn(JsonAdresse.class, AdresseMixIn.class);
         mapper.addMixIn(JsonHendelse.class, HendelseMixIn.class);
         mapper.addMixIn(JsonFilreferanse.class, FilreferanseMixIn.class);
+        mapper.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true);
         return mapper;
     }
 }
