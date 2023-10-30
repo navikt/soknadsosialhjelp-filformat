@@ -1,45 +1,46 @@
 [![Build and release](https://github.com/navikt/soknadsosialhjelp-filformat/actions/workflows/release.yml/badge.svg)](https://github.com/navikt/soknadsosialhjelp-filformat/actions/workflows/release.yml)
 [![Published on Maven](https://img.shields.io/maven-metadata/v/https/repo1.maven.org/maven2/no/nav/sbl/dialogarena/soknadsosialhjelp-filformat/maven-metadata.xml.svg)](https://repo1.maven.org/maven2/no/nav/sbl/dialogarena/soknadsosialhjelp-filformat/)
 
+# Filformater for økonomisk sosialhjelp
 
-Filformat for Søknad om økonomisk sosialhjelp
-=============================================
+I dette repoet finner du definisjoner av dataformatene brukt til informasjonsutveksling mellom NAV Digisos og kommunale fagsystemer.
+Gjeldende filformat er definert i JSON Schema av [hoved-branchen](https://github.com/navikt/soknadsosialhjelp-filformat/).
 
-Se [dokumentasjon for JSON-formaterte filer](https://navikt.github.io/soknadsosialhjelp-filformat/).
+Se **[definisjoner med endringshistorikk](https://navikt.github.io/soknadsosialhjelp-filformat/)** *(direktelenker: [Søknad](https://navikt.github.io/soknadsosialhjelp-filformat/#/soknad/getsoknad_json), [Vedlegg](readme-vedlegg-json.md), [Brukerinnsyn](https://navikt.github.io/soknadsosialhjelp-filformat/#/data%20fra%20fagsystem/getdigisos_soker_json))*.
 
-|Filformat                                                                                                 |
-|:---------------------------------------------------------------------------------------------------------|
-|[Søknad](https://navikt.github.io/soknadsosialhjelp-filformat/#/soknad/getsoknad_json)                    |
-|[Vedlegg](readme-vedlegg-json.md)                                                                         |
-|[Søkers innsynsdata](https://navikt.github.io/soknadsosialhjelp-filformat/#/data%20fra%20fagsystem/getdigisos_soker_json)                                                                         |
-
-
-## Endringer og nye versjoner
-
-Definisjon av eksisterende filformat ligger i [master branchen](https://github.com/navikt/soknadsosialhjelp-filformat/). Endringer i forhold til tidligere versjoner er beskrevet i [dokumentasjon for JSON-formaterte filer](https://navikt.github.io/soknadsosialhjelp-filformat/).
-
-Planlagte fremtidige versjoner/endringer: 
-
-|Funksjonalitet                                                                                                                                             |
-|:----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Ny fil for data fra fagsystem for søkers innsyn](https://navikt.github.io/soknadsosialhjelp-filformat/#/data%20fra%20fagsystem/getdigisos_soker_json) |
-
+I tillegg rommer repoet Java-DTO-er, Java-kode for validering, og generatorer for testsøknader.
 
 ## Henvendelser
+
 Spørsmål knyttet til koden eller teamet kan stilles til teamdigisos@nav.no.
 
 ### For NAV-ansatte
-Interne henvendelser kan sendes via Slack i kanalen #team_digisos.
 
-## Teknologi
+NAV-interne henvendelser kan sendes via Slack til [#team_digisos](https://nav-it.slack.com/archives/C6LDFTJP2).
+
+## Teknisk
+
+`doc/`-katalogen er publisert på [GitHub Pages](https://github.com/navikt/soknadsosialhjelp-filformat/).
+
+`json/`-katalogen inneholder JSON Schema-definisjonene.
+
+Java-klassene ligger under `no.nav.sbl.soknadsosialhjelp`.
+
+### Bygging (maven)
+
+Prosjektet inkluderer [maven wrapper](https://maven.apache.org/wrapper/), slik at man ikke er avhengig av å installere maven lokalt.
+
+Kjør `./mvnw [kommando]` fremfor `mvn [kommando]`.
+
+### Teknologier
+
 * Java
 * JDK 11
 * Maven
-* Json schema
+* Swagger UI
+* [JSON Schema](https://json-schema.org/)
+* [jsonschema2pojo](https://github.com/joelittlejohn/jsonschema2pojo) for Java-klasser fra JSON Schema
 
-### Krav
-* JDK 11
+## Planlagte fremtidige versjoner/endringer:
 
-### Maven wrapper
-Prosjektet inkluderer [maven wrapper](https://maven.apache.org/wrapper/), slik at man ikke er avhengig av å installere maven lokalt.\
-Kjør `./mvnw <command>` fremfor `mvn <command>`.
+* [Ny fil for data fra fagsystem for søkers innsyn](https://navikt.github.io/soknadsosialhjelp-filformat/#/data%20fra%20fagsystem/getdigisos_soker_json)
