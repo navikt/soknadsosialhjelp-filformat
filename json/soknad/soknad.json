@@ -6,9 +6,8 @@
       "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.Soknad",
       "title": "JSON-formatert søknad om sosialhjelp.",
       "description": "Encoding er UTF-8.",
-
       "properties": {
-      	"version": {
+        "version": {
           "$ref": "parts/version.json"
         },
         "data": {
@@ -20,37 +19,42 @@
               "type": "object",
               "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.personalia.Personalia",
               "properties": {
-              	"personIdentifikator": {
-				  "$ref": "personalia/personIdentifikator.json"
-	            },
-	            "navn" : {
-	              "$ref": "personalia/sokernavn.json"
-	            },
-	            "statsborgerskap": {
-	              "$ref": "personalia/statsborgerskap.json"
-	            },
-	            "nordiskBorger": {
-	              "$ref": "personalia/nordiskBorger.json"
-	            },
-	            "telefonnummer": {
-	              "$ref": "personalia/telefonnummer.json"
-	            },
-	            "kontonummer": {
-	              "$ref": "personalia/kontonummer.json"
-	            },
-	            "folkeregistrertAdresse": {
-	              "$ref": "parts/adresse.json"
-	            },
-	            "oppholdsadresse": {
-	              "$ref": "parts/adresse.json"
-	            },
-	            "postadresse": {
-	              "$ref": "parts/adresse.json"
-	            }
+                "personIdentifikator": {
+                  "$ref": "personalia/personIdentifikator.json"
+                },
+                "navn": {
+                  "$ref": "personalia/sokernavn.json"
+                },
+                "statsborgerskap": {
+                  "$ref": "personalia/statsborgerskap.json"
+                },
+                "nordiskBorger": {
+                  "$ref": "personalia/nordiskBorger.json"
+                },
+                "telefonnummer": {
+                  "$ref": "personalia/telefonnummer.json"
+                },
+                "kontonummer": {
+                  "$ref": "personalia/kontonummer.json"
+                },
+                "folkeregistrertAdresse": {
+                  "$ref": "parts/adresse.json"
+                },
+                "oppholdsadresse": {
+                  "$ref": "parts/adresse.json"
+                },
+                "postadresse": {
+                  "$ref": "parts/adresse.json"
+                },
+                "fodselsdato": {
+                  "$ref": "../types/dato.json"
+                }
               },
               "required": [
-                "personIdentifikator", "navn", "kontonummer"
-      	      ]
+                "personIdentifikator",
+                "navn",
+                "kontonummer"
+              ]
             },
             "arbeid": {
               "title": "Arbeid",
@@ -62,18 +66,20 @@
                   "description": "Hvis \"forhold\" mangler betyr dette at man ikke har fått data fra AA-registeret. Feltet \"situasjon\" vil da istedenfor benyttes.",
                   "type": "array",
                   "items": {
-					"$ref": "arbeid/forhold.json"
-			      }
+                    "$ref": "arbeid/forhold.json"
+                  }
                 },
                 "situasjon": {
-				  "$ref": "arbeid/situasjon.json"
-			    },
-			    "kommentarTilArbeidsforhold": {
-				  "$ref": "arbeid/kommentarTilArbeidsforhold.json"
-				}
+                  "$ref": "arbeid/situasjon.json"
+                },
+                "kommentarTilArbeidsforhold": {
+                  "$ref": "arbeid/kommentarTilArbeidsforhold.json"
+                }
               },
               "dependencies": {
-                "kommentarTilArbeidsforhold": ["forhold"]
+                "kommentarTilArbeidsforhold": [
+                  "forhold"
+                ]
               }
             },
             "utdanning": {
@@ -82,405 +88,474 @@
               "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.utdanning.Utdanning",
               "properties": {
                 "kilde": {
-	              "$ref": "parts/kilde.json"
-			    },
-			    "erStudent": {
-			      "description": "Hvis \"erStudent\" mangler betyr dette at søker ikke har svart på spørsmålet.",
-			      "type": "boolean"
-			    },
-			    "studentgrad": {
-			      "description": "Hvis \"studentgrad\" mangler betyr dette at søker ikke har svart på spørsmålet.",
-			      "type": "string",
-			      "enum": ["heltid", "deltid"]
-			    }
-			  },
-			  "required": ["kilde"]
-			},
+                  "$ref": "parts/kilde.json"
+                },
+                "erStudent": {
+                  "description": "Hvis \"erStudent\" mangler betyr dette at søker ikke har svart på spørsmålet.",
+                  "type": "boolean"
+                },
+                "studentgrad": {
+                  "description": "Hvis \"studentgrad\" mangler betyr dette at søker ikke har svart på spørsmålet.",
+                  "type": "string",
+                  "enum": [
+                    "heltid",
+                    "deltid"
+                  ]
+                }
+              },
+              "required": [
+                "kilde"
+              ]
+            },
             "familie": {
-			  "title": "Familie",
-			  "type": "object",
-			  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.Familie",
-			  "properties": {
-			    "sivilstatus": {
-			      "$ref": "familie/sivilstatus.json"
-		        },
-		        "folkeregistrertMedEktefelleAvviksforklaring": {
-		          "$ref": "familie/folkeregistrertMedEktefelleAvviksforklaring.json"
-		        },
-		        "forsorgerplikt": {
-		          "title": "Forsørgerplikt",
-		          "type": "object",
-		          "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.Forsorgerplikt",
-		          "properties": {
-		          	"harForsorgerplikt": {
-					  "$ref": "familie/harForsorgerplikt.json"
-		          	},
-		          	"barnebidrag": {
-		          	  "type": "object",
-		          	  "properties": {
-		          	    "kilde": {
-	                      "$ref": "parts/kildeBruker.json"
-			            },
-			            "verdi": {
-			              "type": "string",
-			              "enum": ["betaler", "mottar", "begge", "ingen"]
-			            }
-		          	  }
-		          	},
-		          	"ansvar": {
-		          	  "type": "array",
-		          	  "items": {
-		          	    "type": "object",
-		          	    "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.Ansvar",
-		          	    "properties": {
-			          	  "barn": {
-							"$ref": "familie/barn.json"
-		          	      },
-		          	      "borSammenMed": {
-							"$ref": "familie/borSammenMed.json"
-		          	      },
-		          	      "erFolkeregistrertSammen": {
-		          	      	"$ref": "familie/erFolkeregistrertSammen.json"
-		          	      },
+              "title": "Familie",
+              "type": "object",
+              "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.Familie",
+              "properties": {
+                "sivilstatus": {
+                  "$ref": "familie/sivilstatus.json"
+                },
+                "folkeregistrertMedEktefelleAvviksforklaring": {
+                  "$ref": "familie/folkeregistrertMedEktefelleAvviksforklaring.json"
+                },
+                "forsorgerplikt": {
+                  "title": "Forsørgerplikt",
+                  "type": "object",
+                  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.Forsorgerplikt",
+                  "properties": {
+                    "harForsorgerplikt": {
+                      "$ref": "familie/harForsorgerplikt.json"
+                    },
+                    "barnebidrag": {
+                      "type": "object",
+                      "properties": {
+                        "kilde": {
+                          "$ref": "parts/kildeBruker.json"
+                        },
+                        "verdi": {
+                          "type": "string",
+                          "enum": [
+                            "betaler",
+                            "mottar",
+                            "begge",
+                            "ingen"
+                          ]
+                        }
+                      }
+                    },
+                    "ansvar": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.Ansvar",
+                        "properties": {
+                          "barn": {
+                            "$ref": "familie/barn.json"
+                          },
+                          "borSammenMed": {
+                            "$ref": "familie/borSammenMed.json"
+                          },
+                          "erFolkeregistrertSammen": {
+                            "$ref": "familie/erFolkeregistrertSammen.json"
+                          },
                           "harDeltBosted": {
                             "$ref": "familie/harDeltBosted.json"
                           },
-		          	      "samvarsgrad": {
-		          	        "$ref": "familie/samvarsgrad.json"
-		          	      }
-			        	}
-		          	  }
-		          	}
-		          }
-		        }
-		      },
-		      "required": [
-		      	"forsorgerplikt"
-		      ],
-		      "dependencies": {
-		        "folkeregistrertMedEktefelleAvviksforklaring": {
-		          "properties": {
-		            "sivilstatus": {
-		              "properties": {
-		                "kilde": {
-		                  "enum": [ "system"]
-		                }
-		              },
-		              "required": ["kilde"]
-		            }
-		          },
-		          "required": ["sivilstatus"]
-		        }
-		      }
-			},
+                          "samvarsgrad": {
+                            "$ref": "familie/samvarsgrad.json"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "forsorgerplikt"
+              ],
+              "dependencies": {
+                "folkeregistrertMedEktefelleAvviksforklaring": {
+                  "properties": {
+                    "sivilstatus": {
+                      "properties": {
+                        "kilde": {
+                          "enum": [
+                            "system"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "kilde"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "sivilstatus"
+                  ]
+                }
+              }
+            },
             "begrunnelse": {
-			  "title": "Begrunnelse",
-			  "type": "object",
-			  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.begrunnelse.Begrunnelse",
-			  "properties": {
-		  	    "kilde": {
-	              "$ref": "parts/kildeBruker.json"
-			    },
-			    "hvorforSoke": {
-			      "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift).",
-			      "type": "string"
-			    },
-			    "hvaSokesOm": {
-			      "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift).",
-			      "type": "string"
-			    }
-			  },
-			  "required": [
-			  	"kilde", "hvorforSoke", "hvaSokesOm"
-			  ]
-			},
+              "title": "Begrunnelse",
+              "type": "object",
+              "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.begrunnelse.Begrunnelse",
+              "properties": {
+                "kilde": {
+                  "$ref": "parts/kildeBruker.json"
+                },
+                "hvorforSoke": {
+                  "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift).",
+                  "type": "string"
+                },
+                "hvaSokesOm": {
+                  "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift).",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "kilde",
+                "hvorforSoke",
+                "hvaSokesOm"
+              ]
+            },
+            "situasjonendring": {
+              "title": "Endring i situasjon",
+              "type": "object",
+              "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.situasjonendring.Situasjonendring",
+              "properties": {
+                "kilde": {
+                  "$ref": "parts/kildeBruker.json"
+                },
+                "harNoeEndretSeg": {
+                  "description": "Brukers svar på om noe har endret seg siden forrige søknad (gjelder kort søknad).",
+                  "type": "boolean"
+                },
+                "hvaHarEndretSeg": {
+                  "description": "Brukerskrevet forklaring på hva som har endret seg siden forrige søknad (gjelder kort søknad).",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "kilde",
+                "harNoeEndretSeg"
+              ]
+            },
             "bosituasjon": {
-			  "title": "Bosituasjon",
-			  "type": "object",
-			  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.bosituasjon.Bosituasjon",
-			  "properties": {
-			    "kilde": {
-	              "$ref": "parts/kildeBruker.json"
-			    },
-			    "botype": {
-			      "type": "string",
-			      "enum": [
-			        "eier",
-			        "leier",
-			        "kommunal",
-			        "ingen",
-			        "institusjon",
-			        "krisesenter",
-			        "fengsel",
-			        "venner",
-			        "foreldre",
-			        "familie",
-			        "annet"
-			      ]
-			    },
-			    "antallPersoner": {
-			      "type": "integer"
-			    }
-			  },
-			  "required": [
-			  	"kilde"
-			  ]
-			},
+              "title": "Bosituasjon",
+              "type": "object",
+              "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.bosituasjon.Bosituasjon",
+              "properties": {
+                "kilde": {
+                  "$ref": "parts/kildeBruker.json"
+                },
+                "botype": {
+                  "type": "string",
+                  "enum": [
+                    "eier",
+                    "leier",
+                    "kommunal",
+                    "ingen",
+                    "institusjon",
+                    "krisesenter",
+                    "fengsel",
+                    "venner",
+                    "foreldre",
+                    "familie",
+                    "annet"
+                  ]
+                },
+                "antallPersoner": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "kilde"
+              ]
+            },
             "okonomi": {
-			  "title": "Økonomiske data.",
-			  "type": "object",
-			  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.Okonomi",
-			  "properties": {
-			    "opplysninger": {
-			      "title": "Økonomiske opplysninger som ikke inngår i den strukturerte oversikten.",
-			      "description": "Flott hvis saksbehandlers behov/ønsker kan diskuteres på Slack slik at en mer strukturert måte å presentere dataene på kan utarbeides.",
-			      "type": "object",
-			      "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.Okonomiopplysninger",
-			      "properties": {
-			        "bekreftelse": {
-			          "title": "Bekreftelser fra bruker.",
-			          "description": "Både ja/nei-svar og samtykker fra bruker.",
-			          "type": "array",
-			          "items": {
-			            "type": "object",
-			            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.Okonomibekreftelse",
-			            "properties": {
-			              "kilde": {
-	              		    "$ref": "parts/kilde.json"
-			    		  },
-			    		  "type": {
-			    		  	"description": "Kodeverdi som angir hva slags type bekreftelse det er. Dette feltet kan for eksempel brukes til å filtrere bort bekreftelser man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"bostotte\", \"verdi\", \"sparing\", \"utbetaling\", \"boutgifter\" og \"barneutgifter\".",
-			    		    "type": "string"
-			    		  },
-			    		  "tittel": {
-			    		  	"description": "En tittel som MÅ brukes hvis bekreftelsen skal presenteres til saksbehandler.",
-			    		    "type": "string"
-			    		  },
-			    		  "verdi": {
-			    		  	"description": "Kan være manglende hvis bruker ikke har besvart spørsmålet.",
-			    		    "type": "boolean"
-			    		  },
-						  "bekreftelsesDato": {
-							"description": "Tidspunkt for når denne bekreftelsen ble gitt.",
-							"$ref": "../types/tidspunkt.json"
-						  }
-						},
-			            "required": [
-			              "kilde", "type", "tittel"
-			            ]
-			          }
-			        },
-			        "beskrivelseAvAnnet": {
-			          "title": "Beskrivelsesfelter for inntekter, utgifter og verdier.",
-			          "description": "Disse feltene er overflødige og vil bli tatt bort.",
-			          "type": "object",
-			          "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.OkonomibeskrivelserAvAnnet",
-			          "properties": {
-			            "kilde": {
-	              		  "$ref": "parts/kildeBruker.json"
-			    		},
-			    		"verdi": {
-			    		  "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av annet brukeren har av økonomisk verdi.",
-			    		  "type": "string"
-			    		},
-			    		"sparing": {
-			    		  "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av annet brukeren har av innskudd eller sparing.",
-			    		  "type": "string"
-			    		},
-			    		"utbetaling": {
-			    		  "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av annet brukeren har av utbetalinger.",
-			    		  "type": "string"
-			    		},
-			    		"boutgifter": {
-			    		  "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av annet brukeren har av boutgifter. Feltet er utdatert.",
-			    		  "type": "string"
-			    		},
-			    		"barneutgifter": {
-			    		  "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av andre utgifter til barn som brukeren har. Feltet er utdatert.",
-			    		  "type": "string"
-			    		}
-			    	  },
-			          "required": [
-			            "kilde", "verdi", "sparing", "utbetaling", "boutgifter", "barneutgifter"
-			          ]
-			    	},
+              "title": "Økonomiske data.",
+              "type": "object",
+              "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.Okonomi",
+              "properties": {
+                "opplysninger": {
+                  "title": "Økonomiske opplysninger som ikke inngår i den strukturerte oversikten.",
+                  "description": "Flott hvis saksbehandlers behov/ønsker kan diskuteres på Slack slik at en mer strukturert måte å presentere dataene på kan utarbeides.",
+                  "type": "object",
+                  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.Okonomiopplysninger",
+                  "properties": {
+                    "bekreftelse": {
+                      "title": "Bekreftelser fra bruker.",
+                      "description": "Både ja/nei-svar og samtykker fra bruker.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.Okonomibekreftelse",
+                        "properties": {
+                          "kilde": {
+                            "$ref": "parts/kilde.json"
+                          },
+                          "type": {
+                            "description": "Kodeverdi som angir hva slags type bekreftelse det er. Dette feltet kan for eksempel brukes til å filtrere bort bekreftelser man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"bostotte\", \"verdi\", \"sparing\", \"utbetaling\", \"boutgifter\" og \"barneutgifter\".",
+                            "type": "string"
+                          },
+                          "tittel": {
+                            "description": "En tittel som MÅ brukes hvis bekreftelsen skal presenteres til saksbehandler.",
+                            "type": "string"
+                          },
+                          "verdi": {
+                            "description": "Kan være manglende hvis bruker ikke har besvart spørsmålet.",
+                            "type": "boolean"
+                          },
+                          "bekreftelsesDato": {
+                            "description": "Tidspunkt for når denne bekreftelsen ble gitt.",
+                            "$ref": "../types/tidspunkt.json"
+                          }
+                        },
+                        "required": [
+                          "kilde",
+                          "type",
+                          "tittel"
+                        ]
+                      }
+                    },
+                    "beskrivelseAvAnnet": {
+                      "title": "Beskrivelsesfelter for inntekter, utgifter og verdier.",
+                      "description": "Disse feltene er overflødige og vil bli tatt bort.",
+                      "type": "object",
+                      "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.OkonomibeskrivelserAvAnnet",
+                      "properties": {
+                        "kilde": {
+                          "$ref": "parts/kildeBruker.json"
+                        },
+                        "verdi": {
+                          "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av annet brukeren har av økonomisk verdi.",
+                          "type": "string"
+                        },
+                        "sparing": {
+                          "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av annet brukeren har av innskudd eller sparing.",
+                          "type": "string"
+                        },
+                        "utbetaling": {
+                          "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av annet brukeren har av utbetalinger.",
+                          "type": "string"
+                        },
+                        "boutgifter": {
+                          "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av annet brukeren har av boutgifter. Feltet er utdatert.",
+                          "type": "string"
+                        },
+                        "barneutgifter": {
+                          "description": "Brukerskrevet tekstlig forklaring (inkl. linjeskift) av andre utgifter til barn som brukeren har. Feltet er utdatert.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "kilde",
+                        "verdi",
+                        "sparing",
+                        "utbetaling",
+                        "boutgifter",
+                        "barneutgifter"
+                      ]
+                    },
                     "utbetaling": {
-			          "type": "array",
-			          "items": {
-						  "$ref": "okonomi/opplysninger/utbetaling.json"
-			    	  }
-			        },
-			        "utgift": {
-			          "title": "Månedlige utgifter",
-			          "type": "array",
-			          "items": {
-			            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.OkonomiOpplysningUtgift",
-			            "type": "object",
-			            "properties": {
-			              "kilde": {
-	              		    "$ref": "parts/kilde.json"
-			    		  },
-			    		  "type": {
-			    		    "description": "Kodeverdi som angir hva slags type utgift det er. Dette feltet kan for eksempel brukes til å filtrere bort utgifter man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"strom\", \"kommunalAvgift\", \"oppvarming\", \"annenBoutgift\", \"barnFritidsaktiviteter\", \"barnTannregulering\", \"annenBarneutgift\" og \"annen\".",
-			    		    "type": "string"
-			    		  },
-			    		  "tittel": {
-			    		    "description": "En tittel som MÅ brukes hvis utgiften skal presenteres til saksbehandler. Brukerangitt tekst kan være inkludert i tittelen.",
-			    		    "type": "string"
-			    		  },
-			    		  "belop": {
-			    		    "type": "integer"
-			    		  },
-			    		  "overstyrtAvBruker": {
-						    "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på utgift med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
-							"type": "boolean"
-						  }
-			    		},
-			    		"required": [
-			    		  "kilde", "type", "tittel", "overstyrtAvBruker"
-			    		]
-			          }
-			        },
-					"bostotte": {
-						  "$ref": "bostotte/bostotte.json"
-					}
-				  },
-			      "required": [
-			      	"utbetaling", "utgift"
-			      ]
-			    },
-			    "oversikt": {
-			      "title": "Strukturert økonomisk oversikt.",
-			      "type": "object",
-			      "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.Okonomioversikt",
-			      "properties": {
-			        "inntekt": {
-			          "title": "Månedlige inntekter",
-			          "type": "array",
-			          "items": {
-			            "type": "object",
-			            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.OkonomioversiktInntekt",
-			            "properties": {
-			              "kilde": {
-	              		    "$ref": "parts/kilde.json"
-			    		  },
-			    		  "type": {
-			    		  	"description": "Kodeverdi som angir hva slags type inntekt det er. Dette feltet kan for eksempel brukes til å filtrere bort inntekter man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"jobb\", \"studielanOgStipend\", \"barnebidrag\" og \"bostotte\".",
-			    		    "type": "string"
-			    		  },
-			    		  "tittel": {
-			    		    "description": "En tittel som MÅ brukes hvis inntekten skal presenteres til saksbehandler. Brukerangitt tekst kan være inkludert i tittelen.",
-			    		    "type": "string"
-			    		  },
-			    		  "brutto": {
-			    		  	"description": "Kan mangle hvis bruker har sagt at han/hun har en gitt type inntekt, men beløp mangler.",
-			    		    "type": "integer"
-			    		  },
-			    		  "netto": {
-			    		  	"description": "Kan mangle hvis bruker har sagt at han/hun har en gitt type inntekt, men beløp mangler.",
-			    		    "type": "integer"
-			    		  },
-			    		  "overstyrtAvBruker": {
-						    "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på inntekt med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
-							"type": "boolean"
-						  }
-			    		},
-			    		"required": [
-			    		  "kilde", "type", "tittel", "overstyrtAvBruker"
-			    		]
-			          }
-			        },
-			        "utgift": {
-			          "title": "Månedlige utgifter",
-			          "type": "array",
-			          "items": {
-			            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.OkonomioversiktUtgift",
-			            "type": "object",
-			            "properties": {
-			              "kilde": {
-	              		    "$ref": "parts/kilde.json"
-			    		  },
-			    		  "type": {
-			    		  	"description": "Kodeverdi som angir hva slags type utgift det er. Dette feltet kan for eksempel brukes til å filtrere bort utgifter man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"barnebidrag\", \"husleie\", \"boliglanAvdrag\", \"boliglanRenter\", \"barnehage\" og \"sfo\".",
-			    		    "type": "string"
-			    		  },
-			    		  "tittel": {
-			    		  	"description": "En tittel som MÅ brukes hvis utgiften skal presenteres til saksbehandler. Brukerangitt tekst kan være inkludert i tittelen.",
-			    		    "type": "string"
-			    		  },
-			    		  "belop": {
-			    		  	"description": "Kan mangle hvis bruker har sagt at han/hun har en gitt type utgift, men beløp mangler.",
-			    		    "type": "integer"
-			    		  },
-			    		  "overstyrtAvBruker": {
-						    "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på utgift med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
-							"type": "boolean"
-						  }
-			    		},
-			    		"required": [
-			    		  "kilde", "type", "tittel", "overstyrtAvBruker"
-			    		]
-			          }
-			        },
-			        "formue": {
-			          "title": "Formue",
-			          "type": "array",
-			          "items": {
-			            "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.OkonomioversiktFormue",
-			            "type": "object",
-			            "properties": {
-			              "kilde": {
-	              		    "$ref": "parts/kilde.json"
-			    		  },
-			    		  "type": {
-			    		  	"description": "Kodeverdi som angir hva slags type formue det er. Dette feltet kan for eksempel brukes til å filtrere bort formue man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"brukskonto\", \"bsu\", \"sparekonto\", \"livsforsikringssparedel\", \"verdipapirer\" og \"belop\".",
-			    		    "type": "string"
-			    		  },
-			    		  "tittel": {
-			    		  	"description": "En tittel som MÅ brukes hvis formuen skal presenteres til saksbehandler. Brukerangitt tekst kan være inkludert i tittelen.",
-			    		    "type": "string"
-			    		  },
-			    		  "belop": {
-			    		  	"description": "Kan mangle hvis bruker har sagt at han/hun har en gitt type formue, men beløp mangler.",
-			    		    "type": "integer"
-			    		  },
-			    		  "overstyrtAvBruker": {
-						    "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på formue med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
-							"type": "boolean"
-						  }
-			    		},
-			    		"required": [
-			    		  "kilde", "type", "tittel", "overstyrtAvBruker"
-			    		]
-			          }
-			        }
-			      },
-			      "required": [
-			      	"inntekt", "utgift", "formue"
-			      ]
-			    }
-			  },
-			  "required": [
-			  	"opplysninger", "oversikt"
-			  ]
-			}
+                      "type": "array",
+                      "items": {
+                        "$ref": "okonomi/opplysninger/utbetaling.json"
+                      }
+                    },
+                    "utgift": {
+                      "title": "Månedlige utgifter",
+                      "type": "array",
+                      "items": {
+                        "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.OkonomiOpplysningUtgift",
+                        "type": "object",
+                        "properties": {
+                          "kilde": {
+                            "$ref": "parts/kilde.json"
+                          },
+                          "type": {
+                            "description": "Kodeverdi som angir hva slags type utgift det er. Dette feltet kan for eksempel brukes til å filtrere bort utgifter man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"strom\", \"kommunalAvgift\", \"oppvarming\", \"annenBoutgift\", \"barnFritidsaktiviteter\", \"barnTannregulering\", \"annenBarneutgift\" og \"annen\".",
+                            "type": "string"
+                          },
+                          "tittel": {
+                            "description": "En tittel som MÅ brukes hvis utgiften skal presenteres til saksbehandler. Brukerangitt tekst kan være inkludert i tittelen.",
+                            "type": "string"
+                          },
+                          "belop": {
+                            "type": "integer"
+                          },
+                          "overstyrtAvBruker": {
+                            "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på utgift med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "kilde",
+                          "type",
+                          "tittel",
+                          "overstyrtAvBruker"
+                        ]
+                      }
+                    },
+                    "bostotte": {
+                      "$ref": "bostotte/bostotte.json"
+                    }
+                  },
+                  "required": [
+                    "utbetaling",
+                    "utgift"
+                  ]
+                },
+                "oversikt": {
+                  "title": "Strukturert økonomisk oversikt.",
+                  "type": "object",
+                  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.Okonomioversikt",
+                  "properties": {
+                    "inntekt": {
+                      "title": "Månedlige inntekter",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.OkonomioversiktInntekt",
+                        "properties": {
+                          "kilde": {
+                            "$ref": "parts/kilde.json"
+                          },
+                          "type": {
+                            "description": "Kodeverdi som angir hva slags type inntekt det er. Dette feltet kan for eksempel brukes til å filtrere bort inntekter man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"jobb\", \"studielanOgStipend\", \"barnebidrag\" og \"bostotte\".",
+                            "type": "string"
+                          },
+                          "tittel": {
+                            "description": "En tittel som MÅ brukes hvis inntekten skal presenteres til saksbehandler. Brukerangitt tekst kan være inkludert i tittelen.",
+                            "type": "string"
+                          },
+                          "brutto": {
+                            "description": "Kan mangle hvis bruker har sagt at han/hun har en gitt type inntekt, men beløp mangler.",
+                            "type": "integer"
+                          },
+                          "netto": {
+                            "description": "Kan mangle hvis bruker har sagt at han/hun har en gitt type inntekt, men beløp mangler.",
+                            "type": "integer"
+                          },
+                          "overstyrtAvBruker": {
+                            "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på inntekt med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "kilde",
+                          "type",
+                          "tittel",
+                          "overstyrtAvBruker"
+                        ]
+                      }
+                    },
+                    "utgift": {
+                      "title": "Månedlige utgifter",
+                      "type": "array",
+                      "items": {
+                        "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.OkonomioversiktUtgift",
+                        "type": "object",
+                        "properties": {
+                          "kilde": {
+                            "$ref": "parts/kilde.json"
+                          },
+                          "type": {
+                            "description": "Kodeverdi som angir hva slags type utgift det er. Dette feltet kan for eksempel brukes til å filtrere bort utgifter man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"barnebidrag\", \"husleie\", \"boliglanAvdrag\", \"boliglanRenter\", \"barnehage\" og \"sfo\".",
+                            "type": "string"
+                          },
+                          "tittel": {
+                            "description": "En tittel som MÅ brukes hvis utgiften skal presenteres til saksbehandler. Brukerangitt tekst kan være inkludert i tittelen.",
+                            "type": "string"
+                          },
+                          "belop": {
+                            "description": "Kan mangle hvis bruker har sagt at han/hun har en gitt type utgift, men beløp mangler.",
+                            "type": "integer"
+                          },
+                          "overstyrtAvBruker": {
+                            "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på utgift med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "kilde",
+                          "type",
+                          "tittel",
+                          "overstyrtAvBruker"
+                        ]
+                      }
+                    },
+                    "formue": {
+                      "title": "Formue",
+                      "type": "array",
+                      "items": {
+                        "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.OkonomioversiktFormue",
+                        "type": "object",
+                        "properties": {
+                          "kilde": {
+                            "$ref": "parts/kilde.json"
+                          },
+                          "type": {
+                            "description": "Kodeverdi som angir hva slags type formue det er. Dette feltet kan for eksempel brukes til å filtrere bort formue man ikke ønsker å vise til saksbehandler. Det er et MÅ-krav for konsumenter å dynamisk støtte nye typer. Eksempler: \"brukskonto\", \"bsu\", \"sparekonto\", \"livsforsikringssparedel\", \"verdipapirer\" og \"belop\".",
+                            "type": "string"
+                          },
+                          "tittel": {
+                            "description": "En tittel som MÅ brukes hvis formuen skal presenteres til saksbehandler. Brukerangitt tekst kan være inkludert i tittelen.",
+                            "type": "string"
+                          },
+                          "belop": {
+                            "description": "Kan mangle hvis bruker har sagt at han/hun har en gitt type formue, men beløp mangler.",
+                            "type": "integer"
+                          },
+                          "overstyrtAvBruker": {
+                            "description": "Brukes når en søker overstyrer/endrer. Settes kun til \"true\" på formue med systemkilde. Anbefaler at man likevel viser dataene til saksbehandler men markert som overskrevet av bruker (for eksempel å vise med overstrykning).",
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "kilde",
+                          "type",
+                          "tittel",
+                          "overstyrtAvBruker"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "inntekt",
+                    "utgift",
+                    "formue"
+                  ]
+                }
+              },
+              "required": [
+                "opplysninger",
+                "oversikt"
+              ]
+            }
           },
           "required": [
-            "personalia", "arbeid", "utdanning", "familie", "begrunnelse", "bosituasjon", "okonomi"
-      	  ]
+            "personalia",
+            "arbeid",
+            "utdanning",
+            "familie",
+            "begrunnelse",
+            "bosituasjon",
+            "okonomi"
+          ]
         },
         "innsendingstidspunkt": {
-            "$ref": "../types/tidspunkt.json"
+          "$ref": "../types/tidspunkt.json"
         },
         "mottaker": {
           "title": "Soknadsmottaker",
           "type": "object",
           "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.Soknadsmottaker",
           "properties": {
-			"kommunenummer": {
-				"description": "Kommunenummer for søknadsmottaker.",
-				"type": "string"
-			},
+            "kommunenummer": {
+              "description": "Kommunenummer for søknadsmottaker.",
+              "type": "string"
+            },
             "enhetsnummer": {
               "description": "Enhetssnummer for søknadsmottaker.",
               "type": "string"
@@ -492,26 +567,28 @@
           }
         },
         "driftsinformasjon": {
-			"title": "Inneholder informasjon om status for henting av opplysninger fra andre tjenester.",
-			"type": "object",
-			"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.Driftsinformasjon",
-			"properties": {
-				"utbetalingerFraNavFeilet": {
-					"description": "Hvis utbetalinger fra NAV ikke kunne hentes er denne true.",
-					"type": "boolean"
-				},
-				"inntektFraSkatteetatenFeilet": {
-					"description": "Hvis skattbar inntekt hos skatteetaten ikke kunne hentes er denne true.",
-					"type": "boolean"
-				},
-				"stotteFraHusbankenFeilet": {
-					"description": "Hvis økonomisk støtte fra Husbanken ikke kunne hentes er denne true.",
-					"type": "boolean"
-				}
-			},
-			"required": [
-				"utbetalingerFraNavFeilet", "inntektFraSkatteetatenFeilet", "stotteFraHusbankenFeilet"
-			]
+          "title": "Inneholder informasjon om status for henting av opplysninger fra andre tjenester.",
+          "type": "object",
+          "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.Driftsinformasjon",
+          "properties": {
+            "utbetalingerFraNavFeilet": {
+              "description": "Hvis utbetalinger fra NAV ikke kunne hentes er denne true.",
+              "type": "boolean"
+            },
+            "inntektFraSkatteetatenFeilet": {
+              "description": "Hvis skattbar inntekt hos skatteetaten ikke kunne hentes er denne true.",
+              "type": "boolean"
+            },
+            "stotteFraHusbankenFeilet": {
+              "description": "Hvis økonomisk støtte fra Husbanken ikke kunne hentes er denne true.",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "utbetalingerFraNavFeilet",
+            "inntektFraSkatteetatenFeilet",
+            "stotteFraHusbankenFeilet"
+          ]
         },
         "kompatibilitet": {
           "title": "Liste med kompatibilitetstekster",
@@ -523,7 +600,11 @@
         }
       },
       "required": [
-        "version", "data", "mottaker", "driftsinformasjon", "kompatibilitet"
+        "version",
+        "data",
+        "mottaker",
+        "driftsinformasjon",
+        "kompatibilitet"
       ]
     },
     "kompatibilitet": {
@@ -547,6 +628,5 @@
       }
     }
   },
-
   "$ref": "#/definitions/soknad"
 }
