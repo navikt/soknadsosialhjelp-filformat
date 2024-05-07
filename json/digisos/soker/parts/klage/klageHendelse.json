@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+
+  "title": "Hendelse",
+  "description": "Feltet \"type\" angir hvilken type hendelse det er. Se egen definisjon per hendelse. Det som er dokumentert direkte under er kun det som er felles for alle hendelser.",
+  "javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.klage.KlageHendelse",
+  "type": "object",
+
+  "oneOf": [
+    {"$ref": "hendelse/klageStatus.json"},
+    {"$ref": "hendelse/klageUtfall.json"},
+    {"$ref": "hendelse/saksfremlegg.json"},
+    {"$ref": "hendelse/statsforvalterUtfall.json"},
+    {"$ref": "hendelse/klageDokumentasjonEtterspurt.json"}
+  ],
+  "properties": {
+    "type": {
+      "title": "Angir hendelsestypen og dermed også hvilke felter som må settes..",
+      "type": "string",
+      "description": "Det kan legges til nye hendelsestyper i enumen, men ingen gamle kan fjernes fra valideringsskjemaet (grunnet kompatibilitet).",
+      "enum": [
+        "klageStatus", "klageUtfall", "saksfremlegg", "statsforvalterUtfall", "klageDokumentasjonEtterspurt"
+      ]
+    },
+    "hendelsestidspunkt": {
+      "$ref": "../../../../types/tidspunkt.json"
+    }
+  },
+  "required": ["type", "hendelsestidspunkt"]
+}

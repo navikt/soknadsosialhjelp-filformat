@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+
+  "title": "En klagesak, i tilknytning til søknaden, har blitt opprettet og har status",
+  "description": "Status på klagesak som vil resultere i et vedtak.",
+  "javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.klage.hendelse.KlageStatus",
+  "type": "object",
+  "extends": {
+    "ONLY_CODEGEN$ref": "../klageHendelse.json"
+  },
+  "allOf": [
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "klageStatus"
+          ]
+        }
+      }
+    }
+  ],
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "Det kan legges til nye statustyper i enumen, men ingen gamle kan fjernes fra valideringsskjemaet (grunnet bakoverkompatibilitet). Klagesaker uten innsyn blir behandlet, men søkeren får ikke innsyn i klagen (feks. når kommunen ikke har fagsystem som støtter det).",
+      "enum": [
+        "SENDT", "MOTTATT", "UNDER_BEHANDLING", "TRUKKET", "FERDIGBEHANDLET", "VIDERESENDT", "FORELOPIG_SVAR"
+      ]
+    }
+  },
+  "required": [
+    "status"
+  ]
+}
