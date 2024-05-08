@@ -146,6 +146,42 @@
 								}
 							}
 						}
+					},
+					"klager": {
+						"description": "En klage på søknaden",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"klageId": {
+									"type": "string",
+									"description": "Unik id for klagen"
+								},
+								"hendelser": {
+									"type": "object",
+									"title": "Klagehendelser",
+									"schema": {
+										"description": "Hendelser som har skjedd i klageprosessen",
+										"properties": {
+											"klagedokumentasjon": {
+												"$ref": "digisos/soker/parts/klage/hendelse/klagedokumentasjon.json"
+											},
+											"klageStatus": {
+												"$ref": "digisos/soker/parts/klage/hendelse/klageStatus.json"
+											},
+											"klageUtfall": {
+												"$ref": "digisos/soker/parts/klage/hendelse/klageUtfall.json"
+											},
+											"saksfremlegg": {
+												"$ref": "digisos/soker/parts/klage/hendelse/saksfremlegg.json"
+											},
+											"statsforvalterUtfall": {
+												"$ref": "digisos/soker/parts/klage/hendelse/statsforvalterUtfall.json"
+											}
+										}
+									}
+								}
+							}
+						}
 					}
 				}
 			}

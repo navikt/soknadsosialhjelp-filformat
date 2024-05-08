@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schema": "http://json-schema.org/draft-06/schema#",
 
   "title": "En klagesak, i tilknytning til søknaden, har blitt opprettet og har status",
   "description": "Status på klagesak som vil resultere i et vedtak.",

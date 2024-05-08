@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schema": "http://json-schema.org/draft-06/schema#",
   "title": "Klagesaken skal sendes til statsforvalter, og saksfremlegget er sendt til klager for kommentar",
   "description": "Klagesaken skal sendes til statsforvalter, og saksfremlegget er sendt til klager for kommentar",
   "javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.klage.hendelse.Saksfremlegg",
