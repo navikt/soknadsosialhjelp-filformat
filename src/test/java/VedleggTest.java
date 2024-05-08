@@ -27,7 +27,7 @@ class VedleggTest {
 
     private static Object[] testMed(String navn, boolean skalKjore) {
         return new Object[]{
-                navn, skalKjore
+                navn, Boolean.valueOf(skalKjore)
         };
     }
 

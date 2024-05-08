@@ -16,8 +16,7 @@ class SoknadTest {
                 .withSchemaDirectory("json/soknad")
                 .withToplevelSchemaFilename("soknad.json")
                 .withTestDataDirectory("src/test/resources/json/soknad/");
-        return TestDataFiles.list(config
-        );
+        return TestDataFiles.list(config);
     }
 
     @ParameterizedTest
