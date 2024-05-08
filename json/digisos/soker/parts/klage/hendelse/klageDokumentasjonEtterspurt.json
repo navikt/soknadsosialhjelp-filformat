@@ -1,11 +1,11 @@
 {
-  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
 
-  "title": "Veileder ber om mer dokumentasjon fra søker",
-  "javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.DokumentasjonEtterspurt",
+  "title": "Veileder ber om mer dokumentasjon vedrørende klagen fra søker",
+  "javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.klage.hendelse.KlageDokumentasjonEtterspurt",
   "type": "object",
   "extends": {
-    "ONLY_CODEGEN$ref": "../hendelse.json"
+    "ONLY_CODEGEN$ref": "../klageHendelse.json"
   },
   "allOf": [
     {
@@ -13,7 +13,7 @@
         "type": {
           "type": "string",
           "enum": [
-            "dokumentasjonEtterspurt"
+            "klageDokumentasjonEtterspurt"
           ]
         }
       }
@@ -21,14 +21,14 @@
   ],
   "properties": {
     "forvaltningsbrev": {
-      "$ref": "../forvaltningsbrev.json"
+      "$ref": "../../forvaltningsbrev.json"
     },
     "vedlegg": {
       "type": "array",
       "title": "Vedlegg til forvaltningsbrev",
       "description": "En liste med vedlegg til forvaltningsbrevet som søker skal ha mulighet til å se. Det er ingen garanti for at filene blir vist til søker. Filformatet skal være PDF.",
       "items": {
-        "$ref": "../vedlegg.json"
+        "$ref": "../../vedlegg.json"
       }
     },
     "dokumenter": {
@@ -41,7 +41,7 @@
           "dokumenttype": {
             "title": "Dokumenttype",
             "type": "string",
-            "description": "En predefinert eller fritekstbasert dokumenttype som veileder etterspør fra søker, eks: \"strømfaktura\" eller \"kontoutskrift\""
+            "description": "En predefinert eller fritekstbasert dokumenttype som veileder etterspør fra klager, eks: \"strømfaktura\" eller \"kontoutskrift\""
           },
           "tilleggsinformasjon": {
             "title": "Tilleggsinformasjon",
@@ -49,7 +49,7 @@
             "description": "Tilleggsinformasjon til dokumenttypen veileder etterspør"
           },
           "innsendelsesfrist": {
-            "$ref": "../../../../types/tidspunkt.json"
+            "$ref": "../../../../../types/tidspunkt.json"
           },
           "dokumentreferanse": {
             "title": "Dokumentreferanse",
@@ -67,3 +67,4 @@
     "dokumenter"
   ]
 }
+1

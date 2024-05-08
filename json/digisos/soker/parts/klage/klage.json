@@ -1,0 +1,19 @@
+{
+  "schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Klage",
+  "description": "Indikerer en klage på en søknad",
+  "type": "object",
+  "properties": {
+    "klageId": {
+      "type": "string",
+      "description": "En unik identifikator for klagen"
+    },
+    "hendelser": {
+      "type": "array",
+      "items": {
+        "$ref": "klageHendelse.json"
+      }
+    }
+  },
+  "required": ["klageId", "hendelser"]
+}

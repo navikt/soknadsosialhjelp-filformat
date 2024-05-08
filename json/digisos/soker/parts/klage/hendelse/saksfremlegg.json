@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Klagesaken skal sendes til statsforvalter, og saksfremlegget er sendt til klager for kommentar",
+  "description": "Klagesaken skal sendes til statsforvalter, og saksfremlegget er sendt til klager for kommentar",
+  "javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.klage.hendelse.Saksfremlegg",
+  "type": "object",
+  "extends": {
+    "ONLY_CODEGEN$ref": "../klageHendelse.json"
+  },
+  "allOf": [
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "saksfremlegg"
+          ]
+        }
+      }
+    }
+  ],
+  "properties": {
+    "saksreferanse": {
+      "type": "string",
+      "description": "Referanse til klagesaken som saksfremlegget gjelder"
+    },
+    "dokumentasjonsreferanse": {
+      "type": "object",
+      "title": "saksfremleggfil",
+      "description": "Referanse til saksfremlegget",
+      "properties": {
+        "referanse": {
+          "$ref": "../../filreferanse.json"
+        }
+      },
+      "required": [
+        "referanse"
+      ]
+    },
+    "kommentarfrist": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Frist for å komme med kommentarer til saksfremlegget"
+    }
+  }
+}
