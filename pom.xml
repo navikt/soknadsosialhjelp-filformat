@@ -27,9 +27,9 @@
     </developers>
 
     <properties>
-        <java.jdk.version>11</java.jdk.version>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <java.jdk.version>21</java.jdk.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
 
         <guava.version>32.0.1-jre</guava.version>
         <jackson.version>2.14.2</jackson.version>
@@ -44,17 +44,17 @@
         <rhino.version>1.7.14</rhino.version>
 
         <!--plugin versions-->
-        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
-        <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
-        <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
-        <maven-javadoc-plugin.version>3.1.0</maven-javadoc-plugin.version>
-        <maven-resources-plugin.version>3.0.2</maven-resources-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven-release-plugin.version>3.0.1</maven-release-plugin.version>
+        <nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
+        <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>3.6.3</maven-javadoc-plugin.version>
+        <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
+        <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
         <replacer.version>1.5.3</replacer.version>
-        <jsonschema2pojo-maven-plugin.version>0.5.1</jsonschema2pojo-maven-plugin.version>
+        <jsonschema2pojo-maven-plugin.version>1.2.1</jsonschema2pojo-maven-plugin.version>
         <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
         <maven-shade-plugin.version>3.1.0</maven-shade-plugin.version>
-        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+        <maven-gpg-plugin.version>3.2.4</maven-gpg-plugin.version>
     </properties>
 
     <distributionManagement>

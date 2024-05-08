@@ -62,9 +62,9 @@ class VedleggsforventningMasterTest {
                                         .withOpplysninger(new JsonOkonomiopplysninger()
                                                 .withBekreftelse(new ArrayList<>()))))
                         .withDriftsinformasjon(new JsonDriftsinformasjon()
-                                .withUtbetalingerFraNavFeilet(false)
-                                .withInntektFraSkatteetatenFeilet(false)
-                                .withStotteFraHusbankenFeilet(false)));
+                                .withUtbetalingerFraNavFeilet(Boolean.valueOf(false))
+                                .withInntektFraSkatteetatenFeilet(Boolean.valueOf(false))
+                                .withStotteFraHusbankenFeilet(Boolean.valueOf(false))));
 
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedlegg(internalSoknad);
 
@@ -80,7 +80,7 @@ class VedleggsforventningMasterTest {
     @Test
     void finnPaakrevdeVedleggForPersonaliaKreverVedleggForIkkeNordiskStatsborger() {
         JsonPersonalia personalia = new JsonPersonalia()
-                .withNordiskBorger(new JsonNordiskBorger().withVerdi(false))
+                .withNordiskBorger(new JsonNordiskBorger().withVerdi(Boolean.valueOf(false)))
                 .withStatsborgerskap(new JsonStatsborgerskap().withVerdi("CHN"));
 
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForPersonalia(personalia);
@@ -93,7 +93,7 @@ class VedleggsforventningMasterTest {
     @Test
     void finnPaakrevdeVedleggForPersonaliaKreverIkkeVedleggForNorskStatsborger() {
         JsonPersonalia personalia = new JsonPersonalia()
-                .withNordiskBorger(new JsonNordiskBorger().withVerdi(true))
+                .withNordiskBorger(new JsonNordiskBorger().withVerdi(Boolean.valueOf(true)))
                 .withStatsborgerskap(new JsonStatsborgerskap().withVerdi("NOR"));
 
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForPersonalia(personalia);
@@ -106,16 +106,16 @@ class VedleggsforventningMasterTest {
         JsonInternalSoknad soknad = new JsonInternalSoknad()
                 .withSoknad(new JsonSoknad()
                         .withDriftsinformasjon(new JsonDriftsinformasjon()
-                                .withInntektFraSkatteetatenFeilet(true))
+                                .withInntektFraSkatteetatenFeilet(Boolean.valueOf(true)))
                         .withData(new JsonData()
                                 .withArbeid(new JsonArbeid()
-                                        .withForhold(Lists.newArrayList(new JsonArbeidsforhold().withStillingsprosent(100))))
+                                        .withForhold(Lists.newArrayList(new JsonArbeidsforhold().withStillingsprosent(Integer.valueOf(100)))))
                                 .withOkonomi(new JsonOkonomi()
                                         .withOpplysninger(new JsonOkonomiopplysninger()
                                                 .withBekreftelse(Lists.newArrayList(
                                                         new JsonOkonomibekreftelse()
                                                                 .withType(UTBETALING_SKATTEETATEN_SAMTYKKE)
-                                                                .withVerdi(true)
+                                                                .withVerdi(Boolean.valueOf(true))
                                                 ))))));
 
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForArbeid(soknad);
@@ -131,16 +131,16 @@ class VedleggsforventningMasterTest {
         JsonInternalSoknad soknad = new JsonInternalSoknad()
                 .withSoknad(new JsonSoknad()
                         .withDriftsinformasjon(new JsonDriftsinformasjon()
-                                .withInntektFraSkatteetatenFeilet(false))
+                                .withInntektFraSkatteetatenFeilet(Boolean.valueOf(false)))
                         .withData(new JsonData()
                                 .withArbeid(new JsonArbeid()
-                                        .withForhold(Lists.newArrayList(new JsonArbeidsforhold().withStillingsprosent(100))))
+                                        .withForhold(Lists.newArrayList(new JsonArbeidsforhold().withStillingsprosent(Integer.valueOf(100)))))
                                 .withOkonomi(new JsonOkonomi()
                                         .withOpplysninger(new JsonOkonomiopplysninger()
                                                 .withBekreftelse(Lists.newArrayList(
                                                         new JsonOkonomibekreftelse()
                                                                 .withType(UTBETALING_SKATTEETATEN_SAMTYKKE)
-                                                                .withVerdi(false)
+                                                                .withVerdi(Boolean.valueOf(false))
                                                 ))))));
 
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForArbeid(soknad);
@@ -196,8 +196,8 @@ class VedleggsforventningMasterTest {
     @Test
     void finnPaakrevdeVedleggForFamilieKreverVedleggHvisBarnBorMindreEnn50prosentHosForelder() {
         JsonAnsvar barnMedDeltBosted = new JsonAnsvar()
-                .withErFolkeregistrertSammen(new JsonErFolkeregistrertSammen().withVerdi(false))
-                .withSamvarsgrad(new JsonSamvarsgrad().withVerdi(30));
+                .withErFolkeregistrertSammen(new JsonErFolkeregistrertSammen().withVerdi(Boolean.valueOf(false)))
+                .withSamvarsgrad(new JsonSamvarsgrad().withVerdi(Integer.valueOf(30)));
         List<JsonAnsvar> forsorgerAnsvar = new ArrayList<>();
         forsorgerAnsvar.add(barnMedDeltBosted);
         JsonFamilie familie = new JsonFamilie()
@@ -237,7 +237,7 @@ class VedleggsforventningMasterTest {
     void finnPaakrevdeVedleggForOkonomiHenterVedleggForAlleTyperInntekterUtgifterOgFormue() {
         JsonSoknad soknad = new JsonSoknad()
                 .withDriftsinformasjon(new JsonDriftsinformasjon()
-                        .withStotteFraHusbankenFeilet(false))
+                        .withStotteFraHusbankenFeilet(Boolean.valueOf(false)))
                 .withData(new JsonData()
                         .withOkonomi(new JsonOkonomi()
                                 .withOversikt(new JsonOkonomioversikt()
@@ -273,7 +273,7 @@ class VedleggsforventningMasterTest {
     void finnPaakrevdeVedleggForOkonomiHarIkkeBostotteDersomViHarSamtykke() {
         JsonSoknad soknad = new JsonSoknad()
                 .withDriftsinformasjon(new JsonDriftsinformasjon()
-                        .withStotteFraHusbankenFeilet(false))
+                        .withStotteFraHusbankenFeilet(Boolean.valueOf(false)))
                 .withData(new JsonData()
                         .withOkonomi(new JsonOkonomi()
                                 .withOversikt(new JsonOkonomioversikt()
@@ -285,7 +285,7 @@ class VedleggsforventningMasterTest {
                                         .withUtgift(lagOpplysningUtgifter())
                                         .withBekreftelse(Lists.newArrayList(new JsonOkonomibekreftelse()
                                                 .withType(BOSTOTTE_SAMTYKKE)
-                                                .withVerdi(true))))));
+                                                .withVerdi(Boolean.valueOf(true)))))));
 
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForOkonomi(soknad);
 
@@ -310,7 +310,7 @@ class VedleggsforventningMasterTest {
     void finnPaakrevdeVedleggForOkonomiHarBostotteDersomViHarSamtykkeMenHentingenHarFeilet() {
         JsonSoknad soknad = new JsonSoknad()
                 .withDriftsinformasjon(new JsonDriftsinformasjon()
-                        .withStotteFraHusbankenFeilet(true))
+                        .withStotteFraHusbankenFeilet(Boolean.valueOf(true)))
                 .withData(new JsonData()
                         .withOkonomi(new JsonOkonomi()
                                 .withOversikt(new JsonOkonomioversikt()
@@ -322,7 +322,7 @@ class VedleggsforventningMasterTest {
                                         .withUtgift(lagOpplysningUtgifter())
                                         .withBekreftelse(Lists.newArrayList(new JsonOkonomibekreftelse()
                                                 .withType(BOSTOTTE_SAMTYKKE)
-                                                .withVerdi(true))))));
+                                                .withVerdi(Boolean.valueOf(true)))))));
 
         List<JsonVedlegg> paakrevdeVedlegg = finnPaakrevdeVedleggForOkonomi(soknad);
 
