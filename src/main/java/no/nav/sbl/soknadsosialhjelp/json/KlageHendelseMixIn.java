@@ -17,5 +17,4 @@ import no.nav.sbl.soknadsosialhjelp.digisos.soker.klage.hendelse.JsonKlageDokume
     @JsonSubTypes.Type(value = JsonSaksfremlegg.class, name = "saksfremlegg"),
 })
 public interface KlageHendelseMixIn {
-
 }

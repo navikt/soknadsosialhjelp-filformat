@@ -32,6 +32,13 @@ Prosjektet inkluderer [maven wrapper](https://maven.apache.org/wrapper/), slik a
 
 Kjør `./mvnw [kommando]` fremfor `mvn [kommando]`.
 
+### Release (maven central/sonatype nexus)
+Vi publiserer pakkene på maven central via sonatype nexus. Pakkene signeres før publisering, se punkt under.
+
+#### Signering
+Pakkene signeres med GPG-nøkkelen til NAV (se [nøkkel på keyserver](https://keyserver.ubuntu.com/pks/lookup?search=a511889134f13602&fingerprint=on&op=index)). 
+Passphrase og privatnøkkel ligger som secret i github actions. 
+
 ### Teknologier
 
 * Java

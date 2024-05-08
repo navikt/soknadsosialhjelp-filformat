@@ -11,7 +11,7 @@
     {"$ref": "hendelse/klageUtfall.json"},
     {"$ref": "hendelse/saksfremlegg.json"},
     {"$ref": "hendelse/statsforvalterUtfall.json"},
-    {"$ref": "hendelse/klageDokumentasjonEtterspurt.json"}
+    {"$ref": "hendelse/klagedokumentasjon.json"}
   ],
   "properties": {
     "type": {
@@ -19,7 +19,7 @@
       "type": "string",
       "description": "Det kan legges til nye hendelsestyper i enumen, men ingen gamle kan fjernes fra valideringsskjemaet (grunnet kompatibilitet).",
       "enum": [
-        "klageStatus", "klageUtfall", "saksfremlegg", "statsforvalterUtfall", "klageDokumentasjonEtterspurt"
+        "klageStatus", "klageUtfall", "saksfremlegg", "statsforvalterUtfall", "klagedokumentasjon"
       ]
     },
     "hendelsestidspunkt": {

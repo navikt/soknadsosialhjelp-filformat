@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
 
   "title": "Veileder ber om mer dokumentasjon vedrørende klagen fra søker",
-  "javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.klage.hendelse.KlageDokumentasjonEtterspurt",
+  "javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.klage.hendelse.Klagedokumentasjon",
   "type": "object",
   "extends": {
     "ONLY_CODEGEN$ref": "../klageHendelse.json"
@@ -13,7 +13,7 @@
         "type": {
           "type": "string",
           "enum": [
-            "klageDokumentasjonEtterspurt"
+            "klagedokumentasjon"
           ]
         }
       }
@@ -67,4 +67,4 @@
     "dokumenter"
   ]
 }
-1
+
