@@ -37,7 +37,7 @@ Vi publiserer pakkene på maven central via sonatype nexus. Pakkene signeres fø
 
 #### Signering
 Pakkene signeres med GPG-nøkkelen til NAV (se [nøkkel på keyserver](https://keyserver.ubuntu.com/pks/lookup?search=a511889134f13602&fingerprint=on&op=index)). 
-Passphrase og privatnøkkel ligger som secret i github actions. 
+Passphrase og privatnøkkel ligger som secret i github actions. Ved forrige rullering på nøklene tok vi kontakt med Tommy Trøen for nye nøkler som ble lagt inn i secrets i github. 
 
 ### Teknologier
 
