@@ -8,6 +8,10 @@
       "type": "string",
       "description": "En unik identifikator for klagen"
     },
+    "tittel": {
+      "type": "string",
+      "description": "Tittel på klagesaken."
+    },
     "hendelser": {
       "type": "array",
       "items": {

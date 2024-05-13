@@ -32,6 +32,10 @@
           "description": "Angir subtype til vedlegg det gjelder. Det vil jevnlig komme nye subtyper og dette må håndteres dynamisk av konsumenter. Her er noen av de mulige typene:\n* aksjer\n * annet\n * annetbarnutgift\n * annetboutgift\n * annetinntekter\n * annetverdi\n * arbeid\n * avdraglaan\n * barn\n * barnehage\n * betaler\n * brukskonto\n * bsu\n * campingvogn\n * eiendom\n * forsikringsutbetaling\n * fritidsaktivitet\n * fritidseiendom\n * husleie\n * husleiekontrakt\n * kjopekontrakt\n * kjoretoy\n * kommunaleavgifter\n * livsforsikring\n * mottar\n * oppholdstillatel\n * oppvarming\n * sfo\n * skattemelding\n * sparekonto\n * strom\n * tannbehandling\n * utbytte\n * vedtak",
           "type": "string"
         },
+        "klageId": {
+          "description": "Id til klagen som vedlegget hører til, hvis det er tilfelle. Optional.",
+          "type": "string"
+        },
         "status": {
           "description": "Status for vedlegget. Kan være \"LastetOpp\", \"VedleggKreves\" eller \"VedleggAlleredeSendt\". Hvis \"status\" har blitt satt til \"VedleggAlleredeSendt\" eller \"VedleggKreves\" vil \"filer\" være en tom array. Ukjente statusverdier skal ikke hindre visning/arkivering av eventuelle filer.",
           "type": "string"

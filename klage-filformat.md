@@ -1,3 +1,79 @@
+# Flyt
+## Send klage
+```mermaid
+sequenceDiagram
+    title Send klage
+    actor klager
+    participant NAV
+    participant Fiks Digisos
+    participant FSL
+    
+    klager->>NAV: POST /{fiksdigisosid}/klage/{uuid}/send
+    Note right of NAV: klage.json<br/>vedlegg.json<br/>
+    NAV->>Fiks Digisos: POST /digisos/api/v1/klage/{fiksdigisosid}
+    Fiks Digisos->>Fiks Digisos: Lagre metadata
+    Fiks Digisos->>NAV: 200 OK
+    Fiks Digisos->>FSL: SvarUt
+    NAV->>klager: 200 OK
+
+```
+---
+## Hent klager
+```mermaid
+sequenceDiagram
+    title Hent klager
+    actor klager
+    participant NAV
+    participant Fiks Digisos
+
+    klager->>NAV: GET /{fiksdigisosid}/klage
+    NAV->>Fiks Digisos: GET /digisos/api/v1/sak/{digisosId}
+    Fiks Digisos->>NAV: 200 OK
+    Note left of Fiks Digisos: DigisosSak<br/>
+    NAV->>NAV: DigisosSak.digisosSoker.metadata
+    NAV->>Fiks Digisos: GET<br/>/digisos/api/v1/soknader/{digisosId}/dokumenter/{dokumentlagerId}
+    Fiks Digisos->>NAV: 200 OK
+    Note left of Fiks Digisos: digisos-soker.json<br/>
+    NAV->>NAV: DigisosSak.klager
+    NAV->>NAV: DigisosSoker.klager
+    NAV->>klager: 200 OK
+```
+---
+## Ettersendelse på klage
+```mermaid
+sequenceDiagram
+    title Hent klager
+    actor klager
+    participant NAV
+    participant Fiks Digisos
+    participant FSL
+    
+    klager->>NAV: POST /{fiksDigisosId}/klage/{klageId}/vedlegg
+    NAV->>NAV: Assemble vedlegg
+    NAV->>Fiks Digisos: POST /digisos/api/v1/klage/{fiksDigisosId}/vedlegg
+    Fiks Digisos->>FSL: SvarUt
+    Fiks Digisos->>NAV: 200 OK
+    NAV->>klager: 200 OK
+```
+ 
+## Trekk klage
+```mermaid
+sequenceDiagram
+    title Trekk klage
+    actor klager
+    participant NAV
+    participant Fiks Digisos
+    participant FSL
+    
+    klager->>NAV: POST /{fiksDigisosId}/klage/{klageId}/trekk
+    note right of NAV: trekk-klage.json<br/>vedlegg.json<br/> 
+    NAV->>Fiks Digisos: POST /digisos/api/v1/klage/{fiksDigisosId}/trekk
+    note right of Fiks Digisos: trukket = true
+    Fiks Digisos->>Fiks Digisos: Lagre metadata
+    Fiks Digisos->>FSL: SvarUt
+    Fiks Digisos->>NAV: 200 OK
+    NAV->>klager: 200 OK
+```
 # Klasser/filformat
 
 
@@ -125,6 +201,7 @@ classDiagram
     JsonKlage --* KlageHendelse: has
     class JsonKlage {
         +String klageId
+        +String tittel
         +List~KlageHendelse~ hendelser
     }
 
@@ -210,6 +287,7 @@ classDiagram
 ```json
 {
   "klageId": "43ec1b22-0449-4f55-bf00-6188268da3ac",
+  "tittel": "Klage på vedtak",
   "hendelser": [
     {
       "hendelseId": "43ec1b22-0449-4f55-bf00-6188268da3ac",
@@ -226,6 +304,7 @@ classDiagram
 ```json
 {
     "klageId": "43ec1b22-0449-4f55-bf00-6188268da3ac",
+    "tittel": "Klage på vedtak",
     "hendelser": [
         {
             "hendelseId": "43ec1b22-0449-4f55-bf00-6188268da3ac",
@@ -264,6 +343,7 @@ classDiagram
 ```json
 {
   "klageId": "43ec1b22-0449-4f55-bf00-6188268da3ac",
+  "tittel": "Klage på vedtak",
   "hendelser": [
     {
       "hendelseId": "43ec1b22-0449-4f55-bf00-6188268da3ac",
@@ -287,6 +367,7 @@ classDiagram
 ```json
 {
   "klageId": "43ec1b22-0449-4f55-bf00-6188268da3ac",
+  "tittel": "Klage på vedtak",
   "hendelser": [
     {
       "hendelseId": "43ec1b22-0449-4f55-bf00-6188268da3ac",
@@ -310,6 +391,7 @@ classDiagram
 ```json
 {
   "klageId": "43ec1b22-0449-4f55-bf00-6188268da3ac",
+  "tittel": "Klage på vedtak",
   "hendelser": [
     {
       "hendelseId": "43ec1b22-0449-4f55-bf00-6188268da3ac",
@@ -334,6 +416,7 @@ classDiagram
 ```json
 {
   "klageId": "43ec1b22-0449-4f55-bf00-6188268da3ac",
+  "tittel": "Klage på vedtak",
   "hendelser": [
     {
       "hendelseId": "43ec1b22-0449-4f55-bf00-6188268da3ac",
@@ -372,6 +455,7 @@ classDiagram
 ```json
 {
   "klageId": "43ec1b22-0449-4f55-bf00-6188268da3ac",
+  "tittel": "Klage på vedtak",
   "hendelser": [
     {
       "hendelseId": "43ec1b22-0449-4f55-bf00-6188268da3ac",
@@ -387,7 +471,8 @@ classDiagram
 ### Klagedokumentasjon etterspurt
 ```json
 {
-"klageId": "43ec1b22-0449-4f55-bf00-6188268da3ac",
+  "klageId": "43ec1b22-0449-4f55-bf00-6188268da3ac",
+  "tittel": "Klage på vedtak",
   "hendelser": [
     {
       "hendelseId": "43ec1b22-0449-4f55-bf00-6188268da3ac",
@@ -401,6 +486,6 @@ classDiagram
       "frist": "2021-08-20T13:37:00",
       "status": "RELEVANT"
     }
-  ] 
+  ]
 }
 ```
