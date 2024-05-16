@@ -1,190 +1,180 @@
 {
-	"swagger": "2.0",
-	"info": {
-		"title": "Søknad om sosialhjelp",
-		"description": "Dokumentasjon av JSON-filer som inngår i en søknad om sosialhjelp.",
-		"version": "1"
-	},
-	"tags": [
-		{
-			"name": "soknad",
-			"description": ""
-		}, {
-			"name": "vedlegg",
-			"description": ""
-		}, {
-			"name": "data fra fagsystem",
-			"description": ""
-		}
-	],
-	"paths": {
-		"soknad.json": {
-			"get": {
-				"tags": [
-					"soknad"
-				],
-				"summary": "Versjon 1.0.11",
-				"description": "Denne dokumentasjonen er generert ut fra et [json-schema](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/json/soknad/soknad.json). Skjemaet kan utvides slik at det er egnet til autogenerering av kode, men dette må i så fall diskuteres på Slack først.\n\n## Eksempler og testfiler\n* Relativt komplette eksempler på søknads-JSON med mest mulig [brukerutfylte](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/soknad/brukerdata.json) og [systemutfylte](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/soknad/systemdata.json) data, samt en [minimalt](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/soknad/minimal.json) utfylt fil.\n* [Flere testfiler](https://github.com/navikt/soknadsosialhjelp-filformat/tree/master/src/test/resources/json/soknad)\n* [Autogenererte eksempler](https://github.com/navikt/soknadsosialhjelp-filformat/tree/master/examples)\n## Endringer\n### Versjon 1.0.11\n* Lagt til to nye verdier i SoknadJsonTyper for å støtte samtykke\n### Versjon 1.0.10\n* Lagt til støtte for bostøtte\n### Versjon 1.0.9\n* Lagt til felt for kommunenummer i mottaker slik at fiks kan rute søknaden til riktig kommune.\n### Versjon 1.0.8\n* Endret feltet \"driftsinformasjon\" til å ha boolske flagg for hvilke tjenester utad som ikke ga korrekt respons under kjøring av søknaden.\n### Versjon 1.0.7\n* Lagt til nytt felt kalt \"mottaker\". Inneholder organisasjonsnummer og navenhetsnavn til søknadsmottaker.\n### Versjon 1.0.6\n* Lagt til nytt felt kalt \"organisasjon\" på utbetaling. Inneholder navn og organisasjonsnummer.\n### Versjon 1.0.5\n* Lagt til nytt felt kalt \"adresseValg\" på adresse. Feltet er en mer spesifikk kilde for hvor oppholdsadresse og postadresse kommer fra.\n### Versjon 1.0.4\n* Lagt til nytt felt: \"innsendingstidspunkt\".\n### Versjon 1.0.3\n* Utvidet informasjon om utbetalinger (netto, brutto osv).\n### Versjon 1.0.2\n* Endringer i forbindelse med familierelasjoner.\n### Versjon 1.0.1\n* Lagt til feltet \"kommunenummer\" under matrikkeladresse.",
-				"responses": {
-					"filformat": {
-						"description": "Definisjon av søknadsfil. Se på \"Model\" for definisjon av hvert enkelt felt. Se separate typedefinisjoner nederst på siden der det er forskjellige type-alternativer (nå gjelder dette kun for \"adresse\", men det kan bli flere typer senere).",
-						"schema": {
-							"$ref": "soknad/soknad.json#/definitions/soknad"
-						}
-					},
-					"adresse": {
-						"schema": {
-							"type": "object",
-							"title": "Definisjon av adressetyper",
-							"properties": {
-								"gateadresse": {
-									"$ref": "soknad/parts/adresse/gateadresse.json"
-								},
-								"matrikkeladresse": {
-									"$ref": "soknad/parts/adresse/matrikkeladresse.json"
-								},
-								"postboks": {
-									"$ref": "soknad/parts/adresse/postboks.json"
-								},
-								"ustrukturert": {
-									"$ref": "soknad/parts/adresse/ustrukturert.json"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"soknad-v2.json": {
-			"get": {
-				"tags": [
-					"soknad"
-				],
-				"description": "Ved fremtidige major-endringer av soknad.json vil det bli laget en separat fil for versjon 2. Dette muliggjør en gradvis overgang fra versjon 1 til versjon 2 hos konsumentene.\n\nMerk at det kun vil være nye filer ved eventuelle major-endringer."
-			}
-		},
-		"vedlegg.json": {
-			"get": {
-			    "tags": [
-					"vedlegg"
-				],
-				"summary": "Versjon 1.2.0",
-				"description": "Denne dokumentasjonen er generert ut fra et [json-schema](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/json/vedlegg/vedleggSpesifikasjon.json). Skjemaet kan utvides slik at det er egnet til autogenerering av kode, men dette må i så fall diskuteres på Slack først.\n## Endringer\n ### Version 1.2.0\n* Utvidelse med ett nytt felt for klageId. Brukes til å kunne fortelle hvilken klage ettersendelsen gjelder. Dette feltet er optional.\n### Versjon 1.1.0\n* Utvidelse med to nye, optional felter: hendelseType og hendelseReferanse. Som følge av løsningsbeskrivelsen 'Nye felter i vedlegg.json' \n### Versjon 1.0.0\n* Lanseringsversjon \n",
-				"responses": {
-					"filformat": {
-						"schema": {
-							"$ref": "vedlegg/vedleggSpesifikasjon.json#/definitions/vedleggSpesifikasjon"
-						}
-					}
-				}
-			}
-		},
-		"digisos-soker.json": {
-			"get": {
-			    "tags": [
-					"data fra fagsystem"
-				],
-				"summary": "Versjon 1.3.0",
-				"description": "Definisjon av fil som brukes til å sende data, som søker skal kunne se, fra fagsystemet. Denne dokumentasjonen er generert ut fra et [json-schema](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/json/digisos/soker/digisos-soker.json).\n\n## Krav\n* Allerede fra første innsending av \"digisos-soker.json\" _må_ \"hendelser\" inneholde hendelsen \"soknadsStatus\" med statuskode \"MOTTATT\".\n\n## Eksempler og testfiler\n* Eksempler på søkerinnsyn-JSON med [kun påkrevde data](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/digisos/soker/minimal.json) og [komplett utfylt](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/digisos/soker/komplett.json).\n* [Flere testfiler](https://github.com/navikt/soknadsosialhjelp-filformat/tree/master/src/test/resources/json/digisos/soker)\n\n## Endringer\n### Version 1.3.0\n* Utvider filformat med endringer nødvendig for digital klage som følge av løsningsbeskrivelsen av digital klage \n### Versjon 1.2.1\n* Utvider dokumentasjonEtterspurt med dokumentreferanse på dokumenter. Som følge av løsningsbeskrivelsen 'Nye felter i vedlegg.json' \n### Versjon 1.2.0\n* Utvidet hendelsene vilkar og dokumentasjonkrav med bakoverkompatible endringer fra løsningsbeskrivelsen om vilkår og dokumentasjonskrav. \n",
-				"responses": {
-					"filformat": {
-						"description": "Definisjon av søkers innsynsfil. Se på \"Model\" for definisjon av hvert enkelt felt. Se separate typedefinisjoner nederst på siden der det er forskjellige type-alternativer (nå gjelder dette kun for \"hendelse\" og \"filreferanse\", men det kan bli flere typer senere).",
-						"schema": {
-							"$ref": "digisos/soker/digisos-soker.json#/definitions/digisosSoker"
-						}
-					},
-					"hendelse": {
-						"description": "Definisjon av hver enkelt hendelsestype.",
-						"schema": {
-					        "type": "object",
-							"title": "Definisjon av hendelsestyper.",
-							"properties": {
-								"soknadsStatus": {
-									"$ref": "digisos/soker/parts/hendelse/soknadsStatus.json"
-								},
-								"tildeltNavKontor": {
-									"$ref": "digisos/soker/parts/hendelse/tildeltNavKontor.json"
-								},
-								"vedtakFattet": {
-									"$ref": "digisos/soker/parts/hendelse/vedtakFattet.json"
-								},
-								"dokumentasjonEtterspurt": {
-									"$ref": "digisos/soker/parts/hendelse/dokumentasjonEtterspurt.json"
-								},
-								"forelopigSvar": {
-									"$ref": "digisos/soker/parts/hendelse/forelopigSvar.json"
-								},
-								"saksStatus": {
-									"$ref": "digisos/soker/parts/hendelse/saksStatus.json"
-								},
-								"utbetaling": {
-									"$ref": "digisos/soker/parts/hendelse/utbetaling.json"
-								},
-								"vilkar": {
-									"$ref": "digisos/soker/parts/hendelse/vilkar.json"
-								},
-								"dokumentasjonkrav": {
-									"$ref": "digisos/soker/parts/hendelse/dokumentasjonkrav.json"
-								},
-								"rammevedtak": {
-									"$ref": "digisos/soker/parts/hendelse/rammevedtak.json"
-								}
-							}
-						}
-					},
-					"filreferanse": {
-						"description": "Filreferanser",
-						"schema": {
-					        "type": "object",
-							"title": "Definisjon av filreferanser",
-							"properties": {
-								"dokumentlager": {
-									"$ref": "digisos/soker/parts/filreferanse/dokumentlager.json"
-								},
-								"svarut": {
-									"$ref": "digisos/soker/parts/filreferanse/svarut.json"
-								}
-							}
-						}
-					},
-					"klager": {
-						"description": "En klage på søknaden",
-						"schema": {
-							"type": "object",
-							"properties": {
-								"klageId": {
-									"type": "string",
-									"description": "Unik id for klagen"
-								},
-								"hendelser": {
-									"type": "object",
-									"title": "Klagehendelser",
-									"schema": {
-										"description": "Hendelser som har skjedd i klageprosessen",
-										"properties": {
-											"klagedokumentasjon": {
-												"$ref": "digisos/soker/parts/klage/hendelse/klagedokumentasjon.json"
-											},
-											"klageStatus": {
-												"$ref": "digisos/soker/parts/klage/hendelse/klageStatus.json"
-											},
-											"klageUtfall": {
-												"$ref": "digisos/soker/parts/klage/hendelse/klageUtfall.json"
-											},
-											"saksfremlegg": {
-												"$ref": "digisos/soker/parts/klage/hendelse/saksfremlegg.json"
-											},
-											"statsforvalterUtfall": {
-												"$ref": "digisos/soker/parts/klage/hendelse/statsforvalterUtfall.json"
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+  "swagger": "2.0",
+  "info": {
+    "title": "Søknad om sosialhjelp",
+    "description": "Dokumentasjon av JSON-filer som inngår i en søknad om sosialhjelp.",
+    "version": "1"
+  },
+  "tags": [
+    {
+      "name": "soknad",
+      "description": ""
+    },
+    {
+      "name": "vedlegg",
+      "description": ""
+    },
+    {
+      "name": "data fra fagsystem",
+      "description": ""
+    }
+  ],
+  "paths": {
+    "soknad.json": {
+      "get": {
+        "tags": [
+          "soknad"
+        ],
+        "summary": "Versjon 1.0.11",
+        "description": "Denne dokumentasjonen er generert ut fra et [json-schema](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/json/soknad/soknad.json). Skjemaet kan utvides slik at det er egnet til autogenerering av kode, men dette må i så fall diskuteres på Slack først.\n\n## Eksempler og testfiler\n* Relativt komplette eksempler på søknads-JSON med mest mulig [brukerutfylte](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/soknad/brukerdata.json) og [systemutfylte](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/soknad/systemdata.json) data, samt en [minimalt](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/soknad/minimal.json) utfylt fil.\n* [Flere testfiler](https://github.com/navikt/soknadsosialhjelp-filformat/tree/master/src/test/resources/json/soknad)\n* [Autogenererte eksempler](https://github.com/navikt/soknadsosialhjelp-filformat/tree/master/examples)\n## Endringer\n### Versjon 1.0.11\n* Lagt til to nye verdier i SoknadJsonTyper for å støtte samtykke\n### Versjon 1.0.10\n* Lagt til støtte for bostøtte\n### Versjon 1.0.9\n* Lagt til felt for kommunenummer i mottaker slik at fiks kan rute søknaden til riktig kommune.\n### Versjon 1.0.8\n* Endret feltet \"driftsinformasjon\" til å ha boolske flagg for hvilke tjenester utad som ikke ga korrekt respons under kjøring av søknaden.\n### Versjon 1.0.7\n* Lagt til nytt felt kalt \"mottaker\". Inneholder organisasjonsnummer og navenhetsnavn til søknadsmottaker.\n### Versjon 1.0.6\n* Lagt til nytt felt kalt \"organisasjon\" på utbetaling. Inneholder navn og organisasjonsnummer.\n### Versjon 1.0.5\n* Lagt til nytt felt kalt \"adresseValg\" på adresse. Feltet er en mer spesifikk kilde for hvor oppholdsadresse og postadresse kommer fra.\n### Versjon 1.0.4\n* Lagt til nytt felt: \"innsendingstidspunkt\".\n### Versjon 1.0.3\n* Utvidet informasjon om utbetalinger (netto, brutto osv).\n### Versjon 1.0.2\n* Endringer i forbindelse med familierelasjoner.\n### Versjon 1.0.1\n* Lagt til feltet \"kommunenummer\" under matrikkeladresse.",
+        "responses": {
+          "filformat": {
+            "description": "Definisjon av søknadsfil. Se på \"Model\" for definisjon av hvert enkelt felt. Se separate typedefinisjoner nederst på siden der det er forskjellige type-alternativer (nå gjelder dette kun for \"adresse\", men det kan bli flere typer senere).",
+            "schema": {
+              "$ref": "soknad/soknad.json#/definitions/soknad"
+            }
+          },
+          "adresse": {
+            "schema": {
+              "type": "object",
+              "title": "Definisjon av adressetyper",
+              "properties": {
+                "gateadresse": {
+                  "$ref": "soknad/parts/adresse/gateadresse.json"
+                },
+                "matrikkeladresse": {
+                  "$ref": "soknad/parts/adresse/matrikkeladresse.json"
+                },
+                "postboks": {
+                  "$ref": "soknad/parts/adresse/postboks.json"
+                },
+                "ustrukturert": {
+                  "$ref": "soknad/parts/adresse/ustrukturert.json"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "soknad-v2.json": {
+      "get": {
+        "tags": [
+          "soknad"
+        ],
+        "description": "Ved fremtidige major-endringer av soknad.json vil det bli laget en separat fil for versjon 2. Dette muliggjør en gradvis overgang fra versjon 1 til versjon 2 hos konsumentene.\n\nMerk at det kun vil være nye filer ved eventuelle major-endringer."
+      }
+    },
+    "vedlegg.json": {
+      "get": {
+        "tags": [
+          "vedlegg"
+        ],
+        "summary": "Versjon 1.2.0",
+        "description": "Denne dokumentasjonen er generert ut fra et [json-schema](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/json/vedlegg/vedleggSpesifikasjon.json). Skjemaet kan utvides slik at det er egnet til autogenerering av kode, men dette må i så fall diskuteres på Slack først.\n## Endringer\n ### Version 1.2.0\n* Utvidelse med ett nytt felt for klageId. Brukes til å kunne fortelle hvilken klage ettersendelsen gjelder. Dette feltet er optional.\n### Versjon 1.1.0\n* Utvidelse med to nye, optional felter: hendelseType og hendelseReferanse. Som følge av løsningsbeskrivelsen 'Nye felter i vedlegg.json' \n### Versjon 1.0.0\n* Lanseringsversjon \n",
+        "responses": {
+          "filformat": {
+            "schema": {
+              "$ref": "vedlegg/vedleggSpesifikasjon.json#/definitions/vedleggSpesifikasjon"
+            }
+          }
+        }
+      }
+    },
+    "digisos-soker.json": {
+      "get": {
+        "tags": [
+          "data fra fagsystem"
+        ],
+        "summary": "Versjon 1.3.0",
+        "description": "Definisjon av fil som brukes til å sende data, som søker skal kunne se, fra fagsystemet. Denne dokumentasjonen er generert ut fra et [json-schema](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/json/digisos/soker/digisos-soker.json).\n\n## Krav\n* Allerede fra første innsending av \"digisos-soker.json\" _må_ \"hendelser\" inneholde hendelsen \"soknadsStatus\" med statuskode \"MOTTATT\".\n\n## Eksempler og testfiler\n* Eksempler på søkerinnsyn-JSON med [kun påkrevde data](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/digisos/soker/minimal.json) og [komplett utfylt](https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/master/src/test/resources/json/digisos/soker/komplett.json).\n* [Flere testfiler](https://github.com/navikt/soknadsosialhjelp-filformat/tree/master/src/test/resources/json/digisos/soker)\n\n## Endringer\n### Version 1.3.0\n* Utvider filformat med endringer nødvendig for digital klage som følge av løsningsbeskrivelsen av digital klage \n### Versjon 1.2.1\n* Utvider dokumentasjonEtterspurt med dokumentreferanse på dokumenter. Som følge av løsningsbeskrivelsen 'Nye felter i vedlegg.json' \n### Versjon 1.2.0\n* Utvidet hendelsene vilkar og dokumentasjonkrav med bakoverkompatible endringer fra løsningsbeskrivelsen om vilkår og dokumentasjonskrav. \n",
+        "responses": {
+          "filformat": {
+            "description": "Definisjon av søkers innsynsfil. Se på \"Model\" for definisjon av hvert enkelt felt. Se separate typedefinisjoner nederst på siden der det er forskjellige type-alternativer (nå gjelder dette kun for \"hendelse\" og \"filreferanse\", men det kan bli flere typer senere).",
+            "schema": {
+              "$ref": "digisos/soker/digisos-soker.json#/definitions/digisosSoker"
+            }
+          },
+          "hendelse": {
+            "description": "Definisjon av hver enkelt hendelsestype.",
+            "schema": {
+              "type": "object",
+              "title": "Definisjon av hendelsestyper.",
+              "properties": {
+                "soknadsStatus": {
+                  "$ref": "digisos/soker/parts/hendelse/soknadsStatus.json"
+                },
+                "tildeltNavKontor": {
+                  "$ref": "digisos/soker/parts/hendelse/tildeltNavKontor.json"
+                },
+                "vedtakFattet": {
+                  "$ref": "digisos/soker/parts/hendelse/vedtakFattet.json"
+                },
+                "dokumentasjonEtterspurt": {
+                  "$ref": "digisos/soker/parts/hendelse/dokumentasjonEtterspurt.json"
+                },
+                "forelopigSvar": {
+                  "$ref": "digisos/soker/parts/hendelse/forelopigSvar.json"
+                },
+                "saksStatus": {
+                  "$ref": "digisos/soker/parts/hendelse/saksStatus.json"
+                },
+                "utbetaling": {
+                  "$ref": "digisos/soker/parts/hendelse/utbetaling.json"
+                },
+                "vilkar": {
+                  "$ref": "digisos/soker/parts/hendelse/vilkar.json"
+                },
+                "dokumentasjonkrav": {
+                  "$ref": "digisos/soker/parts/hendelse/dokumentasjonkrav.json"
+                },
+                "rammevedtak": {
+                  "$ref": "digisos/soker/parts/hendelse/rammevedtak.json"
+                }
+              }
+            }
+          },
+          "filreferanse": {
+            "description": "Filreferanser",
+            "schema": {
+              "type": "object",
+              "title": "Definisjon av filreferanser",
+              "properties": {
+                "dokumentlager": {
+                  "$ref": "digisos/soker/parts/filreferanse/dokumentlager.json"
+                },
+                "svarut": {
+                  "$ref": "digisos/soker/parts/filreferanse/svarut.json"
+                }
+              }
+            }
+          },
+          "klager": {
+            "description": "Definisjon av hver enkelt klagehendelse",
+            "schema": {
+              "type": "object",
+              "title": "Klagehendelser",
+              "properties": {
+                "klagedokumentasjon": {
+                  "$ref": "digisos/soker/parts/klage/hendelse/klagedokumentasjon.json"
+                },
+                "klageStatus": {
+                  "$ref": "digisos/soker/parts/klage/hendelse/klageStatus.json"
+                },
+                "klageUtfall": {
+                  "$ref": "digisos/soker/parts/klage/hendelse/klageUtfall.json"
+                },
+                "saksfremlegg": {
+                  "$ref": "digisos/soker/parts/klage/hendelse/saksfremlegg.json"
+                },
+                "statsforvalterUtfall": {
+                  "$ref": "digisos/soker/parts/klage/hendelse/statsforvalterUtfall.json"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
