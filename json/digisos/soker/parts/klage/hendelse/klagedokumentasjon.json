@@ -61,6 +61,13 @@
           "dokumenttype", "innsendelsesfrist"
         ]
       }
+    },
+    "status": {
+      "type": "string",
+      "title": "Status på dokumentasjonskravet. Kravet kan bli levert direkte til nav-kontor for eksempel.",
+      "enum": [
+        "levert_tidligere", "relevant"
+      ]
     }
   },
   "required": [

@@ -259,12 +259,18 @@ classDiagram
 
     KlageDokumentasjonHendelse ..|> KlageHendelse: extends
     class KlageDokumentasjonHendelse {
-        +String klagedokumentasjonReferanse
-        +String klageReferanse
-        +String tittel
-        +String beskrivelse
-        +String frist
+        +Forvaltningsbrev forvaltningsbrev
+        +List~JsonVedlegg~ vedlegg
+        +List~Dokument~ dokumenter
         +DokumentasjonStatus status
+    }
+
+    Dokument *-- KlageDokumentasjonHendelse: has
+    class Dokument {
+        +String dokumenttype
+        +String tilleggsinformasjon
+        +String innsendelsesfrist
+        +String dokumentreferanse
     }
 
     DokumentasjonStatus *-- KlageDokumentasjonHendelse: has
