@@ -14,6 +14,20 @@
           "title": "Inneholder søknadsdataene uten meta- og kompatibilitetsdata.",
           "type": "object",
           "properties": {
+            "soknadstype": {
+              "description": "Angir hvilken type søknad det er. PT er det to typer: \"kort\" og \"lang\".",
+              "type": "object",
+              "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.Soknadstype",
+                "properties": {
+                    "type": {
+                    "type": "string",
+                    "enum": [
+                        "kort",
+                        "lang"
+                    ]
+                    }
+                }
+            },
             "personalia": {
               "title": "Personalia",
               "type": "object",
