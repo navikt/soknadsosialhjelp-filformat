@@ -15,11 +15,11 @@
           "type": "object",
           "properties": {
             "soknadstype": {
-              "description": "Angir hvilken type søknad det er. PT er det to typer: \"kort\" og \"lang\".",
+              "description": "Angir hvilken type søknad det er. PT er det to typer: \"kort\" og \"standard\".",
               "type": "string",
               "enum": [
                 "kort",
-                "lang"
+                "standard"
               ]
             },
             "personalia": {
