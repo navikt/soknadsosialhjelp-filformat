@@ -60,7 +60,8 @@ public class VedleggsforventningMaster {
 
     public static List<JsonVedlegg> finnPaakrevdeVedlegg(JsonInternalSoknad internalSoknad) {
         final List<JsonVedlegg> paakrevdeVedlegg = new ArrayList<>();
-        if (internalSoknad == null || internalSoknad.getSoknad() == null || internalSoknad.getSoknad().getData() == null || internalSoknad.getSoknad().getData().getSoknadstype().equals(JsonData.Soknadstype.KORT)) {
+        if (internalSoknad == null || internalSoknad.getSoknad() == null || internalSoknad.getSoknad().getData() == null
+            || (internalSoknad.getSoknad().getData().getSoknadstype() != null && internalSoknad.getSoknad().getData().getSoknadstype().equals(JsonData.Soknadstype.KORT))) {
             return null;
         }
         final JsonData data = internalSoknad.getSoknad().getData();
@@ -104,14 +105,14 @@ public class VedleggsforventningMaster {
             }
         }
         return paakrevdeVedlegg.stream()
-                .distinct()
-                .collect(Collectors.toList());
+            .distinct()
+            .collect(Collectors.toList());
     }
 
     private static boolean sjekkOmViHarSamtykke(JsonOkonomi okonomi, String key) {
         return okonomi.getOpplysninger().getBekreftelse().stream()
-                .filter(bekreftelse -> bekreftelse.getType().equals(key))
-                .anyMatch(JsonOkonomibekreftelse::getVerdi);
+            .filter(bekreftelse -> bekreftelse.getType().equals(key))
+            .anyMatch(JsonOkonomibekreftelse::getVerdi);
 
     }
 
@@ -120,18 +121,18 @@ public class VedleggsforventningMaster {
         if (familie != null && familie.getForsorgerplikt() != null) {
             final JsonBarnebidrag barnebidrag = familie.getForsorgerplikt().getBarnebidrag();
             if (barnebidrag != null && (JsonBarnebidrag.Verdi.BETALER.equals(barnebidrag.getVerdi())
-                    || JsonBarnebidrag.Verdi.BEGGE.equals(barnebidrag.getVerdi()))) {
+                || JsonBarnebidrag.Verdi.BEGGE.equals(barnebidrag.getVerdi()))) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("barnebidrag").withTilleggsinfo("betaler"));
             }
             if (barnebidrag != null && (JsonBarnebidrag.Verdi.MOTTAR.equals(barnebidrag.getVerdi())
-                    || JsonBarnebidrag.Verdi.BEGGE.equals(barnebidrag.getVerdi()))) {
+                || JsonBarnebidrag.Verdi.BEGGE.equals(barnebidrag.getVerdi()))) {
                 paakrevdeVedlegg.add(new JsonVedlegg().withType("barnebidrag").withTilleggsinfo("mottar"));
             }
             final List<JsonAnsvar> forsorgerAnsvar = familie.getForsorgerplikt().getAnsvar();
             for (JsonAnsvar ansvar : forsorgerAnsvar) {
                 if (ansvar.getErFolkeregistrertSammen() != null && !ansvar.getErFolkeregistrertSammen().getVerdi()) {
                     if (ansvar.getSamvarsgrad() != null && ansvar.getSamvarsgrad().getVerdi() <= 50 &&
-                            ansvar.getSamvarsgrad().getVerdi() != 0) {
+                        ansvar.getSamvarsgrad().getVerdi() != 0) {
                         paakrevdeVedlegg.add(new JsonVedlegg().withType("samvarsavtale").withTilleggsinfo("barn"));
                         break;
                     }
@@ -207,8 +208,8 @@ public class VedleggsforventningMaster {
             }
         }
         return paakrevdeVedlegg.stream()
-                .distinct()
-                .collect(Collectors.toList());
+            .distinct()
+            .collect(Collectors.toList());
     }
 
     static List<JsonVedlegg> finnPaakrevdeVedleggForOkonomiOpplysningerUtgift(List<JsonOkonomiOpplysningUtgift> okonomiOpplysningUtgifter) {
@@ -236,8 +237,8 @@ public class VedleggsforventningMaster {
             }
         }
         return paakrevdeVedlegg.stream()
-                .distinct()
-                .collect(Collectors.toList());
+            .distinct()
+            .collect(Collectors.toList());
     }
 
     static List<JsonVedlegg> finnPaakrevdeVedleggForOkonomiOversiktInntekt(JsonSoknad soknad) {
@@ -252,8 +253,8 @@ public class VedleggsforventningMaster {
             }
         }
         return paakrevdeVedlegg.stream()
-                .distinct()
-                .collect(Collectors.toList());
+            .distinct()
+            .collect(Collectors.toList());
     }
 
     static List<JsonVedlegg> finnPaakrevdeVedleggForOkonomiOversiktUtgift(List<JsonOkonomioversiktUtgift> okonomioversiktUtgifter) {
@@ -273,8 +274,8 @@ public class VedleggsforventningMaster {
             }
         }
         return paakrevdeVedlegg.stream()
-                .distinct()
-                .collect(Collectors.toList());
+            .distinct()
+            .collect(Collectors.toList());
     }
 
     static List<JsonVedlegg> finnPaakrevdeVedleggForOkonomiOversiktFormue(List<JsonOkonomioversiktFormue> okonomioversiktFormuer) {
@@ -298,8 +299,8 @@ public class VedleggsforventningMaster {
             }
         }
         return paakrevdeVedlegg.stream()
-                .distinct()
-                .collect(Collectors.toList());
+            .distinct()
+            .collect(Collectors.toList());
     }
 
     private static boolean isWithinOneMonthAheadInTime(String datoSomTekst) {
