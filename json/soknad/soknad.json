@@ -110,10 +110,7 @@
                     "deltid"
                   ]
                 }
-              },
-              "required": [
-                "kilde"
-              ]
+              }
             },
             "familie": {
               "title": "Familie",
@@ -274,10 +271,7 @@
                 "antallPersoner": {
                   "type": "integer"
                 }
-              },
-              "required": [
-                "kilde"
-              ]
+              }
             },
             "okonomi": {
               "title": "Økonomiske data.",
