@@ -67,9 +67,7 @@ public class VedleggsforventningMaster {
 
         if (data.getSoknadstype() != null && data.getSoknadstype().equals(JsonData.Soknadstype.KORT)) {
             paakrevdeVedlegg.add(new JsonVedlegg().withType("kort").withTilleggsinfo("behov"));
-            if (data.getSituasjonendring() != null && data.getSituasjonendring().getHarNoeEndretSeg() != null && data.getSituasjonendring().getHarNoeEndretSeg()) {
-                paakrevdeVedlegg.add(new JsonVedlegg().withType("kort").withTilleggsinfo("situasjonsendring"));
-            }
+            paakrevdeVedlegg.add(new JsonVedlegg().withType("kort").withTilleggsinfo("situasjonsendring"));
             return paakrevdeVedlegg;
         }
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForPersonalia(data.getPersonalia()));
