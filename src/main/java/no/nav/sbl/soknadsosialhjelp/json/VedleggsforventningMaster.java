@@ -60,12 +60,18 @@ public class VedleggsforventningMaster {
 
     public static List<JsonVedlegg> finnPaakrevdeVedlegg(JsonInternalSoknad internalSoknad) {
         final List<JsonVedlegg> paakrevdeVedlegg = new ArrayList<>();
-        if (internalSoknad == null || internalSoknad.getSoknad() == null || internalSoknad.getSoknad().getData() == null
-            || (internalSoknad.getSoknad().getData().getSoknadstype() != null && internalSoknad.getSoknad().getData().getSoknadstype().equals(JsonData.Soknadstype.KORT))) {
+        if (internalSoknad == null || internalSoknad.getSoknad() == null || internalSoknad.getSoknad().getData() == null) {
             return null;
         }
         final JsonData data = internalSoknad.getSoknad().getData();
 
+        if (data.getSoknadstype() != null && data.getSoknadstype().equals(JsonData.Soknadstype.KORT)) {
+            paakrevdeVedlegg.add(new JsonVedlegg().withType("kort").withTilleggsinfo("behov"));
+            if (data.getSituasjonendring() != null && data.getSituasjonendring().getHarNoeEndretSeg() != null && data.getSituasjonendring().getHarNoeEndretSeg()) {
+                paakrevdeVedlegg.add(new JsonVedlegg().withType("kort").withTilleggsinfo("situasjonsendring"));
+            }
+            return paakrevdeVedlegg;
+        }
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForPersonalia(data.getPersonalia()));
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForArbeid(internalSoknad));
         paakrevdeVedlegg.addAll(finnPaakrevdeVedleggForFamilie(data.getFamilie()));
@@ -74,6 +80,7 @@ public class VedleggsforventningMaster {
 
         paakrevdeVedlegg.add(new JsonVedlegg().withType("skattemelding").withTilleggsinfo("skattemelding"));
         paakrevdeVedlegg.add(new JsonVedlegg().withType("annet").withTilleggsinfo("annet"));
+
 
         return paakrevdeVedlegg;
     }
