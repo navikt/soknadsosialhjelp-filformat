@@ -266,6 +266,7 @@
                     <classNamePrefix>Json</classNamePrefix>
                     <generateBuilders>true</generateBuilders>
                     <useCommonsLang3>true</useCommonsLang3>
+                    <serializable>true</serializable>
                 </configuration>
                 <executions>
                     <execution>
