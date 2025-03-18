@@ -9,9 +9,11 @@ sequenceDiagram
     participant FSL
     
     klager->>NAV: POST /{fiksdigisosid}/klage/{uuid}/send
-    Note right of NAV: klage.json<br/>vedlegg.json<br/>
+    Note right of NAV: klage.pdf<br/>vedlegg.pdf<br/>
+    NAV->>Fiks Digisos: POST /mellomlagring/{navEksternRefId}
+    Note right of NAV: vedlegg.json
+    Note right of NAV: klage.json
     NAV->>Fiks Digisos: POST /digisos/api/v1/klage/{fiksdigisosid}
-    Fiks Digisos->>Fiks Digisos: Lagre metadata
     Fiks Digisos->>NAV: 200 OK
     Fiks Digisos->>FSL: SvarUt
     NAV->>klager: 200 OK
