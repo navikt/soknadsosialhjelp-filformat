@@ -16,6 +16,8 @@ sequenceDiagram
     NAV->>Fiks Digisos: POST /digisos/api/v1/klage/{fiksdigisosid}
     Fiks Digisos->>NAV: 200 OK
     Fiks Digisos->>FSL: SvarUt
+    FSL->>Fiks Digisos: 200 OK
+    Fiks Digisos->>NAV: 200 OK
     NAV->>klager: 200 OK
 
 ```
