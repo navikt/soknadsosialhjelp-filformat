@@ -12,6 +12,10 @@
       "type": "string",
       "description": "Tittel på klagesaken."
     },
+    "klagetekst": {
+      "type": "string",
+      "description": "Brukerskrevet klagetekst."
+    },
     "hendelser": {
       "type": "array",
       "items": {
