@@ -41,7 +41,7 @@
         <jackson-coreutils.version>2.0</jackson-coreutils.version>
         <msg-simple.version>1.2</msg-simple.version>
         <commons-lang3.version>3.18.0</commons-lang3.version>
-        <rhino.version>1.7.14</rhino.version>
+        <rhino.version>1.8.0</rhino.version>
 
         <!--plugin versions-->
         <maven-release-plugin.version>3.0.1</maven-release-plugin.version>
