@@ -1,9 +1,12 @@
 name: Build and release Github
 
 on:
-  push:
+  workflow_run:
+    workflows: ['Build Code']
     branches:
-      - main
+      - master
+    types:
+      - completed
   workflow_dispatch:
 
 jobs:
@@ -12,7 +15,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-      id-token: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
