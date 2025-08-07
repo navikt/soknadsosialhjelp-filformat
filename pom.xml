@@ -35,7 +35,7 @@
         <jackson.version>2.14.2</jackson.version>
         <jackson-databind.version>2.15.0</jackson-databind.version>
         <junit-jupiter.version>5.9.2</junit-jupiter.version>
-        <assertj.version>3.24.2</assertj.version>
+        <assertj.version>3.27.4</assertj.version>
         <json-schema-validator.version>2.2.14</json-schema-validator.version>
         <json-schema-core.version>1.2.14</json-schema-core.version>
         <jackson-coreutils.version>2.0</jackson-coreutils.version>
