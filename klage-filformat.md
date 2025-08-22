@@ -9,11 +9,13 @@ sequenceDiagram
     participant FSL
     
     klager->>NAV: POST /{fiksdigisosid}/klage/{uuid}/send
-    Note right of NAV: klage.pdf<br/>vedlegg.pdf<br/>
+    Note right of NAV: klage.pdf
+    Note right of NAV: vedlegg.pdf
     NAV->>Fiks Digisos: POST /mellomlagring/{navEksternRefId}
+    Fiks Digisos->>NAV: 200 OK
     Note right of NAV: vedlegg.json
     Note right of NAV: klage.json
-    NAV->>Fiks Digisos: POST /digisos/api/v1/klage/{fiksdigisosid}
+    NAV->>Fiks Digisos: POST /digisos/klage/api/v1/{digisosId}/{kommunenummer}/{navEksternRefId}/{klageId}
     Fiks Digisos->>NAV: 200 OK
     Fiks Digisos->>FSL: SvarUt
     FSL->>Fiks Digisos: 200 OK
@@ -22,31 +24,47 @@ sequenceDiagram
 
 ```
 ---
-## Hent klager
+## Hent klager (digisosId) - valg 1
 ```mermaid
 sequenceDiagram
-    title Hent klager
+    title Hent klager på digisosId
     actor klager
     participant NAV
     participant Fiks Digisos
 
     klager->>NAV: GET /{fiksdigisosid}/klage
-    NAV->>Fiks Digisos: GET /digisos/api/v1/sak/{digisosId}
+    NAV->>Fiks Digisos: GET /digisos/klage/api/v1/klager?digisosId
     Fiks Digisos->>NAV: 200 OK
-    Note left of Fiks Digisos: DigisosSak<br/>
-    NAV->>NAV: DigisosSak.digisosSoker.metadata
-    NAV->>Fiks Digisos: GET<br/>/digisos/api/v1/soknader/{digisosId}/dokumenter/{dokumentlagerId}
-    Fiks Digisos->>NAV: 200 OK
-    Note left of Fiks Digisos: digisos-soker.json<br/>
-    NAV->>NAV: DigisosSak.klager
-    NAV->>NAV: DigisosSoker.klager
+    Note left of Fiks Digisos: List<MongoOriginalKlageNAV> klager <br/>
+    NAV->>NAV: klager.klageDokument.dokumentlagerDokumentId
+    NAV->>NAV: klager.vedlegg.dokumentlagerDokumentId
+    NAV->>NAV: klager.klageMetadata
+    NAV->>NAV: klager.vedleggMetadata
     NAV->>klager: 200 OK
 ```
 ---
+## Hent klager (pid) - valg 2
+```mermaid
+sequenceDiagram
+    title Hent klager på pid
+    actor klager
+    participant NAV
+    participant Fiks Digisos
+
+    klager->>NAV: GET /{fiksdigisosid}/klage
+    NAV->>Fiks Digisos: GET /digisos/klage/api/v1/klager
+    Fiks Digisos->>NAV: 200 OK
+    Note left of Fiks Digisos: List<MongoOriginalKlageNAV> klager <br/>
+    NAV->>NAV: klager.klageDokument.dokumentlagerDokumentId
+    NAV->>NAV: klager.vedlegg.dokumentlagerDokumentId
+    NAV->>NAV: klager.klageMetadata
+    NAV->>NAV: klager.vedleggMetadata
+    NAV->>klager: 200 OK
+```
 ## Ettersendelse på klage
 ```mermaid
 sequenceDiagram
-    title Hent klager
+    title Ettersend på klage
     actor klager
     participant NAV
     participant Fiks Digisos
@@ -54,8 +72,14 @@ sequenceDiagram
     
     klager->>NAV: POST /{fiksDigisosId}/klage/{klageId}/vedlegg
     NAV->>NAV: Assemble vedlegg
-    NAV->>Fiks Digisos: POST /digisos/api/v1/klage/{fiksDigisosId}/vedlegg
+    Note right of NAV: ettersendelse.pdf
+    NAV->>Fiks Digisos: POST /mellomlagring/{navEksternRefId}
+    Fiks Digisos->>NAV: 200 OK
+    Note right of NAV: vedlegg.json
+    NAV->>Fiks Digisos: POST /digisos/klage/api/v1/{digisosId}/{kommunenummer}/{navEksternRefId}/{klageId}
+    Fiks Digisos->>NAV: 200 OK
     Fiks Digisos->>FSL: SvarUt
+    FSL->>Fiks Digisos: 200 OK
     Fiks Digisos->>NAV: 200 OK
     NAV->>klager: 200 OK
 ```
@@ -70,11 +94,16 @@ sequenceDiagram
     participant FSL
     
     klager->>NAV: POST /{fiksDigisosId}/klage/{klageId}/trekk
-    note right of NAV: trekk-klage.json<br/>vedlegg.json<br/> 
-    NAV->>Fiks Digisos: POST /digisos/api/v1/klage/{fiksDigisosId}/trekk
+    Note right of NAV: trekk-klage.pdf
+    NAV->>Fiks Digisos: POST /mellomlagring/{navEksternRefId}
+    Fiks Digisos->>NAV: 200 OK
+    note right of NAV: trekk-klage.json
+    NAV->>Fiks Digisos: POST /digisos/klage/api/v1/{digisosId}/{kommunenummer}/{navEksternRefId}/{klageId}/trekk
     note right of Fiks Digisos: trukket = true
+    note right of Fiks Digisos: TrekkKlageInfo
     Fiks Digisos->>Fiks Digisos: Lagre metadata
     Fiks Digisos->>FSL: SvarUt
+    FSL->>Fiks Digisos: 200 OK
     Fiks Digisos->>NAV: 200 OK
     NAV->>klager: 200 OK
 ```
