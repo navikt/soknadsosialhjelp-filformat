@@ -41,16 +41,17 @@ test {
 }
 
 // Task to copy JSON resources to build directory
-task copyJsonResources(type: Copy) {
+tasks.register('copyJsonResources', Copy) {
     from 'json'
-    into "${buildDir}/json"
+    into layout.buildDirectory.dir("json")
     exclude '**/*.java'  // Exclude any Java files that shouldn't be there
 }
 
 // Task to replace tokens in JSON files
-task replaceTokensInJson {
+tasks.register('replaceTokensInJson') {
     dependsOn copyJsonResources
     doLast {
+        def buildDir = layout.buildDirectory.get().asFile
         fileTree(dir: "${buildDir}/json", include: '**/*.json').each { file ->
             def content = file.text
             content = content.replaceAll('ONLY_CODEGEN\\$ref', '\\$ref')
@@ -61,8 +62,8 @@ task replaceTokensInJson {
 
 // Configure jsonschema2pojo
 jsonSchema2Pojo {
-    source = files("${buildDir}/json")
-    targetDirectory = file("${buildDir}/generated-sources/jsonschema2pojo")
+    source = files(layout.buildDirectory.dir("json"))
+    targetDirectory = layout.buildDirectory.dir("generated-sources/jsonschema2pojo").get().asFile
     targetPackage = 'no.nav.sbl.soknadsosialhjelp'
     classNamePrefix = 'Json'
     generateBuilders = true
@@ -80,7 +81,7 @@ sourceSets {
     main {
         java {
             srcDir 'src/main/java'
-            srcDir "${buildDir}/generated-sources/jsonschema2pojo"
+            srcDir layout.buildDirectory.dir("generated-sources/jsonschema2pojo")
         }
         resources {
             srcDir 'xsd'
@@ -92,13 +93,14 @@ sourceSets {
 // Configure IDEA to recognize generated sources
 idea {
     module {
-        sourceDirs += file("${buildDir}/generated-sources/jsonschema2pojo")
-        generatedSourceDirs += file("${buildDir}/generated-sources/jsonschema2pojo")
+        def generatedSourcesDir = layout.buildDirectory.dir("generated-sources/jsonschema2pojo").get().asFile
+        sourceDirs += generatedSourcesDir
+        generatedSourceDirs += generatedSourcesDir
     }
 }
 
 // Convenient task to generate sources and update IDE config
-task generateAndConfigureIDE {
+tasks.register('generateAndConfigureIDE') {
     group = 'IDE'
     description = 'Generates sources from JSON schemas and updates IntelliJ IDEA configuration'
     dependsOn generateJsonSchema2Pojo, ideaModule
@@ -130,31 +132,43 @@ javadoc {
 
 publishing {
     publications {
+        //noinspection GroovyAssignabilityCheck
         maven(MavenPublication) {
             from components.java
 
+            //noinspection GroovyAssignabilityCheck
             pom {
+                //noinspection GroovyAssignabilityCheck
                 name = 'soknadsosialhjelp-filformat'
+                //noinspection GroovyAssignabilityCheck
                 description = 'Definisjon av filformater som skal brukes i forbindelse med søknad for økonomisk sosialhjelp'
+                //noinspection GroovyAssignabilityCheck
                 url = 'https://github.com/navikt/soknadsosialhjelp-filformat'
 
                 licenses {
                     license {
+                        //noinspection GroovyAssignabilityCheck
                         name = 'MIT License'
+                        //noinspection GroovyAssignabilityCheck
                         url = 'https://opensource.org/licenses/MIT'
                     }
                 }
 
                 developers {
                     developer {
+                        //noinspection GroovyAssignabilityCheck
                         organization = 'NAV (Arbeids- og velferdsdirektoratet) - The Norwegian Labour and Welfare Administration'
+                        //noinspection GroovyAssignabilityCheck
                         organizationUrl = 'https://www.nav.no'
                     }
                 }
 
                 scm {
+                    //noinspection GroovyAssignabilityCheck
                     connection = 'scm:git:git@github.com:navikt/soknadsosialhjelp-filformat.git'
+                    //noinspection GroovyAssignabilityCheck
                     developerConnection = 'scm:git:git@github.com:navikt/soknadsosialhjelp-filformat.git'
+                    //noinspection GroovyAssignabilityCheck
                     url = 'https://github.com/navikt/soknadsosialhjelp-filformat'
                 }
             }
@@ -180,7 +194,8 @@ signing {
     def signingPassword = findProperty("signingPassword") ?: System.getenv("SIGNING_PASSWORD")
 
     if (signingKey && signingPassword) {
-        useInMemoryPgpKeys(signingKey, signingPassword)
+        //noinspection GroovyAssignabilityCheck
+        useInMemoryPgpKeys(signingKey as String, signingPassword as String)
     }
 
     sign publishing.publications.maven
