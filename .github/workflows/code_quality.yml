@@ -3,7 +3,7 @@ name: Code Analysis (CodeQL and Dependency Submission)
 on:
   push:
     branches:
-      - 'master'
+      - 'main'
   pull_request:
   workflow_dispatch:
 
@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
@@ -31,14 +31,14 @@ jobs:
           config-file: navikt/sosialhjelp-ci/.github/codeql/codeql-config.yml@main
 
       - name: Setup Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '21'
-          cache: 'maven'
+          cache: 'gradle'
 
       - name: Build
-        run: ./mvnw install -DskipTests
+        run: ./gradlew build -x test
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
@@ -56,14 +56,14 @@ jobs:
 
     steps:
       - name: 'Checkout Repository'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 'Setup Java with'
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '21'
-          cache: 'maven'
+          cache: 'gradle'
 
       - name: Submit Dependency Snapshot
-        uses: advanced-security/maven-dependency-submission-action@v3
+        uses: mikepenz/gradle-dependency-submission@v1
