@@ -15,4 +15,4 @@ $ node refParser.js > soknad_bundle.json
 $ node generer_testsoknader.js
 ```
 
-Husk å kjøre mvn clean install først. 
+**Note:** Make sure to run `gradlew build` first to generate the required Java classes. 

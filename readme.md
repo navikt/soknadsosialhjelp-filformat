@@ -26,11 +26,20 @@ NAV-interne henvendelser kan sendes via Slack til [#team_digisos](https://nav-it
 
 Java-klassene ligger under `no.nav.sbl.soknadsosialhjelp`.
 
-### Bygging (maven)
+### Bygging
 
-Prosjektet inkluderer [maven wrapper](https://maven.apache.org/wrapper/), slik at man ikke er avhengig av å installere maven lokalt.
+Prosjektet bruker [Gradle](https://gradle.org/) som byggesystem.
 
-Kjør `./mvnw [kommando]` fremfor `mvn [kommando]`.
+Prosjektet inkluderer [Gradle wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html), slik at man ikke er avhengig av å installere Gradle lokalt.
+
+Kjør `./gradlew [kommando]` (Unix/Mac) eller `gradlew.bat [kommando]` (Windows).
+
+#### Nyttige kommandoer:
+- `./gradlew build` - Bygger prosjektet
+- `./gradlew test` - Kjører tester
+- `./gradlew clean` - Renser byggekataloger
+- `./gradlew publish` - Publiserer til Maven repository
+- `./gradlew generateJsonSchema2Pojo` - Genererer Java-klasser fra JSON Schema
 
 ### Release (maven central/sonatype nexus)
 Vi publiserer pakkene på maven central via sonatype nexus. Pakkene signeres før publisering, se punkt under.
@@ -41,9 +50,8 @@ Passphrase og privatnøkkel ligger som secret i github actions. Ved forrige rull
 
 ### Teknologier
 
-* Java
-* JDK 11
-* Maven
+* Java 21
+* Gradle
 * Swagger UI
 * [JSON Schema](https://json-schema.org/)
 * [jsonschema2pojo](https://github.com/joelittlejohn/jsonschema2pojo) for Java-klasser fra JSON Schema
