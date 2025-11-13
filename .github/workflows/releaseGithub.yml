@@ -1,4 +1,4 @@
-name: Build and release Github
+name: 'Build and release package in Github Packages'
 
 on:
   workflow_run:
@@ -17,13 +17,16 @@ jobs:
       packages: write
     steps:
       - uses: actions/checkout@v5
+
       - uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '21'
           cache: 'gradle'
+
       - name: 'Build with Gradle'
         run: ./gradlew clean build
+
       - name: 'Setting version'
         run: |
           TIME=$(TZ="Europe/Oslo" date +%Y.%m.%d-%H.%M)
@@ -31,6 +34,7 @@ jobs:
           VERSION="1.$TIME-$COMMIT"
           echo "Setting version $VERSION"
           sed -i "s/version = '.*'/version = '$VERSION'/" build.gradle
+
       - name: 'Publish package'
         run: ./gradlew publish
         env:
