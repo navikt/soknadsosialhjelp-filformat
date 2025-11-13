@@ -1,11 +1,7 @@
 name: Build
 
 on:
-  push:
-    branches:
-      - '*'
-      - '*/*' # in case a branch uses this naming pattern
-      - '!master'
+  workflow_dispatch:
 
 jobs:
   build:
