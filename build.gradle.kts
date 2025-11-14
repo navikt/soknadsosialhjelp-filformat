@@ -8,7 +8,7 @@ plugins {
     id("io.github.gradle-nexus.publish-plugin") version "1.3.0"
 }
 
-group = "no.nav.sbl.dialogarena"
+group = "no.nav.sosialhjelo.soknad"
 version = "1.0.0-SNAPSHOT"
 
 java {
