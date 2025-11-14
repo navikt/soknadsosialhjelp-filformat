@@ -132,6 +132,17 @@ javadoc {
 }
 
 publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/navikt/soknadsosialhjelp-filformat")
+            credentials {
+                username = System.getenv("GITHUB_USERNAME")
+                password = System.getenv("GITHUB_PASSWORD")
+            }
+        }
+    }
+
     publications {
         //noinspection GroovyAssignabilityCheck
         maven(MavenPublication) {
@@ -172,17 +183,6 @@ publishing {
                     //noinspection GroovyAssignabilityCheck
                     url = 'https://github.com/navikt/soknadsosialhjelp-filformat'
                 }
-            }
-        }
-    }
-
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/navikt/soknadsosialhjelp-filformat")
-            credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
-                password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
             }
         }
     }
