@@ -144,71 +144,26 @@ publishing {
     }
 
     publications {
-        //noinspection GroovyAssignabilityCheck
-        maven(MavenPublication) {
+        myPublicationName(MavenPublication) {
             from components.java
 
-            //noinspection GroovyAssignabilityCheck
             pom {
-                //noinspection GroovyAssignabilityCheck
-                name = 'soknadsosialhjelp-filformat'
-                //noinspection GroovyAssignabilityCheck
-                description = 'Definisjon av filformater som skal brukes i forbindelse med søknad for økonomisk sosialhjelp'
-                //noinspection GroovyAssignabilityCheck
-                url = 'https://github.com/navikt/soknadsosialhjelp-filformat'
-
+                name.set("sosialhjelp-filformat")
+                description.set("Json Schema for søknad om økonomisk sosialhjelp")
+                url.set("https://github.com/navikt/sosialhjelp-filformat")
                 licenses {
                     license {
-                        //noinspection GroovyAssignabilityCheck
-                        name = 'MIT License'
-                        //noinspection GroovyAssignabilityCheck
-                        url = 'https://opensource.org/licenses/MIT'
-                    }
-                }
-
-                developers {
-                    developer {
-                        //noinspection GroovyAssignabilityCheck
-                        organization = 'NAV (Arbeids- og velferdsdirektoratet) - The Norwegian Labour and Welfare Administration'
-                        //noinspection GroovyAssignabilityCheck
-                        organizationUrl = 'https://www.nav.no'
+                        name.set("MIT License")
+                        url.set("https://opensource.org/licenses/MIT")
                     }
                 }
 
                 scm {
-                    //noinspection GroovyAssignabilityCheck
-                    connection = 'scm:git:git@github.com:navikt/soknadsosialhjelp-filformat.git'
-                    //noinspection GroovyAssignabilityCheck
-                    developerConnection = 'scm:git:git@github.com:navikt/soknadsosialhjelp-filformat.git'
-                    //noinspection GroovyAssignabilityCheck
-                    url = 'https://github.com/navikt/soknadsosialhjelp-filformat'
+                    connection.set("scm:git:https://github.com/navikt/soknadsosialhjelp-filformat.git")
+                    developerConnection.set("scm:git:https://github.com/navikt/soknadsosialhjelp-filformat.git")
+                    url.set("https://github.com/navikt/soknadsosialhjelp-filformat")
                 }
             }
-        }
-    }
-}
-
-signing {
-    required { gradle.taskGraph.hasTask("publish") }
-
-    def signingKey = findProperty("signingKey") ?: System.getenv("SIGNING_KEY")
-    def signingPassword = findProperty("signingPassword") ?: System.getenv("SIGNING_PASSWORD")
-
-    if (signingKey && signingPassword) {
-        //noinspection GroovyAssignabilityCheck
-        useInMemoryPgpKeys(signingKey as String, signingPassword as String)
-    }
-
-    sign publishing.publications.maven
-}
-
-nexusPublishing {
-    repositories {
-        sonatype {
-            nexusUrl.set(uri("https://oss.sonatype.org/service/local/"))
-            snapshotRepositoryUrl.set(uri("https://oss.sonatype.org/content/repositories/snapshots/"))
-            username = findProperty("sonatypeUsername") ?: System.getenv("SONATYPE_USER")
-            password = findProperty("sonatypePassword") ?: System.getenv("SONATYPE_PASSWORD")
         }
     }
 }
