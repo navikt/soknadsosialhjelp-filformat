@@ -88,9 +88,20 @@ sourceSets {
         }
         resources {
             srcDir("xsd")
-            srcDir("json")
         }
     }
+}
+
+// Task to copy JSON schemas to resources with proper structure
+val copyJsonToResources by tasks.registering(Copy::class) {
+    dependsOn(replaceTokensInJson)
+    from(layout.buildDirectory.dir("json"))
+    into(layout.buildDirectory.dir("resources/main/json"))
+}
+
+// Make processResources depend on copying JSON files
+tasks.named("processResources") {
+    dependsOn(copyJsonToResources)
 }
 
 // Configure IDEA to recognize generated sources
