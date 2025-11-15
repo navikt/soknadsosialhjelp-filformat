@@ -8,7 +8,7 @@ plugins {
     id("io.github.gradle-nexus.publish-plugin") version "1.3.0"
 }
 
-group = "no.nav.sosialhjelo.soknad"
+group = "no.nav.sbl.soknadsosialhjelp"
 version = "1.0.0-SNAPSHOT"
 
 java {
@@ -67,7 +67,7 @@ val replaceTokensInJson by tasks.registering {
 configure<org.jsonschema2pojo.gradle.JsonSchemaExtension> {
     setSource(files(layout.buildDirectory.dir("json")))
     targetDirectory = layout.buildDirectory.dir("generated-sources/jsonschema2pojo").get().asFile
-    targetPackage = "no.nav.sosialhjelp.soknad"
+    targetPackage = "no.nav.sbl.soknadsosialhjelp"
     classNamePrefix = "Json"
     generateBuilders = true
     includeAdditionalProperties = false
@@ -124,7 +124,7 @@ val generateAndConfigureIDE by tasks.registering {
 tasks.shadowJar {
     archiveClassifier.set("shaded")
     manifest {
-        attributes["Main-Class"] = "no.nav.sosialhjelp.soknad.json.JsonSosialhjelpValidator"
+        attributes["Main-Class"] = "no.nav.sbl.soknadsosialhjelp.json.JsonSosialhjelpValidator"
     }
 }
 
