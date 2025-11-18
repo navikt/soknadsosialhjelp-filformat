@@ -1,0 +1,22 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+
+	"title": "Soknadsmottaker",
+	"type": "object",
+	"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.Soknadsmottaker",
+	"properties": {
+		"kommunenummer": {
+			"description": "Kommunenummer for søknadsmottaker.",
+			"type": "string"
+		},
+		"enhetsnummer": {
+			"description": "Enhetssnummer for søknadsmottaker.",
+			"type": "string"
+		},
+		"navEnhetsnavn": {
+			"description": "Navn på NAV-enhet som søknaden sendes til.",
+			"type": "string"
+		}
+	}
+
+}

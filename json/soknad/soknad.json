@@ -542,23 +542,7 @@
           "$ref": "../types/tidspunkt.json"
         },
         "mottaker": {
-          "title": "Soknadsmottaker",
-          "type": "object",
-          "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.Soknadsmottaker",
-          "properties": {
-            "kommunenummer": {
-              "description": "Kommunenummer for søknadsmottaker.",
-              "type": "string"
-            },
-            "enhetsnummer": {
-              "description": "Enhetssnummer for søknadsmottaker.",
-              "type": "string"
-            },
-            "navEnhetsnavn": {
-              "description": "Navn på NAV-enhet som søknaden sendes til.",
-              "type": "string"
-            }
-          }
+          "$ref": "parts/mottaker.json"
         },
         "driftsinformasjon": {
           "title": "Inneholder informasjon om status for henting av opplysninger fra andre tjenester.",
