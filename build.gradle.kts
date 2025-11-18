@@ -30,11 +30,11 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.15.0")
     implementation("org.apache.commons:commons-lang3:3.18.0")
     implementation("com.fasterxml.jackson.core:jackson-annotations:2.14.2")
-    implementation("com.google.guava:guava:32.0.1-jre")
-    implementation("org.mozilla:rhino:1.7.14")
+    implementation("com.google.guava:guava:33.5.0-jre")
+    implementation("org.mozilla:rhino:1.8.0")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
-    testImplementation("org.assertj:assertj-core:3.24.2")
+    testImplementation("org.assertj:assertj-core:3.27.6")
 }
 
 tasks.test {
