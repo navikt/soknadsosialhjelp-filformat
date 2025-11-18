@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+
+  "definitions": {
+    "klage": {
+      "title": "Json-struktur for Klage på Vedtak",
+      "javaType": "no.nav.sbl.soknadsosialhjelp.klage.Klage",
+      "type": "object",
+      "description": "Encoding er UTF-8.",
+      "properties": {
+        "klageId": {
+          "type": "string",
+          "description": "Unik identifikator for klagen (UUID)"
+        },
+        "vedtakId": {
+          "type": "string",
+          "description": "Referanse til vedtak som det klages på (UUID)"
+        },
+        "digisosId": {
+          "type": "string",
+          "description": "Referanse til original søknad (UUID)"
+        },
+        "personIdentifikator": {
+          "$ref": "../soknad/personalia/personIdentifikator.json"
+        },
+        "navn": {
+          "$ref": "../soknad/parts/navn.json"
+        },
+        "mottaker": {
+          "$ref": "../soknad/parts/mottaker.json"
+        },
+        "autentisering": {
+          "type": "object",
+          "description": "Autentiseringsinformasjon",
+          "properties": {
+            "autentisertDigitalt": {
+              "type": "boolean",
+              "description": "Om klager er autentisert digitalt"
+            },
+            "autentiseringsTidspunkt": {
+              "$ref": "../types/tidspunkt.json"
+            }
+          },
+          "required": ["autentisertDigitalt", "autentiseringsTidspunkt"]
+        },
+        "innsendingstidspunkt": {
+          "$ref": "../types/tidspunkt.json"
+        },
+        "begrunnelse": {
+          "type": "object",
+          "description": "Begrunnelse for klagen",
+          "properties": {
+            "kilde": {
+              "$ref": "../soknad/parts/kilde.json"
+            },
+            "klageTekst": {
+              "type": "string",
+              "description": "Fritekst begrunnelse for klagen"
+            }
+          },
+          "required": ["kilde", "klageTekst"]
+        }
+      },
+      "required": [
+        "klageId",
+        "vedtakId",
+        "digisosId",
+        "personIdentifikator",
+        "navn",
+        "mottaker",
+        "autentisering",
+        "innsendingstidspunkt"
+      ]
+    }
+  },
+  "$ref": "#/definitions/klage"
+}

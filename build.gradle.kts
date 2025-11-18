@@ -45,7 +45,6 @@ tasks.test {
 val copyJsonResources by tasks.registering(Copy::class) {
     from("json")
     into(layout.buildDirectory.dir("json"))
-    exclude("**/*.java")  // Exclude any Java files that shouldn't be there
 }
 
 // Task to replace tokens in JSON files

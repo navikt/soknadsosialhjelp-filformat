@@ -22,13 +22,6 @@
 					"items": {
 						"$ref": "parts/hendelse.json"
 				    }
-				},
-				"klager": {
-					"type": "array",
-					"title": "Klager",
-					"items": {
-						"$ref": "parts/klage/klage.json"
-					}
 				}
 			},
 			"required": [
