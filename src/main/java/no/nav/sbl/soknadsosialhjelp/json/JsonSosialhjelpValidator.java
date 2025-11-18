@@ -51,21 +51,12 @@ public final class JsonSosialhjelpValidator {
         }
 
         try {
-            final String schemaUri;
-            switch (args[0]) {
-                case "--soknad":
-                    schemaUri = toSkjemaUri("/json/soknad/soknad.json");
-                    break;
-                case "--vedlegg":
-                    schemaUri = toSkjemaUri("/json/vedlegg/vedleggSpesifikasjon.json");
-                    break;
-                case "--internal":
-                    schemaUri = toSkjemaUri("/json/internal/internalSoknad.json");
-                    break;
-                default:
-                    schemaUri = toSkjemaUri(args[0]);
-                    break;
-            }
+            final String schemaUri = switch (args[0]) {
+                case "--soknad" -> toSkjemaUri("/json/soknad/soknad.json");
+                case "--vedlegg" -> toSkjemaUri("/json/vedlegg/vedleggSpesifikasjon.json");
+                case "--internal" -> toSkjemaUri("/json/internal/internalSoknad.json");
+                default -> toSkjemaUri(args[0]);
+            };
 
             final String json = Files.readAllLines(Paths.get(args[1])).stream().reduce((a, b) -> a + b).get();
             ensureValid(json, schemaUri);
@@ -130,7 +121,7 @@ public final class JsonSosialhjelpValidator {
      * Validerer JSON-fil mot et skjema.
      *
      * @param testfile  JSON-filen som skal valideres.
-     * @param skjemaUri Plasseringen til skjemaet som blir benyttet til valideringen.
+     * @param schemaUri Plasseringen til skjemaet som blir benyttet til valideringen.
      */
     public static ProcessingReport validateFile(File testfile, String schemaUri) {
         try {
