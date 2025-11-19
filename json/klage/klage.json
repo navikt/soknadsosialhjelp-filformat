@@ -51,7 +51,7 @@
           "description": "Begrunnelse for klagen",
           "properties": {
             "kilde": {
-              "$ref": "../soknad/parts/kilde.json"
+              "$ref": "../soknad/parts/kildeBruker.json"
             },
             "klageTekst": {
               "type": "string",
