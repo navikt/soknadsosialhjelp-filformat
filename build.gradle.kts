@@ -27,13 +27,13 @@ dependencies {
     implementation("com.github.java-json-tools:json-schema-core:1.2.14")
     implementation("com.github.java-json-tools:jackson-coreutils:2.0")
     implementation("com.github.java-json-tools:msg-simple:1.2")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.0")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.18.2")
     implementation("org.apache.commons:commons-lang3:3.18.0")
-    implementation("com.fasterxml.jackson.core:jackson-annotations:2.14.2")
+    implementation("com.fasterxml.jackson.core:jackson-annotations:2.18.2")
     implementation("com.google.guava:guava:33.5.0-jre")
     implementation("org.mozilla:rhino:1.8.0")
 
-    testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.11.4")
     testImplementation("org.assertj:assertj-core:3.27.6")
 }
 
