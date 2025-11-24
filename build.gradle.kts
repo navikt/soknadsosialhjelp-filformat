@@ -9,17 +9,19 @@ plugins {
 //    id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
 }
 
-//buildscript {
-//    configurations {
-//        classpath {
-//            resolutionStrategy {
-//                force("org.yaml:snakeyaml:2.5")
-//                force("commons-io:commons-io: 2.21.0")
-//                force("com.fasterxml.jackson.core:jackson-core:2.20.1")
-//            }
-//        }
-//    }
-//}
+buildscript {
+    configurations {
+        classpath {
+            resolutionStrategy {
+                // Force pga. vulnerabilities i org.jsonschema2pojo-plugin
+                force("org.yaml:snakeyaml:2.5")
+                force("commons-io:commons-io:2.21.0")
+                force("com.fasterxml.jackson.core:jackson-core:2.20.1")
+                force("org.apache.commons:commons-lang3:3.20.0")
+            }
+        }
+    }
+}
 
 group = "no.nav.sbl.dialogarena"
 version = "1.0.0-SNAPSHOT"
