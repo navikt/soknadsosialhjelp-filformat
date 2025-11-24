@@ -3,10 +3,23 @@ plugins {
     idea
     `maven-publish`
     signing
-    id("org.jsonschema2pojo") version "1.2.1"
-    id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("io.github.gradle-nexus.publish-plugin") version "1.3.0"
+    id("org.jsonschema2pojo") version "1.2.2"
+    id("com.gradleup.shadow") version "9.2.2"
+//    id("com.github.johnrengelman.shadow") version "8.1.1"
+//    id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
 }
+
+//buildscript {
+//    configurations {
+//        classpath {
+//            resolutionStrategy {
+//                force("org.yaml:snakeyaml:2.5")
+//                force("commons-io:commons-io: 2.21.0")
+//                force("com.fasterxml.jackson.core:jackson-core:2.20.1")
+//            }
+//        }
+//    }
+//}
 
 group = "no.nav.sbl.dialogarena"
 version = "1.0.0-SNAPSHOT"
@@ -34,6 +47,7 @@ dependencies {
     implementation("org.mozilla:rhino:1.8.0")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.11.4")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:6.0.1")
     testImplementation("org.assertj:assertj-core:3.27.6")
 }
 
