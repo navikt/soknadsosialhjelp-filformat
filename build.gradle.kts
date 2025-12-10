@@ -46,7 +46,7 @@ dependencies {
     implementation("org.apache.commons:commons-lang3:3.18.0")
     implementation("com.fasterxml.jackson.core:jackson-annotations:2.18.2")
     implementation("com.google.guava:guava:33.5.0-jre")
-    implementation("org.mozilla:rhino:1.8.0")
+    implementation("org.mozilla:rhino:1.8.1")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.11.4")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:6.0.1")
