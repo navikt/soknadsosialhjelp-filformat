@@ -38,11 +38,13 @@ repositories {
 }
 
 dependencies {
+
     implementation("com.github.java-json-tools:json-schema-validator:2.2.14")
     implementation("com.github.java-json-tools:json-schema-core:1.2.14")
     implementation("com.github.java-json-tools:jackson-coreutils:2.0")
     implementation("com.github.java-json-tools:msg-simple:1.2")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.18.2")
+//    implementation("com.fasterxml.jackson.core:jackson-databind:2.18.2")
+    implementation("tools.jackson.core:jackson-databind:3.0.3")
     implementation("org.apache.commons:commons-lang3:3.18.0")
     implementation("com.fasterxml.jackson.core:jackson-annotations:2.18.2")
     implementation("com.google.guava:guava:33.5.0-jre")

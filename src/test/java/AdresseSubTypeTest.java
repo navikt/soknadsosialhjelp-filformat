@@ -1,11 +1,11 @@
-import com.fasterxml.jackson.databind.ObjectMapper;
-import no.nav.sbl.soknadsosialhjelp.json.JsonSosialhjelpObjectMapper;
+import java.io.File;
+import no.nav.sbl.soknadsosialhjelp.json.JsonSosialhjelpJsonMapper;
 import no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonAdresse;
 import no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonGateAdresse;
 import no.nav.sbl.soknadsosialhjelp.soknad.common.JsonKilde;
 import org.junit.jupiter.api.Test;
+import tools.jackson.databind.json.JsonMapper;
 
-import java.io.File;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,7 +15,7 @@ class AdresseSubTypeTest {
     void subtypeSkalBenyttesVedLesing() throws Exception {
         final File testfile = new File("src/test/resources/json/soknad/parts/adresse/fullstendig-gateadresse.json");
 
-        final ObjectMapper mapper = JsonSosialhjelpObjectMapper.createObjectMapper();
+        final JsonMapper mapper = JsonSosialhjelpJsonMapper.createJsonMapper();
 
         final JsonAdresse jsonAdresse = mapper.readValue(testfile, JsonAdresse.class);
         assertThat(jsonAdresse.getKilde()).describedAs("Skal lese felt som kun finnes på superklasse").isEqualTo(JsonKilde.BRUKER);
