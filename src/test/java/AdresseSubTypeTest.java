@@ -1,5 +1,5 @@
 import java.io.File;
-import no.nav.sbl.soknadsosialhjelp.json.JsonSosialhjelpObjectMapper;
+import no.nav.sbl.soknadsosialhjelp.json.SosialhjelpJsonMapper;
 import no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonAdresse;
 import no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonGateAdresse;
 import no.nav.sbl.soknadsosialhjelp.soknad.common.JsonKilde;
@@ -15,7 +15,7 @@ class AdresseSubTypeTest {
     void subtypeSkalBenyttesVedLesing() {
         final File testfile = new File("src/test/resources/json/soknad/parts/adresse/fullstendig-gateadresse.json");
 
-        final ObjectMapper mapper = JsonSosialhjelpObjectMapper.createObjectMapper();
+        final ObjectMapper mapper = SosialhjelpJsonMapper.createJsonMapperBuilder().build();
 
         final JsonAdresse jsonAdresse = mapper.readValue(testfile, JsonAdresse.class);
         assertThat(jsonAdresse.getKilde()).describedAs("Skal lese felt som kun finnes på superklasse").isEqualTo(JsonKilde.BRUKER);

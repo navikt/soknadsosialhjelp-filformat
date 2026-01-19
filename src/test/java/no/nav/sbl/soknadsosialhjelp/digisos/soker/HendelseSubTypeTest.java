@@ -3,7 +3,7 @@ package no.nav.sbl.soknadsosialhjelp.digisos.soker;
 import java.io.File;
 import no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.JsonSoknadsStatus;
 import no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.JsonSoknadsStatus.Status;
-import no.nav.sbl.soknadsosialhjelp.json.JsonSosialhjelpObjectMapper;
+import no.nav.sbl.soknadsosialhjelp.json.SosialhjelpJsonMapper;
 import org.junit.jupiter.api.Test;
 import tools.jackson.databind.ObjectMapper;
 
@@ -16,7 +16,7 @@ class HendelseSubTypeTest {
     void subtypeSkalBenyttesVedLesing() {
         final File testfile = new File("src/test/resources/json/digisos/soker/parts/hendelse/minimal.json");
 
-        final ObjectMapper mapper = JsonSosialhjelpObjectMapper.createObjectMapper();
+        final ObjectMapper mapper = SosialhjelpJsonMapper.createJsonMapperBuilder().build();
 
         final JsonHendelse jsonHendelse = mapper.readValue(testfile, JsonHendelse.class);
         assertThat(jsonHendelse.getHendelsestidspunkt()).describedAs("Skal lese felt som kun finnes på superklasse").isEqualTo("2018-10-04T13:37:00.134Z");
