@@ -42,11 +42,12 @@ dependencies {
     implementation("com.github.java-json-tools:json-schema-core:1.2.14")
     implementation("com.github.java-json-tools:jackson-coreutils:2.0")
     implementation("com.github.java-json-tools:msg-simple:1.2")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.18.2")
     implementation("org.apache.commons:commons-lang3:3.18.0")
-    implementation("com.fasterxml.jackson.core:jackson-annotations:2.18.2")
     implementation("com.google.guava:guava:33.5.0-jre")
-    implementation("org.mozilla:rhino:1.8.0")
+    implementation("org.mozilla:rhino:1.9.0")
+
+    implementation("tools.jackson.core:jackson-databind:3.0.3")
+    implementation("com.fasterxml.jackson.core:jackson-annotations:2.21")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.11.4")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:6.0.1")
@@ -85,7 +86,7 @@ configure<org.jsonschema2pojo.gradle.JsonSchemaExtension> {
     targetPackage = "no.nav.sbl.soknadsosialhjelp"
     classNamePrefix = "Json"
     generateBuilders = true
-    includeAdditionalProperties = false
+    includeAdditionalProperties = true
     isSerializable = true
 }
 
