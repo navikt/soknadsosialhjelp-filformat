@@ -5,9 +5,13 @@ import no.nav.sbl.soknadsosialhjelp.digisos.soker.JsonHendelse;
 import no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonAdresse;
 import tools.jackson.databind.json.JsonMapper;
 
-public final class SosialhjelpJsonMapper {
+public final class JsonSosialhjelpObjectMapper {
 
-    private SosialhjelpJsonMapper() {
+    private JsonSosialhjelpObjectMapper() {
+    }
+
+    public static JsonMapper createObjectMapper() {
+        return createJsonMapperBuilder().build();
     }
 
     public static JsonMapper.Builder createJsonMapperBuilder() {
