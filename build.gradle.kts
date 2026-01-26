@@ -16,7 +16,7 @@ buildscript {
                 // Force pga. vulnerabilities i org.jsonschema2pojo-plugin
                 force("org.yaml:snakeyaml:2.5")
                 force("commons-io:commons-io:2.21.0")
-                force("com.fasterxml.jackson.core:jackson-core:2.20.1")
+                force("com.fasterxml.jackson.core:jackson-core:2.21.0")
                 force("org.apache.commons:commons-lang3:3.20.0")
             }
         }
@@ -51,7 +51,7 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.11.4")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:6.0.1")
-    testImplementation("org.assertj:assertj-core:3.27.6")
+    testImplementation("org.assertj:assertj-core:3.27.7")
 }
 
 tasks.test {
