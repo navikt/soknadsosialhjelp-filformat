@@ -24,7 +24,7 @@
           "$ref": "../soknad/personalia/personIdentifikator.json"
         },
         "navn": {
-          "$ref": "../soknad/parts/navn.json"
+          "$ref": "../soknad/personalia/sokernavn.json"
         },
         "mottaker": {
           "$ref": "../soknad/parts/mottaker.json"
