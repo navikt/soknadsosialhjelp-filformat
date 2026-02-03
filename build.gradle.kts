@@ -3,23 +3,16 @@ plugins {
     idea
     `maven-publish`
     signing
-    id("org.jsonschema2pojo") version "1.2.2"
+    id("org.jsonschema2pojo") version "1.3.2"
     id("com.gradleup.shadow") version "9.2.2"
 //    id("com.github.johnrengelman.shadow") version "8.1.1"
 //    id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
 }
 
-buildscript {
-    configurations {
-        classpath {
-            resolutionStrategy {
-                // Force pga. vulnerabilities i org.jsonschema2pojo-plugin
-                force("org.yaml:snakeyaml:2.5")
-                force("commons-io:commons-io:2.21.0")
-                force("com.fasterxml.jackson.core:jackson-core:2.20.1")
-                force("org.apache.commons:commons-lang3:3.20.0")
-            }
-        }
+configurations.all {
+    resolutionStrategy {
+        // Force pga. vulnerabilities i org.jsonschema2pojo-plugin
+        force("com.fasterxml.jackson.core:jackson-core:2.21.0")
     }
 }
 
@@ -42,7 +35,7 @@ dependencies {
     implementation("com.github.java-json-tools:json-schema-core:1.2.14")
     implementation("com.github.java-json-tools:jackson-coreutils:2.0")
     implementation("com.github.java-json-tools:msg-simple:1.2")
-    implementation("org.apache.commons:commons-lang3:3.18.0")
+    implementation("org.apache.commons:commons-lang3:3.20.0")
     implementation("com.google.guava:guava:33.5.0-jre")
     implementation("org.mozilla:rhino:1.9.0")
 
@@ -51,7 +44,7 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.11.4")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:6.0.1")
-    testImplementation("org.assertj:assertj-core:3.27.6")
+    testImplementation("org.assertj:assertj-core:3.27.7")
 }
 
 tasks.test {
