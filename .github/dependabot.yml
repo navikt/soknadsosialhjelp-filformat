@@ -19,12 +19,19 @@ updates:
   #    schedule:
   #      interval: daily
 
-  - package-ecosystem: "maven"
+  - package-ecosystem: "gradle"
     directory: "/"
     schedule:
-      interval: daily
+      interval: "daily"
     commit-message:
-      prefix: "maven"
+      prefix: "gradle"
+    groups:
+      minor:
+        update-types:
+          - "minor"
+      patch:
+        update-types:
+          - "patch"
 
   - package-ecosystem: "github-actions"
     directory: "/"
