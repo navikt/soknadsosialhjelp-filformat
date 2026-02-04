@@ -3,6 +3,9 @@ name: Build and release
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build_and_release:
     runs-on: ubuntu-latest
