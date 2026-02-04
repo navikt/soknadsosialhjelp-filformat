@@ -4,14 +4,13 @@ plugins {
     `maven-publish`
     signing
     id("org.jsonschema2pojo") version "1.3.2"
-    id("com.gradleup.shadow") version "9.2.2"
+    id("com.gradleup.shadow") version "9.3.1"
 //    id("com.github.johnrengelman.shadow") version "8.1.1"
 //    id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
 }
 
 configurations.all {
     resolutionStrategy {
-        // Force pga. vulnerabilities i org.jsonschema2pojo-plugin
         force("com.fasterxml.jackson.core:jackson-core:2.21.0")
     }
 }
