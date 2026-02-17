@@ -39,7 +39,7 @@
 <script>
 window.onload = function() {
   /*
-   * Skitten hack for å støtte visning andre brancher enn master for
+   * Skitten hack for å støtte visning andre brancher enn main for
    * pull requests. Kan fjernes hvis den skaper problemer. Bytt da ut
    * med standard index.html fra swagger-ui-dist (men definer "url").
    */
@@ -47,8 +47,8 @@ window.onload = function() {
     var links = document.getElementsByTagName("a");
     var i;
     for (i=0; i<links.length; i++) {
-      if (links[i].href != null && links[i].href.indexOf("/master/") >= 0) {
-        links[i].href = links[i].href.replace("/master/", "/" + branch + "/");
+      if (links[i].href != null && links[i].href.indexOf("/main/") >= 0) {
+        links[i].href = links[i].href.replace("/main/", "/" + branch + "/");
       }
     }
   }
@@ -60,22 +60,22 @@ window.onload = function() {
         }
       }
     };
-	
+
 	const observer = new MutationObserver(mutationCallback);
-	observer.observe(document.body, { 
+	observer.observe(document.body, {
 		childList: true,
 		subtree: true
 	});
   }
-  
+
   const urlMatch = location.search.match(/branch=([a-zA-Z_0-9/-]*)/);
-  const branch = (urlMatch != null) ? urlMatch[1] : "master";
+  const branch = (urlMatch != null) ? urlMatch[1] : "main";
   let url = 'https://raw.githubusercontent.com/navikt/soknadsosialhjelp-filformat/' + branch + '/json/swagger.json';
-  
+
   if (location.hostname === 'localhost') {
 	  url = '../json/swagger.json';
   }
-	
+
   // Build a system
   const ui = SwaggerUIBundle({
     url: url,
@@ -94,8 +94,8 @@ window.onload = function() {
   })
 
   window.ui = ui;
-  
-  if (branch !== 'master') {
+
+  if (branch !== 'main') {
     listenOnDomChangesFixBranchLinks();
   }
 }
