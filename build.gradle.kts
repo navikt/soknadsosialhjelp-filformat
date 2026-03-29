@@ -11,7 +11,7 @@ plugins {
 
 configurations.all {
     resolutionStrategy {
-        force("com.fasterxml.jackson.core:jackson-core:2.21.0")
+        force("com.fasterxml.jackson.core:jackson-core:2.21.2")
     }
 }
 
