@@ -4,7 +4,7 @@ plugins {
     `maven-publish`
     signing
     id("org.jsonschema2pojo") version "1.3.2"
-    id("com.gradleup.shadow") version "9.3.1"
+    id("com.gradleup.shadow") version "9.4.1"
 //    id("com.github.johnrengelman.shadow") version "8.1.1"
 //    id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
 }
