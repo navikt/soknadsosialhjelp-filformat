@@ -35,14 +35,14 @@ dependencies {
     implementation("com.github.java-json-tools:jackson-coreutils:2.0")
     implementation("com.github.java-json-tools:msg-simple:1.2")
     implementation("org.apache.commons:commons-lang3:3.20.0")
-    implementation("com.google.guava:guava:33.5.0-jre")
+    implementation("com.google.guava:guava:33.6.0-jre")
     implementation("org.mozilla:rhino:1.9.1")
 
     implementation("tools.jackson.core:jackson-databind:3.1.1")
     implementation("com.fasterxml.jackson.core:jackson-annotations:2.21")
 
-    testImplementation("org.junit.jupiter:junit-jupiter:6.0.2")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher:6.0.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:6.1.0")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:6.1.0")
     testImplementation("org.assertj:assertj-core:3.27.7")
 }
 
