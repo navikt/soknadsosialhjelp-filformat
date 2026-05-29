@@ -3,15 +3,15 @@ plugins {
     idea
     `maven-publish`
     signing
-    id("org.jsonschema2pojo") version "1.3.2"
-    id("com.gradleup.shadow") version "9.4.1"
+    id("org.jsonschema2pojo") version "1.3.3"
+    id("com.gradleup.shadow") version "9.4.2"
 //    id("com.github.johnrengelman.shadow") version "8.1.1"
 //    id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
 }
 
 configurations.all {
     resolutionStrategy {
-        force("com.fasterxml.jackson.core:jackson-core:2.21.3")
+        force("com.fasterxml.jackson.core:jackson-core:2.21.4")
     }
 }
 
@@ -38,7 +38,7 @@ dependencies {
     implementation("com.google.guava:guava:33.5.0-jre")
     implementation("org.mozilla:rhino:1.9.1")
 
-    implementation("tools.jackson.core:jackson-databind:3.1.1")
+    implementation("tools.jackson.core:jackson-databind:3.1.4")
     implementation("com.fasterxml.jackson.core:jackson-annotations:2.21")
 
     testImplementation("org.junit.jupiter:junit-jupiter:6.0.2")
