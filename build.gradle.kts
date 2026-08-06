@@ -5,14 +5,6 @@ plugins {
     signing
     id("org.jsonschema2pojo") version "1.3.3"
     id("com.gradleup.shadow") version "9.4.1"
-//    id("com.github.johnrengelman.shadow") version "8.1.1"
-//    id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
-}
-
-configurations.all {
-    resolutionStrategy {
-        force("com.fasterxml.jackson.core:jackson-core:2.21.3")
-    }
 }
 
 group = "no.nav.sbl.dialogarena"
