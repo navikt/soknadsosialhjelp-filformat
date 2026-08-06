@@ -30,8 +30,9 @@ dependencies {
     implementation("com.google.guava:guava:33.6.0-jre")
     implementation("org.mozilla:rhino:1.9.1")
 
-    implementation("tools.jackson.core:jackson-databind:3.2.0")
-    implementation("com.fasterxml.jackson.core:jackson-annotations:2.22")
+    implementation(platform("tools.jackson:jackson-bom:3.2.1"))
+    implementation("tools.jackson.core:jackson-databind")
+    implementation(platform("com.fasterxml.jackson:jackson-bom:2.22.1"))
 
     testImplementation("org.junit.jupiter:junit-jupiter:6.1.1")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:6.1.1")
