@@ -1,3 +1,16 @@
+// The build plugins below (notably org.jsonschema2pojo 1.3.3) pull in older jackson
+// versions on the build classpath: com.fasterxml.jackson jackson-databind 2.21.0 and
+// tools.jackson jackson-databind 3.0.2, both of which have published security advisories.
+// These are build-time-only dependencies (they do not ship in the published artifact),
+// but we pin them to the patched BOM versions to keep the build classpath free of the
+// flagged CVEs. This does not affect the generated model in any way.
+buildscript {
+    dependencies {
+        classpath(enforcedPlatform("com.fasterxml.jackson:jackson-bom:2.22.1"))
+        classpath(enforcedPlatform("tools.jackson:jackson-bom:3.2.1"))
+    }
+}
+
 plugins {
     java
     idea
