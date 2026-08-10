@@ -47,8 +47,8 @@ dependencies {
     implementation("tools.jackson.core:jackson-databind")
     implementation(platform("com.fasterxml.jackson:jackson-bom:2.22.1"))
 
-    testImplementation("org.junit.jupiter:junit-jupiter:6.1.1")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher:6.1.1")
+    testImplementation("org.junit.jupiter:junit-jupiter:6.1.2")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:6.1.2")
     testImplementation("org.assertj:assertj-core:3.27.7")
 }
 
