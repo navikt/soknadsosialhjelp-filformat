@@ -7,7 +7,7 @@
 buildscript {
     dependencies {
         classpath(enforcedPlatform("com.fasterxml.jackson:jackson-bom:2.22.1"))
-        classpath(enforcedPlatform("tools.jackson:jackson-bom:3.2.1"))
+        classpath(enforcedPlatform("tools.jackson:jackson-bom:3.2.2"))
         classpath(enforcedPlatform("org.codehaus.plexus:plexus-utils:4.0.3"))
     }
 }
@@ -44,12 +44,12 @@ dependencies {
     implementation("com.google.guava:guava:33.6.0-jre")
     implementation("org.mozilla:rhino:1.9.1")
 
-    implementation(platform("tools.jackson:jackson-bom:3.2.1"))
+    implementation(platform("tools.jackson:jackson-bom:3.2.2"))
     implementation("tools.jackson.core:jackson-databind")
     implementation(platform("com.fasterxml.jackson:jackson-bom:2.22.1"))
 
-    testImplementation("org.junit.jupiter:junit-jupiter:6.1.2")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher:6.1.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:6.1.3")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:6.1.3")
     testImplementation("org.assertj:assertj-core:3.27.7")
 }
 
