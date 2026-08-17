@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath(enforcedPlatform("com.fasterxml.jackson:jackson-bom:2.22.1"))
         classpath(enforcedPlatform("tools.jackson:jackson-bom:3.2.1"))
+        classpath(enforcedPlatform("org.codehaus.plexus:plexus-utils:4.0.3"))
     }
 }
 
