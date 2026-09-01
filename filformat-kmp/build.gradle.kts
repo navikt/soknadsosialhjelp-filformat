@@ -11,7 +11,7 @@ plugins {
 // version by running `sed` on the ROOT build.gradle.kts only. Inheriting group/version
 // from the root project is what makes this subproject pick up the released version.
 // Do not hardcode a version here.
-group = rootProject.group
+group = "no.nav.sosialhjelp.filformat"
 version = rootProject.version
 
 repositories {
