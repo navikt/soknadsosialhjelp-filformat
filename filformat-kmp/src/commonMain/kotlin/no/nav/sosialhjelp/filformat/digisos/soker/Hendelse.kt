@@ -16,43 +16,22 @@ import kotlinx.serialization.json.contentOrNull
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 
-/**
- * `json/digisos/soker/parts/hendelse.json`.
- *
- * Discriminated on `type`, matching `HendelseMixIn` in the Java model
- * (`As.EXISTING_PROPERTY, property = "type"`).
- */
 @Serializable(with = HendelseSerializer::class)
 public sealed interface Hendelse {
     public val type: String
     public val hendelsestidspunkt: String
 }
 
-/**
- * Fallback for a hendelse `type` this library does not know about.
- *
- * The schema states that new hendelse types may be added at any time. Both consuming
- * applications currently throw `RuntimeException("Hendelsetype ... mangler mapping")`, which
- * means a single new municipal hendelse type takes down an entire case view. Decoding to
- * [UkjentHendelse] instead lets a fold skip what it does not understand and keep going.
- *
- * The original payload is retained in [raw] so the value round-trips byte-for-byte. Without
- * that, re-serializing would emit whatever discriminator this class declares rather than the
- * `type` that was actually read.
- */
+// Retains raw payload so unknown hendelser round-trip without loss
 @Serializable(with = UkjentHendelseSerializer::class)
 public data class UkjentHendelse(
     override val type: String,
     override val hendelsestidspunkt: String,
-    /** The untouched input object. */
     public val raw: JsonObject,
 ) : Hendelse
 
-/**
- * See the note on [FilreferanseSerializer]: because this is a
- * [JsonContentPolymorphicSerializer], no class discriminator is injected on serialization,
- * so every subclass declares `type` as a real serialized property.
- */
+// JsonContentPolymorphicSerializer does not inject a class discriminator on serialization,
+// so every subclass must declare `type` as a real serialized property.
 public object HendelseSerializer : JsonContentPolymorphicSerializer<Hendelse>(Hendelse::class) {
 
     override fun selectDeserializer(element: JsonElement): KSerializer<out Hendelse> =
@@ -77,9 +56,7 @@ public object UkjentHendelseSerializer : KSerializer<UkjentHendelse> {
 
     override fun deserialize(decoder: Decoder): UkjentHendelse {
         val obj = (decoder as JsonDecoder).decodeJsonElement().jsonObject
-        // `type` and `hendelsestidspunkt` are required by parts/hendelse.json for EVERY
-        // hendelse, known or not. Tolerating an unknown `type` is deliberate; tolerating a
-        // structurally invalid hendelse is not, so these still throw.
+        // Unknown type is tolerated; missing required fields are not
         val type = obj["type"]?.jsonPrimitive?.contentOrNull
             ?: throw SerializationException("Hendelse mangler pakrevd felt 'type'")
         val hendelsestidspunkt = obj["hendelsestidspunkt"]?.jsonPrimitive?.contentOrNull
