@@ -18,6 +18,9 @@ build
 scripts/node_modules/*
 docs/node_modules/
 
+# kotlin
+.kotlin/
+
 # Misc
 *~
 \#*\#

@@ -12,6 +12,13 @@ on:
 jobs:
   build_and_release:
     runs-on: ubuntu-latest
+    # 'completed' fires regardless of outcome, so without this guard a FAILED Build Code
+    # would still publish. The workflow_dispatch arm keeps manual releases possible --
+    # a bare conclusion check would block them, since github.event.workflow_run is null
+    # for manually dispatched runs.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
     permissions:
       contents: read
       packages: write
@@ -23,10 +30,11 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           cache: 'gradle'
-#
-#      - name: 'Build with Gradle'
-#        run: ./gradlew clean build
 
+      # The sed is what actually sets the published version: Gradle evaluates the
+      # `version = "..."` assignment in build.gradle.kts during configuration, which would
+      # overwrite anything passed via -Pversion. filformat-kmp inherits it through
+      # `version = rootProject.version`.
       - name: 'Setting version'
         run: |
           TIME=$(TZ="Europe/Oslo" date +%Y.%m.%d-%H.%M)
@@ -38,8 +46,26 @@ jobs:
       - name: Gradle wrapper validation
         uses: gradle/wrapper-validation-action@v3
 
-      - name: 'Publish package'
-        run: ./gradlew -Pversion="$(echo $VERSION)" build publish
+      - name: 'Build'
+        run: ./gradlew build
+
+      # Publishes both modules to the GitHub Packages MAVEN registry:
+      #   no.nav.sbl.dialogarena:soknadsosialhjelp-filformat       (Java, existing consumers)
+      #   no.nav.sbl.dialogarena:soknadsosialhjelp-filformat-kmp   (+ -jvm, -js variants)
+      #
+      # Deliberately NOT `./gradlew publish`: the npm publish plugin hooks itself into the
+      # `publish` lifecycle task, so `publish` would also attempt an npm publish and fail
+      # here where NPM_AUTH_TOKEN is not set. Naming the Maven task explicitly keeps the
+      # Java artifact's release path independent of the npm registry.
+      - name: 'Publish Maven packages'
+        run: ./gradlew publishAllPublicationsToGitHubPackagesRepository
         env:
           GITHUB_USERNAME: x-access-token
           GITHUB_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+
+      # Separate step so that an npm registry failure cannot roll back or block the Maven
+      # artifacts published above.
+      - name: 'Publish npm package'
+        run: ./gradlew publishJsPackageToGithubPackagesRegistry
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
