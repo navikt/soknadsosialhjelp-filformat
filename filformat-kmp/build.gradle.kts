@@ -49,11 +49,11 @@ kotlin {
             // Java model in the root project. This dependency is what makes model drift
             // fail the build.
             implementation(rootProject)
-            implementation(project.dependencies.platform("tools.jackson:jackson-bom:3.2.1"))
+            implementation(project.dependencies.platform("tools.jackson:jackson-bom:3.2.2"))
             implementation("tools.jackson.core:jackson-databind")
             implementation("org.assertj:assertj-core:3.27.7")
-            implementation("org.junit.jupiter:junit-jupiter:6.1.2")
-            runtimeOnly("org.junit.platform:junit-platform-launcher:6.1.2")
+            implementation("org.junit.jupiter:junit-jupiter:6.1.3")
+            runtimeOnly("org.junit.platform:junit-platform-launcher:6.1.3")
         }
     }
 }
