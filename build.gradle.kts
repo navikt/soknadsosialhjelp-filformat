@@ -15,7 +15,6 @@ plugins {
     java
     idea
     `maven-publish`
-    signing
     id("org.jsonschema2pojo") version "1.3.3"
     id("com.gradleup.shadow") version "9.4.1"
 }
