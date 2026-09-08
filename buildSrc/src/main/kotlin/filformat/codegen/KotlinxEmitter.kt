@@ -7,7 +7,6 @@ import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.LIST
-import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
@@ -21,22 +20,14 @@ import java.io.File
 private const val SER_PKG = "kotlinx.serialization"
 private val SERIALIZABLE_ANN = ClassName(SER_PKG, "Serializable")
 private val KSERIALIZER = ClassName(SER_PKG, "KSerializer")
+private val SERIAL_NAME = ClassName(SER_PKG, "SerialName")
 private val SERIALIZATION_EXCEPTION = ClassName(SER_PKG, "SerializationException")
-private val SERIAL_DESCRIPTOR = ClassName("$SER_PKG.descriptors", "SerialDescriptor")
-private val BUILD_CLASS_SERIAL_DESCRIPTOR = MemberName("$SER_PKG.descriptors", "buildClassSerialDescriptor")
-private val DECODER = ClassName("$SER_PKG.encoding", "Decoder")
-private val ENCODER = ClassName("$SER_PKG.encoding", "Encoder")
 private val JSON_CONTENT_POLYMORPHIC_SERIALIZER = ClassName("$SER_PKG.json", "JsonContentPolymorphicSerializer")
-private val JSON_DECODER = ClassName("$SER_PKG.json", "JsonDecoder")
-private val JSON_ENCODER = ClassName("$SER_PKG.json", "JsonEncoder")
-private val JSON_OBJECT = ClassName("$SER_PKG.json", "JsonObject")
 private val JSON_ELEMENT = ClassName("$SER_PKG.json", "JsonElement")
-private val UKJENT_TOLERANT_ENUM_SERIALIZER = ClassName("no.nav.sosialhjelp.filformat", "UkjentTolerantEnumSerializer")
 
-private val M_JSON_OBJECT = MemberName("kotlinx.serialization.json", "jsonObject")
-private val M_JSON_PRIMITIVE = MemberName("kotlinx.serialization.json", "jsonPrimitive")
-private val M_CONTENT_OR_NULL = MemberName("kotlinx.serialization.json", "contentOrNull")
-private val M_DECODE_FROM_JSON_ELEMENT = MemberName("kotlinx.serialization.json", "decodeFromJsonElement")
+private val M_JSON_OBJECT = com.squareup.kotlinpoet.MemberName("kotlinx.serialization.json", "jsonObject")
+private val M_JSON_PRIMITIVE = com.squareup.kotlinpoet.MemberName("kotlinx.serialization.json", "jsonPrimitive")
+private val M_CONTENT_OR_NULL = com.squareup.kotlinpoet.MemberName("kotlinx.serialization.json", "contentOrNull")
 
 class KotlinxEmitter(private val model: SchemaModel, private val outputDir: File) {
 
@@ -116,9 +107,8 @@ class KotlinxEmitter(private val model: SchemaModel, private val outputDir: File
             ) {
                 val spec = obj.nestedEnums.first { it.simpleName == property.type.simpleName }
                 val nestedClassName = className.nestedClass(spec.simpleName)
-                val (enumSpec, serializerSpec) = buildTolerantEnum(nestedClassName, spec)
+                val enumSpec = buildEnum(nestedClassName, spec)
                 typeBuilder.addType(enumSpec)
-                typeBuilder.addType(serializerSpec)
             }
         }
     }
@@ -141,51 +131,30 @@ class KotlinxEmitter(private val model: SchemaModel, private val outputDir: File
         FileSpec.builder(className).addType(typeBuilder.build()).build().writeTo(outputDir)
     }
 
-    private fun buildTolerantEnum(className: ClassName, spec: EnumSpec): Pair<TypeSpec, TypeSpec> {
-        val serializerName = className.simpleName + "Serializer"
-        val serializerClassName = ClassName(className.packageName, *className.simpleNames.dropLast(1).toTypedArray(), serializerName)
-
+    private fun buildEnum(className: ClassName, spec: EnumSpec): TypeSpec {
         val enumBuilder = TypeSpec.enumBuilder(className)
-            .addAnnotation(
-                AnnotationSpec.builder(SERIALIZABLE_ANN).addMember("with = %T::class", serializerClassName).build(),
-            )
-            .primaryConstructor(FunSpec.constructorBuilder().addParameter("jsonValue", STRING).build())
-            .addProperty(PropertySpec.builder("jsonValue", STRING).initializer("jsonValue").build())
+            .addAnnotation(SERIALIZABLE_ANN)
         for (value in spec.values) {
             enumBuilder.addEnumConstant(
                 screamingSnakeCase(value),
-                TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("%S", value).build(),
+                TypeSpec.anonymousClassBuilder()
+                    .addAnnotation(AnnotationSpec.builder(SERIAL_NAME).addMember("%S", value).build())
+                    .build(),
             )
         }
-        enumBuilder.addEnumConstant(
-            "UKJENT",
-            TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("%S", "UKJENT").build(),
-        )
-
-        val serializerSpec = TypeSpec.objectBuilder(serializerName)
-            .superclass(UKJENT_TOLERANT_ENUM_SERIALIZER.parameterizedBy(className))
-            .addSuperclassConstructorParameter("%S", className.simpleNames.joinToString("."))
-            .addSuperclassConstructorParameter("%T.entries.toTypedArray()", className)
-            .addSuperclassConstructorParameter("%T.UKJENT", className)
-            .addSuperclassConstructorParameter("%T::jsonValue", className)
-            .build()
-
-        return enumBuilder.build() to serializerSpec
+        return enumBuilder.build()
     }
 
     private fun emitTopLevelEnum(fqBase: String) {
         val topLevel = model.enums.getValue(fqBase)
         val className = NameMap.kotlinx(fqBase)
         val spec = EnumSpec(className.simpleName, topLevel.values, topLevel.default)
-        val (enumType, serializerType) = buildTolerantEnum(className, spec)
-        FileSpec.builder(className).addType(enumType).addType(serializerType).build().writeTo(outputDir)
+        FileSpec.builder(className).addType(buildEnum(className, spec)).build().writeTo(outputDir)
     }
 
     private fun emitUnion(obj: ObjectType) {
         val className = NameMap.kotlinx(obj.fqBase)
         val serializerClassName = ClassName(className.packageName, className.simpleName + "Serializer")
-        val ukjentClassName = ClassName(className.packageName, "Ukjent${className.simpleName}")
-        val ukjentSerializerClassName = ClassName(className.packageName, "Ukjent${className.simpleName}Serializer")
 
         val commonProps = obj.properties
 
@@ -205,8 +174,7 @@ class KotlinxEmitter(private val model: SchemaModel, private val outputDir: File
             emitUnionSubtype(model.objects.getValue(subFq), obj, className)
         }
 
-        emitUnionSerializer(className, serializerClassName, ukjentClassName, obj)
-        emitUkjentFallback(ukjentClassName, ukjentSerializerClassName, className, obj)
+        emitUnionSerializer(className, serializerClassName, obj)
     }
 
     private fun emitUnionSubtype(subObj: ObjectType, baseObj: ObjectType, baseClassName: ClassName) {
@@ -246,7 +214,6 @@ class KotlinxEmitter(private val model: SchemaModel, private val outputDir: File
     private fun emitUnionSerializer(
         className: ClassName,
         serializerClassName: ClassName,
-        ukjentClassName: ClassName,
         obj: ObjectType,
     ) {
         val whenBlock = CodeBlock.builder().beginControlFlow(
@@ -260,7 +227,7 @@ class KotlinxEmitter(private val model: SchemaModel, private val outputDir: File
             val subObj = model.objects.getValue(subFq)
             whenBlock.addStatement("%S -> %T.serializer()", subObj.discriminatorTag, kotlinxSubtypeClassName(className, subFq))
         }
-        whenBlock.addStatement("else -> %T.serializer()", ukjentClassName)
+        whenBlock.addStatement("else -> throw %T(%S)", SERIALIZATION_EXCEPTION, "Ukjent type for ${className.simpleName}")
         whenBlock.endControlFlow()
 
         val serializerType = TypeSpec.objectBuilder(serializerClassName)
@@ -278,103 +245,4 @@ class KotlinxEmitter(private val model: SchemaModel, private val outputDir: File
         FileSpec.builder(serializerClassName).addType(serializerType).build().writeTo(outputDir)
     }
 
-    private fun emitUkjentFallback(
-        ukjentClassName: ClassName,
-        ukjentSerializerClassName: ClassName,
-        baseClassName: ClassName,
-        obj: ObjectType,
-    ) {
-        val commonProps = obj.properties
-        val dataBuilder = TypeSpec.classBuilder(ukjentClassName)
-            .addModifiers(KModifier.DATA)
-            .addAnnotation(
-                AnnotationSpec.builder(SERIALIZABLE_ANN).addMember("with = %T::class", ukjentSerializerClassName).build(),
-            )
-            .addSuperinterface(baseClassName)
-        val ctor = FunSpec.constructorBuilder()
-        for (property in commonProps) {
-            val isDiscriminatorProp = isDiscriminator(obj, property)
-            val propType = if (isDiscriminatorProp) STRING else kotlinType(property.type, !property.required)
-            ctor.addParameter(property.name, propType)
-            dataBuilder.addProperty(
-                PropertySpec.builder(property.name, propType).addModifiers(KModifier.OVERRIDE).initializer(property.name).build(),
-            )
-        }
-        ctor.addParameter("raw", JSON_OBJECT)
-        dataBuilder.addProperty(PropertySpec.builder("raw", JSON_OBJECT).initializer("raw").build())
-        dataBuilder.primaryConstructor(ctor.build())
-        FileSpec.builder(ukjentClassName).addType(dataBuilder.build()).build().writeTo(outputDir)
-
-        val deserializeBody = CodeBlock.builder()
-            .addStatement("val obj = (decoder as %T).decodeJsonElement().%M", JSON_DECODER, M_JSON_OBJECT)
-        for (property in commonProps) {
-            val isDiscriminatorProp = isDiscriminator(obj, property)
-            when {
-                isDiscriminatorProp || (property.type is TypeRef.Primitive && property.type.kind == PrimitiveKind.STRING) -> {
-                    val default = if (property.required) {
-                        CodeBlock.of("throw %T(%S)", SERIALIZATION_EXCEPTION, "${ukjentClassName.simpleName} mangler pakrevd felt '${property.name}'")
-                    } else {
-                        CodeBlock.of("null")
-                    }
-                    deserializeBody.addStatement(
-                        "val %N = obj[%S]?.%M?.%M ?: %L",
-                        property.name,
-                        property.name,
-                        M_JSON_PRIMITIVE,
-                        M_CONTENT_OR_NULL,
-                        default,
-                    )
-                }
-                property.required -> deserializeBody.addStatement(
-                    "val %N = (decoder as %T).json.%M<%T>(obj.getValue(%S))",
-                    property.name,
-                    JSON_DECODER,
-                    M_DECODE_FROM_JSON_ELEMENT,
-                    kotlinType(property.type, false),
-                    property.name,
-                )
-                else -> deserializeBody.addStatement(
-                    "val %N = obj[%S]?.let { (decoder as %T).json.%M<%T>(it) }",
-                    property.name,
-                    property.name,
-                    JSON_DECODER,
-                    M_DECODE_FROM_JSON_ELEMENT,
-                    kotlinType(property.type, false),
-                )
-            }
-        }
-        val ctorFormat = "%T(" + "%N = %N, ".repeat(commonProps.size) + "raw = obj)"
-        val ctorArgs = buildList {
-            add(ukjentClassName)
-            commonProps.forEach { add(it.name); add(it.name) }
-        }
-        deserializeBody.addStatement("return $ctorFormat", *ctorArgs.toTypedArray())
-
-        val serializerType = TypeSpec.objectBuilder(ukjentSerializerClassName)
-            .addSuperinterface(KSERIALIZER.parameterizedBy(ukjentClassName))
-            .addProperty(
-                PropertySpec.builder("descriptor", SERIAL_DESCRIPTOR)
-                    .addModifiers(KModifier.OVERRIDE)
-                    .initializer("%M(%S)", BUILD_CLASS_SERIAL_DESCRIPTOR, ukjentClassName.canonicalName)
-                    .build(),
-            )
-            .addFunction(
-                FunSpec.builder("deserialize")
-                    .addModifiers(KModifier.OVERRIDE)
-                    .addParameter("decoder", DECODER)
-                    .returns(ukjentClassName)
-                    .addCode(deserializeBody.build())
-                    .build(),
-            )
-            .addFunction(
-                FunSpec.builder("serialize")
-                    .addModifiers(KModifier.OVERRIDE)
-                    .addParameter("encoder", ENCODER)
-                    .addParameter("value", ukjentClassName)
-                    .addStatement("(encoder as %T).encodeJsonElement(value.raw)", JSON_ENCODER)
-                    .build(),
-            )
-            .build()
-        FileSpec.builder(ukjentSerializerClassName).addType(serializerType).build().writeTo(outputDir)
-    }
 }

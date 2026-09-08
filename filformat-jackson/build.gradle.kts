@@ -2,7 +2,7 @@ import filformat.codegen.JacksonEmitter
 import filformat.codegen.SchemaParser
 
 plugins {
-    kotlin("jvm") version "2.4.10"
+    kotlin("jvm")
     `maven-publish`
 }
 
@@ -35,7 +35,7 @@ tasks.test {
     useJUnitPlatform()
 }
 
-val generatedDir = layout.projectDirectory.dir("src/main/kotlin")
+val generatedDir = layout.buildDirectory.dir("generated/sources/filformat/main/kotlin")
 
 fun regenerate(targetDir: java.io.File) {
     val jsonDir = rootProject.file("json")
@@ -46,34 +46,19 @@ fun regenerate(targetDir: java.io.File) {
 
 val generateJacksonModel by tasks.registering {
     group = "codegen"
-    description = "Regenerates the Jackson model from json/ into src/main/kotlin. Committed to git."
+    description = "Generates the Jackson model from json/."
     val jsonDir = rootProject.file("json")
     inputs.dir(jsonDir)
     outputs.dir(generatedDir)
-    doLast { regenerate(generatedDir.asFile) }
+    doLast { regenerate(generatedDir.get().asFile) }
 }
 
-val verifyGeneratedSources by tasks.registering {
-    group = "verification"
-    description = "Fails if the committed generated sources are out of date with json/."
-    val jsonDir = rootProject.file("json")
-    inputs.dir(jsonDir)
-    doLast {
-        val freshDir = layout.buildDirectory.dir("verify-generated-jackson").get().asFile
-        freshDir.deleteRecursively()
-        regenerate(freshDir)
-        val diff = freshDir.walkTopDown().filter { it.isFile }.map { it.relativeTo(freshDir) }.toSet() !=
-            generatedDir.asFile.walkTopDown().filter { it.isFile }.map { it.relativeTo(generatedDir.asFile) }.toSet()
-        val contentDiff = freshDir.walkTopDown().filter { it.isFile }.any { fresh ->
-            val committed = generatedDir.asFile.resolve(fresh.relativeTo(freshDir))
-            !committed.exists() || committed.readText() != fresh.readText()
-        }
-        if (diff || contentDiff) {
-            throw GradleException(
-                "Generated Jackson sources are out of date. Run ./gradlew :filformat-jackson:generateJacksonModel",
-            )
-        }
-    }
+sourceSets.main {
+    kotlin.srcDir(generatedDir)
+}
+
+tasks.compileKotlin {
+    dependsOn(generateJacksonModel)
 }
 
 publishing {

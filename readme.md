@@ -21,9 +21,7 @@ Repoet publiserer tre artefakter til **GitHub Packages**. Alle genereres fra de 
 | `no.nav.sosialhjelp.filformat:soknadsosialhjelp-filformat-kmp{,-jvm,-js}` | Kotlin Multiplatform-modell (kotlinx.serialization), JVM + JS, hele skjemaet | `sosialhjelp-innsyn-api`, `sosialhjelp-modia-api` |
 | `@navikt/soknadsosialhjelp-filformat` (npm) | Kotlin/JS-varianten av samme modell | `sosialhjelp-adminpanel` (Next.js, server-side) |
 
-Begge modellene genereres fra samme mellomrepresentasjon (`SchemaParser`/`SchemaModel` i `buildSrc/`), så de kan ikke drifte fra hverandre navnemessig. `ModelSnapshotTest` i rotprosjektet fanger utilsiktede navne-/strukturendringer i Jackson-modellen; `ModellTest`/`ToleranseTest` i `filformat-kmp` er de tilsvarende akseptansetestene for kotlinx-modellen.
-
-De genererte kildene sjekkes inn (`filformat-jackson/src/main/kotlin`, `filformat-kmp/src/commonMain/kotlin`), slik at modellendringer er synlige i pull request-differ. `verifyGeneratedSources` i begge moduler feiler bygget dersom de er ute av synk med `json/`.
+Begge modellene genereres fra samme mellomrepresentasjon (`SchemaParser`/`SchemaModel` i `buildSrc/`). Kildene skrives til `build/generated/` og genereres automatisk før kompilering. Ikke rediger dem for hånd.
 
 ### Bruk av KMP-modellen på JVM
 
@@ -35,9 +33,7 @@ import no.nav.sosialhjelp.filformat.filformatJson
 val soker = filformatJson.decodeFromString<DigisosSoker>(json)
 ```
 
-KMP-modellen er med vilje mer tolerant enn Jackson-modellen: ukjente `type`-verdier blir `Ukjent<Type>` (f.eks. `UkjentHendelse`), og ukjente enum-verdier blir `UKJENT`. Dette er implementert med `JsonContentPolymorphicSerializer` og `UkjentTolerantEnumSerializer`, som **kun** virker gjennom kotlinx.serialization.
-
-Leser man de samme klassene med Jackson, forsvinner hele denne toleransen, og en ny kommunal hendelsestype vil kaste exception i stedet for å bli absorbert. Det er nettopp det KMP-modellen finnes for å unngå.
+Begge modellene er strenge: ukjente `type`-verdier og enum-verdier kaster ved deserialisering. `filformatJson` ignorerer fortsatt ukjente felter.
 
 ## Henvendelser
 
@@ -53,7 +49,7 @@ NAV-interne henvendelser kan sendes via Slack til [#team_digisos](https://nav-it
 
 `json/`-katalogen inneholder JSON Schema-definisjonene, som er kilden til sannhet for begge modellene.
 
-Kodegeneratoren ligger i `buildSrc/src/main/kotlin/filformat/codegen/`: `SchemaParser` bygger en mellomrepresentasjon (`SchemaModel`) fra `json/`, og `JacksonEmitter`/`KotlinxEmitter` emitterer hver sin Kotlin-modell fra den. Regenerer med `./gradlew :filformat-jackson:generateJacksonModel :filformat-kmp:generateKotlinxModel` etter endringer i `json/`.
+Kodegeneratoren ligger i `buildSrc/src/main/kotlin/filformat/codegen/`: `SchemaParser` bygger en mellomrepresentasjon (`SchemaModel`) fra `json/`, og `JacksonEmitter`/`KotlinxEmitter` emitterer hver sin Kotlin-modell fra den. Generering skjer automatisk før kompilering.
 
 Jackson-modellen ligger under `no.nav.sbl.soknadsosialhjelp` (samme pakkenavn og `Json`-prefiks som den gamle jsonschema2pojo-modellen). Kotlin-modellen ligger under `no.nav.sosialhjelp.filformat` (samme pakkenavn som den tidligere håndskrevne KMP-modellen; union-varianter som `SoknadsStatus` ligger flatt sammen med sin `sealed interface`, ikke i en dypere pakke, for å matche det som allerede var publisert).
 
@@ -64,12 +60,12 @@ Ting som ikke er åpenbare fra koden, og som har brutt ting før:
 - **`rootProject.name` i `settings.gradle.kts` er kritisk.** Publisert `artifactId` utledes fra prosjektnavnet. Tidligere kom navnet fra katalognavnet ved et sammentreff. Fjernes eller endres linjen, bytter artefakten navn i stillhet og alle konsumenter brekker. Det samme gjelder `artifactId`-omskrivingen i `filformat-kmp/build.gradle.kts`.
 - **`ONLY_CODEGEN$ref` i `json/`-filene.** Kodegeneratoren bruker dette som signal på at et objekt arver fra et annet (`extends`) uten at runtime-validatoren ser en `$ref` som ville brutt valideringen.
 - **`javaType` i schemaene styrer pakkeplassering og klassenavn** i begge genererte modeller. Alle objekt-/enum-noder som skal bli egne klasser må ha en eksplisitt `javaType` — kodegeneratoren feiler høyt (`error(...)`) hvis den finner en som mangler det, i stedet for å gjette et navn slik jsonschema2pojo gjorde.
-- **Polymorfi er generert, ikke håndskrevet.** `oneOf` + en `allOf`-gren som låser `type` til én verdi tolkes som en diskriminert union. `SchemaParser` finner disse automatisk; en ny hendelsestype krever ingen endring i generatoren, kun en ny schema-fil.
+- **Polymorfi er generert, ikke håndskrevet.** `oneOf` + en `allOf`-gren som låser `type` til én verdi tolkes som en diskriminert union. `SchemaParser` finner disse automatisk; en ny hendelsestype krever ingen endring i generatoren, kun en ny schema-fil. Ukjente diskriminatorverdier kaster ved deserialisering.
 - **`belop` er `Double`, ikke `BigDecimal`.** Schemaet sier bare `"type": "number"`, som begge generatorene mapper til `Double`. Konsumenter konverterer selv.
 - **To ulike `Vedlegg`-begreper finnes:** `digisos/soker/parts/vedlegg.json` (inne i hendelser) og `vedlegg/vedleggSpesifikasjon.json`. De holdes fra hverandre med pakkenavn, ikke klassenavn.
 - **Alle datoer og tidspunkter er `String`.** `types/dato.json` og `types/tidspunkt.json` er strenger med ISO-mønstre, så ingen av modellene trenger `kotlinx-datetime`/`java.time`.
 - **`kotlin-js-store/` må sjekkes inn.** Uten yarn-lockfilen blir JS-byggene ikke reproduserbare.
-- **Genererte kilder er commitet.** Ikke rediger `filformat-jackson/src/main/kotlin/**` eller `filformat-kmp/src/commonMain/kotlin/**` for hånd — endringer forsvinner ved neste `generate*Model`-kjøring, og `verifyGeneratedSources` fanger drift i CI.
+- **Genererte kilder ligger under `build/generated/`.** De er gitignorerte og gjenskapes før kompilering. Ikke rediger dem for hånd.
 
 ### Bygging
 
@@ -86,7 +82,6 @@ Kjør `./gradlew [kommando]` (Unix/Mac) eller `gradlew.bat [kommando]` (Windows)
 - `./gradlew clean` - Renser byggekataloger
 - `./gradlew :filformat-jackson:generateJacksonModel` - Genererer Jackson-modellen fra JSON Schema
 - `./gradlew :filformat-kmp:generateKotlinxModel` - Genererer kotlinx-modellen fra JSON Schema
-- `./gradlew :filformat-jackson:verifyGeneratedSources :filformat-kmp:verifyGeneratedSources` - Feiler hvis committede genererte kilder er ute av synk med `json/`
 
 > **Merk:** `./gradlew publish` forsøker også å publisere npm-pakken, og feiler uten
 > `NPM_AUTH_TOKEN`. Bruk `publishAllPublicationsToGitHubPackagesRepository` for Maven og

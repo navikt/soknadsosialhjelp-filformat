@@ -1,44 +1,27 @@
 package no.nav.sosialhjelp.filformat.parity
 
-import kotlinx.serialization.json.Json
 import no.nav.sosialhjelp.filformat.digisos.soker.DigisosSoker
 import no.nav.sosialhjelp.filformat.digisos.soker.Hendelse
-import no.nav.sosialhjelp.filformat.digisos.soker.UkjentHendelse
-import no.nav.sosialhjelp.filformat.digisos.soker.SoknadsStatus
 import no.nav.sosialhjelp.filformat.filformatJson
-import no.nav.sosialhjelp.filformat.vedlegg.Vedlegg
 import no.nav.sosialhjelp.filformat.vedlegg.VedleggSpesifikasjon
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
-/**
- * Dedicated assertions for the two behaviours this library was created to provide, and which
- * the bulk parity sweep can only assert indirectly.
- */
 class ToleranseTest {
 
     @Test
-    fun `ukjent hendelsestype gir UkjentHendelse i stedet for aa kaste`() {
+    fun `ukjent hendelsestype kaster`() {
         val json = Fixtures.root
             .resolve("digisos/soker/parts/hendelse/feil-hendelse-eksisterer-ikke.json")
             .readText()
 
-        val hendelse = filformatJson.decodeFromString(Hendelse.serializer(), json)
-
-        assertThat(hendelse).isInstanceOf(UkjentHendelse::class.java)
-        hendelse as UkjentHendelse
-        assertThat(hendelse.type).isEqualTo("foobar")
-        assertThat(hendelse.hendelsestidspunkt).isEqualTo("2018-10-04T13:37:00.134Z")
-
-        // The raw payload is retained so the value round-trips without loss. Without this,
-        // re-serializing would emit UkjentHendelse's own discriminator instead of "foobar".
-        val roundTripped = filformatJson.encodeToString(Hendelse.serializer(), hendelse)
-        assertThat(Json.parseToJsonElement(roundTripped))
-            .isEqualTo(Json.parseToJsonElement(json))
+        assertThatThrownBy { filformatJson.decodeFromString(Hendelse.serializer(), json) }
+            .isInstanceOf(Exception::class.java)
     }
 
     @Test
-    fun `en ukjent hendelse midt i en stroem stopper ikke de oevrige`() {
+    fun `en ukjent hendelse midt i en stroem kaster`() {
         // The scenario that motivated this library: a municipality starts emitting a hendelse
         // type we have never seen. The surrounding hendelser must still be readable.
         val json = """
@@ -53,36 +36,26 @@ class ToleranseTest {
             }
         """.trimIndent()
 
-        val soker = filformatJson.decodeFromString(DigisosSoker.serializer(), json)
-
-        assertThat(soker.hendelser).hasSize(3)
-        assertThat(soker.hendelser[0]).isInstanceOf(SoknadsStatus::class.java)
-        assertThat(soker.hendelser[1]).isInstanceOf(UkjentHendelse::class.java)
-        assertThat(soker.hendelser[2]).isInstanceOf(SoknadsStatus::class.java)
-        assertThat((soker.hendelser[2] as SoknadsStatus).status)
-            .isEqualTo(SoknadsStatus.Status.FERDIGBEHANDLET)
+        assertThatThrownBy { filformatJson.decodeFromString(DigisosSoker.serializer(), json) }
+            .isInstanceOf(Exception::class.java)
     }
 
     @Test
-    fun `ukjent enumverdi gir UKJENT i stedet for aa kaste`() {
+    fun `ukjent enumverdi kaster`() {
         val json = Fixtures.root
             .resolve("digisos/soker/parts/hendelse/soknadsStatus/feil-status-eksisterer-ikke.json")
             .readText()
 
-        val hendelse = filformatJson.decodeFromString(Hendelse.serializer(), json)
-
-        assertThat(hendelse).isInstanceOf(SoknadsStatus::class.java)
-        assertThat((hendelse as SoknadsStatus).status).isEqualTo(SoknadsStatus.Status.UKJENT)
+        assertThatThrownBy { filformatJson.decodeFromString(Hendelse.serializer(), json) }
+            .isInstanceOf(Exception::class.java)
     }
 
     @Test
-    fun `ukjent hendelseType i vedleggSpesifikasjon gir UKJENT`() {
+    fun `ukjent hendelseType i vedleggSpesifikasjon kaster`() {
         val json = Fixtures.root.resolve("vedlegg/ikkegyldig_ugyldigHendelseType.json").readText()
 
-        val spec = filformatJson.decodeFromString(VedleggSpesifikasjon.serializer(), json)
-
-        assertThat(spec.vedlegg).hasSize(1)
-        assertThat(spec.vedlegg!![0].hendelseType).isEqualTo(Vedlegg.HendelseType.UKJENT)
+        assertThatThrownBy { filformatJson.decodeFromString(VedleggSpesifikasjon.serializer(), json) }
+            .isInstanceOf(Exception::class.java)
     }
 
     @Test

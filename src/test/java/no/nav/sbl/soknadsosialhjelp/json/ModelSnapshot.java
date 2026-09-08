@@ -27,7 +27,8 @@ import tools.jackson.databind.json.JsonMapper;
  */
 public final class ModelSnapshot {
 
-    private static final String GENERATED_SOURCES_DIR = "filformat-jackson/src/main/kotlin";
+    private static final String GENERATED_SOURCES_DIR =
+            "filformat-jackson/build/generated/sources/filformat/main/kotlin";
 
     private ModelSnapshot() {
     }
