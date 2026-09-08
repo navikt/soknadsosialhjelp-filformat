@@ -1,0 +1,1063 @@
+{
+  "no.nav.sbl.soknadsosialhjelp.digisos.soker.JsonAvsender" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "systemnavn" : "String",
+      "systemversjon" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.digisos.soker.JsonDigisosSoker" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "avsender" : "JsonAvsender",
+      "hendelser" : "List",
+      "version" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.digisos.soker.JsonFilreferanse" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ "Type" ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "type" : "Type"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.digisos.soker.JsonForvaltningsbrev" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "referanse" : "JsonFilreferanse"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.digisos.soker.JsonHendelse" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ "Type" ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "hendelsestidspunkt" : "String",
+      "type" : "Type"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.digisos.soker.JsonVedlegg" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "referanse" : "JsonFilreferanse",
+      "tittel" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.digisos.soker.filreferanse.JsonDokumentlagerFilreferanse" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "id" : "String"
+    },
+    "superclass" : "no.nav.sbl.soknadsosialhjelp.digisos.soker.JsonFilreferanse"
+  },
+  "no.nav.sbl.soknadsosialhjelp.digisos.soker.filreferanse.JsonSvarUtFilreferanse" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "id" : "String",
+      "nr" : "Integer"
+    },
+    "superclass" : "no.nav.sbl.soknadsosialhjelp.digisos.soker.JsonFilreferanse"
+  },
+  "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.JsonDokumentasjonEtterspurt" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "dokumenter" : "List",
+      "forvaltningsbrev" : "JsonForvaltningsbrev",
+      "vedlegg" : "List"
+    },
+    "superclass" : "no.nav.sbl.soknadsosialhjelp.digisos.soker.JsonHendelse"
+  },
+  "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.JsonDokumentasjonkrav" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ "Status" ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "beskrivelse" : "String",
+      "dokumentasjonkravreferanse" : "String",
+      "frist" : "String",
+      "saksreferanse" : "String",
+      "status" : "Status",
+      "tittel" : "String",
+      "utbetalingsreferanse" : "List"
+    },
+    "superclass" : "no.nav.sbl.soknadsosialhjelp.digisos.soker.JsonHendelse"
+  },
+  "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.JsonDokumenter" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "dokumentreferanse" : "String",
+      "dokumenttype" : "String",
+      "innsendelsesfrist" : "String",
+      "tilleggsinformasjon" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.JsonForelopigSvar" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "forvaltningsbrev" : "JsonForvaltningsbrev",
+      "vedlegg" : "List"
+    },
+    "superclass" : "no.nav.sbl.soknadsosialhjelp.digisos.soker.JsonHendelse"
+  },
+  "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.JsonRammevedtak" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "belop" : "Double",
+      "beskrivelse" : "String",
+      "fom" : "String",
+      "rammevedtaksreferanse" : "String",
+      "saksreferanse" : "String",
+      "tom" : "String"
+    },
+    "superclass" : "no.nav.sbl.soknadsosialhjelp.digisos.soker.JsonHendelse"
+  },
+  "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.JsonSaksStatus" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ "Status" ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "referanse" : "String",
+      "status" : "Status",
+      "tittel" : "String"
+    },
+    "superclass" : "no.nav.sbl.soknadsosialhjelp.digisos.soker.JsonHendelse"
+  },
+  "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.JsonSoknadsStatus" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ "Status" ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "status" : "Status"
+    },
+    "superclass" : "no.nav.sbl.soknadsosialhjelp.digisos.soker.JsonHendelse"
+  },
+  "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.JsonTildeltNavKontor" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "navKontor" : "String"
+    },
+    "superclass" : "no.nav.sbl.soknadsosialhjelp.digisos.soker.JsonHendelse"
+  },
+  "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.JsonUtbetaling" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ "Status" ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "annenMottaker" : "Boolean",
+      "belop" : "Double",
+      "beskrivelse" : "String",
+      "fom" : "String",
+      "forfallsdato" : "String",
+      "kontonummer" : "String",
+      "mottaker" : "String",
+      "rammevedtaksreferanse" : "String",
+      "saksreferanse" : "String",
+      "status" : "Status",
+      "tom" : "String",
+      "utbetalingsdato" : "String",
+      "utbetalingsmetode" : "String",
+      "utbetalingsreferanse" : "String"
+    },
+    "superclass" : "no.nav.sbl.soknadsosialhjelp.digisos.soker.JsonHendelse"
+  },
+  "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.JsonVedtakFattet" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ "Utfall" ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "saksreferanse" : "String",
+      "utfall" : "Utfall",
+      "vedlegg" : "List",
+      "vedtaksfil" : "JsonVedtaksfil"
+    },
+    "superclass" : "no.nav.sbl.soknadsosialhjelp.digisos.soker.JsonHendelse"
+  },
+  "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.JsonVedtaksfil" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "referanse" : "JsonFilreferanse"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.JsonVilkar" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ "Status" ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "beskrivelse" : "String",
+      "saksreferanse" : "String",
+      "status" : "Status",
+      "tittel" : "String",
+      "utbetalingsreferanse" : "List",
+      "vilkarreferanse" : "String"
+    },
+    "superclass" : "no.nav.sbl.soknadsosialhjelp.digisos.soker.JsonHendelse"
+  },
+  "no.nav.sbl.soknadsosialhjelp.klage.JsonAutentisering" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "autentiseringsTidspunkt" : "String",
+      "autentisertDigitalt" : "Boolean"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.klage.JsonBegrunnelse" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "kilde" : "JsonKildeBruker",
+      "klageTekst" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.klage.JsonKlage" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "autentisering" : "JsonAutentisering",
+      "begrunnelse" : "JsonBegrunnelse",
+      "digisosId" : "String",
+      "innsendingstidspunkt" : "String",
+      "klageId" : "String",
+      "mottaker" : "JsonSoknadsmottaker",
+      "navn" : "JsonSokernavn",
+      "personIdentifikator" : "JsonPersonIdentifikator",
+      "vedtakId" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.JsonData" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ "Soknadstype" ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "arbeid" : "JsonArbeid",
+      "begrunnelse" : "JsonBegrunnelse",
+      "bosituasjon" : "JsonBosituasjon",
+      "familie" : "JsonFamilie",
+      "okonomi" : "JsonOkonomi",
+      "personalia" : "JsonPersonalia",
+      "situasjonendring" : "JsonSituasjonendring",
+      "soknadstype" : "Soknadstype",
+      "utdanning" : "JsonUtdanning"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.JsonDriftsinformasjon" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "inntektFraSkatteetatenFeilet" : "Boolean",
+      "stotteFraHusbankenFeilet" : "Boolean",
+      "utbetalingerFraNavFeilet" : "Boolean"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.JsonInternalSoknad" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "midlertidigAdresse" : "JsonAdresse",
+      "mottaker" : "JsonSoknadsmottaker",
+      "soknad" : "JsonSoknad",
+      "vedlegg" : "JsonVedleggSpesifikasjon"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.JsonKompatibilitet" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "maxVersion" : "String",
+      "minVersion" : "String",
+      "text" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.JsonSoknad" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "data" : "JsonData",
+      "driftsinformasjon" : "JsonDriftsinformasjon",
+      "innsendingstidspunkt" : "String",
+      "kompatibilitet" : "List",
+      "mottaker" : "JsonSoknadsmottaker",
+      "version" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.JsonSoknadsmottaker" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "enhetsnummer" : "String",
+      "kommunenummer" : "String",
+      "navEnhetsnavn" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonAdresse" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ "Type" ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "adresseValg" : "JsonAdresseValg",
+      "kilde" : "JsonKilde",
+      "type" : "Type"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonAdresseValg" : {
+    "enumConstants" : [ "FOLKEREGISTRERT", "MIDLERTIDIG", "SOKNAD" ],
+    "interfaces" : [ ],
+    "nestedTypes" : null,
+    "properties" : null,
+    "superclass" : "java.lang.Enum"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonGateAdresse" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "adresselinjer" : "List",
+      "bolignummer" : "String",
+      "gatenavn" : "String",
+      "husbokstav" : "String",
+      "husnummer" : "String",
+      "kommunenummer" : "String",
+      "landkode" : "String",
+      "postnummer" : "String",
+      "poststed" : "String"
+    },
+    "superclass" : "no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonAdresse"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonMatrikkelAdresse" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "bruksnummer" : "String",
+      "festenummer" : "String",
+      "gaardsnummer" : "String",
+      "kommunenummer" : "String",
+      "seksjonsnummer" : "String",
+      "undernummer" : "String"
+    },
+    "superclass" : "no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonAdresse"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonPostboksAdresse" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "postboks" : "String",
+      "postnummer" : "String",
+      "poststed" : "String"
+    },
+    "superclass" : "no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonAdresse"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonUstrukturertAdresse" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "adresse" : "List"
+    },
+    "superclass" : "no.nav.sbl.soknadsosialhjelp.soknad.adresse.JsonAdresse"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.arbeid.JsonArbeid" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "forhold" : "List",
+      "kommentarTilArbeidsforhold" : "JsonKommentarTilArbeidsforhold",
+      "situasjon" : "JsonArbeidssituasjon"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.arbeid.JsonArbeidsforhold" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ "Stillingstype" ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "arbeidsgivernavn" : "String",
+      "fom" : "String",
+      "kilde" : "JsonKilde",
+      "overstyrtAvBruker" : "Boolean",
+      "stillingsprosent" : "Integer",
+      "stillingstype" : "Stillingstype",
+      "tom" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.arbeid.JsonArbeidssituasjon" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ "JobbGrad" ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "erIJobb" : "Boolean",
+      "jobbGrad" : "JobbGrad",
+      "kilde" : "JsonKildeBruker"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.arbeid.JsonKommentarTilArbeidsforhold" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "kilde" : "JsonKildeBruker",
+      "verdi" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.begrunnelse.JsonBegrunnelse" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "hvaSokesOm" : "String",
+      "hvorforSoke" : "String",
+      "kilde" : "JsonKildeBruker"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.bosituasjon.JsonBosituasjon" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ "Botype" ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "antallPersoner" : "Integer",
+      "botype" : "Botype",
+      "kilde" : "JsonKildeBruker"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.bostotte.JsonBostotte" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "saker" : "List"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.bostotte.JsonBostotteSak" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ "Vedtaksstatus" ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "beskrivelse" : "String",
+      "dato" : "String",
+      "kilde" : "JsonKildeSystem",
+      "status" : "String",
+      "type" : "String",
+      "vedtaksstatus" : "Vedtaksstatus"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.common.JsonKilde" : {
+    "enumConstants" : [ "BRUKER", "SYSTEM", "UTDATERT" ],
+    "interfaces" : [ ],
+    "nestedTypes" : null,
+    "properties" : null,
+    "superclass" : "java.lang.Enum"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.common.JsonKildeBruker" : {
+    "enumConstants" : [ "BRUKER", "UTDATERT" ],
+    "interfaces" : [ ],
+    "nestedTypes" : null,
+    "properties" : null,
+    "superclass" : "java.lang.Enum"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.common.JsonKildeSystem" : {
+    "enumConstants" : [ "SYSTEM", "UTDATERT" ],
+    "interfaces" : [ ],
+    "nestedTypes" : null,
+    "properties" : null,
+    "superclass" : "java.lang.Enum"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.common.JsonNavn" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "etternavn" : "String",
+      "fornavn" : "String",
+      "mellomnavn" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonAnsvar" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "barn" : "JsonBarn",
+      "borSammenMed" : "JsonBorSammenMed",
+      "erFolkeregistrertSammen" : "JsonErFolkeregistrertSammen",
+      "harDeltBosted" : "JsonHarDeltBosted",
+      "samvarsgrad" : "JsonSamvarsgrad"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonBarn" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "fodselsdato" : "String",
+      "harDiskresjonskode" : "Boolean",
+      "kilde" : "JsonKilde",
+      "navn" : "JsonNavn",
+      "personIdentifikator" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonBarnebidrag" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ "Verdi" ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "kilde" : "JsonKildeBruker",
+      "verdi" : "Verdi"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonBorSammenMed" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "kilde" : "JsonKildeBruker",
+      "verdi" : "Boolean"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonEktefelle" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "fodselsdato" : "String",
+      "navn" : "JsonNavn",
+      "personIdentifikator" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonErFolkeregistrertSammen" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "kilde" : "JsonKildeSystem",
+      "verdi" : "Boolean"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonFamilie" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "folkeregistrertMedEktefelleAvviksforklaring" : "JsonFolkeregistrertMedEktefelleAvviksforklaring",
+      "forsorgerplikt" : "JsonForsorgerplikt",
+      "sivilstatus" : "JsonSivilstatus"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonFolkeregistrertMedEktefelleAvviksforklaring" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "kilde" : "JsonKildeBruker",
+      "verdi" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonForsorgerplikt" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "ansvar" : "List",
+      "barnebidrag" : "JsonBarnebidrag",
+      "harForsorgerplikt" : "JsonHarForsorgerplikt"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonHarDeltBosted" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "kilde" : "JsonKildeBruker",
+      "verdi" : "Boolean"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonHarForsorgerplikt" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "kilde" : "JsonKilde",
+      "verdi" : "Boolean"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonSamvarsgrad" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "kilde" : "JsonKildeBruker",
+      "verdi" : "Integer"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.familie.JsonSivilstatus" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ "Status" ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "borIkkeSammenMedBegrunnelse" : "String",
+      "borSammenMed" : "Boolean",
+      "ektefelle" : "JsonEktefelle",
+      "ektefelleHarDiskresjonskode" : "Boolean",
+      "folkeregistrertMedEktefelle" : "Boolean",
+      "kilde" : "JsonKilde",
+      "status" : "Status"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.internal.JsonSoknadsmottaker" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "navEnhetsnavn" : "String",
+      "organisasjonsnummer" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.JsonOkonomi" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "opplysninger" : "JsonOkonomiopplysninger",
+      "oversikt" : "JsonOkonomioversikt"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.JsonOkonomiopplysninger" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "bekreftelse" : "List",
+      "beskrivelseAvAnnet" : "JsonOkonomibeskrivelserAvAnnet",
+      "bostotte" : "JsonBostotte",
+      "utbetaling" : "List",
+      "utgift" : "List"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.JsonOkonomioversikt" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "formue" : "List",
+      "inntekt" : "List",
+      "utgift" : "List"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.JsonOkonomiOpplysningUtbetaling" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ "Mottaker" ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "andreTrekk" : "Double",
+      "belop" : "Integer",
+      "brutto" : "Double",
+      "kilde" : "JsonKilde",
+      "komponenter" : "List",
+      "mottaker" : "Mottaker",
+      "netto" : "Double",
+      "organisasjon" : "JsonOrganisasjon",
+      "overstyrtAvBruker" : "Boolean",
+      "periodeFom" : "String",
+      "periodeTom" : "String",
+      "skattetrekk" : "Double",
+      "tittel" : "String",
+      "type" : "String",
+      "utbetalingsdato" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.JsonOkonomiOpplysningUtbetalingKomponent" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "belop" : "Double",
+      "satsAntall" : "Double",
+      "satsBelop" : "Double",
+      "satsType" : "String",
+      "type" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.JsonOkonomiOpplysningUtgift" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "belop" : "Integer",
+      "kilde" : "JsonKilde",
+      "overstyrtAvBruker" : "Boolean",
+      "tittel" : "String",
+      "type" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.JsonOkonomibekreftelse" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "bekreftelsesDato" : "String",
+      "kilde" : "JsonKilde",
+      "tittel" : "String",
+      "type" : "String",
+      "verdi" : "Boolean"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.JsonOkonomibeskrivelserAvAnnet" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "barneutgifter" : "String",
+      "boutgifter" : "String",
+      "kilde" : "JsonKildeBruker",
+      "sparing" : "String",
+      "utbetaling" : "String",
+      "verdi" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.JsonOrganisasjon" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "navn" : "String",
+      "organisasjonsnummer" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.JsonOkonomioversiktFormue" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "belop" : "Integer",
+      "kilde" : "JsonKilde",
+      "overstyrtAvBruker" : "Boolean",
+      "tittel" : "String",
+      "type" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.JsonOkonomioversiktInntekt" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "brutto" : "Integer",
+      "kilde" : "JsonKilde",
+      "netto" : "Integer",
+      "overstyrtAvBruker" : "Boolean",
+      "tittel" : "String",
+      "type" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.oversikt.JsonOkonomioversiktUtgift" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "belop" : "Integer",
+      "kilde" : "JsonKilde",
+      "overstyrtAvBruker" : "Boolean",
+      "tittel" : "String",
+      "type" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.personalia.JsonKontonummer" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "harIkkeKonto" : "Boolean",
+      "kilde" : "JsonKilde",
+      "verdi" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.personalia.JsonNordiskBorger" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "kilde" : "JsonKilde",
+      "verdi" : "Boolean"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.personalia.JsonPersonIdentifikator" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ "Kilde" ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "kilde" : "Kilde",
+      "verdi" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.personalia.JsonPersonalia" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "fodselsdato" : "String",
+      "folkeregistrertAdresse" : "JsonAdresse",
+      "kontonummer" : "JsonKontonummer",
+      "navn" : "JsonSokernavn",
+      "nordiskBorger" : "JsonNordiskBorger",
+      "oppholdsadresse" : "JsonAdresse",
+      "personIdentifikator" : "JsonPersonIdentifikator",
+      "postadresse" : "JsonAdresse",
+      "statsborgerskap" : "JsonStatsborgerskap",
+      "telefonnummer" : "JsonTelefonnummer"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.personalia.JsonSokernavn" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ "Kilde" ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "kilde" : "Kilde"
+    },
+    "superclass" : "no.nav.sbl.soknadsosialhjelp.soknad.common.JsonNavn"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.personalia.JsonStatsborgerskap" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "kilde" : "JsonKilde",
+      "verdi" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.personalia.JsonTelefonnummer" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "kilde" : "JsonKilde",
+      "verdi" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.situasjonendring.JsonSituasjonendring" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "harNoeEndretSeg" : "Boolean",
+      "hvaHarEndretSeg" : "String",
+      "kilde" : "JsonKildeBruker"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.soknad.utdanning.JsonUtdanning" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ "Studentgrad" ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "erStudent" : "Boolean",
+      "kilde" : "JsonKilde",
+      "studentgrad" : "Studentgrad"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.vedlegg.JsonFiler" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "filnavn" : "String",
+      "sha512" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.vedlegg.JsonVedlegg" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ "HendelseType" ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "filer" : "List",
+      "hendelseReferanse" : "String",
+      "hendelseType" : "HendelseType",
+      "klageId" : "String",
+      "status" : "String",
+      "tilleggsinfo" : "String",
+      "type" : "String"
+    },
+    "superclass" : "java.lang.Object"
+  },
+  "no.nav.sbl.soknadsosialhjelp.vedlegg.JsonVedleggSpesifikasjon" : {
+    "enumConstants" : null,
+    "interfaces" : [ "java.io.Serializable" ],
+    "nestedTypes" : [ ],
+    "properties" : {
+      "additionalProperties" : "Map",
+      "vedlegg" : "List"
+    },
+    "superclass" : "java.lang.Object"
+  }
+}

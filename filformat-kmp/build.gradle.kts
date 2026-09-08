@@ -1,3 +1,6 @@
+import filformat.codegen.KotlinxEmitter
+import filformat.codegen.SchemaParser
+
 plugins {
     kotlin("multiplatform") version "2.4.10"
     kotlin("plugin.serialization") version "2.4.10"
@@ -45,12 +48,6 @@ kotlin {
             implementation(kotlin("test"))
         }
         jvmTest.dependencies {
-            // The parity test compares this model against the jsonschema2pojo-generated
-            // Java model in the root project. This dependency is what makes model drift
-            // fail the build.
-            implementation(rootProject)
-            implementation(project.dependencies.platform("tools.jackson:jackson-bom:3.2.1"))
-            implementation("tools.jackson.core:jackson-databind")
             implementation("org.assertj:assertj-core:3.27.7")
             implementation("org.junit.jupiter:junit-jupiter:6.1.2")
             runtimeOnly("org.junit.platform:junit-platform-launcher:6.1.2")
@@ -63,9 +60,46 @@ tasks.named<Test>("jvmTest") {
     // Fixtures live in the ROOT project. Pass their location explicitly rather than
     // relying on the working directory, which differs between Gradle and IDE runs.
     systemProperty("filformat.fixtures", rootProject.file("src/test/resources/json").absolutePath)
-    // Model drift must fail CI, so the parity test needs to re-run whenever either
-    // the fixtures or the generated Java model change.
-    inputs.dir(rootProject.file("src/test/resources/json"))
+}
+
+val kotlinxGeneratedDir = layout.projectDirectory.dir("src/commonMain/kotlin")
+
+fun regenerateKotlinx(targetDir: java.io.File) {
+    val jsonDir = rootProject.file("json")
+    val parser = SchemaParser(jsonDir)
+    parser.parseAll()
+    KotlinxEmitter(parser.model, targetDir).emit()
+}
+
+val generateKotlinxModel by tasks.registering {
+    group = "codegen"
+    description = "Regenerates the kotlinx.serialization model from json/ into src/commonMain/kotlin. Committed to git."
+    val jsonDir = rootProject.file("json")
+    inputs.dir(jsonDir)
+    outputs.dir(kotlinxGeneratedDir)
+    doLast { regenerateKotlinx(kotlinxGeneratedDir.asFile) }
+}
+
+val verifyGeneratedSources by tasks.registering {
+    group = "verification"
+    description = "Fails if the committed generated sources are out of date with json/."
+    val jsonDir = rootProject.file("json")
+    inputs.dir(jsonDir)
+    doLast {
+        val freshDir = layout.buildDirectory.dir("verify-generated-kotlinx").get().asFile
+        freshDir.deleteRecursively()
+        regenerateKotlinx(freshDir)
+        val committedDir = kotlinxGeneratedDir.asFile
+        val contentDiff = freshDir.walkTopDown().filter { it.isFile }.any { fresh ->
+            val committed = committedDir.resolve(fresh.relativeTo(freshDir))
+            !committed.exists() || committed.readText() != fresh.readText()
+        }
+        if (contentDiff) {
+            throw GradleException(
+                "Generated kotlinx sources are out of date. Run ./gradlew :filformat-kmp:generateKotlinxModel",
+            )
+        }
+    }
 }
 
 // --- Maven (JVM + Gradle module metadata) --------------------------------------------
