@@ -60,13 +60,15 @@ jobs:
           GITHUB_USERNAME: x-access-token
           GITHUB_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
-          node-version: '22'
+          node-version: '24'
           registry-url: 'https://npm.pkg.github.com'
           scope: '@navikt'
 
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
+        with:
+          version: 12
 
       - name: 'Build npm package'
         run: ./gradlew :filformat-kmp:jsNodeProductionLibraryDistribution
