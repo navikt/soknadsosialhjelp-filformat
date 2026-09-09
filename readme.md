@@ -19,7 +19,7 @@ Repoet publiserer tre artefakter til **GitHub Packages**. Alle genereres fra de 
 | `no.nav.sbl.dialogarena:soknadsosialhjelp-filformat` | Validator og selve JSON Schema-filene som ressurser | Eksisterende JVM-konsumenter |
 | `no.nav.sbl.dialogarena:soknadsosialhjelp-filformat-jackson` | Jackson-annotert Kotlin-modell, samme pakkenavn og klassenavn som den tidligere jsonschema2pojo-genererte Java-modellen | Drop-in for eksisterende JVM-konsumenter av modellen |
 | `no.nav.sosialhjelp.filformat:soknadsosialhjelp-filformat-kmp{,-jvm,-js}` | Kotlin Multiplatform-modell (kotlinx.serialization), JVM + JS, hele skjemaet | `sosialhjelp-innsyn-api`, `sosialhjelp-modia-api` |
-| `@navikt/soknadsosialhjelp-filformat` (npm) | Kotlin/JS-varianten av samme modell | `sosialhjelp-adminpanel` (Next.js, server-side) |
+| `@navikt/sosialhjelp-filformat` (npm) | Kotlin/JS-varianten av samme modell | `sosialhjelp-adminpanel` (Next.js, server-side) |
 
 Begge modellene genereres fra samme mellomrepresentasjon (`SchemaParser`/`SchemaModel` i `buildSrc/`). Kildene skrives til `build/generated/` og genereres automatisk før kompilering. Ikke rediger dem for hånd.
 
@@ -83,9 +83,8 @@ Kjør `./gradlew [kommando]` (Unix/Mac) eller `gradlew.bat [kommando]` (Windows)
 - `./gradlew :filformat-jackson:generateJacksonModel` - Genererer Jackson-modellen fra JSON Schema
 - `./gradlew :filformat-kmp:generateKotlinxModel` - Genererer kotlinx-modellen fra JSON Schema
 
-> **Merk:** `./gradlew publish` forsøker også å publisere npm-pakken, og feiler uten
-> `NPM_AUTH_TOKEN`. Bruk `publishAllPublicationsToGitHubPackagesRepository` for Maven og
-> `publishJsPackageToGithubPackagesRegistry` for npm, slik `releaseGithub.yml` gjør.
+> **Merk:** `./gradlew publish` publiserer bare Maven-pakkene. npm-pakken bygges med
+> `:filformat-kmp:jsNodeProductionLibraryDistribution` og publiseres av `releaseGithub.yml`.
 
 ### Release (GitHub Packages)
 

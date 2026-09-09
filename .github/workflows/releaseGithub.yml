@@ -42,6 +42,7 @@ jobs:
           VERSION="1.$TIME-$COMMIT"
           echo "Setting version $VERSION"
           sed -i "s/version = \".*\"/version = \"$VERSION\"/" build.gradle.kts
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
 
       - name: Gradle wrapper validation
         uses: gradle/wrapper-validation-action@v3
@@ -49,23 +50,30 @@ jobs:
       - name: 'Build'
         run: ./gradlew build
 
-      # Publishes both modules to the GitHub Packages MAVEN registry:
+      # Publishes both modules to the GitHub Packages Maven registry:
       #   no.nav.sbl.dialogarena:soknadsosialhjelp-filformat       (Java, existing consumers)
       #   no.nav.sbl.dialogarena:soknadsosialhjelp-filformat-kmp   (+ -jvm, -js variants)
       #
-      # Deliberately NOT `./gradlew publish`: the npm publish plugin hooks itself into the
-      # `publish` lifecycle task, so `publish` would also attempt an npm publish and fail
-      # here where NPM_AUTH_TOKEN is not set. Naming the Maven task explicitly keeps the
-      # Java artifact's release path independent of the npm registry.
       - name: 'Publish Maven packages'
         run: ./gradlew publishAllPublicationsToGitHubPackagesRepository
         env:
           GITHUB_USERNAME: x-access-token
           GITHUB_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
 
-      # Separate step so that an npm registry failure cannot roll back or block the Maven
-      # artifacts published above.
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@navikt'
+
+      - name: 'Build npm package'
+        run: ./gradlew :filformat-kmp:jsNodeProductionLibraryDistribution
+
       - name: 'Publish npm package'
-        run: ./gradlew publishJsPackageToGithubPackagesRegistry
+        working-directory: filformat-kmp/build/dist/js/productionLibrary
+        run: |
+          npm pkg set name="@navikt/sosialhjelp-filformat"
+          npm pkg set version="$VERSION"
+          npm publish
         env:
-          NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

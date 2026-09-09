@@ -5,9 +5,6 @@ plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization")
     `maven-publish`
-    // Kotlin/JS has no built-in npm publish task. Verified working on Gradle 9.6.1 +
-    // Kotlin 2.4.10 despite the plugin predating both.
-    id("dev.petuska.npm.publish") version "3.5.3"
 }
 
 // GOTCHA: the release workflow (.github/workflows/releaseGithub.yml) sets the
@@ -148,35 +145,6 @@ publishing {
                 developerConnection.set("scm:git:https://github.com/navikt/soknadsosialhjelp-filformat.git")
                 url.set("https://github.com/navikt/soknadsosialhjelp-filformat")
             }
-        }
-    }
-}
-
-// --- npm -----------------------------------------------------------------------------
-//
-// Publishes the Kotlin/JS library to the GitHub Packages npm registry for
-// sosialhjelp-adminpanel (Next.js, server-side).
-//
-// Credentials come from the environment, same as the Maven publication above.
-// In GitHub Actions, NPM_AUTH_TOKEN should be secrets.GITHUB_TOKEN.
-//
-// GOTCHA: this plugin wires `publishJsPackageToGithubPackagesRegistry` into the standard
-// `publish` lifecycle task. So plain `./gradlew publish` attempts an npm publish and
-// fails if NPM_AUTH_TOKEN is unset. releaseGithub.yml therefore invokes the Maven and npm
-// publish tasks by name in separate steps instead of using `publish`, so that a failure
-// in the npm registry cannot block the Java artifact that existing consumers depend on.
-npmPublish {
-    packages {
-        named("js") {
-            packageName.set("soknadsosialhjelp-filformat")
-            // GitHub Packages requires the npm scope to match the owning organisation.
-            scope.set("navikt")
-        }
-    }
-    registries {
-        register("githubPackages") {
-            uri.set("https://npm.pkg.github.com")
-            authToken.set(providers.environmentVariable("NPM_AUTH_TOKEN"))
         }
     }
 }
