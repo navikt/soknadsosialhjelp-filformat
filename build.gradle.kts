@@ -53,13 +53,15 @@ tasks.test {
 }
 
 // Task to copy JSON resources to build directory
-val copyJsonResources by tasks.registering(Copy::class) {
+val copyJsonResources = tasks.register<Copy>("copyJsonResources") {
+    description = "Copies JSON resources to the build directory for further processing."
     from("json")
     into(layout.buildDirectory.dir("json"))
 }
 
 // Task to replace tokens in JSON files
-val replaceTokensInJson by tasks.registering {
+val replaceTokensInJson = tasks.register("replaceTokensInJson") {
+    description = "Replaces tokens in JSON files with proper values."
     dependsOn(copyJsonResources)
     doLast {
         val buildDir = layout.buildDirectory.get().asFile
@@ -67,7 +69,7 @@ val replaceTokensInJson by tasks.registering {
             include("**/*.json")
         }.forEach { file ->
             var content = file.readText()
-            content = content.replace("ONLY_CODEGEN\$ref", "\$ref")
+            content = content.replace($$"ONLY_CODEGEN$ref", $$"$ref")
             file.writeText(content)
         }
     }
@@ -82,7 +84,8 @@ sourceSets {
 }
 
 // Task to copy JSON schemas to resources with proper structure
-val copyJsonToResources by tasks.registering(Copy::class) {
+val copyJsonToResources = tasks.register<Copy>("copyJsonToResources") {
+    description = "Copies JSON schemas to resources with proper structure."
     dependsOn(replaceTokensInJson)
     from(layout.buildDirectory.dir("json"))
     into(layout.buildDirectory.dir("resources/main/json"))

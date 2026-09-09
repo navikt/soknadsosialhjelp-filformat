@@ -42,14 +42,14 @@ tasks.test {
 
 val generatedDir = layout.buildDirectory.dir("generated/sources/filformat/main/kotlin")
 
-fun regenerate(targetDir: java.io.File) {
+fun regenerate(targetDir: File) {
     val jsonDir = rootProject.file("json")
     val parser = SchemaParser(jsonDir)
     parser.parseAll()
     JacksonEmitter(parser.model, targetDir).emit()
 }
 
-val generateJacksonModel by tasks.registering {
+val generateJacksonModel = tasks.register("generateJacksonModel") {
     group = "codegen"
     description = "Generates the Jackson model from json/."
     val jsonDir = rootProject.file("json")

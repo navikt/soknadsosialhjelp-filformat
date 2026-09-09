@@ -67,14 +67,14 @@ tasks.named<Test>("jvmTest") {
     systemProperty("filformat.fixtures", rootProject.file("src/test/resources/json").absolutePath)
 }
 
-fun regenerateKotlinx(targetDir: java.io.File) {
+fun regenerateKotlinx(targetDir: File) {
     val jsonDir = rootProject.file("json")
     val parser = SchemaParser(jsonDir)
     parser.parseAll()
     KotlinxEmitter(parser.model, targetDir).emit()
 }
 
-val generateKotlinxModel by tasks.registering {
+val generateKotlinxModel = tasks.register("generateKotlinxModel")    {
     group = "codegen"
     description = "Generates the kotlinx.serialization model from json/."
     val jsonDir = rootProject.file("json")
