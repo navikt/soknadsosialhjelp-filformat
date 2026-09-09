@@ -7,10 +7,8 @@ plugins {
     `maven-publish`
 }
 
-// GOTCHA: the release workflow (.github/workflows/releaseGithub.yml) sets the
-// version by running `sed` on the ROOT build.gradle.kts only. Inheriting group/version
-// from the root project is what makes this subproject pick up the released version.
-// Do not hardcode a version here.
+// The release workflow overrides the root project's version through Gradle's project
+// properties. Do not hardcode a version here.
 group = "no.nav.sosialhjelp.filformat"
 version = rootProject.version
 
@@ -49,6 +47,13 @@ kotlin {
         nodejs()
         binaries.library()
         generateTypeScriptDefinitions()
+
+        compilations.named("main") {
+            packageJson {
+                name = "@navikt/sosialhjelp-filformat"
+                customField("bundledDependencies", null)
+            }
+        }
     }
 
     // The model is public API for two ecosystems, so accidental API changes should be a

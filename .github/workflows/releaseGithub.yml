@@ -37,12 +37,13 @@ jobs:
       # `version = rootProject.version`.
       - name: 'Setting version'
         run: |
-          TIME=$(TZ="Europe/Oslo" date +%Y.%m.%d-%H.%M)
-          COMMIT=$(git rev-parse --short=12 HEAD)
-          VERSION="1.$TIME-$COMMIT"
+          # SemVer has exactly three numeric components. The workflow run number makes
+          # releases on the same day distinct without needing post-processing for npm.
+          DATE=$(TZ="Europe/Oslo" date +%Y%m%d)
+          VERSION="1.$DATE.${{ github.run_number }}"
           echo "Setting version $VERSION"
-          sed -i "s/version = \".*\"/version = \"$VERSION\"/" build.gradle.kts
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "ORG_GRADLE_PROJECT_version=$VERSION" >> "$GITHUB_ENV"
 
       - name: Gradle wrapper validation
         uses: gradle/wrapper-validation-action@v3
@@ -75,10 +76,6 @@ jobs:
 
       - name: 'Publish npm package'
         working-directory: filformat-kmp/build/dist/js/productionLibrary
-        run: |
-          pnpm pkg delete bundledDependencies
-          pnpm pkg set name="@navikt/sosialhjelp-filformat"
-          pnpm pkg set version="$VERSION"
-          pnpm publish --no-git-checks
+        run: pnpm publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

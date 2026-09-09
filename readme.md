@@ -90,7 +90,7 @@ Kjør `./gradlew [kommando]` (Unix/Mac) eller `gradlew.bat [kommando]` (Windows)
 
 `.github/workflows/releaseGithub.yml` kjører automatisk etter en grønn `Build Code` på `main`, og kan startes manuelt.
 
-Versjonen settes ved at workflowen kjører `sed` på `version = "..."` i rot-`build.gradle.kts` (format: `1.<dato>-<tid>-<commit>`). `filformat-kmp` arver den via `version = rootProject.version`.
+Versjonen kommer fra `version` i `gradle.properties`. Release-workflowen overstyrer den med `ORG_GRADLE_PROJECT_version` (format: `1.<YYYYMMDD>.<workflow-run-nummer>`). `filformat-kmp` arver den via `version = rootProject.version`.
 
 Maven-artefaktene og npm-pakken publiseres i hvert sitt steg, slik at en feil mot npm-registeret ikke blokkerer Java-artefakten.
 
