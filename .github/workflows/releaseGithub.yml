@@ -76,6 +76,7 @@ jobs:
       - name: 'Publish npm package'
         working-directory: filformat-kmp/build/dist/js/productionLibrary
         run: |
+          pnpm pkg delete bundledDependencies
           pnpm pkg set name="@navikt/sosialhjelp-filformat"
           pnpm pkg set version="$VERSION"
           pnpm publish --no-git-checks
