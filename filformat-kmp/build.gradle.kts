@@ -20,6 +20,22 @@ repositories {
 
 val kotlinxGeneratedDir = layout.buildDirectory.dir("generated/sources/filformat/commonMain/kotlin")
 
+fun regenerateKotlinx(targetDir: File) {
+    val jsonDir = rootProject.file("json")
+    val parser = SchemaParser(jsonDir)
+    parser.parseAll()
+    KotlinxEmitter(parser.model, targetDir).emit()
+}
+
+val generateKotlinxModel = tasks.register("generateKotlinxModel") {
+    group = "codegen"
+    description = "Generates the kotlinx.serialization model from json/."
+    val jsonDir = rootProject.file("json")
+    inputs.dir(jsonDir)
+    outputs.dir(kotlinxGeneratedDir)
+    doLast { regenerateKotlinx(kotlinxGeneratedDir.get().asFile) }
+}
+
 kotlin {
     jvm {
         compilerOptions {
@@ -41,7 +57,7 @@ kotlin {
 
     sourceSets {
         commonMain {
-            kotlin.srcDir(kotlinxGeneratedDir)
+            kotlin.srcDir(generateKotlinxModel)
         }
         commonMain.dependencies {
             api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0")
@@ -62,26 +78,6 @@ tasks.named<Test>("jvmTest") {
     // Fixtures live in the ROOT project. Pass their location explicitly rather than
     // relying on the working directory, which differs between Gradle and IDE runs.
     systemProperty("filformat.fixtures", rootProject.file("src/test/resources/json").absolutePath)
-}
-
-fun regenerateKotlinx(targetDir: File) {
-    val jsonDir = rootProject.file("json")
-    val parser = SchemaParser(jsonDir)
-    parser.parseAll()
-    KotlinxEmitter(parser.model, targetDir).emit()
-}
-
-val generateKotlinxModel = tasks.register("generateKotlinxModel")    {
-    group = "codegen"
-    description = "Generates the kotlinx.serialization model from json/."
-    val jsonDir = rootProject.file("json")
-    inputs.dir(jsonDir)
-    outputs.dir(kotlinxGeneratedDir)
-    doLast { regenerateKotlinx(kotlinxGeneratedDir.get().asFile) }
-}
-
-tasks.matching { it.name.contains("Kotlin") && it.name.startsWith("compile") }.configureEach {
-    dependsOn(generateKotlinxModel)
 }
 
 // --- Maven (JVM + Gradle module metadata) --------------------------------------------

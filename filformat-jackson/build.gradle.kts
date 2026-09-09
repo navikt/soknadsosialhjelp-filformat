@@ -59,11 +59,7 @@ val generateJacksonModel = tasks.register("generateJacksonModel") {
 }
 
 sourceSets.main {
-    kotlin.srcDir(generatedDir)
-}
-
-tasks.compileKotlin {
-    dependsOn(generateJacksonModel)
+    kotlin.srcDir(generateJacksonModel)
 }
 
 publishing {
