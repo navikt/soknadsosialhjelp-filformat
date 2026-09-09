@@ -66,14 +66,16 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           scope: '@navikt'
 
+      - uses: pnpm/action-setup@v4
+
       - name: 'Build npm package'
         run: ./gradlew :filformat-kmp:jsNodeProductionLibraryDistribution
 
       - name: 'Publish npm package'
         working-directory: filformat-kmp/build/dist/js/productionLibrary
         run: |
-          npm pkg set name="@navikt/sosialhjelp-filformat"
-          npm pkg set version="$VERSION"
-          npm publish
+          pnpm pkg set name="@navikt/sosialhjelp-filformat"
+          pnpm pkg set version="$VERSION"
+          pnpm publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
