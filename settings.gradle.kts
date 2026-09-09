@@ -11,3 +11,4 @@
 rootProject.name = "soknadsosialhjelp-filformat"
 
 include(":filformat-kmp")
+include(":filformat-jackson")

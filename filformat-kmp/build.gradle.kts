@@ -1,21 +1,37 @@
+import filformat.codegen.KotlinxEmitter
+import filformat.codegen.SchemaParser
+
 plugins {
-    kotlin("multiplatform") version "2.4.10"
-    kotlin("plugin.serialization") version "2.4.10"
+    kotlin("multiplatform")
+    kotlin("plugin.serialization")
     `maven-publish`
-    // Kotlin/JS has no built-in npm publish task. Verified working on Gradle 9.6.1 +
-    // Kotlin 2.4.10 despite the plugin predating both.
-    id("dev.petuska.npm.publish") version "3.5.3"
 }
 
-// GOTCHA: the release workflow (.github/workflows/releaseGithub.yml) sets the
-// version by running `sed` on the ROOT build.gradle.kts only. Inheriting group/version
-// from the root project is what makes this subproject pick up the released version.
-// Do not hardcode a version here.
+// The release workflow overrides the root project's version through Gradle's project
+// properties. Do not hardcode a version here.
 group = "no.nav.sosialhjelp.filformat"
 version = rootProject.version
 
 repositories {
     mavenCentral()
+}
+
+val kotlinxGeneratedDir = layout.buildDirectory.dir("generated/sources/filformat/commonMain/kotlin")
+
+fun regenerateKotlinx(targetDir: File) {
+    val jsonDir = rootProject.file("json")
+    val parser = SchemaParser(jsonDir)
+    parser.parseAll()
+    KotlinxEmitter(parser.model, targetDir).emit()
+}
+
+val generateKotlinxModel = tasks.register("generateKotlinxModel") {
+    group = "codegen"
+    description = "Generates the kotlinx.serialization model from json/."
+    val jsonDir = rootProject.file("json")
+    inputs.dir(jsonDir)
+    outputs.dir(kotlinxGeneratedDir)
+    doLast { regenerateKotlinx(kotlinxGeneratedDir.get().asFile) }
 }
 
 kotlin {
@@ -31,6 +47,13 @@ kotlin {
         nodejs()
         binaries.library()
         generateTypeScriptDefinitions()
+
+        compilations.named("main") {
+            packageJson {
+                name = "@navikt/sosialhjelp-filformat"
+                customField("bundledDependencies", null)
+            }
+        }
     }
 
     // The model is public API for two ecosystems, so accidental API changes should be a
@@ -38,6 +61,9 @@ kotlin {
     explicitApi()
 
     sourceSets {
+        commonMain {
+            kotlin.srcDir(generateKotlinxModel)
+        }
         commonMain.dependencies {
             api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0")
         }
@@ -45,12 +71,6 @@ kotlin {
             implementation(kotlin("test"))
         }
         jvmTest.dependencies {
-            // The parity test compares this model against the jsonschema2pojo-generated
-            // Java model in the root project. This dependency is what makes model drift
-            // fail the build.
-            implementation(rootProject)
-            implementation(project.dependencies.platform("tools.jackson:jackson-bom:3.2.1"))
-            implementation("tools.jackson.core:jackson-databind")
             implementation("org.assertj:assertj-core:3.27.7")
             implementation("org.junit.jupiter:junit-jupiter:6.1.2")
             runtimeOnly("org.junit.platform:junit-platform-launcher:6.1.2")
@@ -63,9 +83,6 @@ tasks.named<Test>("jvmTest") {
     // Fixtures live in the ROOT project. Pass their location explicitly rather than
     // relying on the working directory, which differs between Gradle and IDE runs.
     systemProperty("filformat.fixtures", rootProject.file("src/test/resources/json").absolutePath)
-    // Model drift must fail CI, so the parity test needs to re-run whenever either
-    // the fixtures or the generated Java model change.
-    inputs.dir(rootProject.file("src/test/resources/json"))
 }
 
 // --- Maven (JVM + Gradle module metadata) --------------------------------------------
@@ -129,35 +146,6 @@ publishing {
                 developerConnection.set("scm:git:https://github.com/navikt/soknadsosialhjelp-filformat.git")
                 url.set("https://github.com/navikt/soknadsosialhjelp-filformat")
             }
-        }
-    }
-}
-
-// --- npm -----------------------------------------------------------------------------
-//
-// Publishes the Kotlin/JS library to the GitHub Packages npm registry for
-// sosialhjelp-adminpanel (Next.js, server-side).
-//
-// Credentials come from the environment, same as the Maven publication above.
-// In GitHub Actions, NPM_AUTH_TOKEN should be secrets.GITHUB_TOKEN.
-//
-// GOTCHA: this plugin wires `publishJsPackageToGithubPackagesRegistry` into the standard
-// `publish` lifecycle task. So plain `./gradlew publish` attempts an npm publish and
-// fails if NPM_AUTH_TOKEN is unset. releaseGithub.yml therefore invokes the Maven and npm
-// publish tasks by name in separate steps instead of using `publish`, so that a failure
-// in the npm registry cannot block the Java artifact that existing consumers depend on.
-npmPublish {
-    packages {
-        named("js") {
-            packageName.set("soknadsosialhjelp-filformat")
-            // GitHub Packages requires the npm scope to match the owning organisation.
-            scope.set("navikt")
-        }
-    }
-    registries {
-        register("githubPackages") {
-            uri.set("https://npm.pkg.github.com")
-            authToken.set(providers.environmentVariable("NPM_AUTH_TOKEN"))
         }
     }
 }

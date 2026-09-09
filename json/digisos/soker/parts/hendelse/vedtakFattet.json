@@ -34,6 +34,7 @@
 		},
 		"vedtaksfil": {
 			"type": "object",
+			"javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.Vedtaksfil",
 			"title": "Vedtaksfil",
 			"description": "Vedtaksfilen som søker skal ha mulighet til å se. Det er ingen garanti for at filen blir vist til søker. Filformatet skal være PDF.",
 			"properties": {

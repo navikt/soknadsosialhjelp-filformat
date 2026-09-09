@@ -1,27 +1,14 @@
-// The build plugins below (notably org.jsonschema2pojo 1.3.3) pull in older jackson
-// versions on the build classpath: com.fasterxml.jackson jackson-databind 2.21.0 and
-// tools.jackson jackson-databind 3.0.2, both of which have published security advisories.
-// These are build-time-only dependencies (they do not ship in the published artifact),
-// but we pin them to the patched BOM versions to keep the build classpath free of the
-// flagged CVEs. This does not affect the generated model in any way.
-buildscript {
-    dependencies {
-        classpath(enforcedPlatform("com.fasterxml.jackson:jackson-bom:2.22.1"))
-        classpath(enforcedPlatform("tools.jackson:jackson-bom:3.2.2"))
-        classpath(enforcedPlatform("org.codehaus.plexus:plexus-utils:4.0.3"))
-    }
-}
-
 plugins {
-    java
+    `java-library`
+    kotlin("jvm") version "2.4.10"
+    kotlin("multiplatform") version "2.4.10" apply false
+    kotlin("plugin.serialization") version "2.4.10" apply false
     idea
     `maven-publish`
-    id("org.jsonschema2pojo") version "1.3.3"
     id("com.gradleup.shadow") version "9.6.1"
 }
 
 group = "no.nav.sbl.dialogarena"
-version = "1.0.0-SNAPSHOT"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -30,11 +17,19 @@ java {
     withJavadocJar()
 }
 
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
+    }
+}
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    api(project(":filformat-jackson"))
+
     implementation("com.github.java-json-tools:json-schema-validator:2.2.14")
     implementation("com.github.java-json-tools:json-schema-core:1.2.14")
     implementation("com.github.java-json-tools:jackson-coreutils:2.0")
@@ -57,13 +52,15 @@ tasks.test {
 }
 
 // Task to copy JSON resources to build directory
-val copyJsonResources by tasks.registering(Copy::class) {
+val copyJsonResources = tasks.register<Copy>("copyJsonResources") {
+    description = "Copies JSON resources to the build directory for further processing."
     from("json")
     into(layout.buildDirectory.dir("json"))
 }
 
 // Task to replace tokens in JSON files
-val replaceTokensInJson by tasks.registering {
+val replaceTokensInJson = tasks.register("replaceTokensInJson") {
+    description = "Replaces tokens in JSON files with proper values."
     dependsOn(copyJsonResources)
     doLast {
         val buildDir = layout.buildDirectory.get().asFile
@@ -71,35 +68,14 @@ val replaceTokensInJson by tasks.registering {
             include("**/*.json")
         }.forEach { file ->
             var content = file.readText()
-            content = content.replace("ONLY_CODEGEN\$ref", "\$ref")
+            content = content.replace($$"ONLY_CODEGEN$ref", $$"$ref")
             file.writeText(content)
         }
     }
 }
 
-// Configure jsonschema2pojo
-configure<org.jsonschema2pojo.gradle.JsonSchemaExtension> {
-    setSource(files(layout.buildDirectory.dir("json")))
-    targetDirectory = layout.buildDirectory.dir("generated-sources/jsonschema2pojo").get().asFile
-    targetPackage = "no.nav.sbl.soknadsosialhjelp"
-    classNamePrefix = "Json"
-    generateBuilders = true
-    includeAdditionalProperties = true
-    isSerializable = true
-}
-
-// Make sure JSON is processed before code generation
-tasks.named("generateJsonSchema2Pojo") {
-    dependsOn(replaceTokensInJson)
-}
-
-// Add generated sources to the main source set
 sourceSets {
     main {
-        java {
-            srcDir("src/main/java")
-            srcDir(layout.buildDirectory.dir("generated-sources/jsonschema2pojo"))
-        }
         resources {
             srcDir("xsd")
         }
@@ -107,7 +83,8 @@ sourceSets {
 }
 
 // Task to copy JSON schemas to resources with proper structure
-val copyJsonToResources by tasks.registering(Copy::class) {
+val copyJsonToResources = tasks.register<Copy>("copyJsonToResources") {
+    description = "Copies JSON schemas to resources with proper structure."
     dependsOn(replaceTokensInJson)
     from(layout.buildDirectory.dir("json"))
     into(layout.buildDirectory.dir("resources/main/json"))
@@ -116,33 +93,6 @@ val copyJsonToResources by tasks.registering(Copy::class) {
 // Make processResources depend on copying JSON files
 tasks.named("processResources") {
     dependsOn(copyJsonToResources)
-}
-
-// Configure IDEA to recognize generated sources
-idea {
-    module {
-        val generatedSourcesDir = layout.buildDirectory.dir("generated-sources/jsonschema2pojo").get().asFile
-        sourceDirs.add(generatedSourcesDir)
-        generatedSourceDirs.add(generatedSourcesDir)
-    }
-}
-
-// Convenient task to generate sources and update IDE config
-val generateAndConfigureIDE by tasks.registering {
-    group = "IDE"
-    description = "Generates sources from JSON schemas and updates IntelliJ IDEA configuration"
-    dependsOn(tasks.named("generateJsonSchema2Pojo"), tasks.named("ideaModule"))
-    doLast {
-        println("")
-        println("═══════════════════════════════════════════════════════════════")
-        println("  Sources generated successfully!")
-        println("")
-        println("  Next step: Refresh Gradle project in IntelliJ IDEA")
-        println("  → Right-click project → Gradle → Refresh Gradle Project")
-        println("  → Or press: Ctrl+Shift+O (Windows) / Cmd+Shift+I (Mac)")
-        println("═══════════════════════════════════════════════════════════════")
-        println("")
-    }
 }
 
 // Configure shadow jar (shaded jar with dependencies)
@@ -197,17 +147,6 @@ publishing {
     }
 }
 
-// Build task dependencies
-tasks.compileJava {
-    dependsOn(tasks.named("generateJsonSchema2Pojo"))
-}
 tasks.processResources {
     dependsOn(copyJsonResources)
 }
-tasks.named("sourcesJar") {
-    dependsOn(tasks.named("generateJsonSchema2Pojo"))
-}
-tasks.named("javadocJar") {
-    dependsOn(tasks.named("generateJsonSchema2Pojo"))
-}
-

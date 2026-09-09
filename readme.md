@@ -8,19 +8,20 @@ Gjeldende filformat er definert i JSON Schema av [hoved-branchen](https://github
 
 Se **[definisjoner med endringshistorikk](https://navikt.github.io/soknadsosialhjelp-filformat/)** *(direktelenker: [Søknad](https://navikt.github.io/soknadsosialhjelp-filformat/#/soknad/getsoknad_json), [Vedlegg](readme-vedlegg-json.md), [Brukerinnsyn](https://navikt.github.io/soknadsosialhjelp-filformat/#/data%20fra%20fagsystem/getdigisos_soker_json))*.
 
-I tillegg rommer repoet Java-DTO-er, en Kotlin Multiplatform-modell, Java-kode for validering, og generatorer for testsøknader.
+I tillegg rommer repoet en generator som lager Kotlin-modeller fra JSON Schema-definisjonene, Java-kode for validering, og generatorer for testsøknader.
 
 ## Artefakter
 
-Repoet publiserer to artefakter til **GitHub Packages**. Begge bygges fra de samme JSON Schema-definisjonene i `json/`.
+Repoet publiserer tre artefakter til **GitHub Packages**. Alle genereres fra de samme JSON Schema-definisjonene i `json/`, av en felles kodegenerator i `buildSrc/` (`filformat.codegen`).
 
 | Artefakt | Innhold | Brukes av |
 |---|---|---|
-| `no.nav.sbl.dialogarena:soknadsosialhjelp-filformat` | Java-DTO-er (jsonschema2pojo), Jackson-mixins, validator, og selve JSON Schema-filene som ressurser | Eksisterende JVM-konsumenter |
-| `no.nav.sbl.dialogarena:soknadsosialhjelp-filformat-kmp` | Kotlin Multiplatform-modell for `digisos/soker`-hendelser (kotlinx.serialization), JVM + JS | `sosialhjelp-innsyn-api`, `sosialhjelp-modia-api` |
-| `@navikt/soknadsosialhjelp-filformat` (npm) | Kotlin/JS-varianten av samme modell | `sosialhjelp-adminpanel` (Next.js, server-side) |
+| `no.nav.sbl.dialogarena:soknadsosialhjelp-filformat` | Validator og selve JSON Schema-filene som ressurser | Eksisterende JVM-konsumenter |
+| `no.nav.sbl.dialogarena:soknadsosialhjelp-filformat-jackson` | Jackson-annotert Kotlin-modell, samme pakkenavn og klassenavn som den tidligere jsonschema2pojo-genererte Java-modellen | Drop-in for eksisterende JVM-konsumenter av modellen |
+| `no.nav.sosialhjelp.filformat:soknadsosialhjelp-filformat-kmp{,-jvm,-js}` | Kotlin Multiplatform-modell (kotlinx.serialization), JVM + JS, hele skjemaet | `sosialhjelp-innsyn-api`, `sosialhjelp-modia-api` |
+| `@navikt/sosialhjelp-filformat` (npm) | Kotlin/JS-varianten av samme modell | `sosialhjelp-adminpanel` (Next.js, server-side) |
 
-De to modellene er ikke generert fra hverandre. `ParityTest` deserialiserer alle fixtures i `src/test/resources/json/` med begge modellene og krever at resultatet er likt, slik at modellene ikke kan drifte fra hverandre uten at bygget blir rødt.
+Begge modellene genereres fra samme mellomrepresentasjon (`SchemaParser`/`SchemaModel` i `buildSrc/`). Kildene skrives til `build/generated/` og genereres automatisk før kompilering. Ikke rediger dem for hånd.
 
 ### Bruk av KMP-modellen på JVM
 
@@ -32,9 +33,7 @@ import no.nav.sosialhjelp.filformat.filformatJson
 val soker = filformatJson.decodeFromString<DigisosSoker>(json)
 ```
 
-KMP-modellen er med vilje mer tolerant enn Java-modellen: ukjente `type`-verdier blir `UkjentHendelse`, og ukjente enum-verdier blir `UKJENT`. Dette er implementert med `JsonContentPolymorphicSerializer` og `UkjentTolerantEnumSerializer`, som **kun** virker gjennom kotlinx.serialization.
-
-Leser man de samme klassene med Jackson (`jackson-module-kotlin`), forsvinner hele denne toleransen, og en ny kommunal hendelsestype vil kaste exception i stedet for å bli absorbert. Det er nettopp det modellen finnes for å unngå.
+Begge modellene er strenge: ukjente `type`-verdier og enum-verdier kaster ved deserialisering. `filformatJson` ignorerer fortsatt ukjente felter.
 
 ## Henvendelser
 
@@ -48,22 +47,25 @@ NAV-interne henvendelser kan sendes via Slack til [#team_digisos](https://nav-it
 
 `doc/`-katalogen er publisert på [GitHub Pages](https://github.com/navikt/soknadsosialhjelp-filformat/).
 
-`json/`-katalogen inneholder JSON Schema-definisjonene.
+`json/`-katalogen inneholder JSON Schema-definisjonene, som er kilden til sannhet for begge modellene.
 
-Java-klassene ligger under `no.nav.sbl.soknadsosialhjelp`. Kotlin-modellen ligger under `no.nav.sosialhjelp.filformat`.
+Kodegeneratoren ligger i `buildSrc/src/main/kotlin/filformat/codegen/`: `SchemaParser` bygger en mellomrepresentasjon (`SchemaModel`) fra `json/`, og `JacksonEmitter`/`KotlinxEmitter` emitterer hver sin Kotlin-modell fra den. Generering skjer automatisk før kompilering.
+
+Jackson-modellen ligger under `no.nav.sbl.soknadsosialhjelp` (samme pakkenavn og `Json`-prefiks som den gamle jsonschema2pojo-modellen). Kotlin-modellen ligger under `no.nav.sosialhjelp.filformat` (samme pakkenavn som den tidligere håndskrevne KMP-modellen; union-varianter som `SoknadsStatus` ligger flatt sammen med sin `sealed interface`, ikke i en dypere pakke, for å matche det som allerede var publisert).
 
 ### Fallgruver
 
 Ting som ikke er åpenbare fra koden, og som har brutt ting før:
 
 - **`rootProject.name` i `settings.gradle.kts` er kritisk.** Publisert `artifactId` utledes fra prosjektnavnet. Tidligere kom navnet fra katalognavnet ved et sammentreff. Fjernes eller endres linjen, bytter artefakten navn i stillhet og alle konsumenter brekker. Det samme gjelder `artifactId`-omskrivingen i `filformat-kmp/build.gradle.kts`.
-- **`ONLY_CODEGEN$ref` i `json/`-filene.** `replaceTokensInJson` i `build.gradle.kts` bytter ut dette tokenet med `$ref` før kodegenerering. Det gir Java-arv (`extends`) uten at runtime-validatoren ser en `$ref` som ville brutt valideringen. Schemaene som ligger i jar-en beholder tokenet.
-- **`javaType` i schemaene styrer pakkeplassering** av de genererte Java-klassene.
-- **Polymorfi er ikke generert.** jsonschema2pojo lager bare «dumme» klasser; `type`-diskriminatoren håndteres av håndskrevne mixins i `src/main/java/no/nav/sbl/soknadsosialhjelp/json/`. En ny hendelsestype krever redigering av `HendelseMixIn.java`.
-- **`belop` er `Double`, ikke `BigDecimal`.** Schemaet sier bare `"type": "number"`. Konsumenter konverterer selv. KMP-modellen bruker `Double` for å matche Java-modellen eksakt — paritetstesten håndhever dette.
+- **`ONLY_CODEGEN$ref` i `json/`-filene.** Kodegeneratoren bruker dette som signal på at et objekt arver fra et annet (`extends`) uten at runtime-validatoren ser en `$ref` som ville brutt valideringen.
+- **`javaType` i schemaene styrer pakkeplassering og klassenavn** i begge genererte modeller. Alle objekt-/enum-noder som skal bli egne klasser må ha en eksplisitt `javaType` — kodegeneratoren feiler høyt (`error(...)`) hvis den finner en som mangler det, i stedet for å gjette et navn slik jsonschema2pojo gjorde.
+- **Polymorfi er generert, ikke håndskrevet.** `oneOf` + en `allOf`-gren som låser `type` til én verdi tolkes som en diskriminert union. `SchemaParser` finner disse automatisk; en ny hendelsestype krever ingen endring i generatoren, kun en ny schema-fil. Ukjente diskriminatorverdier kaster ved deserialisering.
+- **`belop` er `Double`, ikke `BigDecimal`.** Schemaet sier bare `"type": "number"`, som begge generatorene mapper til `Double`. Konsumenter konverterer selv.
 - **To ulike `Vedlegg`-begreper finnes:** `digisos/soker/parts/vedlegg.json` (inne i hendelser) og `vedlegg/vedleggSpesifikasjon.json`. De holdes fra hverandre med pakkenavn, ikke klassenavn.
-- **Alle datoer og tidspunkter er `String`.** `types/dato.json` og `types/tidspunkt.json` er strenger med ISO-mønstre, så KMP-modellen trenger ikke `kotlinx-datetime`.
+- **Alle datoer og tidspunkter er `String`.** `types/dato.json` og `types/tidspunkt.json` er strenger med ISO-mønstre, så ingen av modellene trenger `kotlinx-datetime`/`java.time`.
 - **`kotlin-js-store/` må sjekkes inn.** Uten yarn-lockfilen blir JS-byggene ikke reproduserbare.
+- **Genererte kilder ligger under `build/generated/`.** De er gitignorerte og gjenskapes før kompilering. Ikke rediger dem for hånd.
 
 ### Bygging
 
@@ -74,21 +76,21 @@ Prosjektet inkluderer [Gradle wrapper](https://docs.gradle.org/current/userguide
 Kjør `./gradlew [kommando]` (Unix/Mac) eller `gradlew.bat [kommando]` (Windows).
 
 #### Nyttige kommandoer:
-- `./gradlew build` - Bygger prosjektet, inkludert KMP-modulen og paritetstestene
+- `./gradlew build` - Bygger alle modulene, inkludert KMP-modulen
 - `./gradlew test` - Kjører testene i rotprosjektet
 - `./gradlew :filformat-kmp:allTests` - Kjører KMP-testene (JVM + JS)
 - `./gradlew clean` - Renser byggekataloger
-- `./gradlew generateJsonSchema2Pojo` - Genererer Java-klasser fra JSON Schema
+- `./gradlew :filformat-jackson:generateJacksonModel` - Genererer Jackson-modellen fra JSON Schema
+- `./gradlew :filformat-kmp:generateKotlinxModel` - Genererer kotlinx-modellen fra JSON Schema
 
-> **Merk:** `./gradlew publish` forsøker også å publisere npm-pakken, og feiler uten
-> `NPM_AUTH_TOKEN`. Bruk `publishAllPublicationsToGitHubPackagesRepository` for Maven og
-> `publishJsPackageToGithubPackagesRegistry` for npm, slik `releaseGithub.yml` gjør.
+> **Merk:** `./gradlew publish` publiserer bare Maven-pakkene. npm-pakken bygges med
+> `:filformat-kmp:jsNodeProductionLibraryDistribution` og publiseres av `releaseGithub.yml`.
 
 ### Release (GitHub Packages)
 
 `.github/workflows/releaseGithub.yml` kjører automatisk etter en grønn `Build Code` på `main`, og kan startes manuelt.
 
-Versjonen settes ved at workflowen kjører `sed` på `version = "..."` i rot-`build.gradle.kts` (format: `1.<dato>-<tid>-<commit>`). `filformat-kmp` arver den via `version = rootProject.version`.
+Versjonen kommer fra `version` i `gradle.properties`. Release-workflowen overstyrer den med `ORG_GRADLE_PROJECT_version` (format: `1.<YYYYMMDD>.<workflow-run-nummer>`). `filformat-kmp` arver den via `version = rootProject.version`.
 
 Maven-artefaktene og npm-pakken publiseres i hvert sitt steg, slik at en feil mot npm-registeret ikke blokkerer Java-artefakten.
 
@@ -101,10 +103,11 @@ Maven-artefaktene og npm-pakken publiseres i hvert sitt steg, slik at en feil mo
 
 * Java 21
 * Kotlin Multiplatform 2.4 med kotlinx.serialization
+* Jackson 3 (`tools.jackson`)
 * Gradle
 * Swagger UI
 * [JSON Schema](https://json-schema.org/)
-* [jsonschema2pojo](https://github.com/joelittlejohn/jsonschema2pojo) for Java-klasser fra JSON Schema
+* [KotlinPoet](https://square.github.io/kotlinpoet/) for kodegenerering fra JSON Schema (`buildSrc/`)
 
 ## Planlagte fremtidige versjoner/endringer:
 

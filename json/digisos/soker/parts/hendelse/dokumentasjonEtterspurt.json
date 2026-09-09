@@ -36,6 +36,7 @@
       "title": "Liste over dokumentene etterspurt",
       "items": {
         "title": "Dokument",
+        "javaType": "no.nav.sbl.soknadsosialhjelp.digisos.soker.hendelse.Dokumenter",
         "type": "object",
         "properties": {
           "dokumenttype": {

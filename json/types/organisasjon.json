@@ -2,6 +2,7 @@
   "$schema": "http://json-schema.org/draft-06/schema#",
   "type": "object",
   "title": "Organisasjon",
+  "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.okonomi.opplysning.Organisasjon",
   "properties": {
     "navn": {
       "description": "Navn på organisasjonen.",

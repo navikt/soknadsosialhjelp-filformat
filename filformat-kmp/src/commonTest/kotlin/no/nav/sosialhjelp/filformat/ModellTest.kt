@@ -6,7 +6,6 @@ import no.nav.sosialhjelp.filformat.digisos.soker.DokumentasjonEtterspurt
 import no.nav.sosialhjelp.filformat.digisos.soker.DokumentlagerFilreferanse
 import no.nav.sosialhjelp.filformat.digisos.soker.SoknadsStatus
 import no.nav.sosialhjelp.filformat.digisos.soker.SvarUtFilreferanse
-import no.nav.sosialhjelp.filformat.digisos.soker.UkjentHendelse
 import no.nav.sosialhjelp.filformat.digisos.soker.Utbetaling
 import no.nav.sosialhjelp.filformat.digisos.soker.VedtakFattet
 import kotlin.test.Test
@@ -97,41 +96,31 @@ class ModellTest {
     }
 
     @Test
-    fun `ukjent hendelsestype blir UkjentHendelse og bevarer payloaden`() {
+    fun `ukjent hendelsestype kaster`() {
         val json = """
             {"type":"heltNyKommunalHendelse","hendelsestidspunkt":"2018-10-04T13:37:00.134Z","noeNytt":42}
         """.trimIndent()
 
-        val hendelse = filformatJson.decodeFromString(
-            no.nav.sosialhjelp.filformat.digisos.soker.Hendelse.serializer(),
-            json,
-        )
-
-        val ukjent = assertIs<UkjentHendelse>(hendelse)
-        assertEquals("heltNyKommunalHendelse", ukjent.type)
-        assertEquals(
-            Json.parseToJsonElement(json),
-            Json.parseToJsonElement(
-                filformatJson.encodeToString(
-                    no.nav.sosialhjelp.filformat.digisos.soker.Hendelse.serializer(),
-                    hendelse,
-                ),
-            ),
-        )
+        assertFailsWith<Exception> {
+            filformatJson.decodeFromString(
+                no.nav.sosialhjelp.filformat.digisos.soker.Hendelse.serializer(),
+                json,
+            )
+        }
     }
 
     @Test
-    fun `ukjent enumverdi blir UKJENT`() {
+    fun `ukjent enumverdi kaster`() {
         val json = """
             {"type":"soknadsStatus","hendelsestidspunkt":"2018-10-04T13:37:00.134Z","status":"HELT_NY_STATUS"}
         """.trimIndent()
 
-        val hendelse = filformatJson.decodeFromString(
-            no.nav.sosialhjelp.filformat.digisos.soker.Hendelse.serializer(),
-            json,
-        )
-
-        assertEquals(SoknadsStatus.Status.UKJENT, assertIs<SoknadsStatus>(hendelse).status)
+        assertFailsWith<Exception> {
+            filformatJson.decodeFromString(
+                no.nav.sosialhjelp.filformat.digisos.soker.Hendelse.serializer(),
+                json,
+            )
+        }
     }
 
     @Test

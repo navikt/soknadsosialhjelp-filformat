@@ -24,6 +24,7 @@
 		"ektefelle": {
 			"title": "Søkers ektefelle",
 			"type": "object",
+			"javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.Ektefelle",
 			"properties": {
 				"navn": {
 					"$ref": "../parts/navn.json"

@@ -12,6 +12,7 @@
         },
         "data": {
           "title": "Inneholder søknadsdataene uten meta- og kompatibilitetsdata.",
+          "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.Data",
           "type": "object",
           "properties": {
             "soknadstype": {
@@ -133,6 +134,7 @@
                     },
                     "barnebidrag": {
                       "type": "object",
+                      "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.familie.Barnebidrag",
                       "properties": {
                         "kilde": {
                           "$ref": "parts/kildeBruker.json"
@@ -585,6 +587,7 @@
     },
     "kompatibilitet": {
       "title": "Inneholder en Markdown-formatert kompatibilitetstekst.",
+      "javaType": "no.nav.sbl.soknadsosialhjelp.soknad.Kompatibilitet",
       "description": "Kompatibilitetsteksten skal vises saksbehandler gitt at versjonen man forventer ved parsing av JSON er innenfor intervallet bestemt av \"minVersion\" og \"maxVersion\".",
       "type": "object",
       "properties": {

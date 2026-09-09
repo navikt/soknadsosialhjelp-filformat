@@ -31,6 +31,7 @@
         },
         "autentisering": {
           "type": "object",
+          "javaType": "no.nav.sbl.soknadsosialhjelp.klage.Autentisering",
           "description": "Autentiseringsinformasjon",
           "properties": {
             "autentisertDigitalt": {
@@ -48,6 +49,7 @@
         },
         "begrunnelse": {
           "type": "object",
+          "javaType": "no.nav.sbl.soknadsosialhjelp.klage.Begrunnelse",
           "description": "Begrunnelse for klagen",
           "properties": {
             "kilde": {
