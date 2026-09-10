@@ -72,8 +72,8 @@ kotlin {
         }
         jvmTest.dependencies {
             implementation("org.assertj:assertj-core:3.27.7")
-            implementation("org.junit.jupiter:junit-jupiter:6.1.2")
-            runtimeOnly("org.junit.platform:junit-platform-launcher:6.1.2")
+            implementation("org.junit.jupiter:junit-jupiter:6.1.3")
+            runtimeOnly("org.junit.platform:junit-platform-launcher:6.1.3")
         }
     }
 }
