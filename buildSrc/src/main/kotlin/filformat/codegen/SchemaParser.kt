@@ -168,7 +168,8 @@ class SchemaParser(private val root: File) {
                     type = type,
                     required = propName in required,
                     docs = docs(propSchema),
-                    default = propSchema.get("default")?.asText(),
+                    default = propSchema.get("default")?.takeUnless { it.isNull }?.asText(),
+                    explicitNullDefault = propSchema.get("default")?.isNull == true,
                 ),
             )
         }
