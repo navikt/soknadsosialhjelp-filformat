@@ -22,6 +22,7 @@ data class Property(
     val required: Boolean,
     val docs: String?,
     val default: String?,
+    val explicitNullDefault: Boolean,
 )
 
 data class ObjectType(

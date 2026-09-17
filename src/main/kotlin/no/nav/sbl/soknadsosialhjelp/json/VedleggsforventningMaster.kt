@@ -22,7 +22,7 @@ object VedleggsforventningMaster {
     @JvmStatic
     fun finnPaakrevdeVedlegg(internalSoknad: JsonInternalSoknad?): List<JsonVedlegg>? {
         val soknad = internalSoknad?.soknad ?: return null
-        val data = soknad.data ?: return null
+        val data = soknad.data
         if (data.soknadstype == JsonData.Soknadstype.KORT) return null
         return mutableListOf<JsonVedlegg>().apply {
             addAll(finnPaakrevdeVedleggForPersonalia(data.personalia))
@@ -30,17 +30,17 @@ object VedleggsforventningMaster {
             addAll(finnPaakrevdeVedleggForFamilie(data.familie))
             addAll(finnPaakrevdeVedleggForBosituasjon(data.bosituasjon))
             addAll(finnPaakrevdeVedleggForOkonomi(soknad))
-            add(JsonVedlegg().withType("skattemelding").withTilleggsinfo("skattemelding"))
-            add(JsonVedlegg().withType("annet").withTilleggsinfo("annet"))
+            add(JsonVedlegg(type = "skattemelding", tilleggsinfo = "skattemelding"))
+            add(JsonVedlegg(type = "annet", tilleggsinfo = "annet"))
         }
     }
 
     @JvmStatic
     fun finnPaakrevdeVedleggForPersonalia(personalia: JsonPersonalia?): List<JsonVedlegg> {
         if (personalia == null) return emptyList()
-        val nordiskBorger = personalia?.nordiskBorger
+        val nordiskBorger = personalia.nordiskBorger
         return if (nordiskBorger == null || nordiskBorger.verdi == false) {
-            listOf(JsonVedlegg().withType("oppholdstillatel").withTilleggsinfo("oppholdstillatel"))
+            listOf(JsonVedlegg(type = "oppholdstillatel", tilleggsinfo = "oppholdstillatel"))
         } else {
             emptyList()
         }
@@ -48,17 +48,19 @@ object VedleggsforventningMaster {
 
     @JvmStatic
     fun finnPaakrevdeVedleggForArbeid(jsonInternalSoknad: JsonInternalSoknad): List<JsonVedlegg> {
-        val soknad = jsonInternalSoknad.soknad!!
-        val data = soknad.data!!
+        val soknad = jsonInternalSoknad.soknad ?: return emptyList()
+        val data = soknad.data
         val arbeid: JsonArbeid? = data.arbeid
-        val requiresDocumentation = soknad.driftsinformasjon!!.inntektFraSkatteetatenFeilet == true ||
-            !sjekkOmViHarSamtykke(data.okonomi!!, SoknadJsonTyper.UTBETALING_SKATTEETATEN_SAMTYKKE)
-        return if (requiresDocumentation && !arbeid?.forhold.isNullOrEmpty()) {
-            arbeid!!.forhold!!.map { arbeidsforhold ->
-                if (arbeidsforhold.tom == null || !isWithinOneMonthAheadInTime(arbeidsforhold.tom!!)) {
-                    JsonVedlegg().withType("lonnslipp").withTilleggsinfo("arbeid")
+        val requiresDocumentation = soknad.driftsinformasjon.inntektFraSkatteetatenFeilet ||
+            !sjekkOmViHarSamtykke(data.okonomi, SoknadJsonTyper.UTBETALING_SKATTEETATEN_SAMTYKKE)
+        val arbeidsforhold = arbeid?.forhold ?: return emptyList()
+        return if (requiresDocumentation && arbeidsforhold.isNotEmpty()) {
+            arbeidsforhold.map { arbeidsforhold ->
+                val tom = arbeidsforhold.tom
+                if (tom == null || !isWithinOneMonthAheadInTime(tom)) {
+                    JsonVedlegg(type = "lonnslipp", tilleggsinfo = "arbeid")
                 } else {
-                    JsonVedlegg().withType("sluttoppgjor").withTilleggsinfo("arbeid")
+                    JsonVedlegg(type = "sluttoppgjor", tilleggsinfo = "arbeid")
                 }
             }.distinct()
         } else {
@@ -67,66 +69,66 @@ object VedleggsforventningMaster {
     }
 
     private fun sjekkOmViHarSamtykke(okonomi: JsonOkonomi, key: String): Boolean =
-        okonomi.opplysninger!!.bekreftelse!!.any { it.type == key && it.verdi == true }
+        okonomi.opplysninger.bekreftelse.any { it.type == key && it.verdi == true }
 
     @JvmStatic
     fun finnPaakrevdeVedleggForFamilie(familie: JsonFamilie?): List<JsonVedlegg> {
         val forsorgerplikt = familie?.forsorgerplikt ?: return emptyList()
         return mutableListOf<JsonVedlegg>().apply {
             when (forsorgerplikt.barnebidrag?.verdi) {
-                JsonBarnebidrag.Verdi.BETALER -> add(JsonVedlegg().withType("barnebidrag").withTilleggsinfo("betaler"))
-                JsonBarnebidrag.Verdi.MOTTAR -> add(JsonVedlegg().withType("barnebidrag").withTilleggsinfo("mottar"))
+                JsonBarnebidrag.Verdi.BETALER -> add(JsonVedlegg(type = "barnebidrag", tilleggsinfo = "betaler"))
+                JsonBarnebidrag.Verdi.MOTTAR -> add(JsonVedlegg(type = "barnebidrag", tilleggsinfo = "mottar"))
                 JsonBarnebidrag.Verdi.BEGGE -> {
-                    add(JsonVedlegg().withType("barnebidrag").withTilleggsinfo("betaler"))
-                    add(JsonVedlegg().withType("barnebidrag").withTilleggsinfo("mottar"))
+                    add(JsonVedlegg(type = "barnebidrag", tilleggsinfo = "betaler"))
+                    add(JsonVedlegg(type = "barnebidrag", tilleggsinfo = "mottar"))
                 }
                 else -> Unit
             }
-            if (forsorgerplikt.ansvar!!.any {
+            if (forsorgerplikt.ansvar.any {
                     it.erFolkeregistrertSammen?.verdi == false &&
                         it.samvarsgrad?.verdi?.let { verdi -> verdi in 1..50 } == true
                 }
             ) {
-                add(JsonVedlegg().withType("samvarsavtale").withTilleggsinfo("barn"))
+                add(JsonVedlegg(type = "samvarsavtale", tilleggsinfo = "barn"))
             }
         }
     }
 
     @JvmStatic
     fun finnPaakrevdeVedleggForBosituasjon(bosituasjon: JsonBosituasjon?): List<JsonVedlegg> = when (bosituasjon?.botype) {
-        JsonBosituasjon.Botype.LEIER -> listOf(JsonVedlegg().withType("husleiekontrakt").withTilleggsinfo("husleiekontrakt"))
-        JsonBosituasjon.Botype.KOMMUNAL -> listOf(JsonVedlegg().withType("husleiekontrakt").withTilleggsinfo("kommunal"))
+        JsonBosituasjon.Botype.LEIER -> listOf(JsonVedlegg(type = "husleiekontrakt", tilleggsinfo = "husleiekontrakt"))
+        JsonBosituasjon.Botype.KOMMUNAL -> listOf(JsonVedlegg(type = "husleiekontrakt", tilleggsinfo = "kommunal"))
         else -> emptyList()
     }
 
     @JvmStatic
     fun finnPaakrevdeVedleggForOkonomi(soknad: JsonSoknad): List<JsonVedlegg> {
-        val okonomi = soknad.data!!.okonomi ?: return emptyList()
+        val okonomi = soknad.data.okonomi
         return mutableListOf<JsonVedlegg>().apply {
-            okonomi.opplysninger?.let { opplysninger ->
+            okonomi.opplysninger.let { opplysninger ->
                 if (!opplysninger.utbetaling.isNullOrEmpty()) addAll(finnPaakrevdeVedleggForOkonomiOpplysningerUtbetaling(soknad))
-                if (!opplysninger.utgift.isNullOrEmpty()) addAll(finnPaakrevdeVedleggForOkonomiOpplysningerUtgift(opplysninger.utgift!!))
+                opplysninger.utgift?.takeIf { it.isNotEmpty() }?.let { addAll(finnPaakrevdeVedleggForOkonomiOpplysningerUtgift(it)) }
             }
             okonomi.oversikt?.let { oversikt ->
                 if (!oversikt.inntekt.isNullOrEmpty()) addAll(finnPaakrevdeVedleggForOkonomiOversiktInntekt(soknad))
-                if (!oversikt.utgift.isNullOrEmpty()) addAll(finnPaakrevdeVedleggForOkonomiOversiktUtgift(oversikt.utgift!!))
-                if (!oversikt.formue.isNullOrEmpty()) addAll(finnPaakrevdeVedleggForOkonomiOversiktFormue(oversikt.formue!!))
+                if (oversikt.utgift.isNotEmpty()) addAll(finnPaakrevdeVedleggForOkonomiOversiktUtgift(oversikt.utgift))
+                if (oversikt.formue.isNotEmpty()) addAll(finnPaakrevdeVedleggForOkonomiOversiktFormue(oversikt.formue))
             }
         }
     }
 
     @JvmStatic
     fun finnPaakrevdeVedleggForOkonomiOpplysningerUtbetaling(soknad: JsonSoknad): List<JsonVedlegg> =
-        soknad.data!!.okonomi!!.opplysninger!!.utbetaling!!.mapNotNull { utbetaling: JsonOkonomiOpplysningUtbetaling? ->
+        soknad.data.okonomi.opplysninger.utbetaling.mapNotNull { utbetaling: JsonOkonomiOpplysningUtbetaling? ->
             when (utbetaling?.type) {
-                SoknadJsonTyper.UTBETALING_UTBYTTE -> JsonVedlegg().withType("dokumentasjon").withTilleggsinfo("utbytte")
-                SoknadJsonTyper.UTBETALING_SALG -> JsonVedlegg().withType("salgsoppgjor").withTilleggsinfo("eiendom")
-                SoknadJsonTyper.UTBETALING_FORSIKRING -> JsonVedlegg().withType("dokumentasjon").withTilleggsinfo("forsikringsutbetaling")
-                SoknadJsonTyper.UTBETALING_ANNET -> JsonVedlegg().withType("dokumentasjon").withTilleggsinfo("annetinntekter")
+                SoknadJsonTyper.UTBETALING_UTBYTTE -> JsonVedlegg(type = "dokumentasjon", tilleggsinfo = "utbytte")
+                SoknadJsonTyper.UTBETALING_SALG -> JsonVedlegg(type = "salgsoppgjor", tilleggsinfo = "eiendom")
+                SoknadJsonTyper.UTBETALING_FORSIKRING -> JsonVedlegg(type = "dokumentasjon", tilleggsinfo = "forsikringsutbetaling")
+                SoknadJsonTyper.UTBETALING_ANNET -> JsonVedlegg(type = "dokumentasjon", tilleggsinfo = "annetinntekter")
                 SoknadJsonTyper.UTBETALING_HUSBANKEN -> {
-                    if (!sjekkOmViHarSamtykke(soknad.data!!.okonomi!!, SoknadJsonTyper.BOSTOTTE_SAMTYKKE) ||
-                        soknad.driftsinformasjon!!.stotteFraHusbankenFeilet == true
-                    ) JsonVedlegg().withType(SoknadJsonTyper.UTBETALING_HUSBANKEN).withTilleggsinfo("vedtak") else null
+                    if (!sjekkOmViHarSamtykke(soknad.data.okonomi, SoknadJsonTyper.BOSTOTTE_SAMTYKKE) ||
+                        soknad.driftsinformasjon.stotteFraHusbankenFeilet == true
+                    ) JsonVedlegg(type = SoknadJsonTyper.UTBETALING_HUSBANKEN, tilleggsinfo = "vedtak") else null
                 }
                 else -> null
             }
@@ -135,7 +137,7 @@ object VedleggsforventningMaster {
     @JvmStatic
     fun finnPaakrevdeVedleggForOkonomiOpplysningerUtgift(utgifter: List<JsonOkonomiOpplysningUtgift>): List<JsonVedlegg> =
         utgifter.mapNotNull { utgift ->
-            val tilleggsinfo = when (utgift?.type) {
+            val tilleggsinfo = when (utgift.type) {
                 SoknadJsonTyper.UTGIFTER_STROM -> "strom"
                 SoknadJsonTyper.UTGIFTER_KOMMUNAL_AVGIFT -> "kommunaleavgifter"
                 SoknadJsonTyper.UTGIFTER_OPPVARMING -> "oppvarming"
@@ -145,24 +147,24 @@ object VedleggsforventningMaster {
                 SoknadJsonTyper.UTGIFTER_ANNET_BARN -> "annetbarnutgift"
                 else -> null
             }
-            if (utgift?.type == SoknadJsonTyper.UTGIFTER_ANDRE_UTGIFTER) JsonVedlegg().withType("annet").withTilleggsinfo("annet")
-            else tilleggsinfo?.let { JsonVedlegg().withType(if (it == "annetboutgift") "dokumentasjon" else "faktura").withTilleggsinfo(it) }
+            if (utgift.type == SoknadJsonTyper.UTGIFTER_ANDRE_UTGIFTER) JsonVedlegg(type = "annet", tilleggsinfo = "annet")
+            else tilleggsinfo?.let { JsonVedlegg(type = if (it == "annetboutgift") "dokumentasjon" else "faktura", tilleggsinfo = it) }
         }.distinct()
 
     @JvmStatic
     fun finnPaakrevdeVedleggForOkonomiOversiktInntekt(soknad: JsonSoknad): List<JsonVedlegg> =
-        soknad.data!!.okonomi!!.oversikt!!.inntekt!!.mapNotNull {
-            if (it?.type == SoknadJsonTyper.STUDIELAN) JsonVedlegg().withType("student").withTilleggsinfo("vedtak") else null
+        soknad.data.okonomi.oversikt!!.inntekt.mapNotNull {
+            if (it.type == SoknadJsonTyper.STUDIELAN) JsonVedlegg(type = "student", tilleggsinfo = "vedtak") else null
         }.distinct()
 
     @JvmStatic
     fun finnPaakrevdeVedleggForOkonomiOversiktUtgift(utgifter: List<JsonOkonomioversiktUtgift>): List<JsonVedlegg> =
         utgifter.mapNotNull { utgift ->
-            when (utgift?.type) {
-                SoknadJsonTyper.UTGIFTER_HUSLEIE -> JsonVedlegg().withType("faktura").withTilleggsinfo("husleie")
-                SoknadJsonTyper.UTGIFTER_BOLIGLAN_AVDRAG -> JsonVedlegg().withType("nedbetalingsplan").withTilleggsinfo("avdraglaan")
-                SoknadJsonTyper.UTGIFTER_BARNEHAGE -> JsonVedlegg().withType("faktura").withTilleggsinfo("barnehage")
-                SoknadJsonTyper.UTGIFTER_SFO -> JsonVedlegg().withType("faktura").withTilleggsinfo("sfo")
+            when (utgift.type) {
+                SoknadJsonTyper.UTGIFTER_HUSLEIE -> JsonVedlegg(type = "faktura", tilleggsinfo = "husleie")
+                SoknadJsonTyper.UTGIFTER_BOLIGLAN_AVDRAG -> JsonVedlegg(type = "nedbetalingsplan", tilleggsinfo = "avdraglaan")
+                SoknadJsonTyper.UTGIFTER_BARNEHAGE -> JsonVedlegg(type = "faktura", tilleggsinfo = "barnehage")
+                SoknadJsonTyper.UTGIFTER_SFO -> JsonVedlegg(type = "faktura", tilleggsinfo = "sfo")
                 else -> null
             }
         }.distinct()
@@ -170,7 +172,7 @@ object VedleggsforventningMaster {
     @JvmStatic
     fun finnPaakrevdeVedleggForOkonomiOversiktFormue(formuer: List<JsonOkonomioversiktFormue>): List<JsonVedlegg> =
         formuer.mapNotNull { formue ->
-            when (formue?.type) {
+            when (formue.type) {
                 SoknadJsonTyper.FORMUE_BRUKSKONTO -> "brukskonto"
                 SoknadJsonTyper.FORMUE_BSU -> "bsu"
                 SoknadJsonTyper.FORMUE_SPAREKONTO -> "sparekonto"
@@ -178,7 +180,7 @@ object VedleggsforventningMaster {
                 SoknadJsonTyper.FORMUE_VERDIPAPIRER -> "aksjer"
                 SoknadJsonTyper.FORMUE_ANNET -> "annet"
                 else -> null
-            }?.let { JsonVedlegg().withType("kontooversikt").withTilleggsinfo(it) }
+            }?.let { JsonVedlegg(type = "kontooversikt", tilleggsinfo = it) }
         }.distinct()
 
     private fun isWithinOneMonthAheadInTime(datoSomTekst: String): Boolean =

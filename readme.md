@@ -8,7 +8,7 @@ Gjeldende filformat er definert i JSON Schema av [hoved-branchen](https://github
 
 Se **[definisjoner med endringshistorikk](https://navikt.github.io/soknadsosialhjelp-filformat/)** *(direktelenker: [Søknad](https://navikt.github.io/soknadsosialhjelp-filformat/#/soknad/getsoknad_json), [Vedlegg](readme-vedlegg-json.md), [Brukerinnsyn](https://navikt.github.io/soknadsosialhjelp-filformat/#/data%20fra%20fagsystem/getdigisos_soker_json))*.
 
-I tillegg rommer repoet en generator som lager Kotlin-modeller fra JSON Schema-definisjonene, Java-kode for validering, og generatorer for testsøknader.
+I tillegg rommer repoet en generator som lager Kotlin-modeller fra JSON Schema-definisjonene, Kotlin-kode for validering, og generatorer for testsøknader.
 
 ## Artefakter
 
@@ -17,7 +17,7 @@ Repoet publiserer tre artefakter til **GitHub Packages**. Alle genereres fra de 
 | Artefakt | Innhold | Brukes av |
 |---|---|---|
 | `no.nav.sbl.dialogarena:soknadsosialhjelp-filformat` | Validator og selve JSON Schema-filene som ressurser | Eksisterende JVM-konsumenter |
-| `no.nav.sbl.dialogarena:soknadsosialhjelp-filformat-jackson` | Jackson-annotert Kotlin-modell, samme pakkenavn og klassenavn som den tidligere jsonschema2pojo-genererte Java-modellen | Drop-in for eksisterende JVM-konsumenter av modellen |
+| `no.nav.sbl.dialogarena:soknadsosialhjelp-filformat-jackson` | Jackson-annotert Kotlin-modell | Kotlin/JVM-konsumenter av modellen |
 | `no.nav.sosialhjelp.filformat:soknadsosialhjelp-filformat-kmp{,-jvm,-js}` | Kotlin Multiplatform-modell (kotlinx.serialization), JVM + JS, hele skjemaet | `sosialhjelp-innsyn-api`, `sosialhjelp-modia-api` |
 | `@navikt/sosialhjelp-filformat` (npm) | Kotlin/JS-varianten av samme modell | `sosialhjelp-adminpanel` (Next.js, server-side) |
 
@@ -35,6 +35,17 @@ val soker = filformatJson.decodeFromString<DigisosSoker>(json)
 
 Begge modellene er strenge: ukjente `type`-verdier og enum-verdier kaster ved deserialisering. `filformatJson` ignorerer fortsatt ukjente felter.
 
+### Bruk av Jackson-modellen
+
+Felt som er oppført i et schemas `required`-array er ikke-nullbare og må gis til konstruktøren. Valgfrie felt bruker Kotlin-standardverdier og kan gis som navngitte argumenter.
+
+```kotlin
+val soknadsStatus = JsonSoknadsStatus(
+    status = JsonSoknadsStatus.Status.MOTTATT,
+    hendelsestidspunkt = "2026-09-16T12:00:00Z",
+)
+```
+
 ## Henvendelser
 
 Spørsmål knyttet til koden eller teamet kan stilles til teamdigisos@nav.no.
@@ -51,7 +62,7 @@ NAV-interne henvendelser kan sendes via Slack til [#team_digisos](https://nav-it
 
 Kodegeneratoren ligger i `buildSrc/src/main/kotlin/filformat/codegen/`: `SchemaParser` bygger en mellomrepresentasjon (`SchemaModel`) fra `json/`, og `JacksonEmitter`/`KotlinxEmitter` emitterer hver sin Kotlin-modell fra den. Generering skjer automatisk før kompilering.
 
-Jackson-modellen ligger under `no.nav.sbl.soknadsosialhjelp` (samme pakkenavn og `Json`-prefiks som den gamle jsonschema2pojo-modellen). Kotlin-modellen ligger under `no.nav.sosialhjelp.filformat` (samme pakkenavn som den tidligere håndskrevne KMP-modellen; union-varianter som `SoknadsStatus` ligger flatt sammen med sin `sealed interface`, ikke i en dypere pakke, for å matche det som allerede var publisert).
+Jackson-modellen ligger under `no.nav.sbl.soknadsosialhjelp` (samme pakkenavn og `Json`-prefiks som den gamle modellen). Den er Kotlin-only og erstatter ikke den gamle JavaBean-/`with...`-API-en. Ukjente felter ignoreres og bevares ikke ved serialisering etter deserialisering. Kotlin-modellen ligger under `no.nav.sosialhjelp.filformat` (samme pakkenavn som den tidligere håndskrevne KMP-modellen; union-varianter som `SoknadsStatus` ligger flatt sammen med sin `sealed interface`, ikke i en dypere pakke, for å matche det som allerede var publisert).
 
 ### Fallgruver
 
