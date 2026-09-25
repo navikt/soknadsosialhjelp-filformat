@@ -26,9 +26,9 @@ kotlin {
 }
 
 dependencies {
-    implementation(platform("com.fasterxml.jackson:jackson-bom:2.22.1"))
+    implementation(platform("com.fasterxml.jackson:jackson-bom:2.22.3"))
     implementation("com.fasterxml.jackson.core:jackson-annotations")
-    implementation(platform("tools.jackson:jackson-bom:3.2.2"))
+    implementation(platform("tools.jackson:jackson-bom:3.2.3"))
     implementation("tools.jackson.core:jackson-databind")
 
     testImplementation("org.junit.jupiter:junit-jupiter:6.1.3")
