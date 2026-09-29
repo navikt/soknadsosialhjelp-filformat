@@ -1,8 +1,8 @@
 plugins {
     `java-library`
-    kotlin("jvm") version "2.4.10"
-    kotlin("multiplatform") version "2.4.10" apply false
-    kotlin("plugin.serialization") version "2.4.10" apply false
+    kotlin("jvm") version "2.4.20"
+    kotlin("multiplatform") version "2.4.20" apply false
+    kotlin("plugin.serialization") version "2.4.20" apply false
     idea
     `maven-publish`
     id("com.gradleup.shadow") version "9.6.1"
@@ -38,9 +38,9 @@ dependencies {
     implementation("com.google.guava:guava:33.6.0-jre")
     implementation("org.mozilla:rhino:1.9.1")
 
-    implementation(platform("tools.jackson:jackson-bom:3.2.2"))
+    implementation(platform("tools.jackson:jackson-bom:3.2.3"))
     implementation("tools.jackson.core:jackson-databind")
-    implementation(platform("com.fasterxml.jackson:jackson-bom:2.22.1"))
+    implementation(platform("com.fasterxml.jackson:jackson-bom:2.22.3"))
 
     testImplementation("org.junit.jupiter:junit-jupiter:6.1.3")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:6.1.3")
