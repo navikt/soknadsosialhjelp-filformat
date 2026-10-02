@@ -34,8 +34,8 @@ dependencies {
     implementation("com.github.java-json-tools:json-schema-core:1.2.14")
     implementation("com.github.java-json-tools:jackson-coreutils:2.0")
     implementation("com.github.java-json-tools:msg-simple:1.2")
-    implementation("org.apache.commons:commons-lang3:3.20.0")
-    implementation("com.google.guava:guava:33.6.0-jre")
+    implementation("org.apache.commons:commons-lang3:3.21.0")
+    implementation("com.google.guava:guava:33.7.2-jre")
     implementation("org.mozilla:rhino:1.9.1")
 
     implementation(platform("tools.jackson:jackson-bom:3.2.3"))
