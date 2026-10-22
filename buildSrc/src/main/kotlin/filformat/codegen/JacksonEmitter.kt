@@ -36,9 +36,6 @@ class JacksonEmitter(private val model: SchemaModel, private val outputDir: File
         else -> error("unexpected type ref $type")
     }
 
-    private fun isDiscriminator(obj: ObjectType, property: Property): Boolean =
-        model.isUnion(obj.fqBase) && property.name == "type"
-
     private fun isInheritedProperty(obj: ObjectType, property: Property): Boolean =
         obj.superFqBase != null && property !in obj.properties
 
