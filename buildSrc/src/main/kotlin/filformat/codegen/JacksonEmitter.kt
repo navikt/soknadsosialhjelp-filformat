@@ -1,24 +1,10 @@
 package filformat.codegen
 
-import com.squareup.kotlinpoet.ANY
-import com.squareup.kotlinpoet.AnnotationSpec
-import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.CodeBlock
-import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.LIST
-import com.squareup.kotlinpoet.ParameterSpec
+import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import com.squareup.kotlinpoet.PropertySpec
-import com.squareup.kotlinpoet.STRING
-import com.squareup.kotlinpoet.TypeName
-import com.squareup.kotlinpoet.TypeSpec
-import com.squareup.kotlinpoet.asTypeName
 import java.io.File
 
 private val JSON_PROPERTY = ClassName("com.fasterxml.jackson.annotation", "JsonProperty")
-private val JSON_PROPERTY_DESCRIPTION = ClassName("com.fasterxml.jackson.annotation", "JsonPropertyDescription")
 private val JSON_PROPERTY_ORDER = ClassName("com.fasterxml.jackson.annotation", "JsonPropertyOrder")
 private val JSON_INCLUDE = ClassName("com.fasterxml.jackson.annotation", "JsonInclude")
 private val JSON_IGNORE_PROPERTIES = ClassName("com.fasterxml.jackson.annotation", "JsonIgnoreProperties")
@@ -29,6 +15,8 @@ private val JSON_SUB_TYPES = ClassName("com.fasterxml.jackson.annotation", "Json
 
 class JacksonEmitter(private val model: SchemaModel, private val outputDir: File) {
 
+    /** Brukes av gradle job regenerate() */
+    @Suppress("unused")
     fun emit() {
         model.objects.keys.forEach { emitObject(it) }
         model.enums.keys.forEach { emitEnum(it) }
@@ -118,12 +106,11 @@ class JacksonEmitter(private val model: SchemaModel, private val outputDir: File
                 .build(),
         )
         obj.properties.forEach { property ->
-            typeBuilder.addProperty(
-                PropertySpec.builder(property.name, kotlinType(property.type, propertyIsNullable(property)))
-                    .addModifiers(KModifier.ABSTRACT)
-                    .addAnnotation(jsonPropertyAnnotation(property))
-                    .build(),
-            )
+            val propertyBuilder = PropertySpec.builder(property.name, kotlinType(property.type, propertyIsNullable(property)))
+                .addModifiers(KModifier.ABSTRACT)
+                .addAnnotation(jsonPropertyAnnotation(property))
+            property.docs?.let { propertyBuilder.addKdoc(it.replace("%", "%%")) }
+            typeBuilder.addProperty(propertyBuilder.build())
         }
         addOwnNestedEnums(typeBuilder, className, obj)
     }
@@ -151,9 +138,8 @@ class JacksonEmitter(private val model: SchemaModel, private val outputDir: File
                 .initializer(property.name)
                 .addAnnotation(jsonPropertyAnnotation(property))
             if (isInheritedProperty(obj, property)) propertyBuilder.addModifiers(KModifier.OVERRIDE)
-            typeBuilder.addProperty(
-                propertyBuilder.build(),
-            )
+            property.docs?.let { propertyBuilder.addKdoc(it.replace("%", "%%")) }
+            typeBuilder.addProperty(propertyBuilder.build())
         }
         typeBuilder.primaryConstructor(constructor.build())
 
@@ -193,13 +179,12 @@ class JacksonEmitter(private val model: SchemaModel, private val outputDir: File
                 .addAnnotation(jsonCreatorParameterAnnotation(property))
             defaultInitializer(property)?.let { parameter.defaultValue(it) }
             constructor.addParameter(parameter.build())
-            typeBuilder.addProperty(
-                PropertySpec.builder(property.name, kotlinType(property.type, propertyIsNullable(property)))
-                    .addModifiers(KModifier.OPEN)
-                    .initializer(property.name)
-                    .addAnnotation(jsonPropertyAnnotation(property))
-                    .build(),
-            )
+            val propertyBuilder = PropertySpec.builder(property.name, kotlinType(property.type, propertyIsNullable(property)))
+                .addModifiers(KModifier.OPEN)
+                .initializer(property.name)
+                .addAnnotation(jsonPropertyAnnotation(property))
+            property.docs?.let { propertyBuilder.addKdoc(it.replace("%", "%%")) }
+            typeBuilder.addProperty(propertyBuilder.build())
         }
         typeBuilder.primaryConstructor(constructor.build())
         addOwnNestedEnums(typeBuilder, className, obj)
