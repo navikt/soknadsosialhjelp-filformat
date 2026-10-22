@@ -23,7 +23,11 @@
 	"properties": {
 		"saksreferanse": {
 			"type": "string",
-			"description": "Referanse vedtaket skal tilknyttes til"
+			"description": "Referanse vedtaket er knyttet til."
+		},
+		"vedtaksreferanse": {
+			"type": "string",
+			"description": "Knytter vedtak til vedtaksbrevet. Ved null eller tom streng vil saksreferanse benyttes."
 		},
 		"utfall": {
 			"type": "string",
