@@ -16,7 +16,7 @@
           "type": "string",
           "description": "Referanse til vedtakfilen klagen er knyttet til (UUID)"
         },
-        "vedtakreferanse": {
+        "vedtaksreferanse": {
           "type": "string",
           "description": "Referanse til vedtaket det klages på."
         },
