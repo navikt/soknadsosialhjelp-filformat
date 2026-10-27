@@ -12,9 +12,13 @@
           "type": "string",
           "description": "Unik identifikator for klagen (UUID)"
         },
-        "vedtakId": {
+        "filreferanseId": {
           "type": "string",
-          "description": "Referanse til vedtak som det klages på (UUID)"
+          "description": "Referanse til vedtakfilen klagen er knyttet til (UUID)"
+        },
+        "vedtakreferanse": {
+          "type": "string",
+          "description": "Referanse til vedtaket det klages på."
         },
         "digisosId": {
           "type": "string",
