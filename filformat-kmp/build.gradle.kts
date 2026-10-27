@@ -65,7 +65,7 @@ kotlin {
             kotlin.srcDir(generateKotlinxModel)
         }
         commonMain.dependencies {
-            api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0")
+            api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.12.0")
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
