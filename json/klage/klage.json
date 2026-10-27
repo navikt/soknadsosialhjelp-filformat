@@ -69,7 +69,7 @@
       },
       "required": [
         "klageId",
-        "vedtakId",
+        "vedtaksreferanse",
         "digisosId",
         "personIdentifikator",
         "navn",
