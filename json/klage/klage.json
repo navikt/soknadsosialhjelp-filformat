@@ -16,9 +16,20 @@
           "type": "string",
           "description": "Referanse til vedtakfilen klagen er knyttet til (UUID)"
         },
-        "vedtaksreferanse": {
-          "type": "string",
-          "description": "Referanse til vedtaket det klages på."
+        "vedtakReferanse": {
+          "type": "object",
+          "javaType": "no.nav.sbl.soknadsosialhjelp.klage.VedtakReferanse",
+          "description": "Referanser til vedtaket klagen er knyttet til",
+          "properties": {
+            "filreferanseId": {
+              "type": "string",
+              "description": "Referanse til vedtaksbrevet klagen er knyttet til (UUID)"
+            },
+            "referanse": {
+              "type": "string",
+              "description": "Referansenummer til vedtak det klages på. Må matche referanse i vedtaksbrevet."
+            }
+          }
         },
         "digisosId": {
           "type": "string",
