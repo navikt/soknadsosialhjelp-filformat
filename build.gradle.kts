@@ -36,7 +36,7 @@ dependencies {
     implementation("com.github.java-json-tools:msg-simple:1.2")
     implementation("org.apache.commons:commons-lang3:3.21.0")
     implementation("com.google.guava:guava:33.7.2-jre")
-    implementation("org.mozilla:rhino:1.9.1")
+    implementation("org.mozilla:rhino:1.9.2")
 
     implementation(platform("tools.jackson:jackson-bom:3.2.4"))
     implementation("tools.jackson.core:jackson-databind")
